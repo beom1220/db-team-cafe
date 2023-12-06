@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/dbcafe
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: abcd123!
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
