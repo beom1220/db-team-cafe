@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>메인페이지</title>
+  <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
+  <link th:href="@{/css/index.css}" href="../static/css/index.css" rel="stylesheet">
 </head>
 <body>
-<p>메인페이지</p>
+  <div th:insert="fragments/navigation/topBar :: topBar"></div>
+  <p>중간바</p>
+  <div class="container">
+    <div class="box">
+      <div class="content-box">
+        <div class="list">
+          <div class="title-box">
+            <h2>모집중인 이벤트 모임</h2>
+            <hr>
+          </div>
+          <div class="event-list">
+            <div th:insert="fragments/event/list :: list"></div>
+            <div th:insert="fragments/event/list :: list"></div>
+            <div th:insert="fragments/event/list :: list"></div>
+          </div>
+        </div>
+        <div class="list">
+          <div class="title-box">
+            <h2>메뉴</h2>
+            <hr>
+          </div>
+          <div class="menu-list">
+            <div th:insert="fragments/menu/list :: list"></div>
+            <div th:insert="fragments/menu/list :: list"></div>
+            <div th:insert="fragments/menu/list :: list"></div>
+            <div th:insert="fragments/menu/list :: list"></div>
+            <div th:insert="fragments/menu/list :: list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

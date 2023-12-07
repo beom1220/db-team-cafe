@@ -1,0 +1,121 @@
+/** 달력 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  height: 60px;
+}
+td.in2weeks {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+td:not(.today):not(.in2weeks) {
+  background-color: #8d8d8d;
+}
+.month-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+.calendar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 40px;
+}
+
+
+/** 설명 박스 */
+.text-box {
+  display: flex;
+  flex-direction: column;
+}
+.content-text {
+  font-size: 11px;
+  color: #8d8d8d;
+}
+.monthButton {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+
+/* 시간대 선택 */
+.date-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.time-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.time-ul {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  position: relative;
+  left: 50px;
+}
+.time-li {
+  margin: 20px 0px;
+  position: relative;
+}
+.time-li input[type="radio"]:checked {
+  pointer-events: none;
+  background-color: #e0e0e0;
+  color: #888;
+}
+.time-li-none {
+  margin: 20px 0px;
+  text-decoration: line-through;
+  color: #8d8d8d;
+}
+.footer-box {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0px;
+}
+.reservationButton {
+  width: 250px;
+  background-color: #66371D;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.chooeseButton {
+  text-decoration:underline
+}
+
+
+/** 패키지 예약 */
+.package-box {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;;
+}
+.weekday-cell {
+  background-color: #ffffff;
+}
+.right-box {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1000px;
+}
