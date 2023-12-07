@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Getter
@@ -24,11 +26,11 @@ public class ReservationChangeRequest {
     @JoinColumn(name = "reservation_id")
     private Reservation reservation;
 
-    private Date newDate;
+    private LocalDate newDate;
 
-    private int newStartTime;
+    private LocalTime newStartTime;
 
-    private int newEndTime;
+    private LocalTime newEndTime;
 
     private boolean isAccepted;
 

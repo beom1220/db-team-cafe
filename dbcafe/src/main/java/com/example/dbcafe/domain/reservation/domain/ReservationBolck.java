@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -24,11 +25,11 @@ public class ReservationBolck {
     @JoinColumn(name = "place_id")
     private Place place;
 
-    private Date date;
+    private LocalDate date;
 
-    private int startTime;
+    private LocalTime startTime;
 
-    private int endTime;
+    private LocalTime endTime;
 
     private boolean isBookable;
 }

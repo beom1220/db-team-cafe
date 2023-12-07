@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.swing.text.html.HTML;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Getter
@@ -29,11 +31,11 @@ public class ScheduledEvent {
     @JoinColumn(name = "place_id")
     private Place place;
 
-    private Date date;
+    private LocalDate date;
 
-    private int startTime;
+    private LocalTime startTime;
 
-    private int endTime;
+    private LocalTime endTime;
 
     private boolean isClosed;
 
