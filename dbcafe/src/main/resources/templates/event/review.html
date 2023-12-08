@@ -4,8 +4,119 @@
   <meta charset="UTF-8">
   <title>이벤트 모임 리뷰 페이지</title>
   <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
+  <link th:href="@{/css/event.css}" href="../static/css/event.css" rel="stylesheet">
 </head>
 <body>
-$END$
+<div th:insert="fragments/navigation/topBar :: topBar"></div>
+<div class="container">
+  <div class="box">
+    <div class="title-container">
+      <div class="row-box">
+        <h4 class="title">바리스타 체험 리뷰</h4>
+        <button class="add-review-toggle">리뷰 작성 하기</button>
+      </div>
+      <hr class="titleHr">
+    </div>
+    <div class="content-box">
+      <div class="input-box hidden">
+        <b>후기 내용</b>
+        <textarea name="" id="" cols="30" rows="10" placeholder="이벤트 모임 체험 후기를 작성해 주세요." class="eventInput"></textarea>
+        <b>별점</b>
+        <div class="rating-container">
+          <span class="star" onclick="rateStar(1)">★</span>
+          <span class="star" onclick="rateStar(2)">★</span>
+          <span class="star" onclick="rateStar(3)">★</span>
+          <span class="star" onclick="rateStar(4)">★</span>
+          <span class="star" onclick="rateStar(5)">★</span>
+        </div>
+        <button class="add-review">등록하기</button>
+      </div>
+      <div class="review-list">
+        <div class="title-container-navigation">
+          <h4 class="review-title">전체 리뷰</h4>
+          <h4 class="review-title">높은 별점 순</h4>
+          <h4 class="review-title">낮은 별점 순</h4>
+        </div>
+        <hr>
+        <div class="review-user">
+          <div class="user-content">
+            <p>회원아이디</p>
+            <p class="userName">mouse</p>
+            <hr>
+            <p>2023-12-06</p>
+            <p>★★★★★</p>
+          </div>
+          <div class="user-content">
+            <p>불만 사항이 있다. 개선 요청</p>
+          </div>
+        </div>
+        <div class="review-user">
+          <div class="user-content">
+            <p>회원아이디</p>
+            <p class="userName">mouse</p>
+            <hr>
+            <p>2023-12-06</p>
+            <p>★★★★★</p>
+          </div>
+          <div class="user-content">
+            <p>불만 사항이 있다. 개선 요청</p>
+          </div>
+        </div>
+        <div class="review-user">
+          <div class="user-content">
+            <p>회원아이디</p>
+            <p class="userName">mouse</p>
+            <hr>
+            <p>2023-12-06</p>
+            <p>★★★★★</p>
+          </div>
+          <div class="user-content">
+            <p>불만 사항이 있다. 개선 요청</p>
+          </div>
+        </div>
+        <div class="review-user">
+          <div class="user-content">
+            <p>회원아이디</p>
+            <p class="userName">mouse</p>
+            <hr>
+            <p>2023-12-06</p>
+            <p>★★★★★</p>
+          </div>
+          <div class="user-content">
+            <p>불만 사항이 있다. 개선 요청</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    let selectedRating = 0;
+
+    function rateStar(rating) {
+      selectedRating = rating;
+
+      // Remove active class from all stars
+      document.querySelectorAll('.star').forEach(star => {
+        star.classList.remove('active');
+      });
+
+      // Add active class to selected stars
+      for (let i = 1; i <= rating; i++) {
+        document.querySelector(`.star:nth-child(${i})`).classList.add('active');
+      }
+
+      // You can use 'selectedRating' variable to store the selected rating value
+      console.log('Selected Rating:', selectedRating);
+    }
+
+    // Toggle the review form visibility
+    const inputBox = document.querySelector('.input-box');
+    const addReviewToggle = document.querySelector('.add-review-toggle');
+
+    addReviewToggle.addEventListener('click', function () {
+      inputBox.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>

@@ -4,8 +4,61 @@
   <meta charset="UTF-8">
   <title>건의사항 페이지</title>
   <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
+  <link th:href="@{/css/user.css}" href="../static/css/user.css" rel="stylesheet">
 </head>
 <body>
-$END$
+<div th:insert="fragments/navigation/topBar :: topBar"></div>
+<div class="container">
+  <div class="box">
+    <div class="title-container">
+      <h4 class="title">문의사항 건의</h4>
+      <hr class="titleHr">
+      <p class="title-text">* 최소 1~2일 이내에 관리자의 확인이 이루어집니다.</p>
+      <p class="title-text">* 문의 량이 많을 시 확인 및 답변이 늦어질 수 있는 점 유의 부탁드립니다.</p>
+    </div>
+    <div class="content-box">
+      <div class="input-box">
+        <b>제목</b>
+        <input type="text" placeholder="문의사항 제목을 작성해 주세요." class="inputTitle">
+        <b>문의 사항 내용</b>
+        <textarea name="" id="" cols="30" placeholder="문의사항에 대해 작성해 주세요." class="inputContent"></textarea>
+        <b>분류</b>
+        <select name="" id="">
+          <option value="">항목을 선택해 주세요.</option>
+          <option value="">문의</option>
+          <option value="">불만사항</option>
+        </select>
+      </div>
+      <button class="add-suggestion">등록하기</button>
+      <div>
+        <div class="title-container">
+          <h4 class="title">내가 작성한 문의</h4>
+          <hr class="titleHr">
+        </div>
+        <div class="suggestion-user">
+          <div class="user-content">
+            <p>회원아이디</p>
+            <p class="userName">mouse</p>
+            <hr>
+            <p>2023-12-06</p>
+          </div>
+          <div class="user-content">
+            <p>불만 사항이 있다. 개선 요청</p>
+          </div>
+        </div>
+        <div class="suggestion-admin">
+          <div class="admin-content">
+            <p class="adminName">=> 관리자 답변</p>
+            <hr>
+            <p>2023-12-06</p>
+          </div>
+          <div class="admin-content">
+            <p>불만 사항 확인. 감사</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

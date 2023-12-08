@@ -15,6 +15,7 @@ h2 {
 button {
   background-color: white;
   border: none;
+  cursor: pointer;
 }
 input {
   border: none;
@@ -31,7 +32,7 @@ input {
   display: flex;
   flex-direction: column;
   min-width: 1280px;
-  height: 100%;
+  height: auto;
   margin-top: 100px;
 }
 .content-box {
@@ -82,4 +83,30 @@ input {
 .top-logo-image {
   width: 60px;
   height: 60px;
+}
+
+/** 전역 타이틀 */
+.title-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  gap: 10px;
+  padding: 10px 0px;
+  margin: auto;
+}
+.title{
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+.titleHr{
+  height: 5px;
+  background-color: #66371D;
+  border: none;
+}
+.title-text {
+  font-size: 13px;
+  margin-left: 20px;
+  color: gray;
 }

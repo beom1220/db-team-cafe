@@ -4,8 +4,127 @@
   <meta charset="UTF-8">
   <title>선결제 주문 페이지</title>
   <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
+  <link th:href="@{/css/user.css}" href="../static/css/user.css" rel="stylesheet">
 </head>
 <body>
-$END$
+<div class="title-container">
+  <h4 class="title">모임 주문</h4>
+  <hr class="titleHr">
+</div>
+<div class="container">
+  <div class="box">
+    <div class="content-box">
+      <div class="district">
+        <h4 class="content-title">주문 내역</h4>
+        <hr>
+        <div class="menu-container">
+          <div class="menu-content">
+            <b>메뉴</b>
+            <b>수량</b>
+            <b>가격</b>
+          </div>
+          <hr>
+          <div class="menu-content">
+            <b>아메리카노</b>
+            <b>3</b>
+            <b>11,700</b>
+          </div>
+          <div class="menu-content">
+            <b>에스프레소</b>
+            <b>8</b>
+            <b>58,400</b>
+          </div>
+        </div>
+      </div>
+      <div class="district">
+        <h4 class="content-title">보유 중인 쿠폰</h4>
+        <hr>
+        <ul>
+          <li>
+            <b>첫 구매 할인</b>
+            <b>10%</b>
+            <b>2024-05-10</b>
+            <input type="checkbox">
+          </li>
+          <li>
+            <b>첫 구매 할인</b>
+            <b>10%</b>
+            <b>2024-05-10</b>
+            <input type="checkbox">
+          </li>
+        </ul>
+      </div>
+      <div class="district">
+        <p>결제 내역</p>
+        <div class="receipt-box">
+          <div class="space-between">
+            <p class="receipt-title">선결제 금액</p>
+            <p>50,000</p>
+          </div>
+          <div class="space-between">
+            <p class="receipt-title">주문금액</p>
+            <p>70,100</p>
+          </div>
+          <div class="space-between">
+            <p class="receipt-title">할인 금액</p>
+            <p>10,515</p>
+          </div>
+          <div class="discount-detail">
+            <div class="row-box">
+              <p class="discount-content">얼리버드 할인</p>
+              <p class="discount-content">5%</p>
+            </div>
+            <p class="discount-content">10,000</p>
+          </div>
+          <div class="discount-detail">
+            <div class="row-box">
+              <p class="discount-content">주중 할인</p>
+              <p class="discount-content">5%</p>
+            </div>
+            <p class="discount-content">515</p>
+          </div>
+          <div class="space-between">
+            <p class="receipt-title">적립 예정 코인</p>
+            <p>5</p>
+          </div>
+        </div>
+      </div>
+      <div class="district">
+        <div class="menu-container">
+          <div class="pay-box">
+            <div>
+              <b>총 결제 금액</b>
+              <b>59,585</b>
+            </div>
+            <div>
+              <b>선결제 금액</b>
+              <b>50,000</b>
+            </div>
+            <hr class="width-hr">
+            <div>
+              <b>추가 결제 금액</b>
+              <b>9,585</b>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="district">
+        <h4 class="content-title">추가 결제 금액</h4>
+        <hr>
+        <p>결제 수단 선택</p>
+        <select name="" id="" class="select-pay">
+          <option value="">결제수단을 선택해 주세요.</option>
+          <option value="CREDIT">신용카드</option>
+          <option value="CASH">현금</option>
+          <option value="KAKAO">카카오페이</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="order-button-box">
+    <button class="cancleButton">취소하기</button>
+    <button class="okButton">9,585원 결제 및 주문하기</button>
+  </div>
+</div>
 </body>
 </html>
