@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ScheduledEventRepository extends JpaRepository<ScheduledEvent, Integer> {
     List<ScheduledEvent> findAllByIsClosed(boolean b);
+
+    ScheduledEvent findScheduledEventById(int id);
 }

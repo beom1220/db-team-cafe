@@ -1,5 +1,6 @@
 package com.example.dbcafe.domain.reservation.domain;
 
+import com.example.dbcafe.domain.user.domain.OwnCoupon;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import javax.swing.text.html.HTML;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -41,4 +43,7 @@ public class ScheduledEvent {
 
     @Enumerated(EnumType.STRING)
     private Tag tag;
+
+    @OneToMany(mappedBy = "scheduledEvent", cascade = CascadeType.REMOVE)
+    private List<Entrant> entrants;
 }

@@ -16,7 +16,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class ReservationBolck {
+public class ReservationBlock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

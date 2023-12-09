@@ -7,4 +7,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SettingService {
     private final SettingRepository settingRepository;
+
+    public int findValueByName(String name) {
+        return settingRepository.findByName(name).getValue();
+    }
 }

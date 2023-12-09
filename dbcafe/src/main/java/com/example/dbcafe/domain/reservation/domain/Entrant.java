@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -59,6 +60,8 @@ public class Entrant {
     private String review;
 
     private double rating;
+
+    private LocalDateTime reviewedDate;
 
     @Column(nullable = false, name = "created_at")
     @CreatedDate

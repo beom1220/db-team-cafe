@@ -19,12 +19,18 @@ public class OrdersItem {
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
+    @JoinColumn(name = "Orders_id")
+    private Orders orders;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
     private int quantity;
+
+    public OrdersItem(Orders savedOrders, Menu menu, int quantity) {
+        this.orders = savedOrders;
+        this.menu = menu;
+        this.quantity = quantity;
+    }
 }

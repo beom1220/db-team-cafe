@@ -1,6 +1,7 @@
 package com.example.dbcafe.domain.reservation.domain;
 
 import com.example.dbcafe.domain.order.domain.PaymentMethod;
+import com.example.dbcafe.domain.user.domain.OwnCoupon;
 import com.example.dbcafe.domain.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -35,12 +37,6 @@ public class Reservation {
 
     private PaymentMethod paymentMethod;
 
-    private int earlybirdDiscountRatio;
-
-    private int weekdayDiscountRatio;
-
-    private int levelDiscountRatio;
-
     @Column(nullable = false, name = "created_at")
     @CreatedDate
     private Date createdAt;
@@ -60,4 +56,16 @@ public class Reservation {
     private int changeCount;
 
     private boolean isPackage;
+
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.REMOVE)
+    private List<ReservationItem> reservationItems;
+
+    public Reservation(User user, String className, int numOfParticipant, int prepaymentTotal, PaymentMethod paymentMethod, boolean isPackage) {
+        this.user = user;
+        this.className = className;
+        this.numOfParticipant = numOfParticipant;
+        this.prepaymentTotal = prepaymentTotal;
+        this.paymentMethod = paymentMethod;
+        this.isPackage = isPackage;
+    }
 }

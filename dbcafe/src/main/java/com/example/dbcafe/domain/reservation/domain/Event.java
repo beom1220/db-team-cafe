@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -33,4 +35,7 @@ public class Event {
     private int reviewCount;
 
     private double ratingTotal;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
+    private List<ScheduledEvent> scheduledEvents;
 }
