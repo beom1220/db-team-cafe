@@ -16,4 +16,8 @@ public interface EntrantRepository extends JpaRepository<Entrant, Integer> {
     List<Entrant> findAllEntrantByScheduledEventInAndIsAttendedAndReviewIsNullOrderByReviewedDateDesc(List<ScheduledEvent> scheduledEvents, boolean b);
 
     List<Entrant> findAllEntrantByScheduledEventInAndReviewIsNotNullAndRatingIsNotNull(List<ScheduledEvent> scheduledEvents);
+
+    List<Entrant> findAllEntrantByScheduledEvent(ScheduledEvent scheduledEvent);
+
+    Entrant findEntrantById(int entrantId);
 }

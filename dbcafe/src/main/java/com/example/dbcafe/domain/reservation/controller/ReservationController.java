@@ -1,17 +1,15 @@
 package com.example.dbcafe.domain.reservation.controller;
 
-import com.example.dbcafe.domain.reservation.dto.ReservationBlockRequestDto;
-import com.example.dbcafe.domain.reservation.dto.ReservationBlockResponseDto;
-import com.example.dbcafe.domain.reservation.dto.ReservationRequestDto;
+import com.example.dbcafe.domain.reservation.dto.*;
 import com.example.dbcafe.domain.reservation.service.ReservationService;
+import com.example.dbcafe.domain.user.domain.Coupon;
+import com.example.dbcafe.domain.user.dto.CouponDto;
 import jakarta.servlet.http.HttpSession;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +30,39 @@ public class ReservationController {
     public String submitReservation(@ModelAttribute ReservationRequestDto reservationInfo, @ModelAttribute List<ReservationBlockResponseDto> blocks, HttpSession session) {
         reservationService.submitReservation(reservationInfo, blocks, session);
         return "redirect:/";
+    }
+
+    @GetMapping("/admin")
+    public String showAllReservation(Model model, HttpSession session) {
+        String userId = (String) session.getAttribute("loggedInUser");
+        if (userId.equals("admin")) {
+            List<ReservationItemListDto> dtos = reservationService.findAllReservationItem();
+
+            model.addAttribute("reservations", dtos);
+            return "admin/reservation";
+        } else {
+            return "auth/access-denied";
+        }
+    }
+
+    @GetMapping("/admin-cancel")
+    public String cancelForm(@RequestParam("reservationItemId") int reservationItemId, Model model, HttpSession session) {
+        String userId = (String) session.getAttribute("loggedInUser");
+        if (userId.equals("admin")) {
+            RejectionFormDto dto = reservationService.convertToRejectionFormDto(reservationItemId);
+            List<CouponSelectDto> coupons = reservationService.getCouponList();
+
+            model.addAttribute("user", dto);
+            model.addAttribute("coupons", coupons);
+            return "admin/reservationRejectionForm";
+        } else {
+            return "auth/access-denied";
+        }
+    }
+
+    @PostMapping("/admin-cancel")
+    public String cancel(@ModelAttribute ReservationRejectionDto dto) {
+        reservationService.adminRejection(dto);
+        return "redirect:/reservation/admin";
     }
 }

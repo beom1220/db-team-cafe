@@ -45,4 +45,10 @@ public class OwnCoupon {
     private Date usedAt;
 
     private int discountPrice;
+
+    public OwnCoupon(Coupon coupon, User user, CouponStatus couponStatus) {
+        this.coupon = coupon;
+        this.user = user;
+        this.couponStatus = couponStatus;
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.dbcafe.domain.reservation.service;
 
+import com.example.dbcafe.domain.reservation.domain.ApplicationStatus;
 import com.example.dbcafe.domain.reservation.domain.Entrant;
 import com.example.dbcafe.domain.reservation.domain.Event;
 import com.example.dbcafe.domain.reservation.domain.ScheduledEvent;
@@ -11,11 +12,11 @@ import com.example.dbcafe.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -76,7 +77,7 @@ public class EntrantService {
     public void addReview(Entrant entrant, WriteReviewDto dto) {
         entrant.setReview(dto.getReview());
         entrant.setRating(dto.getRating());
-        entrant.setReviewedDate(LocalDateTime.now());
+        entrant.setReviewedDate(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
 
         entrantRepository.save(entrant);
 
@@ -84,5 +85,26 @@ public class EntrantService {
         event.setReviewCount(event.getReviewCount() + 1);
         event.setRatingTotal(event.getRatingTotal() + dto.getRating());
         eventRepository.save(event);
+    }
+
+    public List<Entrant> findAllEntrantByScheduledEvent(ScheduledEvent scheduledEvent) {
+        return entrantRepository.findAllEntrantByScheduledEvent(scheduledEvent);
+    }
+
+    public Entrant findById(int entrantId) {
+        return entrantRepository.findEntrantById(entrantId);
+    }
+
+    public void submitEntrant(int entrantId) {
+        Entrant entrant = findById(entrantId);
+        entrant.setApplicationStatus(ApplicationStatus.ACCEPTED);
+        entrantRepository.save(entrant);
+    }
+
+    public void rejectEntrant(int entrantId, String rejectionReason) {
+        Entrant entrant = findById(entrantId);
+        entrant.setApplicationStatus(ApplicationStatus.REJECTED);
+        entrant.setRejectionReason(rejectionReason);
+        entrantRepository.save(entrant);
     }
 }

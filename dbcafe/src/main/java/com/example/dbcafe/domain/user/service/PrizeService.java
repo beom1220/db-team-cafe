@@ -2,6 +2,8 @@ package com.example.dbcafe.domain.user.service;
 
 import com.example.dbcafe.domain.user.domain.Prize;
 import com.example.dbcafe.domain.user.domain.User;
+import com.example.dbcafe.domain.user.dto.PrizeDto;
+import com.example.dbcafe.domain.user.dto.PrizeListDto;
 import com.example.dbcafe.domain.user.dto.PrizeUserInfoDto;
 import com.example.dbcafe.domain.user.repository.PrizeRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +17,22 @@ import java.util.List;
 public class PrizeService {
     private final PrizeRepository prizeRepository;
 
-    public List<Prize> findAllPrizes() {
-        return prizeRepository.findAllPrizes();
+    public List<PrizeListDto> findAllPrizes() {
+        List<Prize> prizes =  prizeRepository.findAllPrizes();
+        List<PrizeListDto> dtos = new ArrayList<>();
+
+        for (Prize p : prizes) {
+            boolean isCoin = false;
+            int value = p.getMileage();
+            if (p.getCoin() > 0) {
+                isCoin = true;
+                value = p.getCoin();
+            }
+            PrizeListDto dto = new PrizeListDto(p.getId(),
+                    p.getName(), isCoin, value, p.getProbability());
+            dtos.add(dto);
+        }
+        return dtos;
     }
 
     public PrizeUserInfoDto convertToDto(User user) {
@@ -39,5 +55,29 @@ public class PrizeService {
         user.setPrizeChance(user.getPrizeChance() - 1);
         user.setCoin(user.getCoin() + prize.getCoin() - 1);
         user.setMileage(user.getMileage() + prize.getMileage());
+    }
+
+    public List<Prize> findAllDrawablePrizes() {
+        return prizeRepository.findAllPrizeByProbabilityNot(0);
+    }
+
+    public Prize addPrize(PrizeDto dto) {
+        Prize prize;
+        if (dto.isCoin()) {
+            prize = new Prize(dto.getName(), 0, dto.getValue(), dto.getProbability());
+        } else {
+            prize = new Prize(dto.getName(), dto.getValue(), 0, dto.getProbability());
+        }
+        return prizeRepository.save(prize);
+    }
+
+    public Prize editPrize(int prizeId, PrizeDto dto) {
+        Prize prize = prizeRepository.findPrizeById(prizeId);
+        if (dto.isCoin()) {
+            prize = new Prize(dto.getName(), 0, dto.getValue(), dto.getProbability());
+        } else {
+            prize = new Prize(dto.getName(), dto.getValue(), 0, dto.getProbability());
+        }
+        return prizeRepository.save(prize);
     }
 }

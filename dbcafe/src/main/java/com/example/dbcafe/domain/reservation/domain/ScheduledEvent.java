@@ -46,4 +46,14 @@ public class ScheduledEvent {
 
     @OneToMany(mappedBy = "scheduledEvent", cascade = CascadeType.REMOVE)
     private List<Entrant> entrants;
+
+    public ScheduledEvent(Event event, Place place, LocalDate date, LocalTime startTime, LocalTime endTime, boolean isClosed, Tag tag) {
+        this.event = event;
+        this.place = place;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.isClosed = isClosed;
+        this.tag = tag;
+    }
 }

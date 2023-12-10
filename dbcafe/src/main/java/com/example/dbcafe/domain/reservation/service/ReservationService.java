@@ -5,24 +5,31 @@ import com.example.dbcafe.domain.reservation.domain.DayOfWeekInKorean;
 import com.example.dbcafe.domain.reservation.domain.Reservation;
 import com.example.dbcafe.domain.reservation.domain.ReservationBlock;
 import com.example.dbcafe.domain.reservation.domain.ReservationItem;
-import com.example.dbcafe.domain.reservation.dto.ReservationBlockRequestDto;
-import com.example.dbcafe.domain.reservation.dto.ReservationBlockResponseDto;
-import com.example.dbcafe.domain.reservation.dto.ReservationRequestDto;
-import com.example.dbcafe.domain.reservation.repository.ReservationBolckRepository;
+import com.example.dbcafe.domain.reservation.dto.*;
+import com.example.dbcafe.domain.reservation.repository.ReservationBlockRepository;
 import com.example.dbcafe.domain.reservation.repository.ReservationItemRepository;
 import com.example.dbcafe.domain.reservation.repository.ReservationRepository;
+import com.example.dbcafe.domain.user.domain.Coupon;
+import com.example.dbcafe.domain.user.domain.CouponStatus;
+import com.example.dbcafe.domain.user.domain.OwnCoupon;
 import com.example.dbcafe.domain.user.domain.User;
+import com.example.dbcafe.domain.user.repository.CouponRepository;
+import com.example.dbcafe.domain.user.repository.OwnCouponRepository;
 import com.example.dbcafe.domain.user.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ReservationService {
@@ -30,7 +37,9 @@ public class ReservationService {
     private final SettingService settingService;
     private final UserService userService;
     private final ReservationItemRepository reservationItemRepository;
-    private final ReservationBolckRepository reservationBolckRepository;
+    private final ReservationBlockRepository reservationBlockRepository;
+    private final CouponRepository couponRepository;
+    private final OwnCouponRepository ownCouponRepository;
 
     public List<ReservationBlockResponseDto> calDayOfWeekAndDiscountRatio(ReservationBlockRequestDto dto) {
         String dayOfWeek = DayOfWeekInKorean.valueOf(dto.getDate().getDayOfWeek().name()).getDay();
@@ -59,16 +68,71 @@ public class ReservationService {
             // 시간과 일자로 사용가능한 block을 실제로 찾는 과정
             LocalDate date = block.getDate();
             LocalTime startTime = block.getStartTime();
-            ReservationBlock bookableBlock = reservationBolckRepository
+            ReservationBlock bookableBlock = reservationBlockRepository
                     .findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(date, startTime, true);
             ReservationItem item = new ReservationItem(savedReservation, bookableBlock,
                     reservationInfo.getTempPw(), settingService.findValueByName("블록당선결제금액"),
                     block.getEarlybirdDiscountRatio(), block.getWeekdayDiscountRatio());
+            bookableBlock.setBookable(false);
+            reservationBlockRepository.save(bookableBlock);
             reservationItemRepository.save(item);
         }
     }
 
     public ReservationItem findItemByIdAndTempPw(int itemId, String tempPw) {
         return reservationItemRepository.findByIdAndTempPw(itemId, tempPw);
+    }
+
+    public List<ReservationItemListDto> findAllReservationItem() {
+        List<ReservationItem> items = reservationItemRepository.findAllReservationItemByReservationBlockDateGreaterThanEqualOrderByReservationBlockDateAscReservationBlockStartTimeAsc(LocalDate.now());
+        List<ReservationItemListDto> dtos = new ArrayList<>();
+        for (ReservationItem item : items) {
+            Reservation r = item.getReservation();
+            ReservationBlock b = item.getReservationBlock();
+            ReservationItemListDto dto = new ReservationItemListDto(item.getId(),
+                    r.getClassName(), r.getUser().getName(), b.getDate(), b.getStartTime(),
+                    r.isCanceled());
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    public List<CouponSelectDto> getCouponList() {
+        List<Coupon> coupons =  couponRepository.findAllCoupon();
+        List<CouponSelectDto> dtos = new ArrayList<>();
+        for (Coupon c : coupons) {
+            CouponSelectDto dto = new CouponSelectDto(c.getId(), c.getName(), c.getDiscountRatio());
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    public RejectionFormDto convertToRejectionFormDto(int reservationItemId) {
+        ReservationItem reservationItem = reservationItemRepository.findReservationItemById(reservationItemId);
+        User user = reservationItem.getReservation().getUser();
+        return new RejectionFormDto(user.getId(), user.getName(),
+                user.getPhone(), user.getLevel());
+    }
+
+    public void adminRejection(ReservationRejectionDto dto) {
+        User user = userService.findById(dto.getUserId());
+        Coupon coupon = couponRepository.findCouponById(dto.getCouponId());
+        OwnCoupon ownCoupon = new OwnCoupon(coupon, user, CouponStatus.USABLE);
+        ownCoupon = ownCouponRepository.save(ownCoupon);
+
+        Date date = ownCoupon.getCreatedAt();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate newLocalDate = localDate.plusDays(ownCoupon.getCoupon().getPeriod());
+        Date dueDate = Date.from(newLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        ownCoupon.setDueDate(dueDate);
+        ownCoupon = ownCouponRepository.save(ownCoupon);
+
+        user.setCoin(user.getCoin() + dto.getCoin());
+        user = userService.save(user);
+
+        log.info(user.getId() + "님의 전화번호인 " + user.getPhone() + "으로 다음과 같은 문자 전송");
+        log.info(dto.getContent() + " 사과의 의미로 " + dto.getCoin() + "개의 코인과 "
+                + coupon.getDiscountRatio() + "%의 할인쿠폰을 제공합니다.");
     }
 }

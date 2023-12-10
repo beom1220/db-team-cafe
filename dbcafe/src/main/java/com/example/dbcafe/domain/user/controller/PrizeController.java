@@ -2,16 +2,15 @@ package com.example.dbcafe.domain.user.controller;
 
 import com.example.dbcafe.domain.user.domain.Prize;
 import com.example.dbcafe.domain.user.domain.User;
-import com.example.dbcafe.domain.user.dto.PrizeUserInfoDto;
+import com.example.dbcafe.domain.user.dto.*;
 import com.example.dbcafe.domain.user.service.PrizeService;
 import com.example.dbcafe.domain.user.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class PrizeController {
 
     @GetMapping
     public String showPrize(Model model, HttpSession session) {
-        List<Prize> prizes = prizeService.findAllPrizes();
+        List<Prize> prizes = prizeService.findAllDrawablePrizes();
         User user = userService.findById((String) session.getAttribute("loggedInUser"));
         PrizeUserInfoDto dto = prizeService.convertToDto(user);
 
@@ -43,5 +42,31 @@ public class PrizeController {
         prizeService.settlePrize(selectedPrize, user);
         redirectAttributes.addFlashAttribute("selectedPrize", selectedPrize);
         return "redirect:/prize";
+    }
+
+    @GetMapping("/addForm")
+    public String addForm(Model model, HttpSession session) {
+        String userId = (String) session.getAttribute("loggedInUser");
+        if (userId.equals("admin")) {
+            List<PrizeListDto> prizes = prizeService.findAllPrizes();
+            model.addAttribute("prizes", prizes);
+            return "admin/prize";
+        } else {
+            return "auth/access-denied";
+        }
+    }
+
+    @PostMapping("/addForm")
+    public String add(@ModelAttribute PrizeDto dto) {
+        prizeService.addPrize(dto);
+
+        return "redirect:/prize/addForm";
+    }
+
+    @PostMapping("/edit")
+    public String remove(@RequestParam("prizeId") int prizeId, PrizeDto dto) {
+        prizeService.editPrize(prizeId, dto);
+
+        return "redirect:/prize/addForm";
     }
 }

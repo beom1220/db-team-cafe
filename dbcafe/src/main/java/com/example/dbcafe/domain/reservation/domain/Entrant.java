@@ -61,7 +61,7 @@ public class Entrant {
 
     private double rating;
 
-    private LocalDateTime reviewedDate;
+    private Date reviewedDate;
 
     @Column(nullable = false, name = "created_at")
     @CreatedDate

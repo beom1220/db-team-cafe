@@ -1,11 +1,9 @@
 package com.example.dbcafe.domain.reservation.service;
 
-import com.example.dbcafe.domain.reservation.domain.Entrant;
-import com.example.dbcafe.domain.reservation.domain.Event;
-import com.example.dbcafe.domain.reservation.domain.ScheduledEvent;
-import com.example.dbcafe.domain.reservation.dto.EventReviewDto;
-import com.example.dbcafe.domain.reservation.dto.ScheduledEventDetailDto;
-import com.example.dbcafe.domain.reservation.dto.ScheduledEventListDto;
+import com.example.dbcafe.domain.reservation.domain.*;
+import com.example.dbcafe.domain.reservation.dto.*;
+import com.example.dbcafe.domain.reservation.repository.EventRepository;
+import com.example.dbcafe.domain.reservation.repository.PlaceRepository;
 import com.example.dbcafe.domain.reservation.repository.ScheduledEventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +16,9 @@ import java.util.List;
 public class ScheduledEventService {
     private final ScheduledEventRepository scheduledEventRepository;
     private final EntrantService entrantService;
+    private final EventRepository eventRepository;
+    private final ReservationBlockService reservationBlockService;
+    private final PlaceRepository placeRepository;
 
     public List<ScheduledEvent> findAllRecruiting() {
         return scheduledEventRepository.findAllByIsClosed(false);
@@ -68,5 +69,55 @@ public class ScheduledEventService {
         List<Entrant> entrants = entrantService.findFiveByEvent(scheduledEvents);
         List<EventReviewDto> dtos = entrantService.convertToReviewDto(entrants);
         return dtos;
+    }
+
+    public List<EntrantListDto> findAllEntrant(ScheduledEvent scheduledEvent) {
+        List<Entrant> entrants = entrantService.findAllEntrantByScheduledEvent(scheduledEvent);
+        List<EntrantListDto> dtos = new ArrayList<>();
+        for (Entrant entrant : entrants) {
+            String gender = "남";
+            if (!entrant.isMale()) {
+                gender = "여";
+            }
+            EntrantListDto dto = new EntrantListDto(entrant.getId(), entrant.getName(),
+                    entrant.getPhone(), gender, entrant.getAge(), entrant.getApplicationStatus());
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    public void submitEntrant(int entrantId) {
+        entrantService.submitEntrant(entrantId);
+    }
+
+    public void rejectEntrant(int entrantId, String rejectionReason) {
+        entrantService.rejectEntrant(entrantId, rejectionReason);
+    }
+
+    public List<EventDto> findAllEvent() {
+        List<Event> events = eventRepository.findAllEvent();
+        List<EventDto> dtos = new ArrayList<>();
+        for (Event event : events) {
+            EventDto dto = new EventDto(event.getId(), event.getTitle());
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
+    public List<ReservationBlockDto> findAllBookableBlock() {
+        return reservationBlockService.findAllBookableBlock();
+    }
+
+    public void addScheduledEvent(scheduledDto dto) {
+        Event event = eventRepository.findEventById(dto.getEventId());
+        int placeId = reservationBlockService.findPlaceByDateAndTime(dto.getDate(), dto.getStartTime());
+        Place place = placeRepository.findPlaceById(placeId);
+        ScheduledEvent scheduledEvent = new ScheduledEvent(event, place,
+                dto.getDate(), dto.getStartTime(), dto.getEndTime(),
+                false, dto.getTag());
+        scheduledEventRepository.save(scheduledEvent);
+        ReservationBlock block = reservationBlockService.findBlockByPlaceAndDateAndStartTime(place, dto.getDate(), dto.getStartTime());
+        block.setBookable(false);
+        reservationBlockService.save(block);
     }
 }

@@ -1,9 +1,11 @@
 package com.example.dbcafe.domain.reservation.service;
 
+import com.example.dbcafe.domain.reservation.domain.Place;
 import com.example.dbcafe.domain.reservation.domain.ReservationBlock;
 import com.example.dbcafe.domain.reservation.dto.DayOfReservationBlockDto;
+import com.example.dbcafe.domain.reservation.dto.ReservationBlockDto;
 import com.example.dbcafe.domain.reservation.dto.TimeOfReservationBlockDto;
-import com.example.dbcafe.domain.reservation.repository.ReservationBolckRepository;
+import com.example.dbcafe.domain.reservation.repository.ReservationBlockRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class ReservationBlockService {
-    private final ReservationBolckRepository reservationBolckRepository;
+    private final ReservationBlockRepository reservationBolckRepository;
 
     public List<DayOfReservationBlockDto> showBasicDays() {
         LocalDate today = LocalDate.now();
@@ -76,5 +78,32 @@ public class ReservationBlockService {
             dtos.add(dto);
         }
         return dtos;
+    }
+
+    public List<ReservationBlockDto> findAllBookableBlock() {
+        List<ReservationBlock> blocks = reservationBolckRepository.findByDateGreaterThanEqualAndIsBookableTrueOrderByDateAscStartTimeAsc(LocalDate.now());
+        List<ReservationBlockDto> dtos = new ArrayList<>();
+        for (ReservationBlock block : blocks) {
+            ReservationBlockDto dto = new ReservationBlockDto(block.getDate(),
+                    block.getStartTime(), block.getEndTime());
+
+            if (!dtos.contains(dto)) { // 같은 날짜, 같은 시간대는 하나만 띄우기 위함.
+                dtos.add(dto);
+            }
+        }
+        return dtos;
+    }
+
+    public int findPlaceByDateAndTime(LocalDate date, LocalTime startTime) {
+        List<ReservationBlock> blocks = reservationBolckRepository.findAllReservationBlockByDateAndStartTimeAndIsBookableFalse(date, startTime);
+        return blocks.size();
+    }
+
+    public ReservationBlock findBlockByPlaceAndDateAndStartTime(Place place, LocalDate date, LocalTime startTime) {
+        return reservationBolckRepository.findReservationBlockByPlaceAndDateAndStartTime(place, date, startTime);
+    }
+
+    public ReservationBlock save(ReservationBlock block) {
+        return reservationBolckRepository.save(block);
     }
 }

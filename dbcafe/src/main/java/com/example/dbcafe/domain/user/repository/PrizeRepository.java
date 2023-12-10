@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface PrizeRepository extends JpaRepository<Prize, Integer> {
     List<Prize> findAllPrizes();
+
+    List<Prize> findAllPrizeByProbabilityNot(int i);
+
+    Prize findPrizeById(int prizeId);
 }
