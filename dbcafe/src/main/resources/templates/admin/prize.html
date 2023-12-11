@@ -1,10 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html>
+    <head>
+        <title>DB Cafe</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel='stylesheet' href='/stylesheets/adminPrize.css' />
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img src="images/cafeLogo.png"> 
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img src="images/userPage.png">
+                </div>
+                <div class="cart">
+                    <img src="images/logOut.png">
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="pageLable">
+                <span>
+                    뽑기 상품 정보 등록
+                </span>
+            </div>
+            <hr class="detail_hr">
+            <div class="infoBox">
+                <span>
+                    상품 타입
+                </span>
+                <div class="btnBox">
+                    <div class="coinGroup">
+                        <img src="images/coinImage.png" alt="이미지 로딩 실패">
+                        <button type="button" class="btn">
+                            <div class="coinBox">
+                                코인
+                            </div>
+                        </button>
+                    </div>
+                    <div class="pointGroup">
+                        <img src="images/pointImage.png" alt="이미지 로딩 실패">
+                        <button type="button" class="btn">
+                            <div class="pointBox">
+                                포인트
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <span>
+                    상품명
+                </span>
+                <input type="text" placeholder="상품 이름을 입력하세요.">
+                <span>
+                    수량
+                </span>
+                <input type="text" placeholder="수량을 입력하세요.">
+                <span>
+                    확률
+                </span>
+                <input type="text" placeholder="확률을 입력하세요.">
+                <div class="regGroup">
+                    <button type="submit" class="btn">
+                        <div class="regBox">
+                            상품 등록 하기
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="pageLable">
+                <span>
+                    등록된 상품
+                </span>
+            </div>
+            <hr class="detail_hr">
+            <div class="tableBox">
+                <table>
+                    <tr>
+                        <th class="leftTab"></th>
+                        <th>상품명</th>
+                        <th>수량</th>
+                        <th>상품 타입</th>
+                        <th>확률</th>
+                        <th></th>
+                    </tr>
+                    <% for (var i = 1; i < 6; i++){%>
+                        <tr>
+                            <td class="leftTab">
+                                <%= i %>
+                            </td>
+                            <td>
+                                상품명이 될 부분
+                            </td>
+                            <td>
+                                000
+                            </td>
+                            <td>
+                                상품타입 부분
+                            </td>
+                            <td>
+                                00
+                            </td>
+                            <td class="btnGroup">
+                                <button type="submit" class="btn">
+                                    <div class="corBtn">
+                                        수정
+                                    </div>
+                                </button>
+                                <button type="submit" class="btn">
+                                    <div class="delBtn">
+                                        삭제
+                                    </div>
+                                </button>
+                            </td>
+                        </tr>
+                    <%}%>
+                </table>
+            </div>
+
+
+
+        </div>
+    </body>
 </html>

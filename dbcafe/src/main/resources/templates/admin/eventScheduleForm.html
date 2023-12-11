@@ -1,10 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/stylesheets/style.css">
+        <link rel="stylesheet" href="/stylesheets/eventScheduleForm.css">
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img src="images/cafeLogo.png"> 
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img src="images/userPage.png">
+                </div>
+                <div class="cart">
+                    <img src="images/logOut.png">
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="pageLable">
+                <span>
+                    이벤트 모임 개최
+                </span>
+            </div>
+            <hr class="detail_hr">
+            
+            <div class="choiceForm">
+                <div class="small_title">
+                    이벤트 모임
+                    <hr class="small_hr">
+                </div>
+                <div class="small_detail">
+                    이벤트 모임 목록
+                </div>
+                <select class="eventList">
+                    <option selected value="false"> 모임을 선택해 주세요.</option>
+                    <option value="">바리스타 체험</option>
+                    <option value="">독서 골든벨</option>
+                    <option value="">동네 친구</option>
+                    <option value="">이벤트 모임명</option>
+                    <option value="">이벤트 모임명</option>
+                    <option value="">이벤트 모임명</option>
+                </select>
+                <div class="small_detail">
+                    타입사항
+                </div>
+                <select class="eventState">
+                    <option selected value="false">태그를 선택해 주세요.</option>
+                    <option value="">NONE</option>
+                    <option value="">NEW</option>
+                    <option value="">BEST</option>
+                </select>
+            </div>
+            
+            <div class="choiceForm">
+                <div class="small_title">
+                    개최 날짜 등록
+                    <hr class="small_hr">
+                </div>
+                <div class="small_detail">
+                    날짜
+                </div>
+                <select class="eventList">
+                    <option selected value="false"> 날짜를 선택 해주세요.</option>
+                    <option value="">2023.00.00</option>
+                    <option value="">2023.00.00</option>
+                    <option value="">2023.00.00</option>
+                    <option value="">2023.00.00</option>
+                    <option value="">2023.00.00</option>
+                    <option value="">2023.00.00</option>
+                </select>
+                <div class="small_detail">
+                    시간
+                </div>
+                <select class="eventState">
+                    <option selected value="false">태그를 선택해 주세요.</option>
+                    <option value="">00:00 ~ 00:00</option>
+                    <option value="">00:00 ~ 00:00</option>
+                    <option value="">00:00 ~ 00:00</option>
+                    <option value="">00:00 ~ 00:00</option>
+                    <option value="">00:00 ~ 00:00</option>
+                    <option value="">00:00 ~ 00:00</option>
+                </select>
+            </div>
+
+            <div class="decBtn">
+                <button type="submit" class="infoBtn">
+                    <div class="cancelBtn">
+                        등록 취소
+                    </div>
+                </button>
+                <button type="submit" class="infoBtn">
+                    <div class="openBtn">
+                        모임 개최
+                    </div>
+                </button>
+            </div>
+
+        </div>
+    </body>
 </html>
