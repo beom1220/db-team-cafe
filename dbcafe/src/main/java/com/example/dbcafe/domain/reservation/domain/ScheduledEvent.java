@@ -56,4 +56,8 @@ public class ScheduledEvent {
         this.isClosed = isClosed;
         this.tag = tag;
     }
+
+    public boolean getIsClosed() {
+        return isClosed;
+    }
 }

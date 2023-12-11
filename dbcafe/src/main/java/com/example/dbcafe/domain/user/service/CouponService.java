@@ -20,7 +20,7 @@ public class CouponService {
 
     public List<CouponDto> findAlCoupon() {
         List<CouponDto> dtos = new ArrayList<>();
-        List<Coupon> coupons = couponRepository.findAllCoupon();
+        List<Coupon> coupons = couponRepository.findAll();
         for (Coupon c : coupons) {
             List<OwnCoupon> ownCoupons = ownCouponRepository.findAllOwnCouponByCouponAndOrdersIsNotNull(c);
             int totalDiscount = 0;

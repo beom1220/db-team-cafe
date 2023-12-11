@@ -16,7 +16,7 @@ public class PrizeHistoryService {
     private final PrizeHistoryRepository prizeHistoryRepository;
 
     public PrizeStatisticsDto getStatistic() {
-        List<PrizeHistory> items = prizeHistoryRepository.findAllPrizeHistory();
+        List<PrizeHistory> items = prizeHistoryRepository.findAll();
         int totalDraw = items.size();
         int totalMileage = 0;
         for (PrizeHistory item : items) {
@@ -28,7 +28,7 @@ public class PrizeHistoryService {
     }
 
     public List<PrizeHistoryDto> showAllHistory() {
-        List<PrizeHistory> items = prizeHistoryRepository.findAllPrizeHistory();
+        List<PrizeHistory> items = prizeHistoryRepository.findAll();
         List<PrizeHistoryDto> dtos = new ArrayList<>();
         for (PrizeHistory ph : items) {
             PrizeHistoryDto dto = new PrizeHistoryDto(ph.getUser().getId(),

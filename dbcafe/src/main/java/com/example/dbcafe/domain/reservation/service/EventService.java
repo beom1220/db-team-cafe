@@ -46,7 +46,7 @@ public class EventService {
     }
 
     public List<EventStatisticsDto> findStatistics() {
-        List<Event> events = eventRepository.findAllEvent();
+        List<Event> events = eventRepository.findAll();
         List<EventStatisticsDto> dtos = new ArrayList<>();
         for (Event event : events) {
             int soldOutCount = 0;

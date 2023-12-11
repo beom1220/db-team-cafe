@@ -39,7 +39,7 @@ public class ReservationBlockService {
         for (Map.Entry<LocalDate, List<ReservationBlock>> entry : days.entrySet()) {
             boolean isBookable = false;
             for (ReservationBlock block : entry.getValue()) {
-                if (block.isBookable()) {
+                if (block.getIsBookable()) {
                     isBookable = true;
                     break;
                 }
@@ -69,7 +69,7 @@ public class ReservationBlockService {
             LocalTime endTime = entry.getValue().get(0).getEndTime();
             boolean isBookable = false;
             for (ReservationBlock block : entry.getValue()) {
-                if (block.isBookable()) {
+                if (block.getIsBookable()) {
                     isBookable = true;
                     break;
                 }

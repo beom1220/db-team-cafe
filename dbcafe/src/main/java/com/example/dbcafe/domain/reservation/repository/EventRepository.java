@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Integer> {
     Event findEventById(int eventId);
-
-    List<Event> findAllEvent();
 }

@@ -66,4 +66,8 @@ public class Entrant {
     @Column(nullable = false, name = "created_at")
     @CreatedDate
     private Date createdAt;
+
+    public boolean getIsAttended() {
+        return isAttended;
+    }
 }

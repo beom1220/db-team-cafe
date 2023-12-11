@@ -98,7 +98,7 @@ public class ReservationService {
     }
 
     public List<CouponSelectDto> getCouponList() {
-        List<Coupon> coupons =  couponRepository.findAllCoupon();
+        List<Coupon> coupons =  couponRepository.findAll();
         List<CouponSelectDto> dtos = new ArrayList<>();
         for (Coupon c : coupons) {
             CouponSelectDto dto = new CouponSelectDto(c.getId(), c.getName(), c.getDiscountRatio());

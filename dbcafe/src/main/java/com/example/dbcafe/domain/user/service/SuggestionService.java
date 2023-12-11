@@ -15,7 +15,7 @@ public class SuggestionService {
     private final SuggestionRepository suggestionRepository;
 
     public List<Suggestion> findAllByUser(User user) {
-        return suggestionRepository.findAllSuggentionByUser(user);
+        return suggestionRepository.findAllSuggestionByUser(user);
     }
 
     public void addSuggestion(SuggestionDto dto, User user) {

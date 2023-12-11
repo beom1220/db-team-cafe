@@ -32,4 +32,8 @@ public class ReservationBlock {
     private LocalTime endTime;
 
     private boolean isBookable;
+
+    public boolean getIsBookable() {
+        return isBookable;
+    }
 }

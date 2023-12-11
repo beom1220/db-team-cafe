@@ -2,7 +2,6 @@ package com.example.dbcafe.domain.reservation.repository;
 
 import com.example.dbcafe.domain.reservation.domain.Place;
 import com.example.dbcafe.domain.reservation.domain.ReservationBlock;
-import com.example.dbcafe.domain.reservation.dto.ReservationBlockDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
@@ -15,8 +14,6 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
     List<ReservationBlock> findByDate(LocalDate date);
 
     ReservationBlock findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(LocalDate date, LocalTime startTime, boolean b);
-
-    List<ReservationBlockDto> findByDateGreaterThanEqualAndIsBookableTrue(LocalDate now);
 
     List<ReservationBlock> findAllReservationBlockByDateAndStartTimeAndIsBookableFalse(LocalDate date, LocalTime startTime);
 

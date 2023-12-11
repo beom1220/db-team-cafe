@@ -30,4 +30,8 @@ public class Menu {
     private boolean isSelling;
 
     private String img;
+
+    public boolean getIsSelling() {
+        return isSelling;
+    }
 }

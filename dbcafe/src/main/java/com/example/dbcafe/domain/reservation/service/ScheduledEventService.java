@@ -95,7 +95,7 @@ public class ScheduledEventService {
     }
 
     public List<EventDto> findAllEvent() {
-        List<Event> events = eventRepository.findAllEvent();
+        List<Event> events = eventRepository.findAll();
         List<EventDto> dtos = new ArrayList<>();
         for (Event event : events) {
             EventDto dto = new EventDto(event.getId(), event.getTitle());

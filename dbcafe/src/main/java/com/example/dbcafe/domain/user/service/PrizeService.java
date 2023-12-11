@@ -18,7 +18,7 @@ public class PrizeService {
     private final PrizeRepository prizeRepository;
 
     public List<PrizeListDto> findAllPrizes() {
-        List<Prize> prizes =  prizeRepository.findAllPrizes();
+        List<Prize> prizes =  prizeRepository.findAll();
         List<PrizeListDto> dtos = new ArrayList<>();
 
         for (Prize p : prizes) {
@@ -40,7 +40,7 @@ public class PrizeService {
     }
 
     public Prize draw() {
-        List<Prize> prizes = prizeRepository.findAllPrizes();
+        List<Prize> prizes = prizeRepository.findAll();
         List<Integer> prizeBox = new ArrayList<>();
         for (Prize prize : prizes) {
             for (int i = 0; i < prize.getProbability(); i++) {
