@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>예약 시간 선택 페이지</title>
+  <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
+  <link th:href="@{/css/reservation.css}" href="../static/css/reservation.css" rel="stylesheet">
 </head>
 <body>
-$END$
+<div th:insert="fragments/navigation/topBar :: topBar"></div>
+<div class="container">
+  <div class="box">
+    <div class="content-box">
+      <div class="date-box">
+        <h2>2023-12-06 목요일</h2>
+        <a href="http://127.0.0.1:5500/cafeStore/public/views/pages/reservation/" class="chooeseButton">선택일자 변경하기</a>
+      </div>
+      <div class="time-container">
+        <hr>
+        <h3>시간대 선택</h3>
+        <ul class="time-ul">
+          <li class="time-li">10:00 ~ 12:00 <input type="radio"></li>
+          <li class="time-li">12:00 ~ 14:00 <input type="radio"></li>
+          <li class="time-li">14:00 ~ 16:00 <input type="radio"></li>
+          <li class="time-li">16:00 ~ 18:00 <input type="radio"></li>
+          <li class="time-li-none">18:00 ~ 20:00 <input type="radio"></li>
+          <li class="time-li">20:00 ~ 22:00 <input type="radio"></li>
+        </ul>
+      </div>
+      <div class="footer-box">
+        <div class="text-box">
+          <p class="content-text">* 월~목요일은 주중 할인 혜택(5%)이 적용 됩니다.</p>
+          <p class="content-text">* 얼리버드 할인은 2주 전에 예약하면 할인 혜택(5%)이 적용됩니다.</p>
+          <p class="content-text">* 할인율은 시기에 따라 변동 될 수 있습니다.</p>
+        </div>
+        <button class="reservationButton">예약 정보 입력하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const timeListItems = document.querySelectorAll('.time-li');
+
+      timeListItems.forEach(function (timeListItem) {
+        const radioInput = timeListItem.querySelector('input[type="radio"]');
+
+        if (timeListItem.classList.contains('time-li-none')) {
+          // time-li-none 클래스가 있는 경우 input 제거
+          radioInput.remove();
+        } else {
+          // time-li-none 클래스가 없는 경우 중복 선택 방지
+          radioInput.addEventListener('click', function () {
+            timeListItems.forEach(function (item) {
+              const otherRadioInput = item.querySelector('input[type="radio"]');
+              if (item !== timeListItem) {
+                otherRadioInput.checked = false;
+              }
+            });
+          });
+        }
+      });
+    });
+
+  </script>
 </body>
 </html>

@@ -1,10 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>마이페이지</title>
+  <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
+  <link th:href="@{/css/user.css}" href="../static/css/user.css" rel="stylesheet">
 </head>
 <body>
-$END$
+<div th:insert="fragments/navigation/topBar :: topBar"></div>
+<div class="container">
+  <div class="box">
+    <div class="title-container">
+      <div class="row-box">
+        <h3 class="title">마이페이지</h3>
+      </div>
+      <hr class="titleHr">
+    </div>
+    <div class="content-box">
+      <div class="district">
+        <h4>회원정보</h4>
+        <hr>
+        <div class="mypage-box">
+          <div class="space-between">
+            <p class="content-title">ID</p>
+            <p>회원아이디</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">이름</p>
+            <p>홍길동</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">전화번호</p>
+            <p>010-0000-0000</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">성별</p>
+            <p>남or여</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">모임 대표 정보</p>
+            <p>ㅇorx</p>
+          </div>
+        </div>
+        <div class="mypage-box">
+          <div class="space-between">
+            <p class="content-title">쿠폰</p>
+            <a href="">상세보기></a>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">포인트</p>
+            <p>3,400P</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">코인</p>
+            <a href="">상세보기></a>
+          </div>
+        </div>
+        <div class="mypage-box">
+          <div class="space-between">
+            <p class="content-title">주문내역</p>
+            <a href="">상세보기></a>
+          </div>
+        </div>
+      </div>
+      <div class="district">
+        <h4>이벤트 모임 예약 내역</h4>
+        <hr>
+        <div class="event-list">
+          <div class="event-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="">
+            <p class="event-text">바리스타 체험</p>
+            <p class="event-text">2023-12-06 12:00~14:00</p>
+          </div>
+          <div class="event-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="">
+            <p class="event-text">바리스타 체험</p>
+            <p class="event-text">2023-12-06 12:00~14:00</p>
+          </div>
+          <div class="event-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="">
+            <p class="event-text">바리스타 체험</p>
+            <p class="event-text">2023-12-06 12:00~14:00</p>
+          </div>
+          <div class="event-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="">
+            <p class="event-text">바리스타 체험</p>
+            <p class="event-text">2023-12-06 12:00~14:00</p>
+          </div>
+        </div>
+      </div>
+      <div class="district">
+        <h4>일반 모임 예약 내역</h4>
+        <hr>
+        <div class="mypage-box">
+          <div class="space-between">
+            <p class="content-title">예약 번호</p>
+            <p class="content-title">모임명</p>
+            <p class="content-title">시간대</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p>512</p>
+            <p>독서 모임</p>
+            <p>2023.00.00 / 12:00~14:00</p>
+          </div>
+          <div class="space-between">
+            <p>512</p>
+            <p>독서 모임</p>
+            <p>2023.00.00 / 12:00~14:00</p>
+          </div>
+        </div>
+      </div>
+      <div class="button-box">
+        <button>로그아웃</button>
+        <button>회원 탈퇴</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
