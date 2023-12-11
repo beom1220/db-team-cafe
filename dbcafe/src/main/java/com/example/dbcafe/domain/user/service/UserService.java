@@ -48,7 +48,7 @@ public class UserService {
             }
         }
         MyPageDto dto = new MyPageDto(user.getId(), user.getName(),
-                user.getPhone(), gender, user.getMileage(), user.getCoin(),
+                user.getPhone(), gender, user.getMileage(), user.getLevel(), user.getCoin(),
                 scheduledEvents, reservationItems);
         return dto;
     }

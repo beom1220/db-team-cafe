@@ -108,7 +108,7 @@ public class ScheduledEventService {
         return reservationBlockService.findAllBookableBlock();
     }
 
-    public void addScheduledEvent(scheduledDto dto) {
+    public void addScheduledEvent(ScheduledDto dto) {
         Event event = eventRepository.findEventById(dto.getEventId());
         int placeId = reservationBlockService.findPlaceByDateAndTime(dto.getDate(), dto.getStartTime());
         Place place = placeRepository.findPlaceById(placeId);

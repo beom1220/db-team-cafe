@@ -27,8 +27,8 @@ public class ReservationController {
     }
 
     @PostMapping
-    public String submitReservation(@ModelAttribute ReservationRequestDto reservationInfo, @ModelAttribute List<ReservationBlockResponseDto> blocks, HttpSession session) {
-        reservationService.submitReservation(reservationInfo, blocks, session);
+    public String submitReservation(@ModelAttribute ReservationRequestDto reservationInfo, HttpSession session) {
+        reservationService.submitReservation(reservationInfo, reservationInfo.getBlocks(), session);
         return "redirect:/";
     }
 

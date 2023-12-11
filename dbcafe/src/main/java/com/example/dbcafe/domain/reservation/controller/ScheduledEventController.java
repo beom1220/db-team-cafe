@@ -1,11 +1,9 @@
 package com.example.dbcafe.domain.reservation.controller;
 
-import com.example.dbcafe.domain.reservation.domain.Entrant;
 import com.example.dbcafe.domain.reservation.domain.ScheduledEvent;
 import com.example.dbcafe.domain.reservation.dto.*;
 import com.example.dbcafe.domain.reservation.service.ScheduledEventService;
 import jakarta.servlet.http.HttpSession;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,7 +73,7 @@ public class ScheduledEventController {
     }
 
     @PostMapping("/scheduleForm")
-    public String scheduled(@ModelAttribute scheduledDto dto) {
+    public String scheduled(@ModelAttribute ScheduledDto dto) {
         scheduledEventService.addScheduledEvent(dto);
         return "redirect:/";
     }

@@ -28,6 +28,8 @@ public class PrizeController {
         User user = userService.findById((String) session.getAttribute("loggedInUser"));
         PrizeUserInfoDto dto = prizeService.convertToDto(user);
 
+        model.addAttribute("prizes", prizes);
+        model.addAttribute("userInfo", dto);
         return "user/prize";
     }
 

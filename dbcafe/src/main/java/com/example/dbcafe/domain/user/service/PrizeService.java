@@ -74,9 +74,15 @@ public class PrizeService {
     public Prize editPrize(int prizeId, PrizeDto dto) {
         Prize prize = prizeRepository.findPrizeById(prizeId);
         if (dto.isCoin()) {
-            prize = new Prize(dto.getName(), 0, dto.getValue(), dto.getProbability());
+            prize.setName(dto.getName());
+            prize.setCoin(dto.getValue());
+            prize.setMileage(0);
+            prize.setProbability(dto.getProbability());
         } else {
-            prize = new Prize(dto.getName(), dto.getValue(), 0, dto.getProbability());
+            prize.setName(dto.getName());
+            prize.setCoin(0);
+            prize.setMileage(dto.getValue());
+            prize.setProbability(dto.getProbability());
         }
         return prizeRepository.save(prize);
     }

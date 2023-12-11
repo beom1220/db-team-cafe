@@ -2,6 +2,7 @@ package com.example.dbcafe.domain.user.dto;
 
 import com.example.dbcafe.domain.reservation.domain.ReservationItem;
 import com.example.dbcafe.domain.reservation.domain.ScheduledEvent;
+import com.example.dbcafe.domain.user.domain.Level;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,8 @@ public class MyPageDto {
     private String gender;
 
     private int mileage;
+
+    private Level level;
 
     private int coin;
 

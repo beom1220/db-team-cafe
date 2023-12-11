@@ -11,7 +11,7 @@ import java.time.LocalTime;
 @Setter
 @Getter
 @AllArgsConstructor
-public class scheduledDto {
+public class ScheduledDto {
     private int eventId;
 
     private Tag tag;

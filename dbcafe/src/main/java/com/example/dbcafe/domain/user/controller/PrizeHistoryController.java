@@ -28,6 +28,7 @@ public class PrizeHistoryController {
             List<PrizeHistoryDto> dtos = prizeHistoryService.showAllHistory();
 
             model.addAttribute("statistic", dto);
+            model.addAttribute("histories", dtos);
             return "admin/prizeStatistics";
         } else {
             return "auth/access-denied";
