@@ -19,12 +19,12 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class ReservationBlockService {
-    private final ReservationBlockRepository reservationBolckRepository;
+    private final ReservationBlockRepository reservationBlockRepository;
 
     public List<DayOfReservationBlockDto> showBasicDays() {
         LocalDate today = LocalDate.now();
 
-        List<ReservationBlock> blocks = reservationBolckRepository.findByDateGreaterThanEqual(today);
+        List<ReservationBlock> blocks = reservationBlockRepository.findByDateGreaterThanEqual(today);
 
         Map<LocalDate, List<ReservationBlock>> days = new HashMap<>();
         for (ReservationBlock block : blocks) {
@@ -52,7 +52,7 @@ public class ReservationBlockService {
     }
 
     public List<TimeOfReservationBlockDto> showTimeBlocks(LocalDate date) {
-        List<ReservationBlock> blocksOnDate = reservationBolckRepository.findByDate(date);
+        List<ReservationBlock> blocksOnDate = reservationBlockRepository.findByDate(date);
 
         Map<LocalTime, List<ReservationBlock>> groupedBlocks = new HashMap<>();
         for (ReservationBlock block : blocksOnDate) {
@@ -81,7 +81,7 @@ public class ReservationBlockService {
     }
 
     public List<ReservationBlockDto> findAllBookableBlock() {
-        List<ReservationBlock> blocks = reservationBolckRepository.findByDateGreaterThanEqualAndIsBookableTrueOrderByDateAscStartTimeAsc(LocalDate.now());
+        List<ReservationBlock> blocks = reservationBlockRepository.findByDateGreaterThanEqualAndIsBookableTrueOrderByDateAscStartTimeAsc(LocalDate.now());
         List<ReservationBlockDto> dtos = new ArrayList<>();
         for (ReservationBlock block : blocks) {
             ReservationBlockDto dto = new ReservationBlockDto(block.getDate(),
@@ -95,15 +95,15 @@ public class ReservationBlockService {
     }
 
     public int findPlaceByDateAndTime(LocalDate date, LocalTime startTime) {
-        List<ReservationBlock> blocks = reservationBolckRepository.findAllReservationBlockByDateAndStartTimeAndIsBookableFalse(date, startTime);
+        List<ReservationBlock> blocks = reservationBlockRepository.findAllReservationBlockByDateAndStartTimeAndIsBookableFalse(date, startTime);
         return blocks.size();
     }
 
     public ReservationBlock findBlockByPlaceAndDateAndStartTime(Place place, LocalDate date, LocalTime startTime) {
-        return reservationBolckRepository.findReservationBlockByPlaceAndDateAndStartTime(place, date, startTime);
+        return reservationBlockRepository.findReservationBlockByPlaceAndDateAndStartTime(place, date, startTime);
     }
 
     public ReservationBlock save(ReservationBlock block) {
-        return reservationBolckRepository.save(block);
+        return reservationBlockRepository.save(block);
     }
 }
