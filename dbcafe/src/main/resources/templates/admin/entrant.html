@@ -1,10 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html>
+    <head>
+        <title>DB Cafe</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel='stylesheet' href='/stylesheets/entrant.css' />
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img src="images/cafeLogo.png"> 
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img src="images/userPage.png">
+                </div>
+                <div class="cart">
+                    <img src="images/logOut.png">
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="pageLable">
+                이벤트 정보
+            </div>
+            <hr class="detail_hr">
+            <div class="flexBox">
+                <div class="flex_1"></div>
+                <div class="flex_2">
+                    <div class="lable eventLable">
+                        <span>
+                            이벤트명
+                        </span>
+                        <span>
+                            Best
+                        </span>
+                    </div>
+                    <div class="lable timeLable">
+                        <span>
+                            진행시간
+                        </span>
+                        <span>
+                            2023.00.00 12:00P ~ 14:00PM
+                        </span>
+                    </div>
+                    <div class="lable priceLable">
+                        <span>
+                            참가 비용 레이블
+                        </span>
+                        <span>
+                            참가비용
+                        </span>
+                    </div>
+                    <div class="lable peopleLable">
+                        <span>
+                            모집 인원 레이블
+                        </span>
+                        <span>
+                            모집 인원
+                        </span>
+                    </div>
+                    <div class="lable ruleLable">
+                        <span>
+                            제약사항 레이블
+                        </span>
+                        <ul>
+                            <li>
+                                1
+                            </li>
+                            <li>
+                                2
+                            </li>
+                            <li>
+                                3
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pageLable">
+                이벤트 정보
+            </div>
+            <hr class="detail_hr">
+            <div class="infoHead">
+                이름 전화번호 성별 나이 수락상태
+            </div>
+            <hr>
+            <% for (var i = 0; i < 3; i++) { %>
+                <div class="infoList">
+                    <div class="info">
+                        <span>
+                            name
+                        </span>
+                        <span>
+                            010-1234-5678
+                        </span>
+                        <span>
+                            M
+                        </span>
+                        <span>
+                            10
+                        </span>
+                        <span>
+                            미지정
+                        </span>
+                    </div>
+                    <div class="infoBtn">
+                        <button type="submit" class="refBtn">
+                            <div class="refBack">
+                                수락
+                            </div>
+                        </button>
+                        <button type="submit" class="accBtn">
+                            <div class="accBack">
+                                거절
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <hr>   
+            <%}%>
+        </div>
+    </body>
 </html>

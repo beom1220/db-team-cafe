@@ -1,10 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html>
+    <head>
+        <title>DB Cafe</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel='stylesheet' href='/stylesheets/level.css' />
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img src="images/cafeLogo.png"> 
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img src="images/userPage.png">
+                </div>
+                <div class="cart">
+                    <img src="images/logOut.png">
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="pageLable">
+                <span>
+                    등급 설정 페이지
+                </span>
+            </div>
+            <hr class="detail_hr">
+            <div class="tableBox">
+                <table class="statList">
+                    <tr>
+                        <th class="leftTab">등급</th>
+                        <th>회원 수</th>
+                        <th>총 할인액</th>
+                        <th>평균 할인액</th>
+                        <th>할인율</th>
+                        <th>상위 %</th>
+                        <th></th>
+                    </tr>
+                    <% for (var i = 0; i < 7; i++) {%>    
+                        <tr>
+                            <td class="leftTab">등급명</td>
+                            <td>00</td>
+                            <td>000,000</td>
+                            <td>0,000</td>
+                            <td>00%</td>
+                            <td>00</td>
+                            <td>
+                                <div class="btnGroup">
+                                    <button type="submit" class="btn">
+                                        <div class="corBtn">
+                                            수정
+                                        </div>
+                                    </button>
+                                    <button type="submit" class="btn">
+                                        <div class="delBtn">
+                                            삭제
+                                        </div>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    <%}%>
+                </table>
+            </div>
+            <div class="statBox">
+                <div class="thBox">
+                    <table class="statTh">
+                        <tr>
+                            <th>전체 회원 수</th>
+                            <th>전체 총 할인액</th>
+                            <th>전체 총 평균 할인액</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="contBox">
+                    <table class="statCont">
+                        <tr>
+                            <td>0,000</td>
+                            <td>0,000,000</td>
+                            <td>00,000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

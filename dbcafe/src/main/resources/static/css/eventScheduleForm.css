@@ -1,0 +1,76 @@
+.choiceForm {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.small_hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 640px;
+}
+
+.choiceForm .small_title {
+    font-size: 20px;
+    font-weight: 700;
+    
+}
+
+.choiceForm .small_detail {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.eventList {
+    width: 410px;
+    margin-bottom: 130px;
+}
+
+.eventState {
+    width: 410px;
+    margin-bottom: 50px;
+}
+
+.decBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infoBtn {
+    width: 150px;
+    height: 55px;
+    border: none;
+    background-color: transparent;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.infoBtn .cancelBtn {
+    width: 150px;
+    height: 55px;
+    background: #66371D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.infoBtn .openBtn {
+    width: 150px;
+    height: 55px;
+    background: #66371D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 700;
+}

@@ -1,10 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html>
+    <head>
+        <title>DB Cafe</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel='stylesheet' href='/stylesheets/coupon.css' />
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img src="images/cafeLogo.png"> 
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img src="images/userPage.png">
+                </div>
+                <div class="cart">
+                    <img src="images/logOut.png">
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="pageLable">
+                <span>
+                    쿠폰 정보 등록
+                </span>
+            </div>
+            <hr class="detail_hr">
+            <div class="formBox">
+                <span>
+                    쿠폰 이름
+                </span>
+                <input type="text" placeholder="쿠폰 이름을 입력하세요.">
+                <span>
+                    할인율
+                </span>
+                <input type="text" placeholder="할인율을 입력하세요.">
+                <span>
+                    만료 일자
+                </span>
+                <input type="text" placeholder="쿠폰 만료 일자를 입력하세요.">
+                <span>
+                    최대 할인 금액
+                </span>
+                <input type="text" placeholder="최대 할인 금액을 입력하세요.">
+                <span>
+                    최대 발급 횟수
+                </span>
+                <input type="text" placeholder="최대 발급 횟수를 입력하세요.">
+                <div class="regGroup">
+                    <button type="submit" class="btn">
+                        <div class="regBox">
+                            쿠폰 등록 하기
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="pageLable">
+                <span>
+                    할인 쿠폰
+                </span>
+            </div>
+            <hr class="detail_hr">
+            <div class="tableBox">
+                <table>
+                    <tr>
+                        <th>쿠폰 이름</th>
+                        <th>할인율</th>
+                        <th>유효 기간</th>
+                        <th>최대 할인 금액</th>
+                        <th>최대 발급 횟수</th>
+                        <th></th>
+                    </tr>
+                    <% for (var i = 1; i < 6; i++){%>
+                        <tr>
+                            <td>
+                                쿠폰명이 될 부분
+                            </td>
+                            <td>
+                                00
+                            </td>
+                            <td>
+                                000
+                            </td>
+                            <td>
+                                0,000
+                            </td>
+                            <td>
+                                00
+                            </td>
+                            <td class="btnGroup">
+                                <button type="submit" class="btn">
+                                    <div class="statBtn">
+                                        통계보기
+                                    </div>
+                                </button>
+                                <button type="submit" class="btn">
+                                    <div class="corBtn">
+                                        수정
+                                    </div>
+                                </button>
+                                <button type="submit" class="btn">
+                                    <div class="delBtn">
+                                        삭제
+                                    </div>
+                                </button>
+                            </td>
+                        </tr>
+                    <%}%>
+                </table>
+            </div>
+        </div>
+    </body>
 </html>

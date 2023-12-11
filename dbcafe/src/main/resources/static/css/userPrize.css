@@ -1,0 +1,96 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.prizeList {
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    transform: translateX(-200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+}
+
+.prizeList span {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.prizeList span:nth-child(1) {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.gameBoxImage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameContent .text {
+    margin-top: 45px;
+    margin-bottom: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameContent .gameBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameContent .btn{
+    border: none;
+    background-color: transparent;
+}
+
+.gameContent .gameBtn .leftBox {
+    width: 182px;
+    height: 53px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    background: #66371D;
+    border: 1px solid #66371D;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.gameContent .gameBtn .rightBox {
+    width: 182px;
+    height: 53px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    background: #4A2714;
+    border: 1px solid #4A2714;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}

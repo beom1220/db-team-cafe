@@ -1,10 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html>
+    <head>
+        <title>DB Cafe</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel='stylesheet' href='/stylesheets/event.css' />
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img src="images/cafeLogo.png"> 
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img src="images/userPage.png">
+                </div>
+                <div class="cart">
+                    <img src="images/logOut.png">
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="detBtn_1">
+                <button type="submit" class="detBtn_1">
+                    <div class="detailBtn_1">
+                        이벤트 모임 등록
+                    </div>
+                </button>
+            </div>
+            <div class="pageLable">
+                <span>
+                    이벤트 모임 목록
+                </span>
+            </div>
+            <hr class="detail_hr">
+            <hr>
+            <table border="1">
+                <th class="leftTab">모임 번호</th>
+                <th>모임명</th>
+                <th>개최된 횟수</th>
+                <th>매진된 횟수</th>
+                <th>평점</th>
+                <th></th>
+            </table>
+            <table border="1">
+                <% for (var i = 1; i < 11; i++) { %>
+                    <tr>
+                        <td class="leftTab">
+                            <%= i %>
+                        </td>
+                        <td>이벤트 모임명</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0.0</td>
+                        <td>
+                            <button type="submit" class="detBtn_2">
+                                <div class="detailBtn_2">
+                                    상세보기
+                                </div>
+                            </button>
+                        </td>
+                    </tr>
+                <%}%>
+            </table>
+        </div>
+    </body>
 </html>

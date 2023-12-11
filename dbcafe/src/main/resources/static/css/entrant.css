@@ -1,0 +1,168 @@
+.flexBox {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;    /** 메인 축 정렬*/
+}
+
+.flex_1 {
+    width: 424.238px;
+    height: 419px;
+    background-color: blue;
+}
+
+.flex_2 {
+    width: auto;
+    height: 80px;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.eventLable {
+    display: flex;
+    gap: 6px;
+}
+
+.eventTitle {
+    font-size: 32px;
+    font-weight: 700;
+    flex-direction: row;
+}
+
+.eventState {
+    color: #F00;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.timeLable {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.lable {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.lable span:first-child {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.lable.eventLable {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.lable.eventLable span:first-child {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.lable.eventLable span:nth-child(2) {
+    font-size: 20px;
+    font-weight: 700;
+    color: #F00;
+}
+
+.lable.ruleLable ul {
+    padding-left: 20px;
+}
+
+.infoHead {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 85px;
+    word-spacing: 150px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.infoList {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.infoList .info {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+.infoList span:nth-child(1) {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 85px;
+    font-size: 20px;
+}
+
+.infoList span:nth-child(2) {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 110px;
+    font-size: 20px;
+}
+.infoList span:nth-child(3) {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 133px;
+    font-size: 20px;
+}
+.infoList span:nth-child(4) {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 168px;
+    font-size: 20px;
+}
+.infoList span:nth-child(5) {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 170px;
+    font-size: 20px;
+}
+
+.infoBtn {
+    margin-left: 80px;
+}
+
+.refBtn {
+    border: none;
+    background-color: transparent;
+}
+
+.refBtn .refBack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95px;
+    height: 35px;
+    background: #D22323;
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+}
+
+.accBtn {
+    border: none;
+    background-color: transparent;
+}
+
+.accBtn .accBack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95px;
+    height: 35px;
+    background: #6459E8;
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+}

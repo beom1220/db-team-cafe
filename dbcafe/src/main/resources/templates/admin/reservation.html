@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html>
+    <head>
+        <title>DB Cafe</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel='stylesheet' href='/stylesheets/reservation.css' />
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img src="images/cafeLogo.png"> 
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img src="images/userPage.png">
+                </div>
+                <div class="cart">
+                    <img src="images/logOut.png">
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="pageLable">
+                <span>
+                    일반 모임 목록
+                </span>
+            </div>
+            <hr class="detail_hr">
+            <div class="resBox">
+                <div class="resList">
+                    <table>
+                        <tr>
+                            <th class="leftTab">모임 번호</th>
+                            <th>모임명</th>
+                            <th>대표 예약자명</th>
+                            <th>날짜</th>
+                            <th>시작 시간</th>
+                            <th>변경 신청</th>
+                            <th></th>
+                        </tr>
+                        <% for (var i = 1; i < 10; i++){%>
+                            <tr>
+                                <td class="leftTab">
+                                    <%= i %>
+                                </td>
+                                <td>
+                                    모임명이 될 부분
+                                </td>
+                                <td>
+                                    예약자명
+                                </td>
+                                <td>
+                                    2023.00.00
+                                </td>
+                                <td>
+                                    00:00
+                                </td>
+                                <td>
+                                    <button class="btn">
+                                        <div class="appBtn">
+                                            확인하기
+                                        </div>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn">
+                                        <div class="cancBtn">
+                                            취소
+                                        </div>
+                                    </button>
+                                </td>
+                            </tr>
+                        <%}%>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
