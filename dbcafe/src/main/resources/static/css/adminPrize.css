@@ -107,11 +107,13 @@ table th {
     width: 215px;
     height: 45px;
     font-size: 20px;
+    border-bottom: 1px solid black;
 }
 
 table td {
     width: 215px;
     height: 45px;
+    border-bottom: 1px solid black;
 }
 
 .tableBox {
