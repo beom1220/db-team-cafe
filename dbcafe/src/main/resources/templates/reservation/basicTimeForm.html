@@ -12,20 +12,24 @@
   <div class="box">
     <div class="content-box">
       <div class="date-box">
-        <h2>2023-12-06 목요일</h2>
-        <a href="http://127.0.0.1:5500/cafeStore/public/views/pages/reservation/" class="chooeseButton">선택일자 변경하기</a>
+        <h2 id="dateHeader">0000-00-00 0요일</h2>
+        <a th:href="@{/reservation-block}" class="chooeseButton">선택일자 변경하기</a>
       </div>
       <div class="time-container">
         <hr>
         <h3>시간대 선택</h3>
-        <ul class="time-ul">
-          <li class="time-li">10:00 ~ 12:00 <input type="radio"></li>
-          <li class="time-li">12:00 ~ 14:00 <input type="radio"></li>
-          <li class="time-li">14:00 ~ 16:00 <input type="radio"></li>
-          <li class="time-li">16:00 ~ 18:00 <input type="radio"></li>
-          <li class="time-li-none">18:00 ~ 20:00 <input type="radio"></li>
-          <li class="time-li">20:00 ~ 22:00 <input type="radio"></li>
-        </ul>
+        <form id="reservationForm" method="get">
+          <ul class="time-ul" th:each="time : ${times}">
+            <li class="time-li" th:if="${time.isBookable}">
+              <span th:text="${time.startTime+ '~' + time.endTime}">00:00 ~ 00:00</span>
+              <p th:text="${time.startTime}" name="startTime">0</p>
+              <p th:text="${time.endTime}" name="endTime">0</p>
+              <input type="radio" name="selectedTime" th:value="${time.startTime + ',' + time.endTime}" />
+            </li>
+          </ul>
+          <input type="hidden" name="date" th:value="${dateParam}" />
+          <button type="button" onclick="submitForm()" class="reservationButton">예약 정보 입력하기</button>
+        </form>
       </div>
       <div class="footer-box">
         <div class="text-box">
@@ -33,35 +37,43 @@
           <p class="content-text">* 얼리버드 할인은 2주 전에 예약하면 할인 혜택(5%)이 적용됩니다.</p>
           <p class="content-text">* 할인율은 시기에 따라 변동 될 수 있습니다.</p>
         </div>
-        <button class="reservationButton">예약 정보 입력하기</button>
       </div>
     </div>
   </div>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const timeListItems = document.querySelectorAll('.time-li');
+document.addEventListener("DOMContentLoaded", function () {
+  // URL에서 date 파라미터 추출
+  const urlParams = new URLSearchParams(window.location.search);
+  const dateParam = urlParams.get('date');
 
-      timeListItems.forEach(function (timeListItem) {
-        const radioInput = timeListItem.querySelector('input[type="radio"]');
+  // 날짜 헤더 업데이트
+  const dateHeader = document.getElementById('dateHeader');
+  if (dateHeader && dateParam) {
+    dateHeader.innerText = dateParam + ' ' + getDayOfWeek(dateParam);
+  }
+});
 
-        if (timeListItem.classList.contains('time-li-none')) {
-          // time-li-none 클래스가 있는 경우 input 제거
-          radioInput.remove();
-        } else {
-          // time-li-none 클래스가 없는 경우 중복 선택 방지
-          radioInput.addEventListener('click', function () {
-            timeListItems.forEach(function (item) {
-              const otherRadioInput = item.querySelector('input[type="radio"]');
-              if (item !== timeListItem) {
-                otherRadioInput.checked = false;
-              }
-            });
-          });
-        }
-      });
-    });
+function getDayOfWeek(dateString) {
+  const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+  const date = new Date(dateString);
+  const dayOfWeekIndex = date.getDay();
+  return daysOfWeek[dayOfWeekIndex];
+}
 
-  </script>
+function submitForm() {
+  var selectedTime = document.querySelector('input[name="selectedTime"]:checked');
+  if (selectedTime) {
+    var startTime = selectedTime.previousElementSibling.previousElementSibling.textContent.trim();
+    var endTime = selectedTime.previousElementSibling.textContent.trim();
+    var dateParam = document.querySelector('input[name="date"]').value;
+
+    var redirectUrl = '/reservation?date=' + dateParam + '&startTime=' + startTime + '&endTime=' + endTime;
+    window.location.href = redirectUrl;
+  } else {
+    alert("시간을 선택하세요.");
+  }
+}
+</script>
 </body>
 </html>

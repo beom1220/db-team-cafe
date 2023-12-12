@@ -23,27 +23,27 @@
         <div class="mypage-box">
           <div class="space-between">
             <p class="content-title">ID</p>
-            <p>회원아이디</p>
+            <p th:text="${user.id}">userID</p>
           </div>
           <hr>
           <div class="space-between">
             <p class="content-title">이름</p>
-            <p>홍길동</p>
+            <p th:text="${user.name}">userName</p>
           </div>
           <hr>
           <div class="space-between">
             <p class="content-title">전화번호</p>
-            <p>010-0000-0000</p>
+            <p th:text="${user.phone}">010-0000-0000</p>
           </div>
           <hr>
           <div class="space-between">
             <p class="content-title">성별</p>
-            <p>남or여</p>
+            <p th:text="${user.gender}">성별</p>
           </div>
           <hr>
           <div class="space-between">
             <p class="content-title">모임 대표 정보</p>
-            <p>ㅇorx</p>
+            <p th:text="${user.level}">level</p>
           </div>
         </div>
         <div class="mypage-box">
@@ -54,12 +54,12 @@
           <hr>
           <div class="space-between">
             <p class="content-title">포인트</p>
-            <p>3,400P</p>
+            <p th:text="${user.mileage}+'P'">0P</p>
           </div>
           <hr>
           <div class="space-between">
             <p class="content-title">코인</p>
-            <a href="">상세보기></a>
+            <p th:text="${user.coin}+'개'">coin</p>
           </div>
         </div>
         <div class="mypage-box">
@@ -73,25 +73,11 @@
         <h4>이벤트 모임 예약 내역</h4>
         <hr>
         <div class="event-list">
-          <div class="event-box">
+          <div class="event-box"  th:each="scheduledEvent : ${user.scheduledEventList}">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="">
-            <p class="event-text">바리스타 체험</p>
-            <p class="event-text">2023-12-06 12:00~14:00</p>
-          </div>
-          <div class="event-box">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="">
-            <p class="event-text">바리스타 체험</p>
-            <p class="event-text">2023-12-06 12:00~14:00</p>
-          </div>
-          <div class="event-box">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="">
-            <p class="event-text">바리스타 체험</p>
-            <p class="event-text">2023-12-06 12:00~14:00</p>
-          </div>
-          <div class="event-box">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="">
-            <p class="event-text">바리스타 체험</p>
-            <p class="event-text">2023-12-06 12:00~14:00</p>
+            <p class="event-title" th:text="${scheduledEvent.event.title}">이벤트 모임명</p>
+            <p th:text="${scheduledEvent.date}">0000.00.00</p>
+            <p th:text="${scheduledEvent.startTime + '~' + scheduledEvent.endTime}">오전00:00~오후00:00</p>
           </div>
         </div>
       </div>
@@ -105,15 +91,10 @@
             <p class="content-title">시간대</p>
           </div>
           <hr>
-          <div class="space-between">
-            <p>512</p>
-            <p>독서 모임</p>
-            <p>2023.00.00 / 12:00~14:00</p>
-          </div>
-          <div class="space-between">
-            <p>512</p>
-            <p>독서 모임</p>
-            <p>2023.00.00 / 12:00~14:00</p>
+          <div class="space-between" th:each="reservationItem : ${user.reservationItems}">
+            <p th:text="${reservationItem.reservation.id}">예약 번호</p>
+            <p th:text="${reservationItem.reservation.className}">모임명</p>
+            <p th:text="${reservationItem.reservation.createdAt}">0000-00-00 / 00:00~00:00</p>
           </div>
         </div>
       </div>
