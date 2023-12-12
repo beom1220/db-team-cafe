@@ -32,6 +32,8 @@ public class ScheduledEventDetailDto {
 
     private LocalTime endTime;
 
+    private String content;
+
     private int capacity;
 
     private int volunteer;

@@ -49,11 +49,11 @@ public class EntrantService {
     }
 
     public List<Entrant> findAllReviewByEvent(Event event) {
-        return entrantRepository.findAllEntrantByScheduledEventInAndReviewIsNotNullAndRatingIsNotNull(event.getScheduledEvents());
+        return entrantRepository.findAllEntrantByScheduledEventInAndReviewIsNotNullOrderByReviewedDateDesc(event.getScheduledEvents());
     }
 
     public List<Entrant> findEntrantsForCheckReviewable(User user, Event event) {
-        return entrantRepository.findAllEntrantByScheduledEventInAndIsAttendedAndReviewIsNullOrderByReviewedDateDesc(event.getScheduledEvents(), true);
+        return entrantRepository.findAllEntrantByScheduledEventInAndUserAndIsAttendedAndReviewIsNullOrderByReviewedDateDesc(event.getScheduledEvents(), user, true);
     }
 
     public Entrant findEntrantForWriteReview(Event event, User user) {

@@ -2,6 +2,7 @@ package com.example.dbcafe.domain.reservation.repository;
 
 import com.example.dbcafe.domain.reservation.domain.Entrant;
 import com.example.dbcafe.domain.reservation.domain.ScheduledEvent;
+import com.example.dbcafe.domain.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -20,4 +21,8 @@ public interface EntrantRepository extends JpaRepository<Entrant, Integer> {
     List<Entrant> findAllEntrantByScheduledEvent(ScheduledEvent scheduledEvent);
 
     Entrant findEntrantById(int entrantId);
+
+    List<Entrant> findAllEntrantByScheduledEventInAndUserAndIsAttendedAndReviewIsNullOrderByReviewedDateDesc(List<ScheduledEvent> scheduledEvents, User user, boolean b);
+
+    List<Entrant> findAllEntrantByScheduledEventInAndReviewIsNotNullOrderByReviewedDateDesc(List<ScheduledEvent> scheduledEvents);
 }
