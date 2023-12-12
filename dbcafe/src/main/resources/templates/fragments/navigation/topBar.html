@@ -7,26 +7,26 @@
 <body>
 <div class="top-bar" th:fragment="topBar">
     <div class="top-container">
-        <div class="top-box">
+        <div class="top-box" >
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuvU8ld4sqPxlJQXbwcV7hAweQ_MRvSCGEXClE6IdgYlN9U0Ne" class="top-logo-image" alt="logo">
-            <h2>DSU COFFEE</h2>
+            <a th:href="@{/}"><h2>DSU COFFEE</h2></a>
         </div>
         <div class="top-link-box">
-            <a href="">메뉴</a>
-            <a href="">예약</a>
+            <a th:href="@{/menu}">메뉴</a>
+            <a th:href="@{/reservation-block}">모임예약</a>
             <a href="">랭킹</a>
             <a href="">뽑기</a>
             <a href="">이벤트</a>
             <a href="">교환권</a>
         </div>
         <div class="top-box">
-            <p>GOLD</p>
             <a href="">로그인</a>
             <a href="">회원가입</a>
-            <!-- 로그인 시 보여질 컴포넌트
-            <p>GOLD</p>
-            <a href="">로그아웃</a>
-            <a href="">마이페이지</a> -->
+            <a th:href="@{/user/my-page}">마이페이지</a>
+<!--            로그인 시 보여질 컴포넌트-->
+<!--            <p>GOLD</p>-->
+<!--            <a href="">로그아웃</a>-->
+<!--            <a href="">마이페이지</a>-->
         </div>
     </div>
 </div>

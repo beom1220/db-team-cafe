@@ -18,19 +18,21 @@
       <hr class="titleHr">
     </div>
     <div class="content-box">
-      <div class="input-box hidden">
-        <b>후기 내용</b>
-        <textarea name="" id="" cols="30" rows="10" placeholder="이벤트 모임 체험 후기를 작성해 주세요." class="eventInput"></textarea>
-        <b>별점</b>
-        <div class="rating-container">
-          <span class="star" onclick="rateStar(1)">★</span>
-          <span class="star" onclick="rateStar(2)">★</span>
-          <span class="star" onclick="rateStar(3)">★</span>
-          <span class="star" onclick="rateStar(4)">★</span>
-          <span class="star" onclick="rateStar(5)">★</span>
+      <form>
+        <div class="input-box hidden">
+          <b>후기 내용</b>
+          <textarea name="" id="" cols="30" rows="10" placeholder="이벤트 모임 체험 후기를 작성해 주세요." class="eventInput"></textarea>
+          <b>별점</b>
+          <div class="rating-container">
+            <span class="star" onclick="rateStar(1)">★</span>
+            <span class="star" onclick="rateStar(2)">★</span>
+            <span class="star" onclick="rateStar(3)">★</span>
+            <span class="star" onclick="rateStar(4)">★</span>
+            <span class="star" onclick="rateStar(5)">★</span>
+          </div>
+          <button class="add-review" type="submit">등록하기</button>
         </div>
-        <button class="add-review">등록하기</button>
-      </div>
+      </form>
       <div class="review-list">
         <div class="title-container-navigation">
           <h4 class="review-title">전체 리뷰</h4>
@@ -38,49 +40,14 @@
           <h4 class="review-title">낮은 별점 순</h4>
         </div>
         <hr>
-        <div class="review-user">
+        <div th:each="review : ${reviews}" class="review-user">
+<!--          <p th:text="review.scheduledEventId">00</p>-->
           <div class="user-content">
             <p>회원아이디</p>
-            <p class="userName">mouse</p>
+            <p class="userName" th:text="${review.userId}">userId</p>
             <hr>
-            <p>2023-12-06</p>
-            <p>★★★★★</p>
-          </div>
-          <div class="user-content">
-            <p>불만 사항이 있다. 개선 요청</p>
-          </div>
-        </div>
-        <div class="review-user">
-          <div class="user-content">
-            <p>회원아이디</p>
-            <p class="userName">mouse</p>
-            <hr>
-            <p>2023-12-06</p>
-            <p>★★★★★</p>
-          </div>
-          <div class="user-content">
-            <p>불만 사항이 있다. 개선 요청</p>
-          </div>
-        </div>
-        <div class="review-user">
-          <div class="user-content">
-            <p>회원아이디</p>
-            <p class="userName">mouse</p>
-            <hr>
-            <p>2023-12-06</p>
-            <p>★★★★★</p>
-          </div>
-          <div class="user-content">
-            <p>불만 사항이 있다. 개선 요청</p>
-          </div>
-        </div>
-        <div class="review-user">
-          <div class="user-content">
-            <p>회원아이디</p>
-            <p class="userName">mouse</p>
-            <hr>
-            <p>2023-12-06</p>
-            <p>★★★★★</p>
+            <p th:text="${review.date}">0000-00-00</p>
+            <p th:text="${'★' + review.rating}">★ 0.0</p>
           </div>
           <div class="user-content">
             <p>불만 사항이 있다. 개선 요청</p>
