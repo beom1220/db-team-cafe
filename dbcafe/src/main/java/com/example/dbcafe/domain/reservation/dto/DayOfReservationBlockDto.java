@@ -13,4 +13,6 @@ public class DayOfReservationBlockDto {
     private LocalDate date;
 
     private boolean isBookable;
+
+    private String dayOfWeek;
 }

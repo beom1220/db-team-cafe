@@ -3,10 +3,11 @@ package com.example.dbcafe.domain.user.controller;
 import com.example.dbcafe.domain.user.domain.Prize;
 import com.example.dbcafe.domain.user.domain.User;
 import com.example.dbcafe.domain.user.dto.*;
+import com.example.dbcafe.domain.user.repository.PrizeHistoryRepository;
+import com.example.dbcafe.domain.user.service.PrizeHistoryService;
 import com.example.dbcafe.domain.user.service.PrizeService;
 import com.example.dbcafe.domain.user.service.UserService;
 import jakarta.servlet.http.HttpSession;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +22,15 @@ import java.util.List;
 public class PrizeController {
     private final PrizeService prizeService;
     private final UserService userService;
+    private final PrizeHistoryService prizeHistoryService;
+    private final PrizeHistoryRepository prizeHistoryRepository;
 
     @GetMapping
     public String showPrize(Model model, HttpSession session) {
         List<Prize> prizes = prizeService.findAllDrawablePrizes();
         User user = userService.findById((String) session.getAttribute("loggedInUser"));
         PrizeUserInfoDto dto = prizeService.convertToDto(user);
+        List<BenefitPrizeHistoryDto> dtos = prizeHistoryService.getBenefitHistory();
 
         model.addAttribute("prizes", prizes);
         model.addAttribute("userInfo", dto);
