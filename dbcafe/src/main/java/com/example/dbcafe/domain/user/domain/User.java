@@ -58,4 +58,11 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Entrant> entrants;
+
+    public User(String name, String phone, int age, boolean isMale) {
+        this.name = name;
+        this.phone = phone;
+        this.age = age;
+        this.isMale = isMale;
+    }
 }

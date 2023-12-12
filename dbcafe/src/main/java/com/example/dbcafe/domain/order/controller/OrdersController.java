@@ -2,6 +2,7 @@ package com.example.dbcafe.domain.order.controller;
 
 import com.example.dbcafe.domain.order.domain.Cart;
 import com.example.dbcafe.domain.order.domain.Orders;
+import com.example.dbcafe.domain.order.dto.UserNextLevelDto;
 import com.example.dbcafe.domain.order.dto.reservationSubmitOrderDto;
 import com.example.dbcafe.domain.order.service.CartService;
 import com.example.dbcafe.domain.order.service.OrdersService;
@@ -52,10 +53,12 @@ public class OrdersController {
         User user = userService.findById((String) session.getAttribute("loggedInUser"));
         Cart cart = cartService.findByUser(user);
         ReservationItem item = (ReservationItem) session.getAttribute("reservationItem");
+        UserNextLevelDto dto = userService.convertToNextLevelDto(user);
 
         model.addAttribute("cartItems", cart.getCartItems());
         model.addAttribute("ownCoupons", user.getOwnCoupons());
         model.addAttribute("reservationItem", item);
+        model.addAttribute("levelInfo", dto);
 
         return "user/orderForm";
     }
