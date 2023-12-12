@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface MenuRepository extends JpaRepository<Menu, Integer> {
     List<Menu> findAllByNameContainsAndIsSelling(String keyword, boolean b);
+
+    Menu findMenuById(int id);
 }

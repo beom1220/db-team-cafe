@@ -58,4 +58,19 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Entrant> entrants;
+
+    public User(String id, User user, String pw, String name, String phone, int age, boolean isMale, int mileage, int accumulation, int coin, int prizeChance, Level level) {
+        this.id = id;
+        this.user = user;
+        this.pw = pw;
+        this.name = name;
+        this.phone = phone;
+        this.age = age;
+        this.isMale = isMale;
+        this.mileage = mileage;
+        this.accumulation = accumulation;
+        this.coin = coin;
+        this.prizeChance = prizeChance;
+        this.level = level;
+    }
 }

@@ -3,11 +3,11 @@ spring:
     url: jdbc:mysql://localhost:3306/dbcafe
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: 1234
+    password: 0508
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
