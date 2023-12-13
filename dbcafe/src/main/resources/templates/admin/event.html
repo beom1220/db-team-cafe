@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
         <title>DB Cafe</title>
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-        <link rel='stylesheet' href='/stylesheets/adminEvent.css' />
+        <link rel='stylesheet' th:href='@{/css/style.css}' type="text/css"/>
+        <link rel='stylesheet' th:href='@{/css/adminEvent.css}' type="text/css"/>
     </head>
     <body>
         <div id="navbar">
             <div class="wrap">
                 <div class="item">
-                    <img src="images/cafeLogo.png">
+                    <img th:src="@{/image/cafeLogo.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="item"> <strong> 메뉴 </strong> </div>
                 <div class="item"> <strong> 예약 </strong> </div>
@@ -18,10 +18,10 @@
                 <div class="item"> <strong> 이벤트 </strong> </div>
                 <div class="item"> <strong> 교환권 </strong> </div>
                 <div class="search">
-                    <img src="images/userPage.png">
+                    <img th:src="@{/image/userPage.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="cart">
-                    <img src="images/logOut.png">
+                    <img th:src="@{/image/logOut.png}" alt="이미지 로딩 실패"/>
                 </div>
             </div>
         </div>
@@ -38,35 +38,39 @@
                     이벤트 모임 목록
                 </span>
             </div>
-            <hr class="detail_hr">
-            <hr>
-            <table border="1">
-                <th class="leftTab">모임 번호</th>
-                <th>모임명</th>
-                <th>개최된 횟수</th>
-                <th>매진된 횟수</th>
-                <th>평점</th>
-                <th></th>
-            </table>
-            <table border="1">
-                <% for (var i = 1; i < 11; i++) { %>
+            <hr class="detail_hr" />
+            <hr />
+            <table>
+                <thead>
                     <tr>
-                        <td class="leftTab">
-                            <%= i %>
-                        </td>
-                        <td>이벤트 모임명</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0.0</td>
-                        <td>
-                            <button type="submit" class="detBtn_2">
-                                <div class="detailBtn_2">
-                                    상세보기
-                                </div>
-                            </button>
-                        </td>
+                        <th class="leftTab">모임 번호</th>
+                        <th>모임명</th>
+                        <th>개최된 횟수</th>
+                        <th>매진된 횟수</th>
+                        <th>평점</th>
+                        <th></th>
                     </tr>
-                <%}%>
+                </thead>
+                <tbody>
+                    <form th:action method="post">
+                        <th:block th:each="event: ${events}">
+                            <tr>
+                                <td class="leftTab" th:text="${event.id}"></td>
+                                <td th:text="${event.title}"></td>
+                                <td th:text="${event.schedulingCount}"></td>
+                                <td th:text="${event.soldOutCount}"></td>
+                                <td th:text="${event.rating}"></td>
+                                <td>
+                                    <button type="submit" class="detBtn_2">
+                                        <div class="detailBtn_2">
+                                            상세보기
+                                        </div>
+                                    </button>
+                                </td>
+                            </tr>
+                        </th:block>
+                    </form>
+                </tbody>
             </table>
         </div>
     </body>

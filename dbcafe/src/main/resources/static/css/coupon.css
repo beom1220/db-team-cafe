@@ -70,7 +70,7 @@
     border-radius: 15px;
 }
 
-input {
+.formBox input {
     height: 30px;
     border-radius: 15px;
     text-align: center;
@@ -120,6 +120,11 @@ table td {
 .tableBox {
     text-align: center;
     font-size: 18px;
+}
+
+.tableBox input {
+    height: 30px;
+    text-align: center;
 }
 
 .btnGroup {

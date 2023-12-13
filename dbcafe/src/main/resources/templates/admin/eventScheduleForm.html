@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="/stylesheets/style.css">
-        <link rel="stylesheet" href="/stylesheets/eventScheduleForm.css">
+        <title>DB Cafe</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+        <link rel="stylesheet" th:href="@{/css/eventScheduleForm.css}" type="text/css"/>
     </head>
     <body>
         <div id="navbar">
             <div class="wrap">
                 <div class="item">
-                    <img src="images/cafeLogo.png"> 
+                    <img th:src="@{/image/cafeLogo.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="item"> <strong> 메뉴 </strong> </div>
                 <div class="item"> <strong> 예약 </strong> </div>
@@ -20,10 +18,10 @@
                 <div class="item"> <strong> 이벤트 </strong> </div>
                 <div class="item"> <strong> 교환권 </strong> </div>
                 <div class="search">
-                    <img src="images/userPage.png">
+                    <img th:src="@{/image/userPage.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="cart">
-                    <img src="images/logOut.png">
+                    <img th:src="@{/image/logOut.png}" alt="이미지 로딩 실패"/>
                 </div>
             </div>
         </div>
@@ -34,7 +32,6 @@
                 </span>
             </div>
             <hr class="detail_hr">
-            
             <div class="choiceForm">
                 <div class="small_title">
                     이벤트 모임
@@ -44,25 +41,22 @@
                     이벤트 모임 목록
                 </div>
                 <select class="eventList">
-                    <option selected value="false"> 모임을 선택해 주세요.</option>
-                    <option value="">바리스타 체험</option>
-                    <option value="">독서 골든벨</option>
-                    <option value="">동네 친구</option>
-                    <option value="">이벤트 모임명</option>
-                    <option value="">이벤트 모임명</option>
-                    <option value="">이벤트 모임명</option>
+                    <option selected="selected" value="false"> 모임을 선택해 주세요.</option>
+                    <th:block th:each="event: ${events}">
+                        <option th:value="${event.id}" th:text="${event.title}"></option>
+                    </th:block>
                 </select>
                 <div class="small_detail">
                     타입사항
                 </div>
                 <select class="eventState">
-                    <option selected value="false">태그를 선택해 주세요.</option>
-                    <option value="">NONE</option>
-                    <option value="">NEW</option>
-                    <option value="">BEST</option>
+                    <option selected="selected" value="false">태그를 선택해 주세요.</option>
+                    <option value="NONE">NONE</option>
+                    <option value="NEW">NEW</option>
+                    <option value="BEST">BEST</option>
                 </select>
             </div>
-            
+
             <div class="choiceForm">
                 <div class="small_title">
                     개최 날짜 등록
@@ -72,41 +66,37 @@
                     날짜
                 </div>
                 <select class="eventList">
-                    <option selected value="false"> 날짜를 선택 해주세요.</option>
-                    <option value="">2023.00.00</option>
-                    <option value="">2023.00.00</option>
-                    <option value="">2023.00.00</option>
-                    <option value="">2023.00.00</option>
-                    <option value="">2023.00.00</option>
-                    <option value="">2023.00.00</option>
+                    <option selected="selected" value="false"> 날짜를 선택 해주세요.</option>
+                    <th:block th:each="reservationBlock: ${reservationBlocks}">
+                        <option th:text="${reservationBlock.date}"></option>
+                    </th:block>
                 </select>
                 <div class="small_detail">
                     시간
                 </div>
                 <select class="eventState">
-                    <option selected value="false">태그를 선택해 주세요.</option>
-                    <option value="">00:00 ~ 00:00</option>
-                    <option value="">00:00 ~ 00:00</option>
-                    <option value="">00:00 ~ 00:00</option>
-                    <option value="">00:00 ~ 00:00</option>
-                    <option value="">00:00 ~ 00:00</option>
-                    <option value="">00:00 ~ 00:00</option>
+                    <option selected="selected" value="false">태그를 선택해 주세요.</option>
+                    <th:block th:each="reservationBlock: ${reservationBlocks}">
+                        <option th:text="${reservationBlock.startTime}"></option>
+                    </th:block>
                 </select>
             </div>
-
             <div class="decBtn">
-                <button type="submit" class="infoBtn">
-                    <div class="cancelBtn">
-                        등록 취소
-                    </div>
-                </button>
-                <button type="submit" class="infoBtn">
-                    <div class="openBtn">
-                        모임 개최
-                    </div>
-                </button>
+                <form th:action method="post">
+                    <button type="submit" class="infoBtn">
+                        <div class="cancelBtn">
+                            등록 취소
+                        </div>
+                    </button>
+                </form>
+                <form th:action method="post">
+                    <button type="submit" class="infoBtn">
+                        <div class="openBtn">
+                            모임 개최
+                        </div>
+                    </button>
+                </form>
             </div>
-
         </div>
     </body>
 </html>

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
         <title>DB Cafe</title>
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-        <link rel='stylesheet' href='/stylesheets/coupon.css' />
+        <link rel='stylesheet' th:href='@{/css/style.css}'
+              href="/css/style.css" type="text/css"/>
+        <link rel='stylesheet' th:href='@{/css/coupon.css}'
+              href="/css/coupon.css" type="text/css"/>
     </head>
     <body>
         <div id="navbar">
             <div class="wrap">
                 <div class="item">
-                    <img src="images/cafeLogo.png"> 
+                    <img th:src="@{/image/cafeLogo.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="item"> <strong> 메뉴 </strong> </div>
                 <div class="item"> <strong> 예약 </strong> </div>
@@ -18,10 +20,10 @@
                 <div class="item"> <strong> 이벤트 </strong> </div>
                 <div class="item"> <strong> 교환권 </strong> </div>
                 <div class="search">
-                    <img src="images/userPage.png">
+                    <img th:src="@{/image/userPage.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="cart">
-                    <img src="images/logOut.png">
+                    <img th:src="@{/image/logOut.png}" alt="이미지 로딩 실패"/>
                 </div>
             </div>
         </div>
@@ -32,37 +34,42 @@
                 </span>
             </div>
             <hr class="detail_hr">
-            <div class="formBox">
-                <span>
-                    쿠폰 이름
-                </span>
-                <input type="text" placeholder="쿠폰 이름을 입력하세요.">
-                <span>
-                    할인율
-                </span>
-                <input type="text" placeholder="할인율을 입력하세요.">
-                <span>
-                    만료 일자
-                </span>
-                <input type="text" placeholder="쿠폰 만료 일자를 입력하세요.">
-                <span>
-                    최대 할인 금액
-                </span>
-                <input type="text" placeholder="최대 할인 금액을 입력하세요.">
-                <span>
-                    최대 발급 횟수
-                </span>
-                <input type="text" placeholder="최대 발급 횟수를 입력하세요.">
-                <div class="regGroup">
-                    <button type="submit" class="btn">
-                        <div class="regBox">
-                            쿠폰 등록 하기
-                        </div>
-                    </button>
+            <form th:action method="post">
+                <div class="formBox">
+                    <span>
+                        쿠폰 이름
+                    </span>
+                    <input type="text" name="name" id="name"
+                           placeholder="쿠폰 이름을 입력하세요." />
+                    <span>
+                        할인율
+                    </span>
+                    <input type="text" name="discountRatio" id="discountRatio"
+                           placeholder="할인율을 입력하세요." />
+                    <span>
+                        만료 일자
+                    </span>
+                    <input type="text" name="period" id="period"
+                           placeholder="쿠폰 만료 일자를 입력하세요." />
+                    <span>
+                        최대 할인 금액
+                    </span>
+                    <input type="text" name="maxDiscount" id="maxDiscount"
+                           placeholder="최대 할인 금액을 입력하세요." />
+                    <span>
+                        최대 발급 횟수
+                    </span>
+                    <input type="text" name="maxIssuance" id="maxIssuance"
+                           placeholder="최대 발급 횟수를 입력하세요." />
+                    <div class="regGroup">
+                        <button type="submit" class="btn">
+                            <div class="regBox">
+                                쿠폰 등록 하기
+                            </div>
+                        </button>
+                    </div>
                 </div>
-            </div>
-
-
+            </form>
             <div class="pageLable">
                 <span>
                     할인 쿠폰
@@ -71,52 +78,79 @@
             <hr class="detail_hr">
             <div class="tableBox">
                 <table>
-                    <tr>
-                        <th>쿠폰 이름</th>
-                        <th>할인율</th>
-                        <th>유효 기간</th>
-                        <th>최대 할인 금액</th>
-                        <th>최대 발급 횟수</th>
-                        <th></th>
-                    </tr>
-                    <% for (var i = 1; i < 6; i++){%>
+                    <thead>
                         <tr>
-                            <td>
-                                쿠폰명이 될 부분
-                            </td>
-                            <td>
-                                00
-                            </td>
-                            <td>
-                                000
-                            </td>
-                            <td>
-                                0,000
-                            </td>
-                            <td>
-                                00
-                            </td>
-                            <td class="btnGroup">
-                                <button type="submit" class="btn">
-                                    <div class="statBtn">
-                                        통계보기
-                                    </div>
-                                </button>
-                                <button type="submit" class="btn">
-                                    <div class="corBtn">
-                                        수정
-                                    </div>
-                                </button>
-                                <button type="submit" class="btn">
-                                    <div class="delBtn">
-                                        삭제
-                                    </div>
-                                </button>
-                            </td>
+                            <th></th>
+                            <th>쿠폰 이름</th>
+                            <th>할인율</th>
+                            <th>유효 기간</th>
+                            <th>최대 할인 금액</th>
+                            <th>최대 발급 횟수</th>
+                            <th></th>
                         </tr>
-                    <%}%>
+                    </thead>
+                    <tbody th:each="coupon: ${coupons}">
+                        <form th:action method="post">
+                            <tr>
+                                <td>
+                                    <input type="hidden" th:value="${coupon.id}">
+                                </td>
+                                <td>
+                                    <input th:value="${coupon.name}" name="">
+                                </td>
+                                <td>
+                                    <input th:value="${coupon.discountRatio}">
+                                </td>
+                                <td>
+                                    <input th:value="${coupon.period}">
+                                </td>
+                                <td>
+                                    <input th:value="${coupon.maxDiscount}">
+                                </td>
+                                <td>
+                                    <input th:value="${coupon.maxIssuance}">
+                                </td>
+                                <td class="btnGroup">
+                                    <input type="button" value="통계보기" th:id="blockBtn" onclick="toggleBtn1(this)"/>
+                                    <!--                                    <button type="submit" class="btn">-->
+                                    <!--                                        <div class="statBtn">-->
+                                    <!--                                            통계보기-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </button>-->
+                                    <button type="submit" class="btn">
+                                        <div class="corBtn">
+                                            수정
+                                        </div>
+                                    </button>
+                                    <button type="submit" class="btn">
+                                        <div class="delBtn">
+                                            삭제
+                                        </div>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr th:id="${coupon.id}">
+                                <td th:text="${coupon.useCount}"></td>
+                                <td th:text="${coupon.issuance}"></td>
+                                <td th:text="${coupon.totalDiscount}"></td>
+                            </tr>
+                        </form>
+                    </tbody>
                 </table>
             </div>
         </div>
     </body>
+    <script>
+        function toggleBtn1(button) {
+            const td = button.parentNode;
+
+            const btn1 = td.nextElementSibling;
+
+            if(btn1.style.display !== 'none') {
+                btn1.style.display = 'none';
+            } else {
+                btn1.style.display = 'display-row';
+            }
+        }
+    </script>
 </html>

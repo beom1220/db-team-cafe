@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
         <title>DB Cafe</title>
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-        <link rel='stylesheet' href='/stylesheets/entrant.css' />
+        <link rel='stylesheet' th:href='@{/css/entrant.css}' type="text/css"/>
+        <link rel='stylesheet' th:href='@{/css/style.css}' type="text/css"/>
     </head>
     <body>
         <div id="navbar">
             <div class="wrap">
                 <div class="item">
-                    <img src="images/cafeLogo.png"> 
+                    <img th:src="@{/image/cafeLogo.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="item"> <strong> 메뉴 </strong> </div>
                 <div class="item"> <strong> 예약 </strong> </div>
@@ -18,10 +18,10 @@
                 <div class="item"> <strong> 이벤트 </strong> </div>
                 <div class="item"> <strong> 교환권 </strong> </div>
                 <div class="search">
-                    <img src="images/userPage.png">
+                    <img th:src="@{/image/userPage.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="cart">
-                    <img src="images/logOut.png">
+                    <img th:src="@{/image/logOut.png}" alt="이미지 로딩 실패"/>
                 </div>
             </div>
         </div>
@@ -35,49 +35,50 @@
                 <div class="flex_2">
                     <div class="lable eventLable">
                         <span>
-                            이벤트명
+                            <p th:text="${scheduledEvent.title}"></p>
                         </span>
                         <span>
-                            Best
+                            <p th:text="${scheduledEvent.tag}"></p>
                         </span>
                     </div>
                     <div class="lable timeLable">
                         <span>
-                            진행시간
+                            [진행시간]
                         </span>
                         <span>
-                            2023.00.00 12:00P ~ 14:00PM
+                            <th:block th:text="${scheduledEvent.startTime}"></th:block> ~
+                            <th:block th:text="${scheduledEvent.endTime}"></th:block>
                         </span>
                     </div>
                     <div class="lable priceLable">
                         <span>
-                            참가 비용 레이블
+                            [참가 비용]
                         </span>
                         <span>
-                            참가비용
+                            <th:block th:text="${scheduledEvent.fee}"></th:block>원
                         </span>
                     </div>
                     <div class="lable peopleLable">
                         <span>
-                            모집 인원 레이블
+                            [모집 인원 레이블]
                         </span>
                         <span>
-                            모집 인원
+                            <th:block th:text="${scheduledEvent.capacity}"></th:block>명
                         </span>
                     </div>
                     <div class="lable ruleLable">
                         <span>
-                            제약사항 레이블
+                            [제약사항 레이블]
                         </span>
                         <ul>
                             <li>
-                                1
+                                참가 모집 인원에는 제한이 있습니다.
                             </li>
                             <li>
-                                2
+                                ~~한 제약이 주어집니다.
                             </li>
                             <li>
-                                3
+                                돈을 내시오 돈을 내 ~
                             </li>
                         </ul>
                     </div>
@@ -87,44 +88,51 @@
                 이벤트 정보
             </div>
             <hr class="detail_hr">
-            <div class="infoHead">
-                이름 전화번호 성별 나이 수락상태
+            <div class="eventList">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="idTd"></th>
+                        <th>이름</th>
+                        <th>전화번호</th>
+                        <th>성별</th>
+                        <th>나이</th>
+                        <th>수락상태</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="entrant: ${entrants}">
+                    <tr>
+                        <td>
+                            <input type="hidden" th:value="${entrant.id}">
+                        </td>
+                        <td th:text="${entrant.name}"></td>
+                        <td th:text="${entrant.phone}"></td>
+                        <td th:text="${entrant.gender}"></td>
+                        <td th:text="${entrant.age}"></td>
+                        <td th:text="${entrant.applicationStatus}"></td>
+                        <td>
+                            <div class="btnGroup">
+                                <form th:action method="post">
+                                    <button type="submit" class="btn">
+                                        <div class="refBtn">
+                                            거절
+                                        </div>
+                                    </button>
+                                </form>
+                                <form th:action method="post">
+                                    <button type="submit" class="btn">
+                                        <div class="accBtn">
+                                            수락
+                                        </div>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <hr>
-            <% for (var i = 0; i < 3; i++) { %>
-                <div class="infoList">
-                    <div class="info">
-                        <span>
-                            name
-                        </span>
-                        <span>
-                            010-1234-5678
-                        </span>
-                        <span>
-                            M
-                        </span>
-                        <span>
-                            10
-                        </span>
-                        <span>
-                            미지정
-                        </span>
-                    </div>
-                    <div class="infoBtn">
-                        <button type="submit" class="refBtn">
-                            <div class="refBack">
-                                수락
-                            </div>
-                        </button>
-                        <button type="submit" class="accBtn">
-                            <div class="accBack">
-                                거절
-                            </div>
-                        </button>
-                    </div>
-                </div>
-                <hr>   
-            <%}%>
         </div>
     </body>
 </html>

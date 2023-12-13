@@ -33,6 +33,7 @@ table {
 table th{
     width: 212px;
     font-size: 25px;
+    border-bottom: 1px solid black;
 }
 
 table tr {
@@ -45,6 +46,7 @@ table td {
     font-size: 20px;
     font-weight: 700;
     color: #858181;
+    border-bottom: 1px solid black;
 }
 
 .leftTab {

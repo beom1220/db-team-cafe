@@ -44,6 +44,21 @@
     font-weight: 700;
 }
 
+.priceLable {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.peopleLable {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ruleLable {
+    font-size: 20px;
+    font-weight: 700;
+}
+
 .lable {
     display: flex;
     flex-direction: column;
@@ -76,74 +91,62 @@
     padding-left: 20px;
 }
 
-.infoHead {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-left: 85px;
-    word-spacing: 150px;
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.infoList {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.infoList .info {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    font-size: 20px;
-}
-
-.infoList span:nth-child(1) {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-left: 85px;
-    font-size: 20px;
-}
-
-.infoList span:nth-child(2) {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-left: 110px;
-    font-size: 20px;
-}
-.infoList span:nth-child(3) {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-left: 133px;
-    font-size: 20px;
-}
-.infoList span:nth-child(4) {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-left: 168px;
-    font-size: 20px;
-}
-.infoList span:nth-child(5) {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-left: 170px;
-    font-size: 20px;
-}
-
 .infoBtn {
     margin-left: 80px;
 }
 
-.refBtn {
+.eventList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.eventList table th {
+    width: 215px;
+    height: 50px;
+    font-size: 18px;
+    border-bottom: 1px solid black;
+}
+
+.eventList table th:nth-child(1) {
+    width: 20px;
+}
+
+.eventList table td:nth-child(1) {
+    color: transparent;
+}
+
+.eventList table td {
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #858181;
+    border-bottom: 1px solid black;
+}
+
+.btnGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn {
     border: none;
     background-color: transparent;
 }
 
-.refBtn .refBack {
+.refBtn {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 95px;
-    height: 35px;
+    height: 30px;
     background: #D22323;
     border-radius: 30px;
     color: white;
@@ -151,16 +154,11 @@
 }
 
 .accBtn {
-    border: none;
-    background-color: transparent;
-}
-
-.accBtn .accBack {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 95px;
-    height: 35px;
+    height: 30px;
     background: #6459E8;
     border-radius: 30px;
     color: white;

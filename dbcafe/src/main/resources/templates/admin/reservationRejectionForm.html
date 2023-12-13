@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
         <title>DB Cafe</title>
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-        <link rel='stylesheet' href='/stylesheets/reservationRejectionForm.css' />
+        <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+        <link rel="stylesheet" th:href="@{/css/reservationRejectionForm.css}" type="text/css"/>
     </head>
     <body>
         <div id="navbar">
             <div class="wrap">
                 <div class="item">
-                    <img src="images/cafeLogo.png"> 
+                    <img th:src="@{/images/cafeLogo.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="item"> <strong> 메뉴 </strong> </div>
                 <div class="item"> <strong> 예약 </strong> </div>
@@ -18,10 +18,10 @@
                 <div class="item"> <strong> 이벤트 </strong> </div>
                 <div class="item"> <strong> 교환권 </strong> </div>
                 <div class="search">
-                    <img src="images/userPage.png">
+                    <img th:src="@{/images/userPage.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="cart">
-                    <img src="images/logOut.png">
+                    <img th:src="@{/images/logOut.png}" alt="이미지 로딩 실패"/>
                 </div>
             </div>
         </div>
@@ -58,8 +58,6 @@
                     </tr>
                 </table>
             </div>
-
-
             <div class="smallLable">
                 <span>
                     지급 쿠폰 선택
@@ -77,14 +75,11 @@
                 </select>
                 <div class="sale">
                     <span>
-                        할인율: 
+                        할인율:
                     </span>
                     00%
                 </div>
             </div>
-
-
-
             <div class="smallLable">
                 <span>
                     지급 코인 선택
@@ -104,7 +99,6 @@
                     </div>
                 </button>
             </div>
-
             <div class="smallLable">
                 <span>
                     사유
@@ -114,7 +108,6 @@
             <div class="textBox">
                 <textarea cols="85" rows="5" placeholder="취소 사유를 입력해주세요."></textarea>
             </div>
-
             <div class="cent">
                 <button type="submit" class="btn">
                     <div class="checBtn">
