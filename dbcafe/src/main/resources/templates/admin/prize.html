@@ -37,43 +37,45 @@
                     <span>
                         상품 타입
                     </span>
-                        <div class="btnBox">
-                            <div class="coinGroup">
-                                <img th:src="@{/image/coinImage.png}" alt="이미지 로딩 실패">
-                                <button type="button" class="btn">
-                                    <div class="coinBox">
-                                        코인
-                                    </div>
-                                </button>
-                            </div>
-                            <div class="pointGroup">
-                                <img th:src="@{/image/pointImage.png}" alt="이미지 로딩 실패">
-                                <button type="button" class="btn">
-                                    <div class="pointBox">
-                                        포인트
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                        <span>
-                            상품명
-                        </span>
-                        <input type="text" placeholder="상품 이름을 입력하세요." name="name" id="name">
-                        <span>
-                            수량
-                        </span>
-                        <input type="text" placeholder="수량을 입력하세요." name="value" id="value">
-                        <span>
-                            확률
-                        </span>
-                        <input type="text" placeholder="확률을 입력하세요." name="probability" id="probability">
-                        <div class="regGroup">
-                            <button type="submit" class="btn">
-                                <div class="regBox">
-                                    상품 등록 하기
+                    <div class="btnBox">
+                        <div class="coinGroup">
+                            <img th:src="@{/image/coinImage.png}" alt="이미지 로딩 실패">
+                            <button type="button" class="btn">
+                                <div class="coinBox">
+                                    <input type="radio" name="isCoin" value=true id="c">
+                                    <label for="c">코인</label>
                                 </div>
                             </button>
                         </div>
+                        <div class="pointGroup">
+                            <img th:src="@{/image/pointImage.png}" alt="이미지 로딩 실패">
+                            <button type="button" class="btn">
+                                <div class="pointBox">
+                                    <input type="radio" name="isCoin" value=false id="p">
+                                    <label for="p">포인트</label>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <span>
+                        상품명
+                    </span>
+                    <input type="text" placeholder="상품 이름을 입력하세요." name="name" id="name">
+                    <span>
+                        수량
+                    </span>
+                    <input type="text" placeholder="수량을 입력하세요." name="value" id="value">
+                    <span>
+                        확률
+                    </span>
+                    <input type="text" placeholder="확률을 입력하세요." name="probability" id="probability">
+                    <div class="regGroup">
+                        <button type="submit" class="btn">
+                            <div class="regBox">
+                                상품 등록 하기
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </form>
 

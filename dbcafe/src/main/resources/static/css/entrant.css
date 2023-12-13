@@ -140,19 +140,6 @@
     background-color: transparent;
 }
 
-.refBtn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 95px;
-    height: 30px;
-    background: #D22323;
-    border-radius: 30px;
-    color: white;
-    font-weight: 700;
-}
-
 .accBtn {
     display: flex;
     flex-direction: row;
@@ -173,7 +160,7 @@
     justify-content: center;
     width: 95px;
     height: 30px;
-    background: #9E9E9E;
+    background: #D22323;
     border-radius: 30px;
     color: white;
     font-weight: 700;

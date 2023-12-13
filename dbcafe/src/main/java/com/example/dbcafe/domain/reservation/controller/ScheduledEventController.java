@@ -64,11 +64,14 @@ public class ScheduledEventController {
         scheduledEventService.rejectEntrant(entrantId, rejectionReason);
         log.info("hello");
 //        return "redirect:/entrant-list";
-        return "redirect:/";
+        return "redirect:/scheduled-event/entrant-list?scheduledEventId=" + entrantId;
     }
 
     @GetMapping("/scheduleForm")
     public String scheduleForm(HttpSession session, Model model) {
+        // 임시 어드민 로그인
+        session.setAttribute("loggedInUser", "admin");
+
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
             List<EventDto> eventDtos = scheduledEventService.findAllEvent();

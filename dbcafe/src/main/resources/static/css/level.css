@@ -39,27 +39,14 @@ table {
     color: white;
     border-radius: 15px;
 }
-.delBtn {
-    width: 70px;
-    height: 30px;
-    background-color: #9E9E9E;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
-    border-radius: 15px;
-}
-
 
 .statBox {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .thBox {

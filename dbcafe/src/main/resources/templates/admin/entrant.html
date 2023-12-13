@@ -105,7 +105,7 @@
                         <form id="myForm">
                             <tr>
                                 <td>
-                                    <input type="text" th:value="${entrant.id}" name="userId" id="userId" />
+                                    <input type="hidden" th:value="${entrant.id}" name="entrantId" th:id="'entrantId' + ${entrant.id}" />
                                 </td>
                                 <td th:text="${entrant.name}"></td>
                                 <td th:text="${entrant.phone}"></td>
@@ -114,13 +114,18 @@
                                 <td th:text="${entrant.applicationStatus}"></td>
                                 <td>
                                     <div class="btnGroup">
-                                        <form>
-                                            <button type="submit" class="btn">
-                                                <div class="accBtn">
-                                                    수락
+                                        <button type="submit" class="btn">
+                                            <div class="accBtn">
+                                                수락
+                                            </div>
+                                        </button>
+                                        <div class="btnGroup">
+                                            <button type="button" class="btn" th:onclick="'submitForm(' + ${entrant.id} + ');'">
+                                                <div class="ansBtn">
+                                                    거절
                                                 </div>
                                             </button>
-                                        </form>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -135,13 +140,6 @@
                                     <textarea rows="2" cols="100" name="rejectionReason" id="rejectionReason"></textarea>
                                 </td>
                                 <td>
-                                    <div class="btnGroup">
-                                        <button type="button" class="btn" onclick="submitForm()">
-                                            <div class="ansBtn">
-                                                답변
-                                            </div>
-                                        </button>
-                                    </div>
                                 </td>
                             </tr>
                         </form>
@@ -151,10 +149,10 @@
         </div>
     </body>
     <script>
-        function submitForm() {
+        function submitForm(entrant_Id) {
             // Get the values from the form
             var rejectionReasonValue = document.getElementById('rejectionReason').value;
-            var entrantIdValue = document.getElementById('userId').value;
+            var entrantIdValue = document.getElementById('entrantId' + entrant_Id).value;
 
             // Encode values to handle special characters
             var encodedRejectionReason = encodeURIComponent(rejectionReasonValue);
@@ -166,12 +164,34 @@
             // Log or use the combined value as needed
             console.log(combinedValue);
 
-            // Create a dynamic link to navigate to the combined URL
-            var link = document.createElement("a");
-            link.href = combinedValue;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            // Create a dynamic form for POST request
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/scheduled-event/entrant/rejection';
+
+            // Create hidden input fields for parameters
+            var rejectionReasonInput = document.createElement('input');
+            rejectionReasonInput.type = 'hidden';
+            rejectionReasonInput.name = 'rejectionReason';
+            rejectionReasonInput.value = rejectionReasonValue;
+
+            var entrantIdInput = document.createElement('input');
+            entrantIdInput.type = 'hidden';
+            entrantIdInput.name = 'entrantId';
+            entrantIdInput.value = entrantIdValue;
+
+            // Append the hidden fields to the form
+            form.appendChild(rejectionReasonInput);
+            form.appendChild(entrantIdInput);
+
+            // Append the form to the document body
+            document.body.appendChild(form);
+
+            // Submit the form
+            form.submit();
+
+            // Remove the form from the document body (optional)
+            document.body.removeChild(form);
         }
     </script>
 </html>

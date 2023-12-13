@@ -46,31 +46,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <th:block th:each="level: ${levels}">
-                            <tr>
-                                <td class="leftTab" th:text="${level.name}"}></td>
-                                <td th:text="${level.userCount}"></td>
-                                <td th:text="${level.totalDiscountAmount}"></td>
-                                <td th:text="${level.averageDiscountAmount}"></td>
-                                <td th:text="${level.discountRatio}"></td>
-                                <td th:text="${level.cutLine}"></td>
-                                <td>
-                                    <form th:action method="post">
+<!--                        <th:block th:each="level: ${levels}">-->
+                        <th:block th:each="i: ${#numbers.sequence(4, 0)}">
+                            <form th:action method="post">
+                                <tr>
+                                    <td class="leftTab" th:text="${levels[i].name}" th:id="'level' + ${i}">
+                                        <input type="hidden" value="%{i}" name="levelIndex">
+                                    </td>
+                                    <td th:text="${levels[i].userCount}"></td>
+                                    <td th:text="${levels[i].totalDiscountAmount}"></td>
+                                    <td th:text="${levels[i].averageDiscountAmount}"></td>
+                                    <td th:text="${levels[i].discountRatio}"></td>
+                                    <td th:text="${levels[i].cutLine} + '%'"></td>
+                                    <td>
                                         <div class="btnGroup">
-                                            <button type="submit" class="btn">
+                                            <button type="button"
+                                                    class="btn"
+                                                    th:onclick="'a(' + ${i} + ');'">
                                                 <div class="corBtn">
                                                     수정
                                                 </div>
                                             </button>
-                                            <button type="submit" class="btn">
-                                                <div class="delBtn">
-                                                    삭제
-                                                </div>
-                                            </button>
                                         </div>
-                                    </form>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td>
+                                        <input type="text"
+                                               th:value="${levels[i].discountRatio}"
+                                               name="discountRatio">
+                                    </td>
+                                    <td>
+                                        <input type="text"
+                                               th:value="${levels[i].cutLine}"
+                                               name="cutLine">
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </form>
                         </th:block>
                     </tbody>
                 </table>
@@ -101,4 +115,11 @@
             </div>
         </div>
     </body>
+<script>
+    function a(id) {
+        var name = document.getElementById('level' + id);
+
+        console.log(name);
+    }
+</script>
 </html>
