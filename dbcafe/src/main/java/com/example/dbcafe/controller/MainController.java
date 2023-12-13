@@ -62,6 +62,12 @@ public class MainController {
         dbInitializerService.ReservationBlockEntity(); // place 있어야함
         dbInitializerService.ReservationChangeRequestEntity(); // reservation 있어야함
         dbInitializerService.ReservationItemEntity(); // reservation, reservation block, setting 있어야함
+
+        dbInitializerService.OrdersEntity(); //user, setting
+        dbInitializerService.OrdersItemEntity(); //orders, menu
+
+        dbInitializerService.CartEntity(); // user
+        dbInitializerService.CartItemEntity(); // user, menu
         return "redirect:/";
     }
 }
