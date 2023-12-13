@@ -72,7 +72,10 @@ public class ReservationService {
                     .findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(date, startTime, true);
             ReservationItem item = new ReservationItem(savedReservation, bookableBlock,
                     reservationInfo.getTempPw(), settingService.findValueByName("블록당선결제금액"),
-                    block.getEarlybirdDiscountRatio(), block.getWeekdayDiscountRatio());
+                    block.getEarlybirdDiscountRatio(), block.getWeekdayDiscountRatio(), true);
+            ReservationItem lastItem = reservationItemRepository.findByReservationUserAndLast(user, true);
+            lastItem.setLast(false);
+            reservationItemRepository.save(lastItem);
             bookableBlock.setBookable(false);
             reservationBlockRepository.save(bookableBlock);
             reservationItemRepository.save(item);

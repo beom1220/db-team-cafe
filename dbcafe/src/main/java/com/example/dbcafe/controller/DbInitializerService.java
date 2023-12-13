@@ -308,15 +308,15 @@ public class DbInitializerService {
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(1), reservationBlockRepository.findReservationBlockById(1), "1111",
                 reservationRepository.findReservationById(1).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue()));
+                settingRepository.findByName("주중할인율").getValue(), true));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(2), reservationBlockRepository.findReservationBlockById(1), "1111",
                 reservationRepository.findReservationById(2).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue()));
+                settingRepository.findByName("주중할인율").getValue(), true));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(3), reservationBlockRepository.findReservationBlockById(1), "1111",
                 reservationRepository.findReservationById(3).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue()));
+                settingRepository.findByName("주중할인율").getValue(), true));
 
         reservationItemRepository.saveAll(reservationItemList);
     }

@@ -180,6 +180,8 @@ public class ReservationBlockService {
                 return DayOfWeek.SATURDAY;
             case "일요일":
                 return DayOfWeek.SUNDAY;
+            default:
+                return null;
         }
     }
 }

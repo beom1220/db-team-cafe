@@ -6,6 +6,7 @@ import com.example.dbcafe.domain.user.dto.PrizeDto;
 import com.example.dbcafe.domain.user.dto.PrizeListDto;
 import com.example.dbcafe.domain.user.dto.PrizeUserInfoDto;
 import com.example.dbcafe.domain.user.repository.PrizeRepository;
+import com.example.dbcafe.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PrizeService {
     private final PrizeRepository prizeRepository;
+    private final UserRepository userRepository;
 
     public List<PrizeListDto> findAllPrizes() {
         List<Prize> prizes =  prizeRepository.findAll();

@@ -1,6 +1,7 @@
 package com.example.dbcafe.domain.reservation.repository;
 
 import com.example.dbcafe.domain.reservation.domain.ReservationItem;
+import com.example.dbcafe.domain.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
@@ -12,4 +13,8 @@ public interface ReservationItemRepository extends JpaRepository<ReservationItem
     List<ReservationItem> findAllReservationItemByReservationBlockDateGreaterThanEqualOrderByReservationBlockDateAscReservationBlockStartTimeAsc(LocalDate now);
 
     ReservationItem findReservationItemById(int reservationItemId);
+
+    ReservationItem findByReservationUserAndLast(User user, boolean b);
+
+    List<ReservationItem> findAllByLastAndKeepingAndReservationBlockDateBetweenAndReservationUserAccumulationGreaterThanEqualOrderByReservationBlockDateAscReservationUserAccumulationDesc(boolean b, boolean b1, LocalDate startDate, LocalDate endDate, int i);
 }
