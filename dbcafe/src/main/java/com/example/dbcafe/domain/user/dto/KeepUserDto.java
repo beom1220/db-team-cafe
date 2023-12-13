@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -16,5 +17,5 @@ public class KeepUserDto {
 
     private int acc; // 누적이용금액
 
-    private Date lastReservation;
+    private LocalDate lastReservation;
 }

@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -133,9 +135,25 @@ public class UserService {
         List<ReservationItem> items = reservationItemRepository.findAllByLastAndKeepingAndReservationBlockDateBetweenAndReservationUserAccumulationGreaterThanEqualOrderByReservationBlockDateAscReservationUserAccumulationDesc(true, false, startDate, endDate, accCut);
         List<KeepUserDto> dtos = new ArrayList<>();
         for (ReservationItem item : items) {
-            KeepUserDto dto; // 여기 하던 중이다 고쳐야 된다.
+            User user = item.getReservation().getUser();
+            String bestLevel = findBestLevel(user);
+            KeepUserDto dto = new KeepUserDto(user.getId(), bestLevel, user.getAccumulation(), item.getReservationBlock().getDate());
+            dtos.add(dto);
         }
 
         return dtos;
+    }
+
+    private String findBestLevel(User user) {
+        List<Level> levels = Arrays.asList(Level.values());
+        Collections.reverse(levels); // 리스트를 역순으로 정렬 (높은 것부터 검사하여 끝내기 위함)
+
+        for (Level level : levels) {
+            LevelHistory levelHistory = levelHistoryRepository.findFirstByUserAndLevel(user, level);
+            if (levelHistory != null) {
+                return level.toString();
+            }
+        }
+        return "브론즈";
     }
 }

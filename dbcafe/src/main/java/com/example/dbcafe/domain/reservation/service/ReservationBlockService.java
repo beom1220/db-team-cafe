@@ -3,10 +3,7 @@ package com.example.dbcafe.domain.reservation.service;
 import com.example.dbcafe.domain.reservation.domain.DayOfWeekInKorean;
 import com.example.dbcafe.domain.reservation.domain.Place;
 import com.example.dbcafe.domain.reservation.domain.ReservationBlock;
-import com.example.dbcafe.domain.reservation.dto.DayOfReservationBlockDto;
-import com.example.dbcafe.domain.reservation.dto.PackageReservationBlockDto;
-import com.example.dbcafe.domain.reservation.dto.ReservationBlockDto;
-import com.example.dbcafe.domain.reservation.dto.TimeOfReservationBlockDto;
+import com.example.dbcafe.domain.reservation.dto.*;
 import com.example.dbcafe.domain.reservation.repository.ReservationBlockRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,7 +82,9 @@ public class ReservationBlockService {
         return dtos;
     }
 
-    public List<ReservationBlockDto> findAllBookableBlock() {
+    public List<ReservationBlockDateTimeDto> findAllBookableBlock() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         List<ReservationBlock> blocks = reservationBlockRepository.findByDateGreaterThanEqualAndIsBookableTrueOrderByDateAscStartTimeAsc(LocalDate.now());
         List<ReservationBlockDto> dtos = new ArrayList<>();
         for (ReservationBlock block : blocks) {
@@ -95,7 +95,16 @@ public class ReservationBlockService {
                 dtos.add(dto);
             }
         }
-        return dtos;
+        List<ReservationBlockDateTimeDto> dateTimeDtos = new ArrayList<>();
+        for (ReservationBlockDto dto : dtos) {
+            ReservationBlock block = reservationBlockRepository.findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(dto.getDate(), dto.getStartTime(), true);
+            String dateString = block.getDate().format(dateFormatter);
+            String startTimeString = block.getStartTime().format(timeFormatter);
+            String endTimeString = block.getEndTime().format(timeFormatter);
+            String dateTime = dateString + " " + startTimeString + "~" + endTimeString;
+            dateTimeDtos.add(new ReservationBlockDateTimeDto(block.getId(), dateTime));
+        }
+        return dateTimeDtos;
     }
 
     public int findPlaceByDateAndTime(LocalDate date, LocalTime startTime) {

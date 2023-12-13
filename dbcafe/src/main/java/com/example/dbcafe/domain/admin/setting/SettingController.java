@@ -1,5 +1,6 @@
 package com.example.dbcafe.domain.admin.setting;
 
+import com.example.dbcafe.domain.admin.dto.EditLevelDto;
 import com.example.dbcafe.domain.admin.dto.LevelDto;
 import com.example.dbcafe.domain.admin.dto.LevelTotalDto;
 import com.example.dbcafe.domain.user.dto.PrizeHistoryDto;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -33,5 +36,11 @@ public class SettingController {
         } else {
             return "auth/access-denied";
         }
+    }
+
+    @PostMapping("/level")
+    public String editLevel(@ModelAttribute EditLevelDto dto) {
+        settingService.editLevel(dto);
+        return "redirect:/level";
     }
 }

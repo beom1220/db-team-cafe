@@ -66,7 +66,7 @@ public class ScheduledEventController {
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
             List<EventDto> eventDtos = scheduledEventService.findAllEvent();
-            List<ReservationBlockDto> blockDtos = scheduledEventService.findAllBookableBlock();
+            List<ReservationBlockDateTimeDto> blockDtos = scheduledEventService.findAllBookableBlock();
             model.addAttribute("events", eventDtos);
             model.addAttribute("reservationBlocks", blockDtos);
             return "admin/eventScheduleForm";
