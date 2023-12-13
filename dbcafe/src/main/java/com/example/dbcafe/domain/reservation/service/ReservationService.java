@@ -57,6 +57,25 @@ public class ReservationService {
         return responseDtos;
     }
 
+    public List<PackageReservationBlockResponseDto> calPackageDayOfWeekAndDiscountRatio(PackageReservationBlockDto dto){
+        List<PackageReservationBlockResponseDto> responseDtos = new ArrayList<>();
+
+        for (LocalDate date = dto.getStartDate(); date.isBefore(dto.getStartDate().plusDays(35));date = date.plusWeeks(1)){
+            String dayOfWeek = date.getDayOfWeek().toString();
+            int weekdayDiscountRatio = 0;
+            int earlybirdDiscountRatio = 0;
+            if (!(dayOfWeek.equals("금요일") || dayOfWeek.equals("토요일") || dayOfWeek.equals("일요일"))) {
+                weekdayDiscountRatio = settingService.findValueByName("주중할인율");
+            }
+            if (ChronoUnit.DAYS.between(dto.getStartDate(), LocalDate.now()) >= settingService.findValueByName("얼리버드기준일수")) {
+                earlybirdDiscountRatio = settingService.findValueByName("얼리버드할인율");
+            }
+            PackageReservationBlockResponseDto responseDto = new PackageReservationBlockResponseDto(date, dto.getStartTime(), dto.getEndTime(), dto.getDayOfWeek(), weekdayDiscountRatio, earlybirdDiscountRatio);
+            responseDtos.add(responseDto);
+        }
+        return responseDtos;
+    }
+
     public void submitReservation(ReservationRequestDto reservationInfo, List<ReservationBlockResponseDto> blocks, HttpSession session) {
         User user = userService.findById((String) session.getAttribute("loggedInUser"));
         Reservation reservation = new Reservation(user, reservationInfo.getClassName(),

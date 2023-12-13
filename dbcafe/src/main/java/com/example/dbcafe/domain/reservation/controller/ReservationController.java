@@ -32,6 +32,13 @@ public class ReservationController {
         return "redirect:/";
     }
 
+    @GetMapping("/package")
+    public String packageReservationForm(@ModelAttribute PackageReservationBlockDto dto, Model model){
+        List<PackageReservationBlockResponseDto> responseDtos = reservationService.calPackageDayOfWeekAndDiscountRatio(dto);
+        model.addAttribute("reservationBlocks", responseDtos);
+        return "reservation/form";
+    }
+
     @GetMapping("/admin")
     public String showAllReservation(Model model, HttpSession session) {
         String userId = (String) session.getAttribute("loggedInUser");
