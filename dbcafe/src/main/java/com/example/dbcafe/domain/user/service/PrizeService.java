@@ -1,10 +1,12 @@
 package com.example.dbcafe.domain.user.service;
 
 import com.example.dbcafe.domain.user.domain.Prize;
+import com.example.dbcafe.domain.user.domain.PrizeHistory;
 import com.example.dbcafe.domain.user.domain.User;
 import com.example.dbcafe.domain.user.dto.PrizeDto;
 import com.example.dbcafe.domain.user.dto.PrizeListDto;
 import com.example.dbcafe.domain.user.dto.PrizeUserInfoDto;
+import com.example.dbcafe.domain.user.repository.PrizeHistoryRepository;
 import com.example.dbcafe.domain.user.repository.PrizeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PrizeService {
     private final PrizeRepository prizeRepository;
-
+    private final PrizeHistoryRepository prizeHistoryRepository;
     public List<PrizeListDto> findAllPrizes() {
         List<Prize> prizes =  prizeRepository.findAll();
         List<PrizeListDto> dtos = new ArrayList<>();
@@ -55,6 +57,7 @@ public class PrizeService {
         user.setPrizeChance(user.getPrizeChance() - 1);
         user.setCoin(user.getCoin() + prize.getCoin() - 1);
         user.setMileage(user.getMileage() + prize.getMileage());
+        prizeHistoryRepository.save(new PrizeHistory(user, prize));
     }
 
     public List<Prize> findAllDrawablePrizes() {

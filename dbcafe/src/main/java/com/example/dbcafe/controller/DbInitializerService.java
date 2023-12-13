@@ -52,6 +52,8 @@ public class DbInitializerService {
         menuList.add(new Menu("민트초코프라페", 5000, MenuCategory.BEVERAGE, "민초 매니아", true, null));
         menuList.add(new Menu("쌍화탕", 7000, MenuCategory.TEA, "환절기 조심하세요", true, null));
         menuList.add(new Menu("율무차", 2000, MenuCategory.TEA, "왠지 공부가 잘 될거같은 율무차", true, null));
+        menuList.add(new Menu("거대빼빼로", 10000, MenuCategory.SNACK, "못받은 당신을 위한 큰 마음", true, null));
+        menuList.add(new Menu("초코파이", 3000, MenuCategory.SNACK, "눈물젖은 그맛", true, null));
 
         menuRepository.saveAll(menuList);
     }
@@ -59,13 +61,23 @@ public class DbInitializerService {
     public void UserEntity(){
         List<User> userList = new ArrayList<>();
 
-        userRepository.save(new User("001", null, "1111", "신민섭", "010-4543-6156", 24, true, 700, 0, 0, 5, Level.BRONZE));
+        userRepository.save(new User("001", null, "1111", "신민섭", "010-4543-6156", 24, true, 700, 40000, 4, 5, Level.BRONZE));
         //userList.add(new User("001", null, "1111", "신민섭", "010-4543-6156", 24, true, 0, 0, 0, 5, Level.BRONZE));
-        userList.add(new User("002", userRepository.findUserById("001"), "1111", "김기범", "010-1111-2222", 24, true, 500, 0, 8, 5, Level.DIAMOND));
-        userList.add(new User("003", userRepository.findUserById("001"), "1111", "이수빈", "010-1234-5678", 24, false, 0, 0, 5, 5, Level.GOLD));
-        userList.add(new User("004", userRepository.findUserById("001"), "1111", "손민우", "010-2333-4444", 24, true, 0, 0, 3, 5, Level.SILVER));
-        userList.add(new User("005", userRepository.findUserById("001"), "1111", "장미루", "010-1199-2222", 24, true, 0, 0, 1, 5, Level.SILVER));
-        userList.add(new User("006", userRepository.findUserById("001"), "1111", "김주원", "010-4455-1122", 24, true, 0, 0, 1, 5, Level.SILVER));
+        userList.add(new User("002", userRepository.findUserById("001"), "1111", "김기범", "010-1111-2222", 24, true, 500, 500000, 50, 5, Level.DIAMOND));
+        userList.add(new User("003", userRepository.findUserById("001"), "1111", "이수빈", "010-1234-5678", 24, false, 50000, 300000, 30, 5, Level.GOLD));
+        userList.add(new User("004", userRepository.findUserById("001"), "1111", "손민우", "010-2333-4444", 24, true, 2000, 100000, 10, 5, Level.SILVER));
+        userList.add(new User("005", userRepository.findUserById("001"), "1111", "장미루", "010-1199-2222", 24, true, 3000, 90000, 9, 5, Level.SILVER));
+        userList.add(new User("006", userRepository.findUserById("001"), "1111", "김주원", "010-4455-1122", 24, true, 4000, 80000, 8, 5, Level.SILVER));
+
+        userList.add(new User("007", userRepository.findUserById("001"), "1111", "수한무", "010-1111-1122", 24, true, 2000, 250000, 25, 5, Level.GOLD));
+        userList.add(new User("008", userRepository.findUserById("001"), "1111", "거북이", "010-4632-1122", 24, true, 1000, 270000, 27, 5, Level.GOLD));
+        userList.add(new User("009", userRepository.findUserById("001"), "1111", "두루미", "010-5326-1122", 24, true, 1000, 320000, 32, 5, Level.GOLD));
+        userList.add(new User("010", userRepository.findUserById("001"), "1111", "동방삭", "010-2754-1122", 24, true, 1000, 700000, 70, 5, Level.DIAMOND));
+        userList.add(new User("011", userRepository.findUserById("001"), "1111", "토끼", "010-5678-1122", 24, true, 1000, 20000, 2, 5, Level.BRONZE));
+        userList.add(new User("012", userRepository.findUserById("001"), "1111", "자라", "010-4685-1122", 24, true, 1000, 50000, 5, 5, Level.SILVER));
+        userList.add(new User("013", userRepository.findUserById("001"), "1111", "도라에몽", "010-4685-1122", 24, true, 1000, 30000, 3, 5, Level.BRONZE));
+        userList.add(new User("014", userRepository.findUserById("001"), "1111", "노진구", "010-4685-1122", 24, true, 1000, 800000, 8, 5, Level.DIAMOND));
+        userList.add(new User("015", userRepository.findUserById("001"), "1111", "짱구", "010-4685-1122", 24, true, 1000, 3000000, 300, 5, Level.VIP));
 
         userRepository.saveAll(userList);
     }
@@ -111,7 +123,7 @@ public class DbInitializerService {
     public void SettingEntity(){ // 값 잘 몰라서 확인 요망
         List<Setting> settingList = new ArrayList<>();
 
-        settingList.add(new Setting(1, "브론즈할인율", "내용", 0));
+        settingList.add(new Setting(1, "브론즈할인율", "내용", 3));
         settingList.add(new Setting(2, "실버할인율", "내용", 5));
         settingList.add(new Setting(3, "골드할인율", "내용", 10));
         settingList.add(new Setting(4, "다이아할인율", "내용", 20));
@@ -134,7 +146,7 @@ public class DbInitializerService {
         List<Orders> ordersList = new ArrayList<>();
         ordersList.add(new Orders(userRepository.findUserById("001"), PaymentMethod.KAKAO, 10000, OrderStatus.COMPLETE,
                 false, 4000, settingRepository.findByName("주중할인율").getValue(),
-                500, 0, 0, 0, 5500));
+                500, settingRepository.findByName("브론즈할인율").getValue(), 300, 0, 5200));
         ordersList.add(new Orders(userRepository.findUserById("002"), PaymentMethod.CREDIT, 30000, OrderStatus.PREPARING,
                 false, 0, settingRepository.findByName("주중할인율").getValue(),
                 1500, 20, 6000, 0, 22500));
@@ -177,6 +189,10 @@ public class DbInitializerService {
 
         cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("001")), menuRepository.findMenuById(1), 4));
         cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("001")), menuRepository.findMenuById(2), 2));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("001")), menuRepository.findMenuById(3), 5));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("001")), menuRepository.findMenuById(4), 2));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("001")), menuRepository.findMenuById(5), 5));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("001")), menuRepository.findMenuById(2), 2));
         cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("002")), menuRepository.findMenuById(1), 4));
         cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("002")), menuRepository.findMenuById(3), 3));
         cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("003")), menuRepository.findMenuById(5), 1));
@@ -184,6 +200,10 @@ public class DbInitializerService {
         cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("004")), menuRepository.findMenuById(1), 6));
         cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("005")), menuRepository.findMenuById(4), 4));
         cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("006")), menuRepository.findMenuById(5), 2));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("007")), menuRepository.findMenuById(5), 2));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("008")), menuRepository.findMenuById(5), 2));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("009")), menuRepository.findMenuById(5), 2));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("010")), menuRepository.findMenuById(5), 2));
 
         cartItemRepository.saveAll(cartItemList);
     }
@@ -193,59 +213,78 @@ public class DbInitializerService {
         User nowuser = userRepository.findUserById("001");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.ACCEPTED, false, true, null, null, 4.5, null));
+                ApplicationStatus.ACCEPTED, false, true, null, "재밌어요.", 4.5, Date.valueOf(LocalDate.of(2023, 12, 12))));
 
         nowuser = userRepository.findUserById("002");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
-                ApplicationStatus.ACCEPTED, false, true, null, null, 4.1, null));
+                ApplicationStatus.ACCEPTED, false, true, null, "할만하네요.", 4.1, Date.valueOf(LocalDate.of(2023, 12, 12))));
 
         nowuser = userRepository.findUserById("003");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CASH,
-                ApplicationStatus.REJECTED, false, true, "현금 사용 불가 이벤트입니다.", null, 4.2, null));
+                ApplicationStatus.ACCEPTED, false, true, "현금 사용 불가 이벤트네요...", null, 4.2, null));
 
         nowuser = userRepository.findUserById("004");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(3),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, null, 4.4, null));
+                ApplicationStatus.ACCEPTED, false, true, null, null, 4.4, null));
 
         nowuser = userRepository.findUserById("005");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "생각보다 어려워요.",
+                ApplicationStatus.ACCEPTED, false, true, null, "생각보다 어려워요.",
                 4.0, Date.valueOf(LocalDate.of(2023, 12, 10))));
 
         nowuser = userRepository.findUserById("006");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "스타벅스 알바 해보고 싶었는데 재밌었어요.",
+                ApplicationStatus.ACCEPTED, false, true, null, "스타벅스 알바 해보고 싶었는데 재밌었어요.",
                 4.8, Date.valueOf(LocalDate.of(2023, 12, 12))));
 
         nowuser = userRepository.findUserById("005");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "테스트 공간이 생기니까 너무 편해요.",
+                ApplicationStatus.ACCEPTED, false, true, null, "테스트 공간이 생기니까 너무 편해요.",
                 4.9, Date.valueOf(LocalDate.of(2023, 12, 10))));
 
         nowuser = userRepository.findUserById("006");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "공간이 조금 번잡하네요.",
+                ApplicationStatus.ACCEPTED, false, true, null, "공간이 조금 번잡하네요.",
                 4.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
 
         nowuser = userRepository.findUserById("005");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(3),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "문제가 너무 어려워요 ㅠㅠ.",
+                ApplicationStatus.ACCEPTED, false, true, null, "문제가 너무 어려워요 ㅠㅠ.",
                 3.3, Date.valueOf(LocalDate.of(2023, 12, 11))));
 
         nowuser = userRepository.findUserById("006");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(3),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "아싸 상금!!!",
+                ApplicationStatus.ACCEPTED, false, true, null, "아싸 상금!!!",
                 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
 
+        nowuser = userRepository.findUserById("007");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.ACCEPTED, false, true, null, "신기한 경험이었어요.", 4.1, Date.valueOf(LocalDate.of(2023, 12, 12))));
+
+        nowuser = userRepository.findUserById("008");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.ACCEPTED, false, true, null, "최악이에요.", 2.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
+
+        nowuser = userRepository.findUserById("009");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.REJECTED, true, false, "준비물 부족.", null, 0.0, null));
+
+        nowuser = userRepository.findUserById("010");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, null));
         entrantRepository.saveAll(entrantList);
     }
 
@@ -263,6 +302,9 @@ public class DbInitializerService {
                 0, false));
         reservationList.add(new Reservation(userRepository.findUserById("002"), "저녁 노가리", 3, 30000,
                 PaymentMethod.CREDIT, false, userRepository.findUserById("002").getName(), userRepository.findUserById("002").getPhone(),
+                0, false));
+        reservationList.add(new Reservation(userRepository.findUserById("001"), "커피 탐구회", 10, 150000,
+                PaymentMethod.CREDIT, false, userRepository.findUserById("001").getName(), userRepository.findUserById("001").getPhone(),
                 0, false));
         reservationRepository.saveAll(reservationList);
     }
@@ -310,11 +352,14 @@ public class DbInitializerService {
                 reservationRepository.findReservationById(1).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue()));
 
-        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(2), reservationBlockRepository.findReservationBlockById(1), "1111",
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(2), reservationBlockRepository.findReservationBlockById(2), "1111",
                 reservationRepository.findReservationById(2).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue()));
 
-        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(3), reservationBlockRepository.findReservationBlockById(1), "1111",
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(3), reservationBlockRepository.findReservationBlockById(3), "1111",
+                reservationRepository.findReservationById(3).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
+                settingRepository.findByName("주중할인율").getValue()));
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(4), "1111",
                 reservationRepository.findReservationById(3).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue()));
 
