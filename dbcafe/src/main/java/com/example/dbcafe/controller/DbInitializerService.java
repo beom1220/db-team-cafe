@@ -101,9 +101,9 @@ public class DbInitializerService {
     public void EventEntity(){
         List<Event> eventList = new ArrayList<>();
 
-        eventList.add(new Event("바리스타 체험", "직접 바리스타가 되어보세요.", true, 10, 15000, "사진", 1000, 4.5));
-        eventList.add(new Event("신메뉴 테스트", "생각중인 신메뉴를 테스트할 기회!", true, 10, 30000, "사진", 600, 4.9));
-        eventList.add(new Event("독서 골든벨", "책을 많이 읽었다면 도전하세요.", true, 20, 3000, "사진", 3000, 4.2));
+        eventList.add(new Event("바리스타 체험", "직접 바리스타가 되어보세요.", true, 10, 15000, "사진", 5, 4.5));
+        eventList.add(new Event("신메뉴 테스트", "생각중인 신메뉴를 테스트할 기회!", true, 10, 30000, "사진", 4, 4.9));
+        eventList.add(new Event("독서 골든벨", "책을 많이 읽었다면 도전하세요.", true, 20, 3000, "사진", 3, 4.2));
 
         eventRepository.saveAll(eventList);
     }
