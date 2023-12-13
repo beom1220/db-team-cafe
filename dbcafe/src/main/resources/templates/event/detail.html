@@ -26,7 +26,6 @@
           <div class="column-box">
             <b>진행 시간</b>
             <p th:text="${scheduledEvent.date + ' ' + scheduledEvent.startTime + ' ~ ' + scheduledEvent.endTime}">0000.00.00 00:00 ~ 00:00</p>
-
           </div>
           <div>
             <b>참가 비용</b>
@@ -37,10 +36,10 @@
             <p th:text="${scheduledEvent.capacity + '명'}">0</p>
           </div>
           <div>
-            <b>제약사항</b>
-<!--            <p th:text="${scheduledEvent.content}">없음.</p> 수정 대기-->
+            <b>이벤트 소개</b>
+            <p th:text="${scheduledEvent.content}">없음.</p>
           </div>
-          <button class="eventButton">모임 참가 신청</button>
+          <button class="eventButton" >모임 참가 신청</button>
         </div>
       </div>
       <div>

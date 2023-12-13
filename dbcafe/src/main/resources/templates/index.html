@@ -12,11 +12,11 @@
   <div class="container">
     <div class="box">
       <div class="content-box">
-          <!-- 세션 추가 버튼 -->
-          <button onclick="addSession()">회원 로그인</button>
-
-          <!-- 세션 삭제 버튼 -->
-          <button onclick="deleteSession()">로그아웃</button>
+      <div class="add-data-box">
+          <form th:action="@{/add-data-button}" method="get">
+              <button id="add-data-button" type="submit">데이터 추가 버튼</button>
+          </form>
+      </div>
         <div class="list">
           <div class="title-box">
             <h2>모집중인 이벤트 모임</h2>
@@ -31,11 +31,10 @@
                           <a th:href="@{/scheduled-event/detail(id=${scheduledEvent.id})}"><h4 class="event-title" th:text="${scheduledEvent.title}">이벤트 모임명</h4></a>
                           <b class="event-tag" th:text="${scheduledEvent.tag}" th:if="${scheduledEvent.tag eq null or scheduledEvent.tag eq '해당사항 없음'}" style="display: none;"></b>
                           <b class="event-tag" th:text="${scheduledEvent.tag}" th:unless="${scheduledEvent.tag eq null or scheduledEvent.tag eq '해당사항 없음'}"></b>
-
                       </div>
                       <div class="event-row">
                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROyCM4hDrN0YRWZ7POalvuYvDID4CeOpYuJg&usqp=CAU" alt="stars" class="event-ratingImg">
-                          <p th:text="${scheduledEvent.rating}">0.0</p>
+                          <p th:text="${#numbers.formatDecimal(scheduledEvent.rating,1,1)}">0.0</p>
                       </div>
                   </div>
                   <div class="event-date">
@@ -46,15 +45,12 @@
           </div>
           </div>
         </div>
-        <div class="add-data-box">
-          <form th:action="@{/add-data-button}" method="get">
-            <button id="add-data-button" type="submit">데이터 추가 버튼</button>
-          </form>
-        </div>
-        <div class="search-box">
-          <input type="text" class="search-input" placeholder="검색어를 입력하세요.">
-          <button class="search-button">검색</button>
-        </div>
+        <form th:action="@{/search}" method="get">
+            <div class="search-box">
+                <input type="text" class="search-input" name="keyword" placeholder="검색어를 입력하세요.">
+                <button class="search-button" type="submit">검색</button>
+            </div>
+        </form>
         <div class="list">
           <div class="title-box">
             <h2>메뉴</h2>
@@ -73,27 +69,5 @@
       </div>
     </div>
   </div>
-  <script>
-// 세션 추가 함수
-function addSession() {
-    // 세션 키와 값을 설정
-    var sessionKey = "loggedInUser";
-    var sessionValue = "aa";
-
-    // 세션에 키와 값을 추가
-    sessionStorage.setItem(sessionKey, sessionValue);
-    alert("회원으로 로그인되었습니다. 세션 값: " + sessionStorage.getItem(sessionKey));
-}
-
-// 세션 삭제 함수
-function deleteSession() {
-    // 세션 키 설정
-    var sessionKey = "loggedInUser";
-
-    // 세션에서 키에 해당하는 값을 삭제
-    sessionStorage.removeItem(sessionKey);
-    alert("로그아웃되었습니다. 세션 값: " + sessionStorage.getItem(sessionKey));
-}
-</script>
 </body>
 </html>

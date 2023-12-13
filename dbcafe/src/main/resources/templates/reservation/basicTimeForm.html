@@ -12,23 +12,33 @@
   <div class="box">
     <div class="content-box">
       <div class="date-box">
-        <h2 id="dateHeader">0000-00-00 0요일</h2>
+        <h2 th:text="${date}+ ' ' + ${day}">0000-00-00 0요일</h2>
         <a th:href="@{/reservation-block}" class="chooeseButton">선택일자 변경하기</a>
       </div>
       <div class="time-container">
         <hr>
         <h3>시간대 선택</h3>
-        <form id="reservationForm" method="get">
+        <form th:action="@{/reservation}" method="get">
           <ul class="time-ul" th:each="time : ${times}">
             <li class="time-li" th:if="${time.isBookable}">
               <span th:text="${time.startTime+ '~' + time.endTime}">00:00 ~ 00:00</span>
-              <p th:text="${time.startTime}" name="startTime">0</p>
-              <p th:text="${time.endTime}" name="endTime">0</p>
-              <input type="radio" name="selectedTime" th:value="${time.startTime + ',' + time.endTime}" />
+              <div class="row-box">
+                <b>예약정보 </b>
+                <p th:text="${date}+''+${day}" th:value="${date}" th:name="date">0000-00-00</p>
+                <p th:text="${time.startTime}" th:value="${time.startTime}" th:name="startTime">0</p>
+                <p th:text="${time.endTime}" th:value="${time.endTime}" th:name="endTime">0</p>
+              </div>
+
+              <p th:text="${time.startTime} + 'dfa' +${time.endTime}">0</p>
+              <input type="radio">
             </li>
+            <button type="button" onclick="logInformation(this.getAttribute('data-startTime'), this.getAttribute('data-endTime'), this.getAttribute('data-date'))"
+                    th:data-startTime="${time.startTime}" th:data-endTime="${time.endTime}" th:data-date="${date}">
+              첫 번째 버튼
+            </button>
+
           </ul>
-          <input type="hidden" name="date" th:value="${dateParam}" />
-          <button type="button" onclick="submitForm()" class="reservationButton">예약 정보 입력하기</button>
+          <button type="submit" class="reservationButton">예약 정보 입력하기</button>
         </form>
       </div>
       <div class="footer-box">
@@ -42,38 +52,9 @@
   </div>
 </div>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  // URL에서 date 파라미터 추출
-  const urlParams = new URLSearchParams(window.location.search);
-  const dateParam = urlParams.get('date');
-
-  // 날짜 헤더 업데이트
-  const dateHeader = document.getElementById('dateHeader');
-  if (dateHeader && dateParam) {
-    dateHeader.innerText = dateParam + ' ' + getDayOfWeek(dateParam);
+  function logInformation(startTime, endTime, date) {
+    console.log('StartTime: ' + startTime + ', EndTime: ' + endTime + ', Date: ' + date);
   }
-});
-
-function getDayOfWeek(dateString) {
-  const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
-  const date = new Date(dateString);
-  const dayOfWeekIndex = date.getDay();
-  return daysOfWeek[dayOfWeekIndex];
-}
-
-function submitForm() {
-  var selectedTime = document.querySelector('input[name="selectedTime"]:checked');
-  if (selectedTime) {
-    var startTime = selectedTime.previousElementSibling.previousElementSibling.textContent.trim();
-    var endTime = selectedTime.previousElementSibling.textContent.trim();
-    var dateParam = document.querySelector('input[name="date"]').value;
-
-    var redirectUrl = '/reservation?date=' + dateParam + '&startTime=' + startTime + '&endTime=' + endTime;
-    window.location.href = redirectUrl;
-  } else {
-    alert("시간을 선택하세요.");
-  }
-}
 </script>
 </body>
 </html>
