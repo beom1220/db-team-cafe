@@ -28,6 +28,7 @@ public class ReservationBlockController {
 
     @GetMapping
     public String showBasicDays(Model model, HttpSession session) {
+        session.setAttribute("loggedInUser", "001"); // 로그인 정보 확인용
         List<DayOfReservationBlockDto> days = reservationBlockService.showBasicDays();
         User user = userService.findById((String) session.getAttribute("loggedInUser"));
         UserSelectDayDto dto = userService.convertToSelectDayDto(user);

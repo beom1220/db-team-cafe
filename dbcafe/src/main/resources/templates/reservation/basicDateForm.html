@@ -17,6 +17,11 @@
                 <p class="content-text">* 월~목요일은 주중 할인율 5%가 적용됩니다.</p>
                 <p class="content-text">* 2주 이상의 날짜를 예약하면 얼리버드 할인이 적용됩니다.</p>
             </div>
+            <div>
+                <p th:text="'예약가능 일자 범위 '+${userInfo.term}+'일'">0주</p>
+                <p th:text="'다음 등급까지 필요한 금액 '+${userInfo.shortage}+'원'">0원</p>
+                <p th:text="'다음 등급의 예약일자 범위 '+${userInfo.nextTerm}+'주'">0주</p>
+            </div>
             <form id="dateForm" action="/reservation-block/select-time" method="get">
                 <div th:each="day : ${days}" class="row-box">
                     <p th:text="${day.date}">데이터</p>
