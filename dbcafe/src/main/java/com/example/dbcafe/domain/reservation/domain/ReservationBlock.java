@@ -36,4 +36,12 @@ public class ReservationBlock {
     public boolean getIsBookable() {
         return isBookable;
     }
+
+    public ReservationBlock(Place place, LocalDate date, LocalTime startTime, LocalTime endTime, boolean isBookable) {
+        this.place = place;
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.isBookable = isBookable;
+    }
 }

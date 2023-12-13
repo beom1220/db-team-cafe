@@ -32,4 +32,9 @@ public class PrizeHistory {
     @Column(nullable = false, name = "created_at")
     @CreatedDate
     private Date createdAt;
+
+    public PrizeHistory(User user, Prize prize) {
+        this.user = user;
+        this.prize = prize;
+    }
 }

@@ -35,4 +35,13 @@ public class ReservationChangeRequest {
     private boolean isAccepted;
 
     private String rejectionReason;
+
+    public ReservationChangeRequest(Reservation reservation, LocalDate newDate, LocalTime newStartTime, LocalTime newEndTime, boolean isAccepted, String rejectionReason) {
+        this.reservation = reservation;
+        this.newDate = newDate;
+        this.newStartTime = newStartTime;
+        this.newEndTime = newEndTime;
+        this.isAccepted = isAccepted;
+        this.rejectionReason = rejectionReason;
+    }
 }

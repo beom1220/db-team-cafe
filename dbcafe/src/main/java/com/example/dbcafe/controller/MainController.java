@@ -18,9 +18,10 @@ import java.util.List;
 public class MainController {
     private final MenuService menuService;
     private final ScheduledEventService scheduledEventService;
-
+    private final DbInitializerService dbInitializerService;
     @GetMapping("/")
     public String index() {
+
         return "redirect:/search";
     }
 
@@ -35,5 +36,32 @@ public class MainController {
         model.addAttribute("menus", menus);
         model.addAttribute("scheduledEvents", dtos);
         return "index";
+    }
+
+    @GetMapping("/add-data-button")
+    public String addDBButton(){
+        dbInitializerService.MenuEntity();
+        dbInitializerService.EventEntity();
+        dbInitializerService.PlaceEntity();
+        dbInitializerService.UserEntity();
+        dbInitializerService.SettingEntity();
+        dbInitializerService.CouponEntity();
+        dbInitializerService.PrizeEntity();
+        
+
+        dbInitializerService.SuggestionEntity(); // user 있어야함
+        dbInitializerService.MileageHistoryEntity(); // user 있어야함
+        dbInitializerService.LevelHistoryEntity(); // user 있어야함
+        dbInitializerService.VoucherEntity(); // user 및 menu 있어야함
+        dbInitializerService.PrizeHistoryEntity(); // user하고 prize 있어야함
+        dbInitializerService.OwnCouponEntity(); // coupon, user 있어야함
+        dbInitializerService.ScheduledEventEntity(); // event, place 있어야함
+        dbInitializerService.EntrantEntity(); // user, scheduledevent, menu 있어야함
+
+        dbInitializerService.ReservationEntity(); // user 있어야함
+        dbInitializerService.ReservationBlockEntity(); // place 있어야함
+        dbInitializerService.ReservationChangeRequestEntity(); // reservation 있어야함
+        dbInitializerService.ReservationItemEntity(); // reservation, reservation block, setting 있어야함
+        return "redirect:/";
     }
 }

@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Voucher {
+public class Voucher { // 교환권
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -42,4 +42,14 @@ public class Voucher {
 
     @Enumerated(EnumType.STRING)
     private CouponStatus status;
+
+    public Voucher(User user, Menu menu, int price, Date createdAt, int period, Date usedAt, CouponStatus status) {
+        this.user = user;
+        this.menu = menu;
+        this.price = price;
+        this.createdAt = createdAt;
+        this.period = period;
+        this.usedAt = usedAt;
+        this.status = status;
+    }
 }

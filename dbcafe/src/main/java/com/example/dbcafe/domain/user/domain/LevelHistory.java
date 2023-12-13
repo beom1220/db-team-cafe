@@ -13,7 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class LevelHistory {
+public class LevelHistory { // 등급 이력
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -30,4 +30,12 @@ public class LevelHistory {
     private int year;
 
     private int month;
+
+    public LevelHistory(User user, int coin, Level level, int year, int month) {
+        this.user = user;
+        this.coin = coin;
+        this.level = level;
+        this.year = year;
+        this.month = month;
+    }
 }

@@ -38,4 +38,15 @@ public class Event {
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
     private List<ScheduledEvent> scheduledEvents;
+
+    public Event(String title, String content, boolean isRepOnly, int capacity, int fee, String img, int reviewCount, double ratingTotal) {
+        this.title = title;
+        this.content = content;
+        this.isRepOnly = isRepOnly;
+        this.capacity = capacity;
+        this.fee = fee;
+        this.img = img;
+        this.reviewCount = reviewCount;
+        this.ratingTotal = ratingTotal;
+    }
 }
