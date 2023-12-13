@@ -6,6 +6,10 @@
         <link rel="stylesheet" th:href="@{/css/userPrize.css}" type="text/css"/>
 </head>
     <body>
+    <div th:if="${session.selectedPrize} != null">
+        <h2>hello</h2>
+        <h2 th:text="${session.selectedPrize.name}"></h2>
+    </div>
         <div id="navbar">
             <div class="wrap">
                 <div class="item">
@@ -45,7 +49,7 @@
                         <span> 보유 중인 코인 갯수: <span th:text="${userInfo.coin}"></span>개</span>
                     </div>
                     <form th:action method="post">
-                        <button type="submit" class="btn">
+                        <button type="submit" class="btn" name="">
                             <div class="gameBtn">
                                 <div class="leftBox">
                                     <img th:src="@{/image/coinImage.png}" alt="이미지 로딩 실패">

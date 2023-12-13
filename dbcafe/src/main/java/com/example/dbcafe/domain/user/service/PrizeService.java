@@ -53,7 +53,7 @@ public class PrizeService {
             }
         }
         int randomIndex = (int) (Math.random() * prizeBox.size());
-        return prizes.get(randomIndex);
+        return prizeRepository.findPrizeById(prizeBox.get(randomIndex));
     }
 
     public void settlePrize(Prize prize, User user) {
@@ -61,6 +61,8 @@ public class PrizeService {
         user.setCoin(user.getCoin() + prize.getCoin() - 1);
         user.setMileage(user.getMileage() + prize.getMileage());
         prizeHistoryRepository.save(new PrizeHistory(user, prize));
+
+        userRepository.save(user);
     }
 
     public List<Prize> findAllDrawablePrizes() {

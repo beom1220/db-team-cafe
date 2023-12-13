@@ -94,37 +94,96 @@
                     </tr>
                     </thead>
                     <tbody th:each="entrant: ${entrants}">
-                    <tr>
-                        <td>
-                            <input type="hidden" th:value="${entrant.id}">
-                        </td>
-                        <td th:text="${entrant.name}"></td>
-                        <td th:text="${entrant.phone}"></td>
-                        <td th:text="${entrant.gender}"></td>
-                        <td th:text="${entrant.age}"></td>
-                        <td th:text="${entrant.applicationStatus}"></td>
-                        <td>
-                            <div class="btnGroup">
-                                <form th:action method="post">
-                                    <button type="submit" class="btn">
-                                        <div class="refBtn">
-                                            거절
+                        <form id="myForm">
+                            <tr>
+                                <td>
+                                    <input type="hidden" th:value="${entrant.id}" name="entrantId" th:id="'entrantId' + ${entrant.id}" />
+                                </td>
+                                <td th:text="${entrant.name}"></td>
+                                <td th:text="${entrant.phone}"></td>
+                                <td th:text="${entrant.gender}"></td>
+                                <td th:text="${entrant.age}"></td>
+                                <td th:text="${entrant.applicationStatus}"></td>
+                                <td>
+                                    <div class="btnGroup">
+                                        <button type="submit" class="btn">
+                                            <div class="accBtn">
+                                                수락
+                                            </div>
+                                        </button>
+                                        <div class="btnGroup">
+                                            <button type="button" class="btn" th:onclick="'submitForm(' + ${entrant.id} + ');'">
+                                                <div class="ansBtn">
+                                                    거절
+                                                </div>
+                                            </button>
                                         </div>
-                                    </button>
-                                </form>
-                                <form th:action method="post">
-                                    <button type="submit" class="btn">
-                                        <div class="accBtn">
-                                            수락
-                                        </div>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <svg viewBox="0 0 24 24" width="25" height="25">
+                                        <path d="m18.5,0H5.5C2.467,0,0,2.467,0,5.5v9c0,3.033,2.467,5.5,5.5,5.5h1.241l3.598,3.031c.479.425,1.08.635,1.674.635.583,0,1.159-.202,1.607-.6l3.708-3.066h1.172c3.033,0,5.5-2.467,5.5-5.5V5.5c0-3.033-2.467-5.5-5.5-5.5Zm2.5,14.5c0,1.378-1.122,2.5-2.5,2.5h-1.711c-.349,0-.687.122-.956.344l-3.83,3.167-3.749-3.158c-.271-.228-.613-.353-.966-.353h-1.789c-1.378,0-2.5-1.122-2.5-2.5V5.5c0-1.378,1.122-2.5,2.5-2.5h13c1.378,0,2.5,1.122,2.5,2.5v9Zm-4.939-6.465l-1.965,1.965,1.965,1.965c.586.586.586,1.536,0,2.121-.293.293-.677.439-1.061.439s-.768-.146-1.061-.439l-1.965-1.965-1.965,1.965c-.293.293-.677.439-1.061.439s-.768-.146-1.061-.439c-.586-.585-.586-1.535,0-2.121l1.965-1.965-1.965-1.965c-.586-.586-.586-1.536,0-2.121.586-.586,1.535-.586,2.121,0l1.965,1.965,1.965-1.965c.586-.586,1.535-.586,2.121,0,.586.585.586,1.535,0,2.121Z"/>
+                                    </svg>
+                                </td>
+                                <td colspan="4">
+                                    <textarea rows="2" cols="100" name="rejectionReason" id="rejectionReason"></textarea>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </form>
                     </tbody>
                 </table>
             </div>
         </div>
     </body>
+    <script>
+        function submitForm(entrant_Id) {
+            // Get the values from the form
+            var rejectionReasonValue = document.getElementById('rejectionReason').value;
+            var entrantIdValue = document.getElementById('entrantId' + entrant_Id).value;
+
+            // Encode values to handle special characters
+            var encodedRejectionReason = encodeURIComponent(rejectionReasonValue);
+            var encodedEntrantId = encodeURIComponent(entrantIdValue);
+
+            // Combine the values
+            var combinedValue = "/scheduled-event/entrant/rejection?entrantId=" + encodedEntrantId + "&rejectionReason=" + encodedRejectionReason;
+
+            // Log or use the combined value as needed
+            console.log(combinedValue);
+
+            // Create a dynamic form for POST request
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/scheduled-event/entrant/rejection';
+
+            // Create hidden input fields for parameters
+            var rejectionReasonInput = document.createElement('input');
+            rejectionReasonInput.type = 'hidden';
+            rejectionReasonInput.name = 'rejectionReason';
+            rejectionReasonInput.value = rejectionReasonValue;
+
+            var entrantIdInput = document.createElement('input');
+            entrantIdInput.type = 'hidden';
+            entrantIdInput.name = 'entrantId';
+            entrantIdInput.value = entrantIdValue;
+
+            // Append the hidden fields to the form
+            form.appendChild(rejectionReasonInput);
+            form.appendChild(entrantIdInput);
+
+            // Append the form to the document body
+            document.body.appendChild(form);
+
+            // Submit the form
+            form.submit();
+
+            // Remove the form from the document body (optional)
+            document.body.removeChild(form);
+        }
+    </script>
 </html>

@@ -9,7 +9,7 @@
         <div id="navbar">
             <div class="wrap">
                 <div class="item">
-                    <img th:src="@{/images/cafeLogo.png}" alt="이미지 로딩 실패"/>
+                    <img th:src="@{/image/cafeLogo.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="item"> <strong> 메뉴 </strong> </div>
                 <div class="item"> <strong> 예약 </strong> </div>
@@ -18,10 +18,10 @@
                 <div class="item"> <strong> 이벤트 </strong> </div>
                 <div class="item"> <strong> 교환권 </strong> </div>
                 <div class="search">
-                    <img th:src="@{/images/userPage.png}" alt="이미지 로딩 실패"/>
+                    <img th:src="@{/image/userPage.png}" alt="이미지 로딩 실패"/>
                 </div>
                 <div class="cart">
-                    <img th:src="@{/images/logOut.png}" alt="이미지 로딩 실패"/>
+                    <img th:src="@{/image/logOut.png}" alt="이미지 로딩 실패"/>
                 </div>
             </div>
         </div>
@@ -42,79 +42,83 @@
             <div class="infoBox">
                 <table>
                     <tr>
-                        <td class="leftTab">회원 번호</td><td>: 00</td>
+                        <td class="leftTab">회원 아이디</td>
+                        <td>
+                            : <th:block th:text="${user.userId}"></th:block>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="leftTab">회원 아이디</td><td>: 아이디 들어갈 부분</td>
+                        <td class="leftTab">회원 이름</td>
+                        <td>
+                            : <th:block th:text="${user.name}"></th:block>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="leftTab">회원 이름</td><td>: 이름 들어갈 부분</td>
+                        <td class="leftTab">회원 연락처</td>
+                        <td>
+                            : <th:block th:text="${user.phone}"></th:block>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="leftTab">회원 연락처</td><td>: 연락처 들어갈 부분</td>
-                    </tr>
-                    <tr>
-                        <td class="leftTab">회원 등급</td><td>: 등급 들어갈 부분</td>
+                        <td class="leftTab">회원 등급</td>
+                        <td>
+                            : <th:block th:text="${user.level}"></th:block>
+                        </td>
                     </tr>
                 </table>
             </div>
-            <div class="smallLable">
-                <span>
-                    지급 쿠폰 선택
-                </span>
-                <hr>
-            </div>
-            <div class="infoCoupon">
-                <span>
-                    쿠폰명
-                </span>
-                <select name="" id="">
-                    <option selected value="false">지급할 쿠폰을 선택해 주세요. </option>
-                    <option value="">첫 구매 할인 쿠폰</option>
-                    <option value="">연말할인 쿠폰</option>
-                </select>
-                <div class="sale">
+            <form th:action method="post">
+                <input type="hidden" name="userId" th:value="${user.userId}">
+                <input type="hidden" name="phone" th:value="${user.phone}">
+                <div class="smallLable">
                     <span>
-                        할인율:
+                        지급 쿠폰 선택
                     </span>
-                    00%
+                    <hr>
                 </div>
-            </div>
-            <div class="smallLable">
-                <span>
-                    지급 코인 선택
-                </span>
-                <hr>
-            </div>
-            <div class="coin">
-                <button type="submit" class="btn">
-                    <div class="minus">
-                        -
+                <div class="infoCoupon">
+                    <span>
+                        쿠폰명
+                    </span>
+                    <select name="couponId" id="couponId">
+                        <option selected value="false">지급할 쿠폰을 선택해 주세요. </option>
+                        <th:block th:each="coupon: ${coupons}">
+                            <option th:value="${coupon.id}" th:text="${coupon.name}"></option>
+                        </th:block>
+                    </select>
+                    <div class="sale">
+                        <span>
+                            할인율:
+                        </span>
+                        00%
                     </div>
-                </button>
-                갯수
-                <button type="submit" class="btn">
-                    <div class="plus">
-                        +
-                    </div>
-                </button>
-            </div>
-            <div class="smallLable">
-                <span>
-                    사유
-                </span>
-                <hr>
-            </div>
-            <div class="textBox">
-                <textarea cols="85" rows="5" placeholder="취소 사유를 입력해주세요."></textarea>
-            </div>
-            <div class="cent">
-                <button type="submit" class="btn">
-                    <div class="checBtn">
-                        확인
-                    </div>
-                </button>
-            </div>
+                </div>
+                <div class="smallLable">
+                    <span>
+                        지급 코인 선택
+                    </span>
+                    <hr>
+                </div>
+                <div class="coin">
+                    <input type="number" min="0" name="coin" style="width: 100px">
+                </div>
+                <div class="smallLable">
+                    <span>
+                        사유
+                    </span>
+                    <hr>
+                </div>
+                <div class="textBox">
+                    <textarea name="content" cols="85" rows="5" placeholder="취소 사유를 입력해주세요."></textarea>
+                </div>
+                <div class="cent">
+                    <button type="submit" class="btn">
+                        <div class="checBtn">
+                            확인
+                        </div>
+                    </button>
+                </div>
+            </form>
         </div>
     </body>
 </html>

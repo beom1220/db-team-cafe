@@ -138,6 +138,11 @@ public class DbInitializerService {
         settingList.add(new Setting(13, "누적금액1단계기간", "내용", 8));
         settingList.add(new Setting(14, "누적금액2단계기간", "내용", 6));
         settingList.add(new Setting(15, "누적금액3단계기간", "내용", 4));
+        settingList.add(new Setting(16, "브론즈기준", "", 100));
+        settingList.add(new Setting(17, "실버기준", "", 80));
+        settingList.add(new Setting(18, "골드기준", "", 60));
+        settingList.add(new Setting(19, "다이아기준", "", 30));
+        settingList.add(new Setting(20, "VIP기준", "", 0));
 
         settingRepository.saveAll(settingList);
     }
@@ -298,7 +303,7 @@ public class DbInitializerService {
                 PaymentMethod.CREDIT, false, userRepository.findUserById("005").getName(), userRepository.findUserById("005").getPhone(),
                 0, false));
         reservationList.add(new Reservation(userRepository.findUserById("006"), "아이브 팬카페 정기", 10, 100000,
-                PaymentMethod.CREDIT, false, userRepository.findUserById("006").getName(), userRepository.findUserById("006").getPhone(),
+                PaymentMethod.CREDIT, true, userRepository.findUserById("006").getName(), userRepository.findUserById("006").getPhone(),
                 0, false));
         reservationList.add(new Reservation(userRepository.findUserById("002"), "저녁 노가리", 3, 30000,
                 PaymentMethod.CREDIT, false, userRepository.findUserById("002").getName(), userRepository.findUserById("002").getPhone(),
@@ -365,7 +370,7 @@ public class DbInitializerService {
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(4), "1111",
                 reservationRepository.findReservationById(3).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue()));
+                settingRepository.findByName("주중할인율").getValue(), true));
 
         reservationItemRepository.saveAll(reservationItemList);
     }
@@ -394,19 +399,19 @@ public class DbInitializerService {
     public void LevelHistoryEntity(){
         List<LevelHistory> levelHistoryList = new ArrayList<>();
 
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("001"), 0, Level.BRONZE, 2023, 10));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("002"), 0, Level.DIAMOND, 2023, 10));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("003"), 0, Level.GOLD, 2023, 10));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("004"), 0, Level.SILVER, 2023, 10));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("005"), 0, Level.SILVER, 2023, 10));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("006"), 0, Level.SILVER, 2023, 10));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("001"), 10, Level.BRONZE, 2023, 10));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("002"), 100, Level.DIAMOND, 2023, 10));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("003"), 50, Level.GOLD, 2023, 10));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("004"), 35, Level.SILVER, 2023, 10));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("005"), 30, Level.SILVER, 2023, 10));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("006"), 33, Level.SILVER, 2023, 10));
 
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("001"), 0, Level.BRONZE, 2023, 11));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("002"), 0, Level.DIAMOND, 2023, 11));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("003"), 0, Level.GOLD, 2023, 11));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("004"), 0, Level.SILVER, 2023, 11));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("005"), 0, Level.SILVER, 2023, 11));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("006"), 0, Level.SILVER, 2023, 11));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("001"), 7, Level.BRONZE, 2023, 11));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("002"), 98, Level.DIAMOND, 2023, 11));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("003"), 57, Level.GOLD, 2023, 11));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("004"), 29, Level.SILVER, 2023, 11));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("005"), 30, Level.SILVER, 2023, 11));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("006"), 36, Level.SILVER, 2023, 11));
 
         levelHistoryRepository.saveAll(levelHistoryList);
     }

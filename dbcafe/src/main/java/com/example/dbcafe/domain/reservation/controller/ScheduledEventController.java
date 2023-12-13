@@ -5,6 +5,7 @@ import com.example.dbcafe.domain.reservation.dto.*;
 import com.example.dbcafe.domain.reservation.service.ScheduledEventService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/scheduled-event")
 public class ScheduledEventController {
@@ -57,12 +59,19 @@ public class ScheduledEventController {
 
     @PostMapping("/entrant/rejection")
     public String entrantRejection(@RequestParam("entrantId") int entrantId, @RequestParam("rejectionReason") String rejectionReason) {
+        log.info("entrantId = " + entrantId);
+        log.info("reason = " + rejectionReason);
         scheduledEventService.rejectEntrant(entrantId, rejectionReason);
-        return "redirect:/entrant-list";
+        log.info("hello");
+//        return "redirect:/entrant-list";
+        return "redirect:/scheduled-event/entrant-list?scheduledEventId=" + entrantId;
     }
 
     @GetMapping("/scheduleForm")
     public String scheduleForm(HttpSession session, Model model) {
+        // 임시 어드민 로그인
+        session.setAttribute("loggedInUser", "admin");
+
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
             List<EventDto> eventDtos = scheduledEventService.findAllEvent();
