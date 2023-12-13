@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface OrdersRepository extends JpaRepository<Orders, Integer> {
     List<Orders> findAllOrdersByLevelDiscountRatio(int discountRatio);
+    Orders findOrdersById(int id);
 
     List<Orders> findAllOrdersByLevelDiscountRatioNot(int i);
 }

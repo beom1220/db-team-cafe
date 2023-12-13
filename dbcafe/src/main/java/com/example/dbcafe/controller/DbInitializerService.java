@@ -9,6 +9,7 @@ import com.example.dbcafe.domain.reservation.repository.*;
 import com.example.dbcafe.domain.user.domain.*;
 import com.example.dbcafe.domain.user.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -131,12 +132,29 @@ public class DbInitializerService {
 
     public void OrdersEntity(){
         List<Orders> ordersList = new ArrayList<>();
-
+        ordersList.add(new Orders(userRepository.findUserById("001"), PaymentMethod.KAKAO, 10000, OrderStatus.COMPLETE,
+                false, 4000, settingRepository.findByName("주중할인율").getValue(),
+                500, 0, 0, 0, 5500));
+        ordersList.add(new Orders(userRepository.findUserById("002"), PaymentMethod.CREDIT, 30000, OrderStatus.PREPARING,
+                false, 0, settingRepository.findByName("주중할인율").getValue(),
+                1500, 20, 6000, 0, 22500));
+        ordersList.add(new Orders(userRepository.findUserById("003"), PaymentMethod.CASH, 8000, OrderStatus.CANCELING,
+                false, 0, settingRepository.findByName("주중할인율").getValue(),
+                400, 10, 800, 0, 5500));
+        ordersList.add(new Orders(userRepository.findUserById("004"), PaymentMethod.KAKAO, 15000, OrderStatus.PREPARING,
+                false, 4000, settingRepository.findByName("주중할인율").getValue(),
+                750, settingRepository.findByName("실버할인율").getValue(), 750, 0, 13500));
         ordersRepository.saveAll(ordersList);
     }
 
     public void OrdersItemEntity(){
         List<OrdersItem> ordersItemList = new ArrayList<>();
+
+        ordersItemList.add(new OrdersItem(ordersRepository.findOrdersById(1), menuRepository.findMenuById(3), 2));
+        ordersItemList.add(new OrdersItem(ordersRepository.findOrdersById(2), menuRepository.findMenuById(4), 4));
+        ordersItemList.add(new OrdersItem(ordersRepository.findOrdersById(2), menuRepository.findMenuById(5), 1));
+        ordersItemList.add(new OrdersItem(ordersRepository.findOrdersById(3), menuRepository.findMenuById(5), 4));
+        ordersItemList.add(new OrdersItem(ordersRepository.findOrdersById(4), menuRepository.findMenuById(1), 10));
 
         ordersItemRepository.saveAll(ordersItemList);
     }
@@ -144,11 +162,28 @@ public class DbInitializerService {
     public void CartEntity(){
         List<Cart> cartList = new ArrayList<>();
 
+        cartList.add(new Cart(userRepository.findUserById("001")));
+        cartList.add(new Cart(userRepository.findUserById("002")));
+        cartList.add(new Cart(userRepository.findUserById("003")));
+        cartList.add(new Cart(userRepository.findUserById("004")));
+        cartList.add(new Cart(userRepository.findUserById("005")));
+        cartList.add(new Cart(userRepository.findUserById("006")));
+
         cartRepository.saveAll(cartList);
     }
 
     public void CartItemEntity(){
         List<CartItem> cartItemList = new ArrayList<>();
+
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("001")), menuRepository.findMenuById(1), 4));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("001")), menuRepository.findMenuById(2), 2));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("002")), menuRepository.findMenuById(1), 4));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("002")), menuRepository.findMenuById(3), 3));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("003")), menuRepository.findMenuById(5), 1));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("004")), menuRepository.findMenuById(2), 2));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("004")), menuRepository.findMenuById(1), 6));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("005")), menuRepository.findMenuById(4), 4));
+        cartItemList.add(new CartItem(cartRepository.findByUser(userRepository.findUserById("006")), menuRepository.findMenuById(5), 2));
 
         cartItemRepository.saveAll(cartItemList);
     }

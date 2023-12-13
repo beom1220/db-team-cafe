@@ -76,8 +76,8 @@ public class Orders {
         this.usedPrepaymentAmount = usedPrepaymentAmount;
         this.weekdayDiscountRatio = weekdayDiscountRatio;
         this.weekdayDiscountAmount = weekdayDiscountAmount;
-        this.levelDiscountAmount = levelDiscountAmount;
         this.levelDiscountRatio = levelDiscountRatio;
+        this.levelDiscountAmount = levelDiscountAmount;
         this.usedVoucherAmount = usedVoucherAmount;
         this.finalPayment = finalPayment;
     }
