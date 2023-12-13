@@ -42,6 +42,12 @@ public class ReservationController {
         return "reservation/form";
     }
 
+    @PostMapping("/package")
+    public String submitPackageReservation(@ModelAttribute ReservationRequestDto dto, HttpSession session){
+        reservationService.submitReservation(dto, dto.getBlocks(), session);
+        return "redirect:/";
+    }
+
     @GetMapping("/admin")
     public String showAllReservation(Model model, HttpSession session) {
         // 임시 어드민 로그인
