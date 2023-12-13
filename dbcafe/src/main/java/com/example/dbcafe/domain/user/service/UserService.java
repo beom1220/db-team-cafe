@@ -73,15 +73,15 @@ public class UserService {
         } else if (acc >= settingService.findValueByName("누적금액2단계기준")) {
             term = 7 * settingService.findValueByName("누적금액2단계기간");
             shortage = settingService.findValueByName("누적금액1단계기준") - acc;
-            newTerm = 7 * settingService.findValueByName("누적금액1단계기간");
+            newTerm = settingService.findValueByName("누적금액1단계기간");
         } else if (acc >= settingService.findValueByName("누적금액3단계기준")) {
             term = 7 * settingService.findValueByName("누적금액3단계기간");;
             shortage = settingService.findValueByName("누적금액2단계기준") - acc;
-            newTerm = 7 * settingService.findValueByName("누적금액2단계기간");
+            newTerm = settingService.findValueByName("누적금액2단계기간");
         } else {
             term = 14;
             shortage = settingService.findValueByName("누적금액3단계기준") - acc;
-            newTerm = 7 * settingService.findValueByName("누적금액3단계기간");
+            newTerm = settingService.findValueByName("누적금액3단계기간");
         }
         return new UserSelectDayDto(term, shortage, newTerm);
     }

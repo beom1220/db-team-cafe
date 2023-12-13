@@ -1,6 +1,7 @@
 package com.example.dbcafe.domain.user.controller;
 
 import com.example.dbcafe.domain.user.domain.Prize;
+import com.example.dbcafe.domain.user.domain.PrizeHistory;
 import com.example.dbcafe.domain.user.domain.User;
 import com.example.dbcafe.domain.user.dto.*;
 import com.example.dbcafe.domain.user.repository.PrizeHistoryRepository;
@@ -31,7 +32,10 @@ public class PrizeController {
         User user = userService.findById((String) session.getAttribute("loggedInUser"));
         PrizeUserInfoDto dto = prizeService.convertToDto(user);
         List<BenefitPrizeHistoryDto> dtos = prizeHistoryService.getBenefitHistory();
+        PrizeHistory lastHistory = prizeHistoryRepository.findFirstByUserOrderByCreatedAtDesc(user);
 
+        model.addAttribute("last", lastHistory);
+        model.addAttribute("histrories", dtos);
         model.addAttribute("prizes", prizes);
         model.addAttribute("userInfo", dto);
         return "user/prize";

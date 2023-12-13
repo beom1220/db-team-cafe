@@ -4,6 +4,7 @@ import com.example.dbcafe.domain.reservation.domain.Place;
 import com.example.dbcafe.domain.reservation.domain.ReservationBlock;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -21,4 +22,12 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
 
     List<ReservationBlock> findByDateGreaterThanEqualAndIsBookableTrueOrderByDateAscStartTimeAsc(LocalDate now);
     ReservationBlock findReservationBlockById(int id);
+
+    List<ReservationBlock> findAllByIsBookableAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(boolean b, LocalDate today);
+
+    List<ReservationBlock> findAllByIsBookableAndDayOfWeekAndStartTimeAndDateGreaterThanEqualOrderByDateAsc(boolean b, DayOfWeek dow, LocalTime time, LocalDate today);
+
+    List<ReservationBlock> findAllByIsBookableAndStartTimeAndDateGreaterThanEqualOrderByDateAsc(boolean b, LocalTime time, LocalDate today);
+
+    List<ReservationBlock> findAllByIsBookableAndDayOfWeekAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(boolean b, DayOfWeek dow, LocalDate today);
 }
