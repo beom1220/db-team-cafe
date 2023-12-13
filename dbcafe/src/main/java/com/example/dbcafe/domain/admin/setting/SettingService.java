@@ -1,5 +1,6 @@
 package com.example.dbcafe.domain.admin.setting;
 
+import com.example.dbcafe.domain.admin.dto.EditLevelDto;
 import com.example.dbcafe.domain.admin.dto.LevelDto;
 import com.example.dbcafe.domain.admin.dto.LevelTotalDto;
 import com.example.dbcafe.domain.order.domain.Orders;
@@ -56,5 +57,29 @@ public class SettingService {
         LevelTotalDto levelTotalDto = new LevelTotalDto(totalUserCount,
                 totalDiscountAmount, averageDiscountAmount);
         return levelTotalDto;
+    }
+
+    public void editLevel(EditLevelDto dto) {
+        int levelIndex = dto.getLevelIndex();
+        String levelName = null;
+        if (levelIndex == 0) {
+            levelName = "브론즈";
+        } else if (levelIndex == 1) {
+            levelName = "실버";
+        } else if (levelIndex == 2) {
+            levelName = "골드";
+        } else if (levelIndex == 3) {
+            levelName = "다이아";
+        } else {
+            levelName = "VIP";
+        }
+        Setting discount = settingRepository.findByName(levelName + "할인율");
+        Setting cutLine = settingRepository.findByName(levelName + "기준");
+
+        discount.setValue(dto.getDiscountRatio());
+        cutLine.setValue(dto.getCutLine());
+
+        settingRepository.save(discount);
+        settingRepository.save(cutLine);
     }
 }
