@@ -7,9 +7,11 @@ import com.example.dbcafe.domain.reservation.domain.Reservation;
 import com.example.dbcafe.domain.reservation.domain.ReservationItem;
 import com.example.dbcafe.domain.reservation.domain.ScheduledEvent;
 import com.example.dbcafe.domain.reservation.dto.UserSelectDayDto;
+import com.example.dbcafe.domain.reservation.repository.ReservationItemRepository;
 import com.example.dbcafe.domain.user.domain.Level;
 import com.example.dbcafe.domain.user.domain.LevelHistory;
 import com.example.dbcafe.domain.user.domain.User;
+import com.example.dbcafe.domain.user.dto.KeepUserDto;
 import com.example.dbcafe.domain.user.dto.MyPageDto;
 import com.example.dbcafe.domain.user.repository.LevelHistoryRepository;
 import com.example.dbcafe.domain.user.repository.UserRepository;
@@ -26,6 +28,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final SettingService settingService;
     private final LevelHistoryRepository levelHistoryRepository;
+    private final ReservationItemRepository reservationItemRepository;
 
     public User findById(String id) {
         return userRepository.findUserById(id);
@@ -73,15 +76,15 @@ public class UserService {
         } else if (acc >= settingService.findValueByName("누적금액2단계기준")) {
             term = 7 * settingService.findValueByName("누적금액2단계기간");
             shortage = settingService.findValueByName("누적금액1단계기준") - acc;
-            newTerm = 7 * settingService.findValueByName("누적금액1단계기간");
+            newTerm = settingService.findValueByName("누적금액1단계기간");
         } else if (acc >= settingService.findValueByName("누적금액3단계기준")) {
             term = 7 * settingService.findValueByName("누적금액3단계기간");;
             shortage = settingService.findValueByName("누적금액2단계기준") - acc;
-            newTerm = 7 * settingService.findValueByName("누적금액2단계기간");
+            newTerm = settingService.findValueByName("누적금액2단계기간");
         } else {
             term = 14;
             shortage = settingService.findValueByName("누적금액3단계기준") - acc;
-            newTerm = 7 * settingService.findValueByName("누적금액3단계기간");
+            newTerm = settingService.findValueByName("누적금액3단계기간");
         }
         return new UserSelectDayDto(term, shortage, newTerm);
     }
@@ -120,5 +123,19 @@ public class UserService {
             shortage = silverCutLine.getCoin() - currentCoin;
         }
         return new UserNextLevelDto(nextLevel, shortage);
+    }
+
+    public List<KeepUserDto> findKeepUserInfo() {
+        LocalDate today = LocalDate.now();
+        LocalDate startDate = today.minusDays(90);
+        LocalDate endDate = today.minusDays(30);
+        int accCut = 300000; // 누적이용금액 최저 기준
+        List<ReservationItem> items = reservationItemRepository.findAllByLastAndKeepingAndReservationBlockDateBetweenAndReservationUserAccumulationGreaterThanEqualOrderByReservationBlockDateAscReservationUserAccumulationDesc(true, false, startDate, endDate, accCut);
+        List<KeepUserDto> dtos = new ArrayList<>();
+        for (ReservationItem item : items) {
+            KeepUserDto dto; // 여기 하던 중이다 고쳐야 된다.
+        }
+
+        return dtos;
     }
 }

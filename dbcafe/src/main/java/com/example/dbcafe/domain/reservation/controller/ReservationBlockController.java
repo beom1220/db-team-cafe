@@ -2,6 +2,7 @@ package com.example.dbcafe.domain.reservation.controller;
 
 import com.example.dbcafe.domain.reservation.domain.DayOfWeekInKorean;
 import com.example.dbcafe.domain.reservation.dto.DayOfReservationBlockDto;
+import com.example.dbcafe.domain.reservation.dto.PackageReservationBlockDto;
 import com.example.dbcafe.domain.reservation.dto.TimeOfReservationBlockDto;
 import com.example.dbcafe.domain.reservation.dto.UserSelectDayDto;
 import com.example.dbcafe.domain.reservation.service.ReservationBlockService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -47,5 +49,22 @@ public class ReservationBlockController {
         model.addAttribute("date", date);
         model.addAttribute("times", times);
         return "reservation/basicTimeForm";
+    }
+
+    @GetMapping("/package")
+    public String showAllPackages(Model model) {
+        List<PackageReservationBlockDto> dtos = reservationBlockService.findAllPackagesAndConvertToDto();
+        model.addAttribute("packages", dtos);
+
+        return "reservation/packageDateForm";
+    }
+
+    @GetMapping("/package/search")
+    public String searchPackages(Model model, @RequestParam(name = "dayOfWeek", defaultValue = "") String dayOfWeek,
+                                 @RequestParam(name = "startTime", defaultValue = "") String startTime) {
+        List<PackageReservationBlockDto> dtos = reservationBlockService.searchPackagesAndConvertToDto(dayOfWeek, startTime);
+        model.addAttribute("packages", dtos);
+
+        return "reservation/packageDateForm";
     }
 }

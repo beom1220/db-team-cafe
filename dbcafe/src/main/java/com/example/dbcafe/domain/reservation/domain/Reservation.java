@@ -67,6 +67,10 @@ public class Reservation { // 모임예약
         this.prepaymentTotal = prepaymentTotal;
         this.paymentMethod = paymentMethod;
         this.isPackage = isPackage;
+
+        this.phone = user.getPhone();
+        this.name = user.getName();
+        this.changeCount = 0;
     }
 
     public Reservation(User user, String className, int numOfParticipant, int prepaymentTotal, PaymentMethod paymentMethod, boolean isCanceled, String name, String phone, int changeCount, boolean isPackage) {

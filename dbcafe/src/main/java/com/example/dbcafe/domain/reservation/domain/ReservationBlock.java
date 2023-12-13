@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -33,6 +34,8 @@ public class ReservationBlock {
 
     private boolean isBookable;
 
+    private DayOfWeek dayOfWeek;
+
     public boolean getIsBookable() {
         return isBookable;
     }
@@ -43,5 +46,6 @@ public class ReservationBlock {
         this.startTime = startTime;
         this.endTime = endTime;
         this.isBookable = isBookable;
+        this.dayOfWeek = date.getDayOfWeek();
     }
 }

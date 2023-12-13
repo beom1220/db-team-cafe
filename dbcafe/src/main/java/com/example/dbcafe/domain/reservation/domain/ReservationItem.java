@@ -34,12 +34,18 @@ public class ReservationItem {
 
     private int weekdayDiscountRatio;
 
-    public ReservationItem(Reservation reservation, ReservationBlock reservationBlock, String tempPw, int prepaymentAmount, int earlybirdDiscountRatio, int weekdayDiscountRatio) {
+    private boolean last;
+
+    private boolean keeping;
+
+    public ReservationItem(Reservation reservation, ReservationBlock reservationBlock, String tempPw, int prepaymentAmount, int earlybirdDiscountRatio, int weekdayDiscountRatio, boolean last) {
         this.reservation = reservation;
         this.reservationBlock = reservationBlock;
         this.tempPw = tempPw;
         this.prepaymentAmount = prepaymentAmount;
         this.earlybirdDiscountRatio = earlybirdDiscountRatio;
         this.weekdayDiscountRatio = weekdayDiscountRatio;
+        this.last = last;
+        this.keeping = false;
     }
 }
