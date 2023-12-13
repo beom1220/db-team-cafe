@@ -71,7 +71,7 @@ public class Entrant { // 이벤트 모임 참가자
         return isAttended;
     }
 
-    public Entrant(User user, ScheduledEvent scheduledEvent, Menu menu, String name, String phone, int age, boolean isMale, PaymentMethod paymentMethod, ApplicationStatus applicationStatus, boolean isRefunded, boolean isAttended, String rejectionReason, String review, double rating) {
+    public Entrant(User user, ScheduledEvent scheduledEvent, Menu menu, String name, String phone, int age, boolean isMale, PaymentMethod paymentMethod, ApplicationStatus applicationStatus, boolean isRefunded, boolean isAttended, String rejectionReason, String review, double rating, Date reviewedDate) {
         this.user = user;
         this.scheduledEvent = scheduledEvent;
         this.menu = menu;
@@ -86,5 +86,6 @@ public class Entrant { // 이벤트 모임 참가자
         this.rejectionReason = rejectionReason;
         this.review = review;
         this.rating = rating;
+        this.reviewedDate = reviewedDate;
     }
 }
