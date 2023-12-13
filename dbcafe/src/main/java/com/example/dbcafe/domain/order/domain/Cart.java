@@ -33,4 +33,8 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.REMOVE)
     private List<CartItem> cartItems;
+
+    public Cart(User user) {
+        this.user = user;
+    }
 }

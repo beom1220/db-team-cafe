@@ -27,4 +27,10 @@ public class CartItem {
     private Menu menu;
 
     private int quantity;
+
+    public CartItem(Cart cart, Menu menu, int quantity) {
+        this.cart = cart;
+        this.menu = menu;
+        this.quantity = quantity;
+    }
 }
