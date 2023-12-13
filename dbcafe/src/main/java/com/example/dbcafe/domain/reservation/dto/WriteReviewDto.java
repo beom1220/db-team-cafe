@@ -8,10 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class WriteReviewDto {
-    private int scheduledEventId;
-
-    private String userId;
-
     private String review;
 
     private double rating;

@@ -264,6 +264,9 @@ public class DbInitializerService {
         reservationList.add(new Reservation(userRepository.findUserById("002"), "저녁 노가리", 3, 30000,
                 PaymentMethod.CREDIT, false, userRepository.findUserById("002").getName(), userRepository.findUserById("002").getPhone(),
                 0, false));
+        reservationList.add(new Reservation(userRepository.findUserById("001"), "커피 탐구회", 10, 150000,
+                PaymentMethod.CREDIT, false, userRepository.findUserById("001").getName(), userRepository.findUserById("001").getPhone(),
+                0, false));
         reservationRepository.saveAll(reservationList);
     }
 
@@ -315,6 +318,10 @@ public class DbInitializerService {
                 settingRepository.findByName("주중할인율").getValue()));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(3), reservationBlockRepository.findReservationBlockById(1), "1111",
+                reservationRepository.findReservationById(3).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
+                settingRepository.findByName("주중할인율").getValue()));
+
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(4), "1111",
                 reservationRepository.findReservationById(3).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue()));
 

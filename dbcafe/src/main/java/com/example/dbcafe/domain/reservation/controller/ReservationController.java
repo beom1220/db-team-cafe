@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -20,7 +22,8 @@ public class ReservationController {
     private final ReservationService reservationService;
 
     @GetMapping
-    public String reservationForm(@ModelAttribute ReservationBlockRequestDto dto, Model model) {
+    public String reservationForm(@RequestParam(name = "date") LocalDate date, @RequestParam(name = "startTime") LocalTime startTime, @RequestParam(name = "endTime") LocalTime endTime, Model model) {
+        ReservationBlockRequestDto dto = new ReservationBlockRequestDto(date, startTime, endTime);
         List<ReservationBlockResponseDto> responseDtos = reservationService.calDayOfWeekAndDiscountRatio(dto);
         model.addAttribute("reservationBlocks", responseDtos);
         return "reservation/form";

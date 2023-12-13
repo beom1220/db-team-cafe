@@ -54,7 +54,7 @@
             <div class="menu-content">
               <b class="b" th:text="${scheduledEvent.totalAttendedUser + '명'}">0명</b>
               <b class="center" th:text="${scheduledEvent.totalReviewedUser + '명'}">0명</b>
-              <b class="b" th:text="${'★' + scheduledEvent.rating}">★ 0.0점</b>
+              <b class="b" th:text="${#numbers.formatDecimal(scheduledEvent.rating,1,1)}">★ 0.0점</b>
             </div>
           </div>
         </div>
