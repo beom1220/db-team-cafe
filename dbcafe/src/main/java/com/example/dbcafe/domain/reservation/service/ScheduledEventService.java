@@ -104,7 +104,7 @@ public class ScheduledEventService {
         return dtos;
     }
 
-    public List<ReservationBlockDto> findAllBookableBlock() {
+    public List<ReservationBlockDateTimeDto> findAllBookableBlock() {
         return reservationBlockService.findAllBookableBlock();
     }
 
