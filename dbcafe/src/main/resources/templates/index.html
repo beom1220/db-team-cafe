@@ -9,19 +9,41 @@
 <body>
   <div th:insert="fragments/navigation/topBar :: topBar"></div>
   <p>중간바</p>
-
   <div class="container">
     <div class="box">
       <div class="content-box">
+          <!-- 세션 추가 버튼 -->
+          <button onclick="addSession()">회원 로그인</button>
+
+          <!-- 세션 삭제 버튼 -->
+          <button onclick="deleteSession()">로그아웃</button>
         <div class="list">
           <div class="title-box">
             <h2>모집중인 이벤트 모임</h2>
             <hr>
           </div>
           <div class="event-list">
-            <div th:insert="fragments/event/list :: list"></div>
-            <div th:insert="fragments/event/list :: list"></div>
-            <div th:insert="fragments/event/list :: list"></div>
+              <div th:each="scheduledEvent : ${scheduledEvents}" class="event-box">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="eventImg" class="eventImg">
+                  <p class="event-capacity" th:text="${'모집인원: ' + scheduledEvent.volunteer + '/' + scheduledEvent.capacity}">모집인원: 00/00</p>
+                  <div class="event-content">
+                      <div class="event-row">
+                          <a th:href="@{/scheduled-event/detail(id=${scheduledEvent.id})}"><h4 class="event-title" th:text="${scheduledEvent.title}">이벤트 모임명</h4></a>
+                          <b class="event-tag" th:text="${scheduledEvent.tag}" th:if="${scheduledEvent.tag eq null or scheduledEvent.tag eq '해당사항 없음'}" style="display: none;"></b>
+                          <b class="event-tag" th:text="${scheduledEvent.tag}" th:unless="${scheduledEvent.tag eq null or scheduledEvent.tag eq '해당사항 없음'}"></b>
+
+                      </div>
+                      <div class="event-row">
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROyCM4hDrN0YRWZ7POalvuYvDID4CeOpYuJg&usqp=CAU" alt="stars" class="event-ratingImg">
+                          <p th:text="${scheduledEvent.rating}">0.0</p>
+                      </div>
+                  </div>
+                  <div class="event-date">
+                      <p th:text="${scheduledEvent.date}">0000.00.00</p>
+                      <p th:text="${scheduledEvent.startTime + '~' + scheduledEvent.endTime}">오전00:00~오후00:00</p>
+                  </div>
+              </div>
+          </div>
           </div>
         </div>
         <div class="add-data-box">
@@ -38,16 +60,40 @@
             <h2>메뉴</h2>
             <hr>
           </div>
-          <div class="menu-list">
-            <div th:insert="fragments/menu/list :: list"></div>
-            <div th:insert="fragments/menu/list :: list"></div>
-            <div th:insert="fragments/menu/list :: list"></div>
-            <div th:insert="fragments/menu/list :: list"></div>
-            <div th:insert="fragments/menu/list :: list"></div>
+          <div class="menu-container">
+              <div  class="menu-list">
+                  <div th:each="menu : ${menus}" class="menu-box">
+                      <img th:if="${menu.img != null}" th:src="${menu.img}" alt="menuImg" class="eventImg">
+                      <img th:unless="${menu.img != null}" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="defaultImg" class="eventImg">
+                      <h4 class="menu-title" th:text="${menu.name}">메뉴명</h4>
+                  </div>
+              </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <script>
+// 세션 추가 함수
+function addSession() {
+    // 세션 키와 값을 설정
+    var sessionKey = "loggedInUser";
+    var sessionValue = "aa";
+
+    // 세션에 키와 값을 추가
+    sessionStorage.setItem(sessionKey, sessionValue);
+    alert("회원으로 로그인되었습니다. 세션 값: " + sessionStorage.getItem(sessionKey));
+}
+
+// 세션 삭제 함수
+function deleteSession() {
+    // 세션 키 설정
+    var sessionKey = "loggedInUser";
+
+    // 세션에서 키에 해당하는 값을 삭제
+    sessionStorage.removeItem(sessionKey);
+    alert("로그아웃되었습니다. 세션 값: " + sessionStorage.getItem(sessionKey));
+}
+</script>
 </body>
 </html>

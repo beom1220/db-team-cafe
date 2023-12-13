@@ -17,30 +17,28 @@
         </div>
         <div class="right-box">
           <div class="row-box">
-            <h2>바리스타 체험</h2>
+            <h2 th:text="${scheduledEvent.title}">이벤트 모임명</h2>
             <div>
-              <b class="event-tag">Best</b>
-              <p class="event-capacity">모집 인원: 9/10</p>
+              <b class="event-tag" th:text="${scheduledEvent.tag}">state</b>
+              <p class="event-capacity" th:text="${'모집인원: ' + scheduledEvent.volunteer + '/' + scheduledEvent.capacity}">모집 인원: 00/00</p>
             </div>
           </div>
           <div class="column-box">
             <b>진행 시간</b>
-            <p>2023.00.00</p>
-            <p>12:00PM ~ 14:00PM</p>
+            <p th:text="${scheduledEvent.date + ' ' + scheduledEvent.startTime + ' ~ ' + scheduledEvent.endTime}">0000.00.00 00:00 ~ 00:00</p>
+
           </div>
           <div>
             <b>참가 비용</b>
-            <p>10,000</p>
+            <p th:text="${scheduledEvent.fee + '원'}">0</p>
           </div>
           <div>
             <b>모집 인원</b>
-            <p>10명</p>
+            <p th:text="${scheduledEvent.capacity + '명'}">0</p>
           </div>
           <div>
             <b>제약사항</b>
-            <p>* 참가 모집 인원: 10명</p>
-            <p>* 모임 대표 한정 이벤트</p>
-            <p>* 조기 마감이 될 수 있습니다..</p>
+<!--            <p th:text="${scheduledEvent.content}">없음.</p> 수정 대기-->
           </div>
           <button class="eventButton">모임 참가 신청</button>
         </div>
@@ -55,9 +53,9 @@
             </div>
             <hr>
             <div class="menu-content">
-              <b class="b">258명</b>
-              <b class="center">193명</b>
-              <b class="b">★ 4.5점</b>
+              <b class="b" th:text="${scheduledEvent.totalAttendedUser + '명'}">0명</b>
+              <b class="center" th:text="${scheduledEvent.totalReviewedUser + '명'}">0명</b>
+              <b class="b" th:text="${'★' + scheduledEvent.rating}">★ 0.0점</b>
             </div>
           </div>
         </div>
@@ -65,44 +63,23 @@
           <h4 class="title">리뷰 목록</h4>
           <hr class="titleHr">
         </div>
-        <div class="review-list">
-          <div class="review-user">
+        <div class="review-list" >
+          <div class="review-user" th:each="review : ${reviews}">
             <div class="user-content">
               <p>회원아이디</p>
-              <p class="userName">mouse</p>
+              <p class="userName" th:text="${review.userId}">userId</p>
               <hr>
-              <p>2023-12-06</p>
-              <p>★★★★★</p>
+              <p th:text="${review.date}">0000-00-00</p>
+              <div class="row-box">
+                <b>★</b>
+                <p th:text="${review.rating}">0</p>
+              </div>
             </div>
             <div class="user-content">
-              <p>너무 즐거운 모임</p>
+              <p th:text="${review.review}">후기 내용</p>
             </div>
           </div>
-          <div class="review-user">
-            <div class="user-content">
-              <p>회원아이디</p>
-              <p class="userName">mouse</p>
-              <hr>
-              <p>2023-12-06</p>
-              <p>★★★★★</p>
-            </div>
-            <div class="user-content">
-              <p>너무 즐거운 모임</p>
-            </div>
-          </div>
-          <div class="review-user">
-            <div class="user-content">
-              <p>회원아이디</p>
-              <p class="userName">mouse</p>
-              <hr>
-              <p>2023-12-06</p>
-              <p>★★★★★</p>
-            </div>
-            <div class="user-content">
-              <p>너무 즐거운 모임</p>
-            </div>
-          </div>
-          <a href="" class="link-review">-> 더 많은 리뷰 보러가기</a>
+          <a th:href="@{/event/review(eventId=${scheduledEvent.id})}" class="link-review">-> 더 많은 리뷰 보러가기</a>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 package com.example.dbcafe.domain.reservation.service;
 
+import com.example.dbcafe.domain.reservation.domain.DayOfWeekInKorean;
 import com.example.dbcafe.domain.reservation.domain.Place;
 import com.example.dbcafe.domain.reservation.domain.ReservationBlock;
 import com.example.dbcafe.domain.reservation.dto.DayOfReservationBlockDto;
@@ -44,7 +45,8 @@ public class ReservationBlockService {
                     break;
                 }
             }
-            DayOfReservationBlockDto dto = new DayOfReservationBlockDto(entry.getKey(), isBookable);
+            DayOfReservationBlockDto dto = new DayOfReservationBlockDto(entry.getKey(), isBookable, DayOfWeekInKorean
+                    .valueOf(entry.getKey().getDayOfWeek().name()).getDay());
             dtos.add(dto);
 
         }
@@ -96,7 +98,7 @@ public class ReservationBlockService {
 
     public int findPlaceByDateAndTime(LocalDate date, LocalTime startTime) {
         List<ReservationBlock> blocks = reservationBlockRepository.findAllReservationBlockByDateAndStartTimeAndIsBookableFalse(date, startTime);
-        return blocks.size();
+        return blocks.size() + 1;
     }
 
     public ReservationBlock findBlockByPlaceAndDateAndStartTime(Place place, LocalDate date, LocalTime startTime) {

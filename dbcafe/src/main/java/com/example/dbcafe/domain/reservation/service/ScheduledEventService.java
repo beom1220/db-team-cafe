@@ -57,7 +57,7 @@ public class ScheduledEventService {
 
         ScheduledEventDetailDto dto = new ScheduledEventDetailDto(se.getId(),
                 event.getTitle(), event.getFee(), totalAttendedUser, totalReviewedUser,
-                rating, se.getDate(), se.getStartTime(), se.getEndTime(),
+                rating, se.getDate(), se.getStartTime(), se.getEndTime(), event.getContent(),
                 event.getCapacity(), volunteer, event.getImg(), se.getTag());
 
         return dto;

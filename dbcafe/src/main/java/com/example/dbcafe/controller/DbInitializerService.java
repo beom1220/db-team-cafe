@@ -119,6 +119,12 @@ public class DbInitializerService {
         settingList.add(new Setting(7, "얼리버드할인율", "내용", 5));
         settingList.add(new Setting(8, "블록당선결제금액", "내용", 50000)); // 5만원
         settingList.add(new Setting(9, "얼리버드기준일수", "내용", 14)); // 2주일
+        settingList.add(new Setting(10, "누적금액1단계기준", "내용", 2000000));
+        settingList.add(new Setting(11, "누적금액2단계기준", "내용", 1000000));
+        settingList.add(new Setting(12, "누적금액3단계기준", "내용", 300000));
+        settingList.add(new Setting(13, "누적금액1단계기간", "내용", 8));
+        settingList.add(new Setting(14, "누적금액2단계기간", "내용", 6));
+        settingList.add(new Setting(15, "누적금액3단계기간", "내용", 4));
 
         settingRepository.saveAll(settingList);
     }

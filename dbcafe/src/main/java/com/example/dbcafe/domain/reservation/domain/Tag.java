@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum Tag {
-    NOTHING("해당사항없음"),
+    NOTHING(" "),
     BEST("인기"),
     NEW("신상");
 
