@@ -9,6 +9,7 @@ import com.example.dbcafe.domain.user.domain.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/event")
 public class EventController {
@@ -23,9 +25,12 @@ public class EventController {
 
     @GetMapping("/review")
     public String showReview(@RequestParam(name = "eventId") int eventId, Model model, HttpSession session) {
+        session.setAttribute("loggedInUser", "003");
         List<EventReviewDto> dtos = eventService.findReviewsByEventId(eventId);
         boolean isReviewable = eventService.checkReviewable(session, eventId);
+        Event event = eventService.findEventById(eventId);
 
+        model.addAttribute("event", event);
         model.addAttribute("isReviewable", isReviewable);
         model.addAttribute("reviews", dtos);
         return "event/review";
@@ -33,8 +38,11 @@ public class EventController {
 
     @PostMapping("/review")
     public String addReview(@RequestParam(name = "eventId") int eventId, @ModelAttribute WriteReviewDto dto, HttpSession session) {
+        log.info("eventID = " + eventId);
+        log.info("dto something = " + dto.getReview());
+        log.info("dto rating = " + dto.getRating());
         eventService.addReview(eventId, dto, session);
-        return "redirect:/event/review";
+        return "redirect:/event/review" + "?eventId=" + eventId;
     }
 
     @GetMapping("/statistics")

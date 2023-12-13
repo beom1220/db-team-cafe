@@ -12,24 +12,28 @@
   <div class="box">
     <div class="title-container">
       <div class="row-box">
-        <h4 class="title">바리스타 체험 리뷰 tnwjdgordiafjslk</h4>
-        <button class="add-review-toggle">리뷰 작성 하기</button>
+        <h4 class="title" th:text="${event.title}">이벤트 명</h4>
+        <button class="add-review-toggle" th:if="${isReviewable}">리뷰 작성 하기</button>
+<!--        <button class="add-review-toggle" >리뷰 작성 하기</button>-->
       </div>
       <hr class="titleHr">
     </div>
     <div class="content-box">
-      <form>
+      <form th:action="@{'/event/review?eventId='+${event.id}}" method="post" onsubmit="logInformation()">
         <div class="input-box hidden">
           <b>후기 내용</b>
-          <textarea name="" id="" cols="30" rows="10" placeholder="이벤트 모임 체험 후기를 작성해 주세요." class="eventInput"></textarea>
+          <textarea name="review" id="review" cols="30" rows="10" placeholder="이벤트 모임 체험 후기를 작성해 주세요." class="eventInput"></textarea>
           <b>별점</b>
           <div class="rating-container">
-            <span class="star" onclick="rateStar(1)">★</span>
-            <span class="star" onclick="rateStar(2)">★</span>
-            <span class="star" onclick="rateStar(3)">★</span>
-            <span class="star" onclick="rateStar(4)">★</span>
-            <span class="star" onclick="rateStar(5)">★</span>
+            <span class="star" onclick="rateStar(1)" data-rating="1">★</span>
+            <span class="star" onclick="rateStar(2)" data-rating="2">★</span>
+            <span class="star" onclick="rateStar(3)" data-rating="3">★</span>
+            <span class="star" onclick="rateStar(4)" data-rating="4">★</span>
+            <span class="star" onclick="rateStar(5)" data-rating="5">★</span>
+            <input type="hidden" name="rating" id="rating" value="1">
           </div>
+          <input type="hidden" name="review" id="loggedReview" value="">
+          <input type="hidden" name="rating" id="loggedRating" value="">
           <button class="add-review" type="submit">등록하기</button>
         </div>
       </form>
@@ -41,7 +45,6 @@
         </div>
         <hr>
         <div th:each="review : ${reviews}" class="review-user">
-<!--          <p th:text="review.scheduledEventId">00</p>-->
           <div class="user-content">
             <p>회원아이디</p>
             <p class="userName" th:text="${review.userId}">userId</p>
@@ -60,21 +63,37 @@
 <script>
     let selectedRating = 0;
 
+    function logInformation() {
+        var reviewValue = document.getElementById('review').value;
+        var ratingValue = document.getElementById('rating').value;
+
+        // Update hidden input values with user-entered values
+        document.getElementById('rating').value = ratingValue;
+
+        console.log('Review: ' + reviewValue + ', Rating: ' + ratingValue);
+    }
+
     function rateStar(rating) {
-      selectedRating = rating;
+        // 별점 설정 로직
+        document.getElementById('rating').value = rating;
+        updateStars(rating);
+    }
 
-      // Remove active class from all stars
-      document.querySelectorAll('.star').forEach(star => {
-        star.classList.remove('active');
-      });
+    function updateStars(rating) {
+        selectedRating = rating;
 
-      // Add active class to selected stars
-      for (let i = 1; i <= rating; i++) {
-        document.querySelector(`.star:nth-child(${i})`).classList.add('active');
-      }
+        // Remove active class from all stars
+        document.querySelectorAll('.star').forEach(star => {
+            star.classList.remove('active');
+        });
 
-      // You can use 'selectedRating' variable to store the selected rating value
-      console.log('Selected Rating:', selectedRating);
+        // Add active class to selected stars
+        for (let i = 1; i <= rating; i++) {
+            document.querySelector(`.star:nth-child(${i})`).classList.add('active');
+        }
+
+        // You can use 'selectedRating' variable to store the selected rating value
+        console.log('Selected Rating:', selectedRating);
     }
 
     // Toggle the review form visibility
@@ -82,8 +101,10 @@
     const addReviewToggle = document.querySelector('.add-review-toggle');
 
     addReviewToggle.addEventListener('click', function () {
-      inputBox.classList.toggle('hidden');
+        inputBox.classList.toggle('hidden');
     });
-  </script>
+</script>
+
+
 </body>
 </html>

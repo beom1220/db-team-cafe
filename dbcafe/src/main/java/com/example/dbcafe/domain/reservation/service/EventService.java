@@ -64,4 +64,8 @@ public class EventService {
         }
         return dtos;
     }
+
+    public Event findEventById(int eventId) {
+        return eventRepository.findEventById(eventId);
+    }
 }

@@ -91,9 +91,8 @@
             <p class="content-title">시간대</p>
           </div>
           <hr>
-          //COMMIT
           <div class="space-between" th:each="reservationItem : ${user.reservationItems}">
-            <p th:text="${reservationItem.reservation.id}">예약 번호</p>
+            <p th:text="${reservationItem.id}">예약 번호</p>
             <p th:text="${reservationItem.reservation.className}">모임명</p>
             <p th:text="${reservationItem.reservation.createdAt}">0000-00-00 / 00:00~00:00</p>
           </div>
