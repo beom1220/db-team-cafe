@@ -30,4 +30,17 @@ public class Menu {
     private boolean isSelling;
 
     private String img;
+
+    public boolean getIsSelling() {
+        return isSelling;
+    }
+
+    public Menu(String name, int price, MenuCategory category, String content, boolean isSelling, String img) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.content = content;
+        this.isSelling = isSelling;
+        this.img = img;
+    }
 }

@@ -8,4 +8,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CartItemService {
     private final CartItemRepository cartItemRepository;
+
+    public void removeById(int id) {
+        cartItemRepository.deleteCartItemById(id);
+    }
 }

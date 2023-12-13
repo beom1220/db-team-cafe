@@ -28,5 +28,13 @@ public class Coupon {
 
     private int issuance;
 
-    private int max_issuance;
+    private int maxIssuance;
+
+    public Coupon(String name, int discountRatio, int maxDiscount, int period, int maxIssuance) {
+        this.name = name;
+        this.discountRatio = discountRatio;
+        this.maxDiscount = maxDiscount;
+        this.period = period;
+        this.maxIssuance = maxIssuance;
+    }
 }

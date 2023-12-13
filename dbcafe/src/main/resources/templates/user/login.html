@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 페이지</title>
+    <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
+    <link th:href="@{/css/user.css}" href="../static/css/user.css" rel="stylesheet">
+</head>
+<body>
+<div th:insert="fragments/navigation/topBar :: topBar"></div>
+<div class="container">
+    <div class="box">
+        <div class="title-container">
+            <div class="row-box">
+                <h3 class="title">로그인 페이지</h3>
+            </div>
+            <hr class="loginHr">
+        </div>
+        <div class="content-box">
+            <form th:action="@{/user/login}" method="post">
+                <div class="input-box">
+                    <span>아이디 : </span>
+                    <textarea name="userId" cols="10" rows="5" placeholder="아이디" class="idInput"></textarea>
+                </div>
+                <div class="input-box">
+                    <span>비밀번호 : </span>
+                    <textarea name="userPw" cols="10" rows="5" placeholder="비밀번호" class="pwInput"></textarea>
+                </div>
+                <button class="submitButton" type="submit">확인</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

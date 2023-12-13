@@ -1,10 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>마이페이지</title>
+  <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
+  <link th:href="@{/css/user.css}" href="../static/css/user.css" rel="stylesheet">
 </head>
 <body>
-$END$
+<div th:insert="fragments/navigation/topBar :: topBar"></div>
+<div class="container">
+  <div class="box">
+    <div class="title-container">
+      <div class="row-box">
+        <h3 class="title">마이페이지</h3>
+      </div>
+      <hr class="titleHr">
+    </div>
+    <div class="content-box">
+      <div class="district">
+        <h4>회원정보</h4>
+        <hr>
+        <div class="mypage-box">
+          <div class="space-between">
+            <p class="content-title">ID</p>
+            <p th:text="${user.id}">userID</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">이름</p>
+            <p th:text="${user.name}">userName</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">전화번호</p>
+            <p th:text="${user.phone}">010-0000-0000</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">성별</p>
+            <p th:text="${user.gender}">성별</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">모임 대표 정보</p>
+            <p th:text="${user.level}">level</p>
+          </div>
+        </div>
+        <div class="mypage-box">
+          <div class="space-between">
+            <p class="content-title">쿠폰</p>
+            <a href="">상세보기></a>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">포인트</p>
+            <p th:text="${user.mileage}+'P'">0P</p>
+          </div>
+          <hr>
+          <div class="space-between">
+            <p class="content-title">코인</p>
+            <p th:text="${user.coin}+'개'">coin</p>
+          </div>
+        </div>
+        <div class="mypage-box">
+          <div class="space-between">
+            <p class="content-title">주문내역</p>
+            <a href="">상세보기></a>
+          </div>
+        </div>
+      </div>
+      <div class="district">
+        <h4>이벤트 모임 예약 내역</h4>
+        <hr>
+        <div class="event-list">
+          <div class="event-box"  th:each="scheduledEvent : ${user.scheduledEventList}">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="">
+            <p class="event-title" th:text="${scheduledEvent.event.title}">이벤트 모임명</p>
+            <p th:text="${scheduledEvent.date}">0000.00.00</p>
+            <p th:text="${scheduledEvent.startTime + '~' + scheduledEvent.endTime}">오전00:00~오후00:00</p>
+          </div>
+        </div>
+      </div>
+      <div class="district">
+        <h4>일반 모임 예약 내역</h4>
+        <hr>
+        <div class="mypage-box">
+          <div class="space-between">
+            <p class="content-title">예약 번호</p>
+            <p class="content-title">모임명</p>
+            <p class="content-title">시간대</p>
+          </div>
+          <hr>
+          <div class="space-between" th:each="reservationItem : ${user.reservationItems}">
+            <p th:text="${reservationItem.id}">예약 번호</p>
+            <p th:text="${reservationItem.reservation.className}">모임명</p>
+            <p th:text="${reservationItem.reservation.createdAt}">0000-00-00 / 00:00~00:00</p>
+          </div>
+        </div>
+      </div>
+      <div class="button-box">
+        <button>로그아웃</button>
+        <button>회원 탈퇴</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

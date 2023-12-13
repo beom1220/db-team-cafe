@@ -25,4 +25,11 @@ public class Prize {
     private int coin;
 
     private int probability;
+
+    public Prize(String name, int mileage, int coin, int probability) {
+        this.name = name;
+        this.mileage = mileage;
+        this.coin = coin;
+        this.probability = probability;
+    }
 }

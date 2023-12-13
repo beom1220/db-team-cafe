@@ -1,10 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <title>DB Cafe</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+        <link rel="stylesheet" th:href="@{/css/level.css}" type="text/css"/>
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img th:src="@{/image/cafeLogo.png}" alt="이미지 로딩 실패"/>
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img th:src="@{/image/userPage.png}" alt="이미지 로딩 실패"/>
+                </div>
+                <div class="cart">
+                    <img th:src="@{/image/logOut.png}" alt="이미지 로딩 실패"/>
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="pageLable">
+                <span>
+                    등급 설정 페이지
+                </span>
+            </div>
+            <hr class="detail_hr">
+            <div class="tableBox">
+                <table class="statList">
+                    <thead>
+                        <tr>
+                            <th class="leftTab">등급</th>
+                            <th>회원 수</th>
+                            <th>총 할인액</th>
+                            <th>평균 할인액</th>
+                            <th>할인율</th>
+                            <th>상위 %</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+<!--                        <th:block th:each="level: ${levels}">-->
+                        <th:block th:each="i: ${#numbers.sequence(4, 0)}">
+                            <form th:action method="post">
+                                <tr>
+                                    <td class="leftTab" th:text="${levels[i].name}" th:id="'level' + ${i}">
+                                        <input type="hidden" value="%{i}" name="levelIndex">
+                                    </td>
+                                    <td th:text="${levels[i].userCount}"></td>
+                                    <td th:text="${levels[i].totalDiscountAmount}"></td>
+                                    <td th:text="${levels[i].averageDiscountAmount}"></td>
+                                    <td th:text="${levels[i].discountRatio}"></td>
+                                    <td th:text="${levels[i].cutLine} + '%'"></td>
+                                    <td>
+                                        <div class="btnGroup">
+                                            <button type="button"
+                                                    class="btn"
+                                                    th:onclick="'a(' + ${i} + ');'">
+                                                <div class="corBtn">
+                                                    수정
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td>
+                                        <input type="text"
+                                               th:value="${levels[i].discountRatio}"
+                                               name="discountRatio">
+                                    </td>
+                                    <td>
+                                        <input type="text"
+                                               th:value="${levels[i].cutLine}"
+                                               name="cutLine">
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </form>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="statBox">
+                <div class="thBox">
+                    <table class="statTh">
+                        <thead>
+                            <tr>
+                                <th>전체 회원 수</th>
+                                <th>전체 총 할인액</th>
+                                <th>전체 총 평균 할인액</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="contBox">
+                    <table class="statCont">
+                        <tbody>
+                            <tr>
+                                <td th:text="${total.totalUserCount}"></td>
+                                <td th:text="${total.totalDiscountAmount}"></td>
+                                <td th:text="${total.averageDiscountAmount}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+<script>
+    function a(id) {
+        var name = document.getElementById('level' + id);
+
+        console.log(name);
+    }
+</script>
 </html>

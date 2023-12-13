@@ -30,4 +30,19 @@ public class Suggestion {
     private SuggestionCategory category;
 
     private String answer;
+
+    public Suggestion(User user, String title, String content, SuggestionCategory category) {
+        this.user = user;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+    }
+
+    public Suggestion(User user, String title, String content, SuggestionCategory category, String answer) {
+        this.user = user;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.answer = answer;
+    }
 }

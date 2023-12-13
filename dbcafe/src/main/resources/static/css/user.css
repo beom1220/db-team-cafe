@@ -1,0 +1,219 @@
+/** 선결제 금액 페이지 */
+li {
+  margin-left: 25px;
+  margin-bottom: 20px;
+}
+
+.district {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  gap: 10px;
+}
+.space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.content-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.receipt-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  padding: 30px;
+  gap: 20px;
+}
+.discount-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  justify-content: space-between;
+}
+.receipt-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.row-box {
+  display: flex;
+  flex-direction: row;
+}
+.discount-content {
+  font-size: 14px;
+  color: gray;
+}
+.order-button-box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.cancleButton{
+  width: 50%;
+  background-color: gray;
+  color: #ffffff;
+  padding: 20px;
+  cursor: pointer;
+}
+.okButton {
+  width: 50%;
+  background-color: #66371D;
+  color: #ffffff;
+  padding: 20px;
+  cursor: pointer;
+}
+.pay-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 10px;
+}
+.width-hr {
+  width: 100%;
+}
+
+/** 선택 일자 정보 */
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+.menu-content {
+  display: flex;
+}
+.menu-content > b {
+  flex: 1;
+  text-align: left;
+}
+.menu-content > b:nth-child(3) {
+  flex: 2;
+}
+
+
+/** 마이페이지 */
+img {
+  width: 150px;
+  height: 100px;
+}
+.district {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  gap: 10px;
+}
+.event-list {
+  display: flex;
+  flex-direction: row;
+}
+.mypage-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  gap: 3px;
+}
+.space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.content-title {
+  font-weight: bold;
+}
+.event-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 200px;
+  height: 200px;
+}
+.event-text {
+  font-size: 12px;
+  font-weight: bold;
+}
+.button-box {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    gap: 50px;
+    align-items: center;
+    width: 50%;
+}
+
+
+/** 건의사항 페이지 */
+select {
+  width: 500px;
+}
+
+.input-box{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.inputTitle {
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 10px;
+}
+.inputContent {
+  border: 1px solid gray;
+  padding: 20px;
+  height: 60px;
+  border-radius: 10px;
+}
+.add-suggestion{
+  width: 200px;
+  padding: 20px;
+  background-color: #66371D;
+  color: #ffffff;
+  border-radius: 20px;
+  margin: 50px auto 0px;
+}
+
+/** 문의 목록(사용자) */
+.suggestion-user{
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #000000;
+  gap: 50px;
+  padding: 30px 20px 50px 20px;
+  margin-bottom: 10px;
+}
+.user-content {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: space-between;
+}
+.userName {
+  font-weight: bold;
+}
+/** 문의 목록(관리자) */
+.suggestion-admin{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  border-bottom: 1px solid #000000;
+  border-radius: 20;
+  background-color: rgb(204, 204, 204);
+  gap: 50px;
+  padding: 20px 20px 30px 20px;
+  margin-bottom: 10px;
+}
+.admin-content {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: space-between;
+}
+.adminName {
+  font-weight: bold;
+}

@@ -1,0 +1,244 @@
+/** 달력 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  height: 60px;
+}
+td.in2weeks {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+td:not(.today):not(.in2weeks) {
+  background-color: #8d8d8d;
+}
+.month-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+.calendar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 40px;
+}
+
+
+/** 설명 박스 */
+.text-box {
+  display: flex;
+  flex-direction: column;
+}
+.content-text {
+  font-size: 11px;
+  color: #8d8d8d;
+}
+.monthButton {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+
+/* 시간대 선택 */
+.date-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.time-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.time-ul {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  position: relative;
+  left: 50px;
+}
+.time-li {
+  margin: 20px 0px;
+  position: relative;
+}
+.time-li input[type="radio"]:checked {
+  pointer-events: none;
+  background-color: #e0e0e0;
+  color: #888;
+}
+.time-li-none {
+  margin: 20px 0px;
+  text-decoration: line-through;
+  color: #8d8d8d;
+}
+.footer-box {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0px;
+}
+.reservationButton {
+  width: 250px;
+  background-color: #66371D;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.chooeseButton {
+  text-decoration:underline
+}
+
+
+/** 패키지 예약 */
+.package-box {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;;
+}
+.weekday-cell {
+  background-color: #ffffff;
+}
+.right-box {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1000px;
+}
+
+
+/** 예약정보 입력 페이지 */
+/** 각각의 컴포넌트에서 사용되는 제목 */
+.district {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+.content-title {
+  font-size: 23px;
+  font-weight: bold;
+}
+
+/** 선택 일자 정보 */
+.reservation-date {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+}
+.reservation-content {
+  display: flex;
+}
+.reservation-content > b {
+  flex: 1;
+  text-align: left;
+}
+.reservation-content > b:nth-child(3) {
+  flex: 2;
+}
+
+
+/** 예약자 정보 */
+.input-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.input-district {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.inputBox {
+  border-bottom: 1px solid gray;
+  width: 500px;
+  padding: 10px;
+}
+.input-title-box {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+}
+.input-title {
+  font-weight: bold;
+  font-size: 17px;
+}
+.count-box{
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  align-items: center;
+  justify-content: space-between;
+}
+.countButton {
+  border: 1px solid gray;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.count {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+
+/** 선결제 정보 */
+.prepayment-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+.prepayment-content {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 20px;
+}
+.space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+}
+.select-pay{
+  width: 300px;
+}
+.row-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.button-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1280px;
+  margin: 30px 0px;
+}
+.reservationButton {
+  width: 300px;
+  background-color: #66371D;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}

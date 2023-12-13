@@ -1,10 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <title>DB Cafe</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+        <link rel="stylesheet" th:href="@{/css/prizeStatistics.css}" type="text/css"/>
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img th:src="@{/image/cafeLogo.png}" alt="이미지 로딩 실패"/>
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img th:src="@{/image/userPage.png}" alt="이미지 로딩 실패"/>
+                </div>
+                <div class="cart">
+                    <img th:src="@{/image/logOut.png}" alt="이미지 로딩 실패"/>
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="pageLable">
+                <span>
+                    뽑기 내역
+                </span>
+            </div>
+            <hr class="detail_hr">
+            <div class="infoPrizeBox">
+                <div class="Box_1">
+                    <table>
+                        <th>진행한 게임 횟수</th>
+                        <th>회원 총 획득 포인트</th>
+                        <th>평균 획득 포인트</th>
+                    </table>
+                </div>
+                <div class="Box_2">
+                    <table>
+                        <th th:text="${statistic.totalDrawCount}"></th>
+                        <th th:text="${statistic.totalMileage}"></th>
+                        <th th:text="${statistic.averageMileage}"></th>
+                    </table>
+                </div>
+            </div>
+            <div class="prizeBox">
+                <div class="prizeList">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>회원아이디</th>
+                                <th>수량</th>
+                                <th>획득일자</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="historie : ${histories}">
+                                <td th:text="${historie.userId}"></td>
+                                <td th:text="${historie.prizeName}"></td>
+                                <td th:text="${historie.drawedDate}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

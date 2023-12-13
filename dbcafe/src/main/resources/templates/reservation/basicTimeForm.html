@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>예약 시간 선택 페이지</title>
+  <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
+  <link th:href="@{/css/reservation.css}" href="../static/css/reservation.css" rel="stylesheet">
 </head>
 <body>
-$END$
+<div th:insert="fragments/navigation/topBar :: topBar"></div>
+<div class="container">
+  <div class="box">
+    <div class="content-box">
+      <div class="date-box">
+        <h2 th:text="${date}+ ' ' + ${day}">0000-00-00 0요일</h2>
+        <a th:href="@{/reservation-block}" class="chooeseButton">선택일자 변경하기</a>
+      </div>
+      <div class="time-container">
+        <hr>
+        <h3>시간대 선택</h3>
+        <ul class="time-ul" th:each="time : ${times}">
+          <li class="time-li" th:if="${time.isBookable}">
+            <span th:text="${time.startTime+ '~' + time.endTime}">00:00 ~ 00:00</span>
+            <div class="row-box">
+              <b>예약정보 </b>
+              <p th:text="${date}+''+${day}">0000-00-00</p>
+              <p th:text="${time.startTime}">0</p>
+              <p th:text="${time.endTime}">0</p>
+            </div>
+            <p th:text="${time.startTime} + 'dfa' +${time.endTime}">0</p>
+            <!-- Add onclick attribute to call logInformation function -->
+            <input type="radio" name="timeSlot" id="radio_${time.startTime}_${time.endTime}" th:attr="onclick='logInformation(\'' + ${time.startTime} + '\', \'' + ${time.endTime} + '\', \'' + ${date} + '\')'">
+
+          </li>
+        </ul>
+        <form th:action="@{/reservation-block/select-time(date=${date})}" method="post">
+          <input type="hidden" name="startTime" id="selectedStartTime" value="">
+          <input type="hidden" name="endTime" id="selectedEndTime" value="">
+          <input type="hidden" name="date" id="selectedDate" value="">
+          <button type="submit" class="reservationButton">예약 정보 입력하기</button>
+        </form>
+      </div>
+      <div class="footer-box">
+        <div class="text-box">
+          <p class="content-text">* 월~목요일은 주중 할인 혜택(5%)이 적용 됩니다.</p>
+          <p class="content-text">* 얼리버드 할인은 2주 전에 예약하면 할인 혜택(5%)이 적용됩니다.</p>
+          <p class="content-text">* 할인율은 시기에 따라 변동 될 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function logInformation(startTime, endTime, date) {
+    // Log the information to the console
+    console.log('StartTime: ' + startTime + ', EndTime: ' + endTime + ', Date: ' + date);
+
+    // Update hidden input fields with the selected values
+    document.getElementById('selectedStartTime').value = startTime;
+    document.getElementById('selectedEndTime').value = endTime;
+    document.getElementById('selectedDate').value = date;
+  }
+</script>
+
+
 </body>
 </html>

@@ -1,0 +1,167 @@
+.flexBox {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;    /** 메인 축 정렬*/
+}
+
+.flex_1 {
+    width: 424.238px;
+    height: 419px;
+    background-color: blue;
+}
+
+.flex_2 {
+    width: auto;
+    height: 80px;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.eventLable {
+    display: flex;
+    gap: 6px;
+}
+
+.eventTitle {
+    font-size: 32px;
+    font-weight: 700;
+    flex-direction: row;
+}
+
+.eventState {
+    color: #F00;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.timeLable {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.priceLable {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.peopleLable {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ruleLable {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.lable {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.lable span:first-child {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.lable.eventLable {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.lable.eventLable span:first-child {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.lable.eventLable span:nth-child(2) {
+    font-size: 20px;
+    font-weight: 700;
+    color: #F00;
+}
+
+.lable.ruleLable ul {
+    padding-left: 20px;
+}
+
+.infoBtn {
+    margin-left: 80px;
+}
+
+.eventList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.eventList table th {
+    width: 215px;
+    height: 50px;
+    font-size: 18px;
+    border-bottom: 1px solid black;
+}
+
+.eventList table th:nth-child(1) {
+    width: 20px;
+}
+
+.eventList table td:nth-child(1) {
+    color: transparent;
+}
+
+.eventList table td {
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #858181;
+    border-bottom: 1px solid black;
+}
+
+.btnGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn {
+    border: none;
+    background-color: transparent;
+}
+
+.accBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95px;
+    height: 30px;
+    background: #6459E8;
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+}
+
+.ansBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 95px;
+    height: 30px;
+    background: #D22323;
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+}

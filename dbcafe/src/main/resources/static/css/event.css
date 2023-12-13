@@ -1,0 +1,226 @@
+/** 이벤트 모임 신청 페이지 */
+image {
+  object-fit: fill;
+}
+.b {
+  text-align: center;
+}
+
+.row {
+ display:flex;
+ flex-direction: row;
+}
+.event-box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+.left-box {
+  display: flex;
+  width: 450px;
+  height: 450px;
+}
+.right-box {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  height: 450px;
+  gap: 20px;
+  padding: 0px 20px;
+}
+.row-box {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.event-tag {
+  color: red;
+}
+.event-capacity {
+  color: gray;
+  font-size: 15px;
+  width: 250px;
+}
+.eventButton {
+  width: 300px;
+  background-color: #66371D;
+  color: #ffffff;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.district {
+  display: flex;
+  flex-direction: column;
+  margin: 80px 0px;
+  gap: 10px;
+}
+.content-title {
+  font-size: 23px;
+  font-weight: bold;
+}
+.menu-container {
+  display: flex;
+  flex-wrap: wrap; /* 추가: flex-wrap 속성을 사용하여 요소들이 차지하는 공간을 넘어서면 다음 줄로 넘어갈 수 있도록 설정합니다. */
+  gap: 10px;
+}
+.menu-box {
+  display: flex;
+  flex-direction: column;
+  width: calc(25% - 10px); /* 추가: 4개의 아이템이 가로로 정렬되도록 width를 조정합니다. */
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.menu-title{
+  font-size: 21px;
+  font-weight: bold;
+}
+/** 선택 일자 정보 */
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+.menu-content {
+  display: flex;
+}
+.menu-content > b {
+  flex: 1;
+}
+.menu-content > b:nth-child(3) {
+  flex: 1;
+}
+.center {
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  text-align: center;
+}
+
+.link-review {
+  color: gray;
+  text-decoration: underline;
+  display: flex;
+  justify-content: flex-end;
+  margin: 50px 10px 100px 0px;
+}
+.link-review:hover {
+  color: rgb(205, 205, 205);
+  text-decoration: underline;
+}
+.review-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/** 문의 목록(사용자) */
+.review-user{
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #000000;
+  gap: 50px;
+  padding: 30px 20px 50px 20px;
+  margin-bottom: 10px;
+}
+.user-content {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: space-between;
+}
+.userName {
+  font-weight: bold;
+}
+.eventInput {
+  border: 1px solid gray;
+  padding: 20px;
+}
+
+
+/** 이벤트 목록 리뷰 페이지 */
+.review-list {
+  margin-top: 30px;
+}
+.title-container-navigation{
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  width: 50%;
+  justify-content: space-between;
+}
+.input-box{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.add-review{
+  width: 200px;
+  padding: 20px;
+  background-color: #66371D;
+  color: #ffffff;
+  border-radius: 20px;
+  margin: 0px auto 50px;
+  cursor: pointer;
+}
+.row-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.add-review-toggle{
+  width: 150px;
+  padding: 10px;
+  background-color: #66371D;
+  color: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/** 문의 목록(사용자) */
+.review-user{
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #000000;
+  gap: 50px;
+  padding: 30px 20px 50px 20px;
+  margin-bottom: 10px;
+}
+.user-content {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: space-between;
+}
+.userName {
+  font-weight: bold;
+}
+.eventInput {
+  border: 1px solid gray;
+  padding: 20px;
+}
+
+
+/** 별점 부여 */
+.rating-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.star {
+  color: #ccc;
+  margin-right: 5px;
+}
+
+.star.active {
+  color: #f39c12; /* Active star color */
+}
+
+.hidden {
+  display: none;
+}

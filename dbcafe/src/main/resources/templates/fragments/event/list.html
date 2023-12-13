@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div th:each="event : ${scheduledEvents}" th:fragment="list" class="event-box">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="eventImg" class="eventImg">
+  <p class="event-capacity" >모집인원: 00/00</p>
+  <div class="event-content">
+    <div class="event-row">
+      <!-- th:text를 사용하여 이벤트 제목을 설정합니다 -->
+      <h4 class="event-title" th:text="${event.title}">이벤트 모임명</h4>
+      야
+      <b class="event-tag">Best</b>
+    </div>
+    <div class="event-row">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROyCM4hDrN0YRWZ7POalvuYvDID4CeOpYuJg&usqp=CAU" alt="stars" class="event-ratingImg">
+      <p>4.5</p>
+    </div>
+  </div>
+  <div class="event-date">
+    <p>2023.12.05</p>
+    <p>12:00PM~14:00PM</p>
+  </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+/** 이벤트 리스트 및 메뉴 리스트 */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+.event-list {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 30px;
+  justify-content: space-between;
+  position: relative;
+}
+.menu-list {
+  display: flex;
+  flex-wrap: wrap; /* flex items이 여러 줄로 나뉠 수 있도록 설정 */
+  gap: 30px;
+  justify-content: space-between;
+  max-width: 1280px; /* 최대 너비 설정 */
+  margin: 0 auto; /* 가운데 정렬을 위한 마진 설정 */
+}
+
+/** 모집중인 이벤트 모임 목록 */
+.event-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+.eventImg{
+  display: flex;
+  width: 250px;
+  height: 170px;
+  border-radius: 10px;
+}
+.event-capacity {
+  color: gray;
+  font-size: 15px;
+  width: 250px;
+}
+.event-title {
+  font-size: 21px;
+  font-weight: bold;
+}
+.event-content{
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  justify-content: space-between;
+}
+.event-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.event-tag {
+  color: red;
+}
+.event-ratingImg{
+  width: 20px;
+  height: 20px;
+}
+.event-date{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/** 메뉴 목록 */
+.search-box{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  gap: 20px;
+  margin: 30px 0px;
+  justify-content: center;
+}
+.search-input {
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 0.5px solid #000000;
+}
+.search-button{
+  display: flex;
+  flex-direction: row;
+  width: 60px;
+  background-color: #66371D;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.menu-title{
+  font-size: 21px;
+  font-weight: bold;
+}

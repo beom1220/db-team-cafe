@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <title>DB Cafe</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+        <link rel="stylesheet" th:href="@{/css/userPrize.css}" type="text/css"/>
 </head>
-<body>
-$END$
-</body>
+    <body>
+    <div th:if="${session.selectedPrize} != null">
+        <h2>hello</h2>
+        <h2 th:text="${session.selectedPrize.name}"></h2>
+    </div>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img th:src="@{/image/cafeLogo.png}" alt="이미지 로딩 실패"/>
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img th:src="@{/image/userPage.png}" alt="이미지 로딩 실패"/>
+                </div>
+                <div class="cart">
+                    <img th:src="@{/image/logOut.png}" alt="이미지 로딩 실패"/>
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="content">
+                <div class="prizeList">
+                    <span> 상품 목록 </span>
+                    <hr class="detail_hr">
+                    <th:block th:each="prize: ${prizes}">
+                        <span>
+                            <p th:text="${prize.name}"></p>
+                        </span>
+                    </th:block>
+                </div>
+                <div class="gameContent">
+                    <div class="gameBoxImage">
+                        <img th:src="@{/image/GameImage.jpg}" alt="이미지 로딩 실패">
+                    </div>
+                    <div class="text">
+                        <span> 오늘 도전 가능 횟수: <span th:text="${userInfo.prizeChance}"></span>번 </span>
+                        <span> 보유 중인 코인 갯수: <span th:text="${userInfo.coin}"></span>개</span>
+                    </div>
+                    <form th:action method="post">
+                        <button type="submit" class="btn" name="">
+                            <div class="gameBtn">
+                                <div class="leftBox">
+                                    <img th:src="@{/image/coinImage.png}" alt="이미지 로딩 실패">
+                                    <span>
+                                        x 1
+                                    </span>
+                                </div>
+                                <div class="rightBox">
+                                    <span> 뽑기 도전 </span>
+                                </div>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

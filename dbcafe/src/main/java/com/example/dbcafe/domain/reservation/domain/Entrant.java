@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -19,7 +20,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Entrant {
+public class Entrant { // 이벤트 모임 참가자
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -60,7 +61,31 @@ public class Entrant {
 
     private double rating;
 
+    private Date reviewedDate;
+
     @Column(nullable = false, name = "created_at")
     @CreatedDate
     private Date createdAt;
+
+    public boolean getIsAttended() {
+        return isAttended;
+    }
+
+    public Entrant(User user, ScheduledEvent scheduledEvent, Menu menu, String name, String phone, int age, boolean isMale, PaymentMethod paymentMethod, ApplicationStatus applicationStatus, boolean isRefunded, boolean isAttended, String rejectionReason, String review, double rating, Date reviewedDate) {
+        this.user = user;
+        this.scheduledEvent = scheduledEvent;
+        this.menu = menu;
+        this.name = name;
+        this.phone = phone;
+        this.age = age;
+        this.isMale = isMale;
+        this.paymentMethod = paymentMethod;
+        this.applicationStatus = applicationStatus;
+        this.isRefunded = isRefunded;
+        this.isAttended = isAttended;
+        this.rejectionReason = rejectionReason;
+        this.review = review;
+        this.rating = rating;
+        this.reviewedDate = reviewedDate;
+    }
 }

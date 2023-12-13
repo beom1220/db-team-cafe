@@ -1,10 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <title>DB Cafe</title>
+        <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+        <link rel="stylesheet" th:href="@{/css/reservationRejectionForm.css}" type="text/css"/>
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="wrap">
+                <div class="item">
+                    <img th:src="@{/image/cafeLogo.png}" alt="이미지 로딩 실패"/>
+                </div>
+                <div class="item"> <strong> 메뉴 </strong> </div>
+                <div class="item"> <strong> 예약 </strong> </div>
+                <div class="item"> <strong> 랭킹 </strong> </div>
+                <div class="item"> <strong> 뽑기 </strong> </div>
+                <div class="item"> <strong> 이벤트 </strong> </div>
+                <div class="item"> <strong> 교환권 </strong> </div>
+                <div class="search">
+                    <img th:src="@{/image/userPage.png}" alt="이미지 로딩 실패"/>
+                </div>
+                <div class="cart">
+                    <img th:src="@{/image/logOut.png}" alt="이미지 로딩 실패"/>
+                </div>
+            </div>
+        </div>
+        <div id="basic">
+            <div class="pageLable">
+                <span>
+                    예약 취소 알림 및 보상
+                </span>
+            </div>
+            <hr class="detail_hr">
+
+            <div class="smallLable">
+                <span>
+                    지급 대상 정보
+                </span>
+                <hr>
+            </div>
+            <div class="infoBox">
+                <table>
+                    <tr>
+                        <td class="leftTab">회원 아이디</td>
+                        <td>
+                            : <th:block th:text="${user.userId}"></th:block>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="leftTab">회원 이름</td>
+                        <td>
+                            : <th:block th:text="${user.name}"></th:block>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="leftTab">회원 연락처</td>
+                        <td>
+                            : <th:block th:text="${user.phone}"></th:block>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="leftTab">회원 등급</td>
+                        <td>
+                            : <th:block th:text="${user.level}"></th:block>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <form th:action method="post">
+                <input type="hidden" name="userId" th:value="${user.userId}">
+                <input type="hidden" name="phone" th:value="${user.phone}">
+                <div class="smallLable">
+                    <span>
+                        지급 쿠폰 선택
+                    </span>
+                    <hr>
+                </div>
+                <div class="infoCoupon">
+                    <span>
+                        쿠폰명
+                    </span>
+                    <select name="couponId" id="couponId">
+                        <option selected value="false">지급할 쿠폰을 선택해 주세요. </option>
+                        <th:block th:each="coupon: ${coupons}">
+                            <option th:value="${coupon.id}" th:text="${coupon.name}"></option>
+                        </th:block>
+                    </select>
+                    <div class="sale">
+                        <span>
+                            할인율:
+                        </span>
+                        00%
+                    </div>
+                </div>
+                <div class="smallLable">
+                    <span>
+                        지급 코인 선택
+                    </span>
+                    <hr>
+                </div>
+                <div class="coin">
+                    <input type="number" min="0" name="coin" style="width: 100px">
+                </div>
+                <div class="smallLable">
+                    <span>
+                        사유
+                    </span>
+                    <hr>
+                </div>
+                <div class="textBox">
+                    <textarea name="content" cols="85" rows="5" placeholder="취소 사유를 입력해주세요."></textarea>
+                </div>
+                <div class="cent">
+                    <button type="submit" class="btn">
+                        <div class="checBtn">
+                            확인
+                        </div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </body>
 </html>

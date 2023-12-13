@@ -24,9 +24,28 @@ public class ReservationItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_block_id")
-    private ReservationBolck reservationBolck;
+    private ReservationBlock reservationBlock;
 
     private String tempPw;
 
     private int prepaymentAmount;
+
+    private int earlybirdDiscountRatio;
+
+    private int weekdayDiscountRatio;
+
+    private boolean last;
+
+    private boolean keeping;
+
+    public ReservationItem(Reservation reservation, ReservationBlock reservationBlock, String tempPw, int prepaymentAmount, int earlybirdDiscountRatio, int weekdayDiscountRatio, boolean last) {
+        this.reservation = reservation;
+        this.reservationBlock = reservationBlock;
+        this.tempPw = tempPw;
+        this.prepaymentAmount = prepaymentAmount;
+        this.earlybirdDiscountRatio = earlybirdDiscountRatio;
+        this.weekdayDiscountRatio = weekdayDiscountRatio;
+        this.last = last;
+        this.keeping = false;
+    }
 }

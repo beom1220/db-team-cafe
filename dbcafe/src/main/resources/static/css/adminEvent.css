@@ -1,0 +1,84 @@
+.detBtn_1 {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.detailBtn_1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 40px;
+    background-color: #66371D;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 15px;
+}
+
+table {
+    border-collapse: collapse;
+    border: none;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid black;
+}
+
+table th{
+    width: 212px;
+    font-size: 25px;
+    border-bottom: 1px solid black;
+}
+
+table tr {
+    height: 65px;
+}
+
+table td {
+    width: 215px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #858181;
+    border-bottom: 1px solid black;
+}
+
+.leftTab {
+    text-align: left;
+    color: black;
+}
+
+.setTable {
+    display: flex;
+    flex-direction: row;
+}
+
+.contBtn {
+    display: flex;
+}
+
+.detBtn_2 {
+    border: none;
+    background-color: transparent;
+}
+
+.detailBtn_2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 40px;
+    background-color: #66371D;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 15px;
+}

@@ -10,6 +10,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,11 +23,18 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     @Column(nullable = false, name = "created_at")
     @CreatedDate
     private Date createdAt;
+
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.REMOVE)
+    private List<CartItem> cartItems;
+
+    public Cart(User user) {
+        this.user = user;
+    }
 }
