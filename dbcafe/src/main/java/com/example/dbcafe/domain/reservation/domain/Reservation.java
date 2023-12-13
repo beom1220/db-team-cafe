@@ -20,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Reservation {
+public class Reservation { // 모임예약
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -66,6 +66,19 @@ public class Reservation {
         this.numOfParticipant = numOfParticipant;
         this.prepaymentTotal = prepaymentTotal;
         this.paymentMethod = paymentMethod;
+        this.isPackage = isPackage;
+    }
+
+    public Reservation(User user, String className, int numOfParticipant, int prepaymentTotal, PaymentMethod paymentMethod, boolean isCanceled, String name, String phone, int changeCount, boolean isPackage) {
+        this.user = user;
+        this.className = className;
+        this.numOfParticipant = numOfParticipant;
+        this.prepaymentTotal = prepaymentTotal;
+        this.paymentMethod = paymentMethod;
+        this.isCanceled = isCanceled;
+        this.name = name;
+        this.phone = phone;
+        this.changeCount = changeCount;
         this.isPackage = isPackage;
     }
 }

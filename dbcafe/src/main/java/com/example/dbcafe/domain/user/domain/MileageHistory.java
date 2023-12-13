@@ -34,4 +34,11 @@ public class MileageHistory {
     @Column(nullable = false, name = "created_at")
     @CreatedDate
     private Date createdAt;
+
+    public MileageHistory(User user, boolean isAdded, int amount, String content) {
+        this.user = user;
+        this.isAdded = isAdded;
+        this.amount = amount;
+        this.content = content;
+    }
 }
