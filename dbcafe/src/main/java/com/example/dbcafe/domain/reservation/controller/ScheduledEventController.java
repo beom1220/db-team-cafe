@@ -32,6 +32,9 @@ public class ScheduledEventController {
 
     @GetMapping("/entrant-list") //관리자 페이지
     public String entrantList(@RequestParam(name = "scheduledEventId") int scheduledEventId, Model model, HttpSession session) {
+        // 임시로 어드민 로그인 되게끔 하는 코드
+        session.setAttribute("loggedInUser", "admin");
+
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
             ScheduledEvent scheduledEvent = scheduledEventService.findById(scheduledEventId);
