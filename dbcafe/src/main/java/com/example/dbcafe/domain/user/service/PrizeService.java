@@ -6,6 +6,7 @@ import com.example.dbcafe.domain.user.dto.PrizeDto;
 import com.example.dbcafe.domain.user.dto.PrizeListDto;
 import com.example.dbcafe.domain.user.dto.PrizeUserInfoDto;
 import com.example.dbcafe.domain.user.repository.PrizeRepository;
+import com.example.dbcafe.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PrizeService {
     private final PrizeRepository prizeRepository;
+    private final UserRepository userRepository;
 
     public List<PrizeListDto> findAllPrizes() {
         List<Prize> prizes =  prizeRepository.findAll();
@@ -48,13 +50,15 @@ public class PrizeService {
             }
         }
         int randomIndex = (int) (Math.random() * prizeBox.size());
-        return prizes.get(randomIndex);
+        return prizeRepository.findPrizeById(prizeBox.get(randomIndex));
     }
 
     public void settlePrize(Prize prize, User user) {
         user.setPrizeChance(user.getPrizeChance() - 1);
         user.setCoin(user.getCoin() + prize.getCoin() - 1);
         user.setMileage(user.getMileage() + prize.getMileage());
+
+        userRepository.save(user);
     }
 
     public List<Prize> findAllDrawablePrizes() {

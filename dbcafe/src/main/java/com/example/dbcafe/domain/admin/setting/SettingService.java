@@ -35,7 +35,8 @@ public class SettingService {
             for (Orders o : ordersList) {
                 totalLevelDiscountAmount += o.getLevelDiscountAmount();
             }
-            int averageDiscountAmount = totalLevelDiscountAmount / ordersList.size();
+//            int averageDiscountAmount = totalLevelDiscountAmount / ordersList.size();
+                        int averageDiscountAmount = totalLevelDiscountAmount / 1;
             int cutLine = findValueByName(name + "기준");
             LevelDto dto = new LevelDto(name, users.size(), totalLevelDiscountAmount,
                     averageDiscountAmount, discountRatio, cutLine);
@@ -52,7 +53,8 @@ public class SettingService {
             totalDiscountAmount += dto.getTotalDiscountAmount();
         }
         List<Orders> ordersList = ordersRepository.findAllOrdersByLevelDiscountRatioNot(0);
-        int averageDiscountAmount = totalDiscountAmount / ordersList.size();
+//        int averageDiscountAmount = totalDiscountAmount / ordersList.size();
+        int averageDiscountAmount = totalDiscountAmount / 1;
         LevelTotalDto levelTotalDto = new LevelTotalDto(totalUserCount,
                 totalDiscountAmount, averageDiscountAmount);
         return levelTotalDto;

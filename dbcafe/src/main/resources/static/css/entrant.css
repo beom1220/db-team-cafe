@@ -143,8 +143,8 @@
 .refBtn {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 95px;
     height: 30px;
     background: #D22323;
@@ -155,11 +155,25 @@
 
 .accBtn {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95px;
+    height: 30px;
+    background: #6459E8;
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+}
+
+.ansBtn {
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 95px;
     height: 30px;
-    background: #6459E8;
+    background: #9E9E9E;
     border-radius: 30px;
     color: white;
     font-weight: 700;

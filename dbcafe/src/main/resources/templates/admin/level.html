@@ -46,28 +46,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="">
-                            <td class="leftTab" th:text="'등급명'"></td>
-                            <td th:text="'00'"></td>
-                            <td th:text="'000,000'"></td>
-                            <td th:text="'0,000'"></td>
-                            <td th:text="'00%'"></td>
-                            <td th:text="'00'"></td>
-                            <td>
-                                <div class="btnGroup">
-                                    <button type="submit" class="btn">
-                                        <div class="corBtn">
-                                            수정
+                        <th:block th:each="level: ${levels}">
+                            <tr>
+                                <td class="leftTab" th:text="${level.name}"}></td>
+                                <td th:text="${level.userCount}"></td>
+                                <td th:text="${level.totalDiscountAmount}"></td>
+                                <td th:text="${level.averageDiscountAmount}"></td>
+                                <td th:text="${level.discountRatio}"></td>
+                                <td th:text="${level.cutLine}"></td>
+                                <td>
+                                    <form th:action method="post">
+                                        <div class="btnGroup">
+                                            <button type="submit" class="btn">
+                                                <div class="corBtn">
+                                                    수정
+                                                </div>
+                                            </button>
+                                            <button type="submit" class="btn">
+                                                <div class="delBtn">
+                                                    삭제
+                                                </div>
+                                            </button>
                                         </div>
-                                    </button>
-                                    <button type="submit" class="btn">
-                                        <div class="delBtn">
-                                            삭제
-                                        </div>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                                    </form>
+                                </td>
+                            </tr>
+                        </th:block>
                     </tbody>
                 </table>
             </div>
@@ -87,9 +91,9 @@
                     <table class="statCont">
                         <tbody>
                             <tr>
-                                <td th:text="'0,000'"></td>
-                                <td th:text="'0,000,000'"></td>
-                                <td th:text="'00,000'"></td>
+                                <td th:text="${total.totalUserCount}"></td>
+                                <td th:text="${total.totalDiscountAmount}"></td>
+                                <td th:text="${total.averageDiscountAmount}"></td>
                             </tr>
                         </tbody>
                     </table>
