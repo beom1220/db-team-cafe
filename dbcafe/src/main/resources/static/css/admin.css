@@ -1,0 +1,25 @@
+.row-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.left-box {
+    display: flex;
+    flex-direction: column;
+    width:90%;
+}
+.right-box {
+     display: flex;
+     flex-direction: column;
+     width: 10%;
+     gap: 10px;
+     height: 60px;
+}
+
+.space{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
