@@ -58,6 +58,7 @@ public class ScheduledEventController {
         scheduledEventService.submitEntrant(entrantId);
         Entrant entrant = entrantService.findById(entrantId);
         ScheduledEvent se = entrant.getScheduledEvent();
+        log.info("타입은 =" + entrant.getApplicationStatus().getValue());
         return "redirect:/scheduled-event/entrant-list?scheduledEventId=" + se.getId();
     }
 
