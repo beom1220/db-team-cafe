@@ -8,21 +8,20 @@ import com.example.dbcafe.domain.reservation.domain.ReservationItem;
 import com.example.dbcafe.domain.reservation.domain.ScheduledEvent;
 import com.example.dbcafe.domain.reservation.dto.UserSelectDayDto;
 import com.example.dbcafe.domain.reservation.repository.ReservationItemRepository;
-import com.example.dbcafe.domain.user.domain.Level;
-import com.example.dbcafe.domain.user.domain.LevelHistory;
-import com.example.dbcafe.domain.user.domain.User;
+import com.example.dbcafe.domain.user.domain.*;
+import com.example.dbcafe.domain.user.dto.GiftKeepUserDto;
 import com.example.dbcafe.domain.user.dto.KeepUserDto;
 import com.example.dbcafe.domain.user.dto.MyPageDto;
+import com.example.dbcafe.domain.user.repository.CouponRepository;
 import com.example.dbcafe.domain.user.repository.LevelHistoryRepository;
+import com.example.dbcafe.domain.user.repository.OwnCouponRepository;
 import com.example.dbcafe.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.time.ZoneId;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +30,8 @@ public class UserService {
     private final SettingService settingService;
     private final LevelHistoryRepository levelHistoryRepository;
     private final ReservationItemRepository reservationItemRepository;
+    private final CouponRepository couponRepository;
+    private final OwnCouponRepository ownCouponRepository;
 
     public User findById(String id) {
         return userRepository.findUserById(id);
@@ -155,5 +156,23 @@ public class UserService {
             }
         }
         return "브론즈";
+    }
+
+    public void giftForKeepUser(GiftKeepUserDto dto) {
+        User user = userRepository.findUserById(dto.getUserId());
+        Coupon coupon = couponRepository.findCouponById(dto.getCouponId());
+        ReservationItem item = reservationItemRepository.findByReservationUserAndLast(user, true);
+        item.setKeeping(true);
+        reservationItemRepository.save(item);
+
+        OwnCoupon ownCoupon = ownCouponRepository.save(new OwnCoupon(coupon, user, CouponStatus.USABLE));
+
+        Date date = ownCoupon.getCreatedAt();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate newLocalDate = localDate.plusDays(ownCoupon.getCoupon().getPeriod());
+        Date dueDate = Date.from(newLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        ownCoupon.setDueDate(dueDate);
+        ownCoupon = ownCouponRepository.save(ownCoupon);
     }
 }
