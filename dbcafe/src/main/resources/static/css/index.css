@@ -13,14 +13,19 @@
   justify-content: space-between;
   position: relative;
 }
+
+
 .menu-list {
   display: flex;
-  flex-wrap: wrap; /* flex items이 여러 줄로 나뉠 수 있도록 설정 */
-  gap: 30px;
-  justify-content: space-between;
-  max-width: 1280px; /* 최대 너비 설정 */
-  margin: 0 auto; /* 가운데 정렬을 위한 마진 설정 */
+  flex-wrap: wrap;
+  flex-wrap: wrap;
+  max-width: 1280px;
+  justify-wrap: start;
+  align-items: start;
 }
+
+
+
 
 /** 모집중인 이벤트 모임 목록 */
 .event-box {
@@ -104,4 +109,7 @@
 .menu-title{
   font-size: 21px;
   font-weight: bold;
+}
+.menu-box {
+    margin: 0px 35px;
 }
