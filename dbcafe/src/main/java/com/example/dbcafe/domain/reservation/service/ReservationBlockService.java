@@ -54,9 +54,9 @@ public class ReservationBlockService {
     }
 
     public List<TimeOfReservationBlockDto> showTimeBlocks(LocalDate date) {
-        List<ReservationBlock> blocksOnDate = reservationBlockRepository.findByDate(date);
+        List<ReservationBlock> blocksOnDate = reservationBlockRepository.findByDate(date); // 해당 날짜 블럭 일단 다 가져옴.
 
-        Map<LocalTime, List<ReservationBlock>> groupedBlocks = new HashMap<>();
+        Map<LocalTime, List<ReservationBlock>> groupedBlocks = new HashMap<>(); // 시간대별로 끊었음. <날짜-시간대> 같은 거 묶인 거임.
         for (ReservationBlock block : blocksOnDate) {
             LocalTime startTime = block.getStartTime();
             if (!groupedBlocks.containsKey(startTime)) {
@@ -65,18 +65,23 @@ public class ReservationBlockService {
             groupedBlocks.get(startTime).add(block);
         }
 
-        List<TimeOfReservationBlockDto> dtos = new ArrayList<>();
+        List<TimeOfReservationBlockDto> dtos = new ArrayList<>(); // Dto로 변환과정
         for (Map.Entry<LocalTime, List<ReservationBlock>> entry : groupedBlocks.entrySet()) {
             LocalTime startTime = entry.getKey();
             LocalTime endTime = entry.getValue().get(0).getEndTime();
             boolean isBookable = false;
+            ReservationBlock b = null;
+            int blockId = 0;
             for (ReservationBlock block : entry.getValue()) {
                 if (block.getIsBookable()) {
                     isBookable = true;
+                    b = reservationBlockRepository.findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(date, startTime, true);
+                    blockId = b.getId();
                     break;
                 }
             }
-            TimeOfReservationBlockDto dto = new TimeOfReservationBlockDto(startTime, endTime, isBookable);
+
+            TimeOfReservationBlockDto dto = new TimeOfReservationBlockDto(blockId, startTime, endTime, isBookable);
             dtos.add(dto);
         }
         return dtos;

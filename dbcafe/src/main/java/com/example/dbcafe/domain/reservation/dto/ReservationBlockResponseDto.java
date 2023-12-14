@@ -11,6 +11,8 @@ import java.time.LocalTime;
 @Setter
 @AllArgsConstructor
 public class ReservationBlockResponseDto {
+    private int blockId;
+
     private LocalDate date;
 
     private String dayOfWeek;

@@ -21,17 +21,17 @@ import java.util.List;
 public class ReservationController {
     private final ReservationService reservationService;
 
-    @GetMapping
-    public String reservationForm(@RequestParam(name = "date") LocalDate date, @RequestParam(name = "startTime") LocalTime startTime, @RequestParam(name = "endTime") LocalTime endTime, Model model) {
-        ReservationBlockRequestDto dto = new ReservationBlockRequestDto(date, startTime, endTime);
+    @GetMapping("/{blockId}")
+    public String reservationForm(@PathVariable int blockId, Model model) {
+        ReservationBlockRequestDto dto = reservationService.convertToBlockRequestDto(blockId);
         List<ReservationBlockResponseDto> responseDtos = reservationService.calDayOfWeekAndDiscountRatio(dto);
         model.addAttribute("reservationBlocks", responseDtos);
         return "reservation/form";
     }
 
-    @PostMapping
-    public String submitReservation(@ModelAttribute ReservationRequestDto reservationInfo, HttpSession session) {
-        reservationService.submitReservation(reservationInfo, reservationInfo.getBlocks(), session);
+    @PostMapping("/{blockId}")
+    public String submitReservation(@PathVariable int blockId, @ModelAttribute ReservationRequestDto dto, HttpSession session) {
+        reservationService.submitReservation(dto, session);
         return "redirect:/";
     }
 

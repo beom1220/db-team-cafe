@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+
+  <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+
   <title>예약 시간 선택 페이지</title>
   <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
   <link th:href="@{/css/reservation.css}" href="../static/css/reservation.css" rel="stylesheet">
@@ -18,27 +22,40 @@
       <div class="time-container">
         <hr>
         <h3>시간대 선택</h3>
-        <ul class="time-ul" th:each="time : ${times}">
-          <li class="time-li" th:if="${time.isBookable}">
-            <span th:text="${time.startTime+ '~' + time.endTime}">00:00 ~ 00:00</span>
-            <div class="row-box">
-              <b>예약정보 </b>
-              <p th:text="${date}+''+${day}">0000-00-00</p>
-              <p th:text="${time.startTime}">0</p>
-              <p th:text="${time.endTime}">0</p>
-            </div>
-            <p th:text="${time.startTime} + 'dfa' +${time.endTime}">0</p>
-            <!-- Add onclick attribute to call logInformation function -->
-            <input type="radio" name="timeSlot" id="radio_${time.startTime}_${time.endTime}" th:attr="onclick='logInformation(\'' + ${time.startTime} + '\', \'' + ${time.endTime} + '\', \'' + ${date} + '\')'">
 
-          </li>
-        </ul>
-        <form th:action="@{/reservation-block/select-time(date=${date})}" method="post">
-          <input type="hidden" name="startTime" id="selectedStartTime" value="">
-          <input type="hidden" name="endTime" id="selectedEndTime" value="">
-          <input type="hidden" name="date" id="selectedDate" value="">
-          <button type="submit" class="reservationButton">예약 정보 입력하기</button>
-        </form>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          <div class="col" th:each="time: ${times}">
+            <a th:href="@{|/reservation/${time.blockId}|}" style="text-decoration: none; color: inherit;">
+              <div th:if="${time.isBookable}" class="card h-100 text-center">
+                <div class="card-body">
+                  <span class="card-title" th:text="${time.startTime}">시작</span>
+                  <span class="card-title" th:text="${time.endTime}">끝</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+<!--        <ul class="time-ul" th:each="time : ${times}">-->
+<!--          <li class="time-li" th:if="${time.isBookable}">-->
+<!--            <span th:text="${time.startTime+ '~' + time.endTime}">00:00 ~ 00:00</span>-->
+<!--            <div class="row-box">-->
+<!--              <b>예약정보 </b>-->
+<!--              <p th:text="${date}+''+${day}">0000-00-00</p>-->
+<!--              <p th:text="${time.startTime}">0</p>-->
+<!--              <p th:text="${time.endTime}">0</p>-->
+<!--            </div>-->
+<!--            <p th:text="${time.startTime} + 'dfa' +${time.endTime}">0</p>-->
+<!--            &lt;!&ndash; Add onclick attribute to call logInformation function &ndash;&gt;-->
+<!--            <input type="radio" name="timeSlot" id="radio_${time.startTime}_${time.endTime}" th:attr="onclick='logInformation(\'' + ${time.startTime} + '\', \'' + ${time.endTime} + '\', \'' + ${date} + '\')'">-->
+
+<!--          </li>-->
+<!--        </ul>-->
+<!--        <form th:action="@{/reservation-block/select-time(date=${date})}" method="post">-->
+<!--          <input type="hidden" name="startTime" id="selectedStartTime" value="">-->
+<!--          <input type="hidden" name="endTime" id="selectedEndTime" value="">-->
+<!--          <input type="hidden" name="date" id="selectedDate" value="">-->
+<!--          <button type="submit" class="reservationButton">예약 정보 입력하기</button>-->
+<!--        </form>-->
       </div>
       <div class="footer-box">
         <div class="text-box">
