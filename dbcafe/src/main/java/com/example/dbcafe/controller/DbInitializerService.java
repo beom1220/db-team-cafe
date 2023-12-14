@@ -392,10 +392,12 @@ public class DbInitializerService {
     public void OwnCouponEntity(){
         List<OwnCoupon> ownCouponList = new ArrayList<>();
 
-        ownCouponList.add(new OwnCoupon(couponRepository.findCouponById(1), userRepository.findUserById("003"), CouponStatus.USABLE));
-        ownCouponList.add(new OwnCoupon(couponRepository.findCouponById(2), userRepository.findUserById("002"), CouponStatus.USABLE));
-        ownCouponList.add(new OwnCoupon(couponRepository.findCouponById(3), userRepository.findUserById("004"), CouponStatus.USABLE));
-        ownCouponList.add(new OwnCoupon(couponRepository.findCouponById(4), userRepository.findUserById("005"), CouponStatus.USABLE));
+        ownCouponList.add(new OwnCoupon(couponRepository.findCouponById(1), userRepository.findUserById("003"), Date.valueOf(LocalDate.of(2024,2,15)), CouponStatus.USABLE));
+        ownCouponList.add(new OwnCoupon(couponRepository.findCouponById(1), userRepository.findUserById("001"), Date.valueOf(LocalDate.of(2024,2,15)), CouponStatus.USABLE));
+        ownCouponList.add(new OwnCoupon(couponRepository.findCouponById(2), userRepository.findUserById("001"), Date.valueOf(LocalDate.of(2024,2,15)), CouponStatus.USABLE));
+        ownCouponList.add(new OwnCoupon(couponRepository.findCouponById(2), userRepository.findUserById("002"), Date.valueOf(LocalDate.of(2024,2,15)), CouponStatus.USABLE));
+        ownCouponList.add(new OwnCoupon(couponRepository.findCouponById(3), userRepository.findUserById("004"), Date.valueOf(LocalDate.of(2024,2,15)), CouponStatus.USABLE));
+        ownCouponList.add(new OwnCoupon(couponRepository.findCouponById(4), userRepository.findUserById("005"), Date.valueOf(LocalDate.of(2024,2,15)), CouponStatus.USABLE));
 
         ownCouponRepository.saveAll(ownCouponList);
     }
@@ -416,6 +418,7 @@ public class DbInitializerService {
         levelHistoryList.add(new LevelHistory(userRepository.findUserById("004"), 29, Level.SILVER, 2023, 11));
         levelHistoryList.add(new LevelHistory(userRepository.findUserById("005"), 30, Level.SILVER, 2023, 11));
         levelHistoryList.add(new LevelHistory(userRepository.findUserById("006"), 36, Level.SILVER, 2023, 11));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("015"), 500, Level.VIP, 2023, 11));
 
         levelHistoryRepository.saveAll(levelHistoryList);
     }

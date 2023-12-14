@@ -51,4 +51,11 @@ public class OwnCoupon {
         this.user = user;
         this.couponStatus = couponStatus;
     }
+
+    public OwnCoupon(Coupon coupon, User user, Date dueDate, CouponStatus couponStatus) {
+        this.coupon = coupon;
+        this.user = user;
+        this.dueDate = dueDate;
+        this.couponStatus = couponStatus;
+    }
 }

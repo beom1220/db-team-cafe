@@ -1,6 +1,7 @@
 package com.example.dbcafe.domain.order.controller;
 
 import com.example.dbcafe.domain.order.domain.Cart;
+import com.example.dbcafe.domain.order.domain.CartItem;
 import com.example.dbcafe.domain.order.domain.Orders;
 import com.example.dbcafe.domain.order.dto.UserNextLevelDto;
 import com.example.dbcafe.domain.order.dto.reservationSubmitOrderDto;
@@ -50,18 +51,30 @@ public class OrdersController {
 
     @GetMapping("/reservation-form")
     public String reservationForm(Model model, HttpSession session) {
+        session.setAttribute("loggedInUser", "001"); // 001 유저로 임시 로그인
         User user = userService.findById((String) session.getAttribute("loggedInUser"));
         Cart cart = cartService.findByUser(user);
+        session.setAttribute("reservationItem", reservationService.findItemByIdAndTempPw(5, "1111"));
         ReservationItem item = (ReservationItem) session.getAttribute("reservationItem");
         UserNextLevelDto dto = userService.convertToNextLevelDto(user);
+        int totalPrice = 0;
+        for (CartItem cartitem : cart.getCartItems()) {
+            totalPrice += cartitem.getQuantity()*cartitem.getPrice();
+        }
+        // 버튼 눌리면 Dto에 값 들어가서 화면에 표시되는 방식으로 할 예정???
 
         model.addAttribute("cartItems", cart.getCartItems());
         model.addAttribute("ownCoupons", user.getOwnCoupons());
         model.addAttribute("reservationItem", item);
         model.addAttribute("levelInfo", dto);
+        model.addAttribute("totalPrice", totalPrice);
 
         return "user/orderForm";
     }
+//    @GetMapping("/reservation-button")
+//    public void orderModeChange(){
+//        return "redirct:/"
+//    }
 
     @PostMapping("/reservation-form")
     public String createOrderByReservation(@ModelAttribute reservationSubmitOrderDto dto, HttpSession session, RedirectAttributes redirectAttributes) {

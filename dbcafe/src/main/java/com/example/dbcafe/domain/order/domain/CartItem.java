@@ -33,4 +33,8 @@ public class CartItem {
         this.menu = menu;
         this.quantity = quantity;
     }
+
+    public int getPrice(){
+        return this.menu.getPrice()*this.getQuantity();
+    }
 }
