@@ -11,6 +11,8 @@ import java.time.LocalTime;
 @Getter
 @AllArgsConstructor
 public class PackageReservationBlockDto {
+    private int blockId;
+
     private LocalDate startDate;
 
     private LocalTime startTime;
