@@ -25,6 +25,7 @@
             <form id="dateForm" action="/reservation-block/select-time" method="get">
                 <div th:each="day : ${days}" class="row-box">
                     <p th:text="${day.date}">데이터</p>
+                    <p th:text="${day.dayOfWeek}">데이터</p>
                     <input type="radio" name="date" th:value="${day.date}" />
                 </div>
                 <button type="button" onclick="submitForm()">시간 선택하러 가기</button>

@@ -11,7 +11,7 @@ import java.time.LocalTime;
 @Getter
 @AllArgsConstructor
 public class PackageReservationBlockResponseDto {
-    private LocalDate Date;
+    private LocalDate date;
 
     private LocalTime startTime;
 

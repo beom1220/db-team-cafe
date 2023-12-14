@@ -11,15 +11,6 @@
 <div class="container">
   <div class="box">
     <div class="package-box">
-      <select name="" id="">
-        <option value="">시간대를 선택해 주세요.</option>
-        <option value="">10:00 ~ 12:00</option>
-        <option value="">12:00 ~ 14:00</option>
-        <option value="">14:00 ~ 16:00</option>
-        <option value="">16:00 ~ 18:00</option>
-        <option value="">18:00 ~ 20:00</option>
-        <option value="">20:00 ~ 22:00</option>
-      </select>
       <div class="text-box">
         <p class="content-text">* 패키지 예약은 변경이 불가능 하며 취소 시 한 번에 취소가 되는 점 유의 부탁드립니다.</p>
         <p class="content-text">* 모임 예약은 최소 6명에서 10명 이내의 인원만 수용이 가능합니다.</p>
@@ -28,130 +19,46 @@
       </div>
     </div>
     <div class="calendar">
-      <div class="month-row">
-        <button id="prevMonthBtn" class="monthButton">&lt;</button>
-        <h1 id="currentMonth">12월</h1>
-        <button id="nextMonthBtn" class="monthButton">&gt;</button>
+      <div>
+        <select id="dayOfWeek">
+          <option value="">전체요일</option>
+          <option value="월요일">월요일</option>
+          <option value="화요일">화요일</option>
+          <option value="수요일">수요일</option>
+          <option value="목요일">목요일</option>
+          <option value="금요일">금요일</option>
+        </select>
+        <select id="timeSlot">
+          <option value="">전체시간</option>
+          <option value="10:00">10:00~12:00</option>
+          <option value="12:00">12:00~14:00</option>
+          <option value="14:00">14:00~16:00</option>
+          <option value="16:00">16:00~18:00</option>
+          <option value="18:00">18:00~20:00</option>
+        </select>
+        <button onclick="search()">조회</button>
       </div>
-      <hr>
-      <div id="calendarContainer"></div> <!-- 달력 -->
-      <div class="right-box">
-        <button class="reservationButton">예약 정보 입력하기</button>
+      <div th:each="package : ${packages}">
+        <p><b th:text="${package.startDate} + '(' + ${package.dayOfWeek} + ')'"></b> 부터 4주간 <b th:text="${package.startTime} + '~' + ${package.endTime}"></b>패키지</p>
       </div>
+      <input type="hidden" id="startTime" name="startTime" value="">
+      <button onclick="selectDate()"></button>
     </div>
   </div>
 </div>
 
 <script>
-    function getCurrentYearMonth() {
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = today.getMonth() + 1;
-      const day = today.getDate();
-      return { year, month, day };
+    function search() {
+      var dayOfWeek = document.getElementById('dayOfWeek').value;
+      var startTime = document.getElementById('timeSlot').value;
+
+      // You can use the extracted values to construct your URL
+      var url = "/reservation-block/package/search?dayOfWeek=" + encodeURIComponent(dayOfWeek) +
+                "&startTime=" + encodeURIComponent(startTime);
+
+      // Redirect to the constructed URL
+      window.location.href = url;
     }
-
-    // 달력을 생성하는 함수
-    function generateCalendar(year, month, today) {
-      const daysInMonth = new Date(year, month, 0).getDate();
-      const firstDayOfMonth = new Date(year, month - 1, 1).getDay(); // 일요일부터 토요일까지 0부터 6까지의 숫자
-
-      const calendarContainer = document.getElementById('calendarContainer');
-      calendarContainer.innerHTML = ''; // 기존에 있는 내용을 초기화합니다.
-
-      // 테이블 생성
-      const table = document.createElement('table');
-      const thead = document.createElement('thead');
-      const tbody = document.createElement('tbody');
-
-      // 테이블 헤더 생성
-      const headerRow = document.createElement('tr');
-      const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
-      for (const day of daysOfWeek) {
-        const th = document.createElement('th');
-        th.textContent = day;
-        headerRow.appendChild(th);
-      }
-      thead.appendChild(headerRow);
-      table.appendChild(thead);
-
-      // 테이블 본문 생성
-      let dayCounter = 1;
-      for (let i = 0; i < 6; i++) {
-        const row = document.createElement('tr');
-        for (let j = 0; j < 7; j++) {
-          const td = document.createElement('td');
-          if (i === 0 && j < firstDayOfMonth) {
-            // 이번 달 시작일 이전의 빈 칸
-            td.textContent = '';
-          } else if (dayCounter <= daysInMonth) {
-            // 이번 달의 날짜 표시
-            td.textContent = dayCounter;
-
-            // 오늘 날짜인 경우
-            if (today.year === year && today.month === month && today.day === dayCounter) {
-              td.classList.add('today');
-            }
-
-            // 2주 이내의 날짜인 경우
-            const nextTwoWeeks = new Date(today.year, today.month - 1, today.day + 14);
-            const currentDate = new Date(year, month - 1, dayCounter);
-            const TODAY = parseInt(today.day)
-
-            if (dayCounter <= TODAY + 14 && dayCounter >= TODAY) {
-              td.classList.add('in2weeks');
-            }
-
-            // 월요일 또는 수요일인 경우
-            if (j === 1 || j === 3) {
-              td.classList.add('weekday-cell');
-            }
-
-            dayCounter++;
-          }
-          row.appendChild(td);
-        }
-        tbody.appendChild(row);
-      }
-      table.appendChild(tbody);
-      calendarContainer.appendChild(table);
-    }
-
-    // 현재 년월을 표시하는 함수
-    function updateCurrentMonth(year, month) {
-      const currentMonthElement = document.getElementById('currentMonth');
-      currentMonthElement.textContent = `${month}월`;
-    }
-
-    // 이전 달로 이동하는 이벤트 핸들러
-    document.getElementById('prevMonthBtn').addEventListener('click', function () {
-      const { year, month } = getCurrentYearMonth();
-      if (month === 1) {
-        generateCalendar(year - 1, 12, { year, month, day: 1 });
-        updateCurrentMonth(year - 1, 12);
-      } else {
-        generateCalendar(year, month - 1, { year, month, day: 1 });
-        updateCurrentMonth(year, month - 1);
-      }
-    });
-
-    // 다음 달로 이동하는 이벤트 핸들러
-    document.getElementById('nextMonthBtn').addEventListener('click', function () {
-      const { year, month } = getCurrentYearMonth();
-      if (month === 12) {
-        generateCalendar(year + 1, 1, { year, month, day: 1 });
-        updateCurrentMonth(year + 1, 1);
-      } else {
-        generateCalendar(year, month + 1, { year, month, day: 1 });
-        updateCurrentMonth(year, month + 1);
-      }
-    });
-
-    // 초기 로딩 시 현재 달력 표시
-    const { year, month } = getCurrentYearMonth();
-    generateCalendar(year, month, { year, month, day: 6 }); // 오늘은 6일로 가정
-    updateCurrentMonth(year, month);
-
   </script>
 </body>
 </html>
