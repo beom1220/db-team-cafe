@@ -65,3 +65,8 @@
     font-weight: 700;
     color: #858181;
 }
+
+.prizeList {
+    height: 605px;
+    overflow: auto;
+}

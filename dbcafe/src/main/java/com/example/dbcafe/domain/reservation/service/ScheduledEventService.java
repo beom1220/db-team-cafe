@@ -4,6 +4,7 @@ import com.example.dbcafe.domain.reservation.domain.*;
 import com.example.dbcafe.domain.reservation.dto.*;
 import com.example.dbcafe.domain.reservation.repository.EventRepository;
 import com.example.dbcafe.domain.reservation.repository.PlaceRepository;
+import com.example.dbcafe.domain.reservation.repository.ReservationBlockRepository;
 import com.example.dbcafe.domain.reservation.repository.ScheduledEventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class ScheduledEventService {
     private final EventRepository eventRepository;
     private final ReservationBlockService reservationBlockService;
     private final PlaceRepository placeRepository;
+    private final ReservationBlockRepository reservationBlockRepository;
 
     public List<ScheduledEvent> findAllRecruiting() {
         return scheduledEventRepository.findAllByIsClosed(false);
@@ -109,14 +111,12 @@ public class ScheduledEventService {
     }
 
     public void addScheduledEvent(ScheduledDto dto) {
+        ReservationBlock block = reservationBlockRepository.findReservationBlockById(dto.getBlockId());
         Event event = eventRepository.findEventById(dto.getEventId());
-        int placeId = reservationBlockService.findPlaceByDateAndTime(dto.getDate(), dto.getStartTime());
-        Place place = placeRepository.findPlaceById(placeId);
-        ScheduledEvent scheduledEvent = new ScheduledEvent(event, place,
-                dto.getDate(), dto.getStartTime(), dto.getEndTime(),
+        ScheduledEvent scheduledEvent = new ScheduledEvent(event, block.getPlace(),
+                block.getDate(), block.getStartTime(), block.getEndTime(),
                 false, dto.getTag());
         scheduledEventRepository.save(scheduledEvent);
-        ReservationBlock block = reservationBlockService.findBlockByPlaceAndDateAndStartTime(place, dto.getDate(), dto.getStartTime());
         block.setBookable(false);
         reservationBlockService.save(block);
     }

@@ -44,6 +44,6 @@ public class SettingController {
     @PostMapping("/level")
     public String editLevel(@ModelAttribute EditLevelDto dto) {
         settingService.editLevel(dto);
-        return "redirect:/level";
+        return "redirect:/setting/level";
     }
 }

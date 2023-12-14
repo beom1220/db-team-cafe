@@ -4,12 +4,8 @@
         <title>DB Cafe</title>
         <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
         <link rel="stylesheet" th:href="@{/css/userPrize.css}" type="text/css"/>
-</head>
+    </head>
     <body>
-    <div th:if="${session.selectedPrize} != null">
-        <h2>hello</h2>
-        <h2 th:text="${session.selectedPrize.name}"></h2>
-    </div>
         <div id="navbar">
             <div class="wrap">
                 <div class="item">
@@ -30,16 +26,30 @@
             </div>
         </div>
         <div id="basic">
+
+
             <div class="content">
-                <div class="prizeList">
-                    <span> 상품 목록 </span>
-                    <hr class="detail_hr">
-                    <th:block th:each="prize: ${prizes}">
+                <div class="prizeRelative">
+                    <div class="prizeList">
+                        <span> 상품 목록 </span>
+                        <hr class="detail_hr">
+                        <th:block th:each="prize: ${prizes}">
                         <span>
                             <p th:text="${prize.name}"></p>
                         </span>
-                    </th:block>
+                        </th:block>
+                    </div>
+                    <div class="recentPrize">
+                        <span> 최근 뽑은 상품 </span>
+                        <hr class="detail_hr">
+                        <span>
+                            <p th:text="${last.prize.name}"></p>
+                            <p th:text="${last.createdAt}"></p>
+                        </span>
+                    </div>
                 </div>
+
+
                 <div class="gameContent">
                     <div class="gameBoxImage">
                         <img th:src="@{/image/GameImage.jpg}" alt="이미지 로딩 실패">
@@ -63,6 +73,28 @@
                             </div>
                         </button>
                     </form>
+                </div>
+
+
+                <div class="drawResult">
+                    <span>당첨 현황</span>
+                    <hr class="detail_hr">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>유저 ID</th>
+                                <th>상품명</th>
+                                <th>날짜</th>
+                            </tr>
+                        </thead>
+                        <tbody th:each="histrorie: ${histrories}">
+                            <tr>
+                                <td th:text="${histrorie.userId}"></td>
+                                <td th:text="${histrorie.prizeName}"></td>
+                                <td th:text="${histrorie.date}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
