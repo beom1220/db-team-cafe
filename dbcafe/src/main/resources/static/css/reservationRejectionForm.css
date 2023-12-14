@@ -45,15 +45,6 @@
     font-weight: 700;
 }
 
-.infoCoupon .sale span:nth-child(1) {
-    font-size: 17px;
-    font-weight: 700;
-}
-
-.sale {
-    margin-bottom: 20px;
-}
-
 .coin {
     display: flex;
     flex-direction: row;

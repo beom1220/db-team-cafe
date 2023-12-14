@@ -68,6 +68,7 @@ public class ReservationController {
             RejectionFormDto dto = reservationService.convertToRejectionFormDto(reservationItemId);
             List<CouponSelectDto> coupons = reservationService.getCouponList();
 
+            model.addAttribute("itemId", reservationItemId);
             model.addAttribute("user", dto);
             model.addAttribute("coupons", coupons);
             return "admin/reservationRejectionForm";

@@ -172,6 +172,9 @@ public class ReservationService {
         log.info(user.getId() + "님의 전화번호인 " + user.getPhone() + "으로 다음과 같은 문자 전송");
         log.info(dto.getContent() + " 사과의 의미로 " + dto.getCoin() + "개의 코인과 "
                 + coupon.getDiscountRatio() + "%의 할인쿠폰을 제공합니다.");
+
+        ReservationItem item = reservationItemRepository.findReservationItemById(dto.getItemId());
+        reservationItemRepository.delete(item);
     }
 
     public ReservationBlockRequestDto convertToBlockRequestDto(int blockId) {

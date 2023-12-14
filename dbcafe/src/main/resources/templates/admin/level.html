@@ -51,7 +51,7 @@
                             <form th:action method="post">
                                 <tr>
                                     <td class="leftTab" th:text="${levels[i].name}" th:id="'level' + ${i}">
-                                        <input type="hidden" value="%{i}" name="levelIndex">
+                                        <input type="hidden" th:value="${i}" name="levelIndex">
                                     </td>
                                     <td th:text="${levels[i].userCount}"></td>
                                     <td th:text="${levels[i].totalDiscountAmount}"></td>
@@ -60,9 +60,8 @@
                                     <td th:text="${levels[i].cutLine} + '%'"></td>
                                     <td>
                                         <div class="btnGroup">
-                                            <button type="button"
-                                                    class="btn"
-                                                    th:onclick="'a(' + ${i} + ');'">
+                                            <button type="submit"
+                                                    class="btn">
                                                 <div class="corBtn">
                                                     수정
                                                 </div>
@@ -71,7 +70,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4"></td>
+                                    <td colspan="4">
+                                        <input type="hidden" th:value="${i}" name="levelIndex">
+                                    </td>
                                     <td>
                                         <input type="text"
                                                th:value="${levels[i].discountRatio}"

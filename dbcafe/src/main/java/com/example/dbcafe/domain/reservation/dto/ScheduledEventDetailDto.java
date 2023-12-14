@@ -38,6 +38,7 @@ public class ScheduledEventDetailDto {
 
     private int volunteer;
 
+
     private String img;
 
     private Tag tag;
