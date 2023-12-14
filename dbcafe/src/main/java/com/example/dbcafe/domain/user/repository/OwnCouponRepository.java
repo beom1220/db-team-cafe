@@ -10,4 +10,6 @@ public interface OwnCouponRepository extends JpaRepository<OwnCoupon, Integer> {
     OwnCoupon findOwnCouponById(int id);
 
     List<OwnCoupon> findAllOwnCouponByCouponAndOrdersIsNotNull(Coupon c);
+
+    List<OwnCoupon> findAllOwnCouponByCoupon(Coupon c);
 }

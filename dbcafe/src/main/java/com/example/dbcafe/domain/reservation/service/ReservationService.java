@@ -157,6 +157,8 @@ public class ReservationService {
         Coupon coupon = couponRepository.findCouponById(dto.getCouponId());
         OwnCoupon ownCoupon = new OwnCoupon(coupon, user, CouponStatus.USABLE);
         ownCoupon = ownCouponRepository.save(ownCoupon);
+        coupon.setIssuance(coupon.getIssuance() + 1);
+        couponRepository.save(coupon);
 
         Date date = ownCoupon.getCreatedAt();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

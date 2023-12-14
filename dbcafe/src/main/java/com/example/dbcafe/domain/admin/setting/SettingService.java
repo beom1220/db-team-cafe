@@ -31,13 +31,15 @@ public class SettingService {
             String name = level.getValue();
             List<User> users = userRepository.findAllUserByLevel(level);
             int discountRatio = findValueByName(name + "할인율");
-            List<Orders> ordersList = ordersRepository.findAllOrdersByLevelDiscountRatio(discountRatio);
+            List<Orders> ordersList = ordersRepository.findAllOrdersByLevel(level);
             int totalLevelDiscountAmount = 0;
             for (Orders o : ordersList) {
                 totalLevelDiscountAmount += o.getLevelDiscountAmount();
             }
-//            int averageDiscountAmount = totalLevelDiscountAmount / ordersList.size();
-                        int averageDiscountAmount = totalLevelDiscountAmount / 1;
+            int averageDiscountAmount = 0;
+            if (ordersList.size() != 0) {
+                averageDiscountAmount = totalLevelDiscountAmount / ordersList.size();
+            }
             int cutLine = findValueByName(name + "기준");
             LevelDto dto = new LevelDto(name, users.size(), totalLevelDiscountAmount,
                     averageDiscountAmount, discountRatio, cutLine);
