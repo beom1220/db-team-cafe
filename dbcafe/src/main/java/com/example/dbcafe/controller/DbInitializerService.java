@@ -343,6 +343,35 @@ public class DbInitializerService {
         reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
                 LocalTime.of(18, 00), LocalTime.of(20, 00), true));
 
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,29),
+                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,5),
+                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,12),
+                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,19),
+                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(2), LocalDate.of(2024,1,26),
+                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,28),
+                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,4),
+                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,11),
+                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,18),
+                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,28),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,4),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,11),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
+        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,18),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
+
         reservationBlockRepository.saveAll(reservationBlockList);
     }
 

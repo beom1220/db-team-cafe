@@ -72,9 +72,9 @@ public class ReservationService {
         ReservationBlock block = reservationBlockRepository.findReservationBlockById(blockId);
         String dayOfWeek = DayOfWeekInKorean.valueOf(block.getDate().getDayOfWeek().name()).getDay();
         
-        for (LocalDate date = block.getDate(); date.isBefore(block.getDate().plusDays(35)); date = date.plusWeeks(1)){
+        for (LocalDate date = block.getDate(); date.isBefore(block.getDate().plusDays(28)); date = date.plusWeeks(1)){
             PackageReservationBlockResponseDto responseDto = new PackageReservationBlockResponseDto(blockId, date, block.getStartTime(), block.getEndTime(), dayOfWeek,
-                    calWeekdayDiscount(date), calWeekdayDiscount(date));
+                    calEarlybirdDiscount(date), calWeekdayDiscount(date));
             responseDtos.add(responseDto);
         }
         return responseDtos;
@@ -187,7 +187,7 @@ public class ReservationService {
     }
 
     public void submitPackageReservation(ReservationRequestDto dto, HttpSession session) {
-        User user = userService.findById((String) session.getAttribute("loggedIUser"));
+        User user = userService.findById((String) session.getAttribute("loggedInUser"));
         Reservation reservation = new Reservation(user, dto.getClassName(),
                 dto.getNumOfParticipant(), dto.getPrepaymentTotal(),
                 dto.getPaymentMethod(), true);
