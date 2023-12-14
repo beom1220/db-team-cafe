@@ -44,7 +44,7 @@ public class ReservationController {
 
     @PostMapping("/package")
     public String submitPackageReservation(@ModelAttribute ReservationRequestDto dto, HttpSession session){
-        reservationService.submitReservation(dto, dto.getBlocks(), session);
+//        reservationService.submitReservation(dto, dto.getBlocks(), session);
         return "redirect:/";
     }
 

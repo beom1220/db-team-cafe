@@ -36,7 +36,6 @@
                 <b><span th:text="${block.startTime}">시작시간</span><span>~</span><span th:text="${block.endTime}">끝시간</span></b>
                 <b th:text="${block.weekdayDiscountRatio}">주중할인율</b>
                 <b th:text="${block.earlybirdDiscountRatio}">얼리버드할인율</b>
-
                 <input type="hidden" th:value="${block.blockId}" th:name="'blockIds[' + ${iterStat.index} + ']'">
               </div>
             </div>

@@ -52,6 +52,12 @@ public class UserController {
         return "redirect:/";
     }
 
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("loggedInUser");
+        return "redirect:/";
+    }
+
     @GetMapping("/keep")
     public String keepUser(Model model, HttpSession session) {
         User user = userService.findById((String) session.getAttribute("loggedInUser"));

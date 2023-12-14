@@ -12,22 +12,32 @@
             <a th:href="@{/}"><h2>DSU COFFEE</h2></a>
         </div>
         <div class="top-link-box">
-            <a href="">메뉴</a>
-            <a th:href="@{/reservation-block}">모임예약</a>
-            <a href="">랭킹</a>
-            <a href="">뽑기</a>
-            <a href="">이벤트</a>
-            <a href="">교환권</a>
-            <a th:href="@{/user/keep}">이탈회원방지</a>
+            <!--  회원 페이지 컴포넌트 -->
+            <a th:href="@{/reservation-block}" th:if="${session.loggedInUser} != 'admin'">모임 예약</a>
+            <a th:href="@{/reservation-block/package}" th:if="${session.loggedInUser} != 'admin'">패키지 모임 예약</a>
+            <a th:href="@{/prize}" th:if="${session.loggedInUser} != 'admin'">뽑기</a>
+            <a th:href="@{/orders/reservation-form}" th:if="${session.loggedInUser} != 'admin'">선결제 주문 페이지</a>
+            <!--  관리자 페이지 컴포넌트 -->
+<!--            //관리자 쪽에서 모임 목록 페이지 없음 그래서 흠 어떻게 가지 .. 고민중-->
+            <a th:href="@{/scheduled-event/entrant-list?scheduledEventId=2}" th:if="${session.loggedInUser} == 'admin'">이벤트 모임 참가 현황</a>
+            <a th:href="@{/user/keep}" th:if="${session.loggedInUser} == 'admin'">이탈 회원 방지</a>
+            <a th:href="@{/scheduled-event/scheduleForm}" th:if="${session.loggedInUser} == 'admin'">이벤트 개최</a>
+<!--            <a th:href="@{/}">이벤트 등록</a> //이벤트 모임 정보 관리에 이벤트 모임 등록 하면 넘어가면 될듯-->
+            <a th:href="@{/event/statistics}" th:if="${session.loggedInUser} == 'admin'">이벤트 모임 정보 관리</a>
+            <a th:href="@{/prize-history/admin}" th:if="${session.loggedInUser} == 'admin'">뽑기 통계</a>
+            <a th:href="@{/prize/addForm}" th:if="${session.loggedInUser} == 'admin'">뽑기 상품 관리</a>
+            <a th:href="@{/setting/level}" th:if="${session.loggedInUser} == 'admin'">등급 관리</a>
+            <a th:href="@{/coupon/form}" th:if="${session.loggedInUser} == 'admin'">쿠폰 관리</a>
+            <a th:href="@{/reservation/admin}" th:if="${session.loggedInUser} == 'admin'">일반 모임 정보 관리</a>
+            <a th:href="@{/reservation/admin-cancel}" th:if="${session.loggedInUser} == 'admin'">쿠폰 지급 페이지</a>
         </div>
         <div class="top-box">
-            <a th:href="@{/user/login}">로그인</a>
-            <a href="">회원가입</a>
-            <a th:href="@{/user/my-page}">마이페이지</a>
-<!--            로그인 시 보여질 컴포넌트-->
-<!--            <p>GOLD</p>-->
-<!--            <a href="">로그아웃</a>-->
-<!--            <a href="">마이페이지</a>-->
+            <!--  로그인 정보 있음 -->
+            <a th:href="@{/user/login}" th:if="${session.loggedInUser} == null">로그인</a>
+            <a href="" th:if="${session.loggedInUser} == null">회원가입</a>
+            <!--  로그인 정보 없음 -->
+            <a th:href="@{/user/my-page}" th:if="${session.loggedInUser} != null and ${session.loggedInUser} != admin">마이페이지</a>
+            <form th:action="@{/user/logout}" method="post"><button type="submit" th:if="${session.loggedInUser} != null">로그아웃</button></form>
         </div>
     </div>
 </div>
