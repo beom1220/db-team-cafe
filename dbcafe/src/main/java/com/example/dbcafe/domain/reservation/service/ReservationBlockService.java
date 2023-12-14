@@ -90,15 +90,16 @@ public class ReservationBlockService {
     public List<ReservationBlockDateTimeDto> findAllBookableBlock() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        List<ReservationBlock> blocks = reservationBlockRepository.findByDateGreaterThanEqualAndIsBookableTrueOrderByDateAscStartTimeAsc(LocalDate.now());
+//        List<ReservationBlock> blocks = reservationBlockRepository.findByDateGreaterThanEqualAndIsBookableTrueOrderByDateAscStartTimeAsc(LocalDate.now());
+        List<ReservationBlock> blocks = reservationBlockRepository.findDistinctByIsBookableAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(LocalDate.now());
         List<ReservationBlockDto> dtos = new ArrayList<>();
         for (ReservationBlock block : blocks) {
             ReservationBlockDto dto = new ReservationBlockDto(block.getDate(),
                     block.getStartTime(), block.getEndTime());
-
-            if (!dtos.contains(dto)) { // 같은 날짜, 같은 시간대는 하나만 띄우기 위함.
-                dtos.add(dto);
-            }
+            dtos.add(dto);
+//            if (!dtos.contains(dto)) { // 같은 날짜, 같은 시간대는 하나만 띄우기 위함.
+//                dtos.add(dto);
+//            }
         }
         List<ReservationBlockDateTimeDto> dateTimeDtos = new ArrayList<>();
         for (ReservationBlockDto dto : dtos) {
@@ -127,26 +128,24 @@ public class ReservationBlockService {
 
     public List<PackageReservationBlockDto> findAllPackagesAndConvertToDto() {
         LocalDate today = LocalDate.now();
-        List<ReservationBlock> blocks = reservationBlockRepository.findAllByIsBookableAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(true, today);
+//        List<ReservationBlock> blocks = reservationBlockRepository.findAllByIsBookableAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(true, today); // 오늘 이후의 모든 예약 가능한 블록을 가져옴. (날짜, 시간 순으로 정렬)
+        List<ReservationBlock> blocks = reservationBlockRepository.findDistinctByIsBookableAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(today); // 오늘 이후 예약 가능한 블럭이 있는 날짜와 시간에 대해 하나씩 블럭을 가져옴.
         return getPackageReservationBlockDtos(blocks);
     }
 
-    private static List<PackageReservationBlockDto> getPackageReservationBlockDtos(List<ReservationBlock> blocks) {
-        List<PackageReservationBlockDto> dtos = new ArrayList<>();
-        for (ReservationBlock b : blocks) {
-            ReservationBlock plusOneWeek = b;
-            ReservationBlock plusTwoWeek = b;
-            ReservationBlock plusThreeWeek = b;
-            plusOneWeek.setDate(b.getDate().plusDays(7));
-            plusTwoWeek.setDate(b.getDate().plusDays(14));
-            plusThreeWeek.setDate(b.getDate().plusDays(21));
-            if (!blocks.contains(plusOneWeek) | !blocks.contains(plusTwoWeek) | !blocks.contains(plusThreeWeek)) {
-                continue;
-            } else {
-                String dayOfWeek = DayOfWeekInKorean.valueOf(b.getDate().getDayOfWeek().name()).getDay();
-                dtos.add(new PackageReservationBlockDto(b.getDate(), b.getStartTime(),
-                        b.getEndTime(), dayOfWeek));
+    private List<PackageReservationBlockDto> getPackageReservationBlockDtos(List<ReservationBlock> blocks) {
+        List<PackageReservationBlockDto> dtos = new ArrayList<>(); // 담을 List 만듦.
+        outer: for (ReservationBlock b : blocks) { // 오늘 이후 가능한 모든 블럭 탐색
+            LocalDate startDate = b.getDate();
+            LocalTime startTime = b.getStartTime();
+            for (int i = 7; i <= 21; i += 7) {
+                ReservationBlock checkBlock = reservationBlockRepository.findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(startDate.plusDays(i), startTime, true);
+                if (checkBlock == null) {
+                    continue outer;
+                }
             }
+            String dayOfWeek = DayOfWeekInKorean.valueOf(b.getDate().getDayOfWeek().name()).getDay();
+            dtos.add(new PackageReservationBlockDto(b.getId(), b.getDate(), b.getStartTime(), b.getEndTime(), dayOfWeek));
         }
         return dtos;
     }
@@ -167,13 +166,17 @@ public class ReservationBlockService {
         }
         List<ReservationBlock> blocks = new ArrayList<>();
         if (!timeEmpty && !dayEmpty) {
-            blocks = reservationBlockRepository.findAllByIsBookableAndDayOfWeekAndStartTimeAndDateGreaterThanEqualOrderByDateAsc(true, dow, time, today);
+//            blocks = reservationBlockRepository.findAllByIsBookableAndDayOfWeekAndStartTimeAndDateGreaterThanEqualOrderByDateAsc(true, dow, time, today);
+            blocks = reservationBlockRepository.findDistinctByIsBookableAndDayOfWeekAndStartTimeAndDateGreaterThanEqualOrderByDateAsc(dow, time, today);
         } else if (!timeEmpty && dayEmpty) {
-            blocks = reservationBlockRepository.findAllByIsBookableAndStartTimeAndDateGreaterThanEqualOrderByDateAsc(true, time, today);
+//            blocks = reservationBlockRepository.findAllByIsBookableAndStartTimeAndDateGreaterThanEqualOrderByDateAsc(true, time, today);
+            blocks = reservationBlockRepository.findDistinctByIsBookableAndStartTimeAndDateGreaterThanEqualOrderByDateAsc(time, today);
         } else if (timeEmpty && !dayEmpty) {
-            blocks = reservationBlockRepository.findAllByIsBookableAndDayOfWeekAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(true, dow, today);
+//            blocks = reservationBlockRepository.findAllByIsBookableAndDayOfWeekAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(true, dow, today);
+            blocks = reservationBlockRepository.findDistinctByIsBookableAndDayOfWeekAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(dow, today);
         } else {
-            blocks = reservationBlockRepository.findAllByIsBookableAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(true, today);
+//            blocks = reservationBlockRepository.findAllByIsBookableAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(true, today);
+            blocks = reservationBlockRepository.findDistinctByIsBookableAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(today);
         }
         return getPackageReservationBlockDtos(blocks);
     }

@@ -35,16 +35,17 @@ public class ReservationController {
         return "redirect:/";
     }
 
-    @GetMapping("/package")
-    public String packageReservationForm(@ModelAttribute PackageReservationBlockDto dto, Model model){
-        List<PackageReservationBlockResponseDto> responseDtos = reservationService.calPackageDayOfWeekAndDiscountRatio(dto);
+    @GetMapping("/package/{blockId}")
+    public String packageReservationForm(@PathVariable int blockId, Model model){
+        List<PackageReservationBlockResponseDto> responseDtos = reservationService.calPackageDayOfWeekAndDiscountRatio(blockId);
         model.addAttribute("reservationBlocks", responseDtos);
         return "reservation/form";
     }
 
-    @PostMapping("/package")
-    public String submitPackageReservation(@ModelAttribute ReservationRequestDto dto, HttpSession session){
-        reservationService.submitReservation(dto, dto.getBlocks(), session);
+    @PostMapping("/package/{blockId}")
+    public String submitPackageReservation(@PathVariable int blockId, @ModelAttribute ReservationRequestDto dto, HttpSession session){
+//        reservationService.submitReservation(dto, dto.getBlocks(), session);
+        reservationService.submitPackageReservation(dto, session);
         return "redirect:/";
     }
 

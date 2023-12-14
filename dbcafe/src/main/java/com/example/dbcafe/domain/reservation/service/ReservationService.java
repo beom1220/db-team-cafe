@@ -67,12 +67,14 @@ public class ReservationService {
         return earlybirdDiscountRatio;
     }
 
-    public List<PackageReservationBlockResponseDto> calPackageDayOfWeekAndDiscountRatio(PackageReservationBlockDto dto){
+    public List<PackageReservationBlockResponseDto> calPackageDayOfWeekAndDiscountRatio(int blockId){
         List<PackageReservationBlockResponseDto> responseDtos = new ArrayList<>();
-        String dayOfWeek = DayOfWeekInKorean.valueOf(dto.getStartDate().getDayOfWeek().name()).getDay();
-        for (LocalDate date = dto.getStartDate(); date.isBefore(dto.getStartDate().plusDays(35));date = date.plusWeeks(1)){
-            PackageReservationBlockResponseDto responseDto = new PackageReservationBlockResponseDto(date, dto.getStartTime(), dto.getEndTime(), dayOfWeek,
-                    calWeekdayDiscount(dto.getStartDate()), calWeekdayDiscount(dto.getStartDate()));
+        ReservationBlock block = reservationBlockRepository.findReservationBlockById(blockId);
+        String dayOfWeek = DayOfWeekInKorean.valueOf(block.getDate().getDayOfWeek().name()).getDay();
+        
+        for (LocalDate date = block.getDate(); date.isBefore(block.getDate().plusDays(35)); date = date.plusWeeks(1)){
+            PackageReservationBlockResponseDto responseDto = new PackageReservationBlockResponseDto(blockId, date, block.getStartTime(), block.getEndTime(), dayOfWeek,
+                    calWeekdayDiscount(date), calWeekdayDiscount(date));
             responseDtos.add(responseDto);
         }
         return responseDtos;
@@ -182,5 +184,30 @@ public class ReservationService {
     public ReservationBlockRequestDto convertToBlockRequestDto(int blockId) {
         ReservationBlock block = reservationBlockRepository.findReservationBlockById(blockId);
         return new ReservationBlockRequestDto(blockId, block.getDate(), block.getStartTime(), block.getEndTime());
+    }
+
+    public void submitPackageReservation(ReservationRequestDto dto, HttpSession session) {
+        User user = userService.findById((String) session.getAttribute("loggedIUser"));
+        Reservation reservation = new Reservation(user, dto.getClassName(),
+                dto.getNumOfParticipant(), dto.getPrepaymentTotal(),
+                dto.getPaymentMethod(), true);
+        Reservation savedReservation = reservationRepository.save(reservation);
+
+        ReservationBlock basedBlock = reservationBlockRepository.findReservationBlockById(dto.getBlockIds().get(0));
+        LocalDate startDate = basedBlock.getDate();
+        LocalTime startTime = basedBlock.getStartTime();
+
+        for (int i = 0; i <= 21; i += 7) {
+            ReservationBlock packageBlock = reservationBlockRepository.findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(startDate.plusDays(i), startTime, true);
+            ReservationItem item = new ReservationItem(savedReservation, packageBlock, dto.getTempPw(),
+                    settingService.findValueByName("블록당선결제금액"), calEarlybirdDiscount(packageBlock.getDate()),
+                    calWeekdayDiscount(packageBlock.getDate()), true);
+            ReservationItem lastItem = reservationItemRepository.findByReservationUserAndLast(user, true);
+            lastItem.setLast(false);
+            reservationItemRepository.save(lastItem);
+            packageBlock.setBookable(false);
+            reservationBlockRepository.save(packageBlock);
+            reservationItemRepository.save(item);
+        }
     }
 }
