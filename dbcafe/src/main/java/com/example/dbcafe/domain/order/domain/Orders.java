@@ -1,5 +1,6 @@
 package com.example.dbcafe.domain.order.domain;
 
+import com.example.dbcafe.domain.user.domain.Level;
 import com.example.dbcafe.domain.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -64,6 +65,8 @@ public class Orders {
 
     private Date finishedTime;
 
+    private Level level;
+
     public Orders(User user, PaymentMethod paymentMethod, int totalPrice,
                   OrderStatus orderStatus, boolean b, int usedPrepaymentAmount,
                   int weekdayDiscountRatio, int weekdayDiscountAmount, int levelDiscountRatio,
@@ -80,5 +83,6 @@ public class Orders {
         this.levelDiscountAmount = levelDiscountAmount;
         this.usedVoucherAmount = usedVoucherAmount;
         this.finalPayment = finalPayment;
+        this.level = user.getLevel();
     }
 }

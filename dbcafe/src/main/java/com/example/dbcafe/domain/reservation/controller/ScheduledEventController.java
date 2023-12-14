@@ -1,7 +1,9 @@
 package com.example.dbcafe.domain.reservation.controller;
 
+import com.example.dbcafe.domain.reservation.domain.Entrant;
 import com.example.dbcafe.domain.reservation.domain.ScheduledEvent;
 import com.example.dbcafe.domain.reservation.dto.*;
+import com.example.dbcafe.domain.reservation.service.EntrantService;
 import com.example.dbcafe.domain.reservation.service.ScheduledEventService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +20,7 @@ import java.util.List;
 @RequestMapping("/scheduled-event")
 public class ScheduledEventController {
     private final ScheduledEventService scheduledEventService;
-
+    private final EntrantService entrantService;
 
     @GetMapping("/detail")
     public String eventDetail(@RequestParam(name = "id") int id, Model model) {
@@ -54,7 +56,9 @@ public class ScheduledEventController {
     @PostMapping("/entrant/submit")
     public String entrantSubmit(@RequestParam("entrantId") int entrantId) {
         scheduledEventService.submitEntrant(entrantId);
-        return "redirect:/entrant-list";
+        Entrant entrant = entrantService.findById(entrantId);
+        ScheduledEvent se = entrant.getScheduledEvent();
+        return "redirect:/scheduled-event/entrant-list?scheduledEventId=" + se.getId();
     }
 
     @PostMapping("/entrant/rejection")
@@ -62,9 +66,10 @@ public class ScheduledEventController {
         log.info("entrantId = " + entrantId);
         log.info("reason = " + rejectionReason);
         scheduledEventService.rejectEntrant(entrantId, rejectionReason);
-        log.info("hello");
+        Entrant entrant = entrantService.findById(entrantId);
+        ScheduledEvent se = entrant.getScheduledEvent();
 //        return "redirect:/entrant-list";
-        return "redirect:/scheduled-event/entrant-list?scheduledEventId=" + entrantId;
+        return "redirect:/scheduled-event/entrant-list?scheduledEventId=" + se.getId();
     }
 
     @GetMapping("/scheduleForm")

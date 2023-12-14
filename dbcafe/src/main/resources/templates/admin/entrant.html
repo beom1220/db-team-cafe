@@ -79,6 +79,9 @@
             <div class="pageLable">
                 이벤트 정보
             </div>
+            <div class="capaClass">
+                <th:block th:text="'총 인원: ' + ${scheduledEvent.capacity} + '명 / 신청인원: ' + ${scheduledEvent.volunteer} + '명'"></th:block>
+            </div>
             <hr class="detail_hr">
             <div class="eventList">
                 <table>
@@ -104,9 +107,9 @@
                                 <td th:text="${entrant.gender}"></td>
                                 <td th:text="${entrant.age}"></td>
                                 <td th:text="${entrant.applicationStatus}"></td>
-                                <td>
+                                <td th:if="${entrant.getApplicationStatus() == 'PENDING'}">
                                     <div class="btnGroup">
-                                        <button type="submit" class="btn">
+                                        <button type="button" class="btn" th:onclick="'entrantSubmit(' + ${entrant.id} + ');'">
                                             <div class="accBtn">
                                                 수락
                                             </div>
@@ -121,6 +124,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            <th:block th:if="${entrant.getApplicationStatus() == 'PENDING'}">
                             <tr>
                                 <td></td>
                                 <td>
@@ -134,6 +138,7 @@
                                 <td>
                                 </td>
                             </tr>
+                            </th:block>
                         </form>
                     </tbody>
                 </table>
@@ -141,6 +146,32 @@
         </div>
     </body>
     <script>
+        function  entrantSubmit(entrant_Id) {
+            var entrantIdValue = document.getElementById('entrantId' + entrant_Id).value;
+            var encodedEntrantId = encodeURIComponent(entrantIdValue);
+
+            var combinedValue = "/scheduled-event/entrant/submit?entrantId=" + encodedEntrantId;
+
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/scheduled-event/entrant/submit';
+
+            var entrantIdInput = document.createElement('input');
+            entrantIdInput.type = 'hidden';
+            entrantIdInput.name = 'entrantId';
+            entrantIdInput.value = entrantIdValue;
+
+            form.appendChild(entrantIdInput);
+
+            // Append the form to the document body
+            document.body.appendChild(form);
+
+            // Submit the form
+            form.submit();
+
+            // Remove the form from the document body (optional)
+            document.body.removeChild(form);
+        }
         function submitForm(entrant_Id) {
             // Get the values from the form
             var rejectionReasonValue = document.getElementById('rejectionReason').value;
@@ -152,9 +183,6 @@
 
             // Combine the values
             var combinedValue = "/scheduled-event/entrant/rejection?entrantId=" + encodedEntrantId + "&rejectionReason=" + encodedRejectionReason;
-
-            // Log or use the combined value as needed
-            console.log(combinedValue);
 
             // Create a dynamic form for POST request
             var form = document.createElement('form');

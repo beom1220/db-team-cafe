@@ -135,6 +135,12 @@
     gap: 15px;
 }
 
+.capaClass {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
 .btn {
     border: none;
     background-color: transparent;

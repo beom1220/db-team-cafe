@@ -10,6 +10,8 @@ import java.time.LocalTime;
 @Setter
 @AllArgsConstructor
 public class TimeOfReservationBlockDto {
+    private int blockId;
+
     private LocalTime startTime;
 
     private LocalTime endTime;

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+    <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <div class="content-box">
+            <h3>이탈회원방지</h3>
+            <hr/>
+            <p>누적 이용금액 30만원 이상 및 최근 방문 일자가 30일~90일 사이의 회원 정보를 볼 수 있습니다.</p>
+            <div class="colum-box">
+                <div class="space">
+                    <p>아이디</p>
+                    <p>직전등급</p>
+                    <p>누적이용금액</p>
+                    <p>최근방문일자</p>
+                </div>
+                <div th:each="userInfo : ${userInfos}" class="space">
+                    <p th:text="${userInfo.userId}">0000</p>
+                    <p th:text="${userInfo.bestLevel}">0000</p>
+                    <p th:text="${userInfo.acc}">0000</p>
+                    <p th:text="${userInfo.lastReservation}">0000</p>
+                </div>
+            </div>
+            <select>
+                <div th:each="coupon: ${coupons}">
+                    <option th:text="${coupon.name}+' ('+${coupon.discountRatio}+'%)'"></option>
+                </div>
+            </select>
+            <button>쿠폰 지급하기</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

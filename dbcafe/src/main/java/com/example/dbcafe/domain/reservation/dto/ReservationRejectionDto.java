@@ -8,6 +8,8 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 public class ReservationRejectionDto {
+    private int itemId;
+
     private String userId;
 
     private String phone;

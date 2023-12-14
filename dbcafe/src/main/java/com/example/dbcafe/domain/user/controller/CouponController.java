@@ -2,8 +2,6 @@ package com.example.dbcafe.domain.user.controller;
 
 import com.example.dbcafe.domain.user.dto.CouponDto;
 import com.example.dbcafe.domain.user.dto.CouponInfoDto;
-import com.example.dbcafe.domain.user.dto.PrizeHistoryDto;
-import com.example.dbcafe.domain.user.dto.PrizeStatisticsDto;
 import com.example.dbcafe.domain.user.service.CouponService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +21,7 @@ public class CouponController {
     public String form(Model model, HttpSession session) {
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
-            List<CouponDto> dtos = couponService.findAlCoupon();
+            List<CouponDto> dtos = couponService.findAllCoupon();
 
             model.addAttribute("coupons", dtos);
             return "admin/coupon";

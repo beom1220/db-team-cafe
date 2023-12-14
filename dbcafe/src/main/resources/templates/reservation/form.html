@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>모임 예약정보 입력 페이지</title>
@@ -12,124 +13,107 @@
   <hr class="titleHr">
   <p class="title-text">* 모임 선결제 금액은 2시간 당 5만원으로 측정 되어 있는점 유의 부탁드립니다.</p>
 </div>
-<div class="container">
-  <div class="box">
-    <div class="content-box">
-      <div class="district">
-        <h3 class="content-title">선택 일자 정보</h3>
-        <hr>
-        <div class="reservation-date">
-          <div class="reservation-content">
-            <b>예약일자</b>
-            <b>요일</b>
-            <b>예약 시간</b>
-            <b>주중할인율</b>
-            <b>얼리버드할인율</b>
-          </div>
+<form th:action method="post">
+  <div class="container">
+    <div class="box">
+      <div class="content-box">
+        <div class="district">
+          <h3 class="content-title">선택 일자 정보</h3>
           <hr>
-          <div class="reservation-content">
-            <b>2023-12-06</b>
-            <b>수요일</b>
-            <b>10:00~12:00</b>
-            <b>5%</b>
-            <b>5%</b>
-          </div>
-          <div class="reservation-content">
-            <b>2023-12-06</b>
-            <b>수요일</b>
-            <b>10:00~12:00</b>
-            <b></b>
-            <b>5%</b>
-          </div>
-          <div class="reservation-content">
-            <b>2023-12-06</b>
-            <b>수요일</b>
-            <b>10:00~12:00</b>
-            <b></b>
-            <b></b>
-          </div>
-          <div class="reservation-content">
-            <b>2023-12-06</b>
-            <b>수요일</b>
-            <b>10:00~12:00</b>
-            <b>5%</b>
-            <b></b>
-          </div>
-        </div>
-      </div>
-      <div class="district">
-        <h3 class="content-title">예약자 정보</h3>
-        <hr>
-        <div class="input-container">
-          <div class="input-district">
-            <div class="input-title-box">
-              <p class="input-title">모임명</p>
-              <p class="title-text">* 30글자 이내로만 작성이 가능합니다.</p>
-            </div>
-            <input type="text" placeholder="모임 명을 입력해 주세요." class="inputBox" maxlength="30">
-          </div>
-          <div class="input-district">
-            <div class="input-title-box">
-              <p class="input-title">인원 수</p>
-              <p class="title-text">* 인원은 최소 6명 최대 13명까지 선택 가능합니다.</p>
-            </div>
-            <div class="count-box">
-              <button class="countButton">-</button>
-              <h5 class="count">6</h5>
-              <button class="countButton">+</button>
-            </div>
-          </div>
-          <div class="input-district">
-            <p class="input-title">임시 비밀번호</p>
-            <input type="text" placeholder="임시 비밀번호를 입력해 주세요." class="inputBox">
-          </div>
-        </div>
-      </div>
-      <div class="district">
-        <h3 class="content-title">선결제 정보</h3>
-        <hr>
-        <div class="prepayment-container">
-          <div class="row-box">
-            <h3>결제 금액</h3>
-            <h2>50,000원</h2>
-          </div>
-          <div class="prepayment-content">
-            <div class="space-between">
-              <b>예약 횟수</b>
-              <hr>
-              <b>금액</b>
-              <hr>
-              <b>총 금액</b>
+          <div class="reservation-date">
+            <div class="reservation-content">
+              <b>예약일자</b>
+              <b>요일</b>
+              <b>예약 시간</b>
+              <b>주중할인율</b>
+              <b>얼리버드할인율</b>
             </div>
             <hr>
-            <div class="space-between">
-              <b>1</b>
-              <b>x</b>
-              <b>50,000</b>
-              <b>=</b>
-              <b>50,000</b>
+            <div th:each="block, iterStat : ${reservationBlocks}">
+              <div class="reservation-content">
+                <b th:text="${block.date}">Date</b>
+                <b th:text="${block.dayOfWeek}">day of week</b>
+                <b><span th:text="${block.startTime}">시작시간</span><span>~</span><span th:text="${block.endTime}">끝시간</span></b>
+                <b th:text="${block.weekdayDiscountRatio}">주중할인율</b>
+                <b th:text="${block.earlybirdDiscountRatio}">얼리버드할인율</b>
+
+                <input type="hidden" th:value="${block.blockId}" th:name="'blockIds[' + ${iterStat.index} + ']'">
+              </div>
             </div>
           </div>
-          <div>
-            <p class="title-text">* 모임 예약은 결제 후 2시간 이내에 무료로 취소가 가능합니다.</p>
-            <p class="title-text">* 2시간 이후 취소 수수료는 기간에 따라 달라집니다. 최대 수수료 (30%)</p>
-            <p class="title-text">* 얼리버드로 할인을 적용한 예약은 2시간 이내에 무료로 취소가 가능합니다. 이후 취소 수수료는 30%로 적용됩니다.</p>
-          </div>
-          <select name="" id="" class="select-pay">
-            <option value="">결제수단을 선택해 주세요.</option>
-            <option value="CREDIT">신용카드</option>
-            <option value="CASH">현금</option>
-            <option value="KAKAO">카카오페이</option>
-          </select>
         </div>
-        <div class="button-box">
-          <button class="reservationButton">예약 취소</button>
-          <button class="reservationButton">예약 완료</button>
+        <div class="district">
+          <h3 class="content-title">예약자 정보</h3>
+          <hr>
+          <div class="input-container">
+            <div class="input-district">
+              <div class="input-title-box">
+                <p class="input-title">모임명</p>
+                <p class="title-text">* 30글자 이내로만 작성이 가능합니다.</p>
+              </div>
+              <input type="text" placeholder="모임 명을 입력해 주세요." class="inputBox" maxlength="30" name="className">
+            </div>
+            <div class="input-district">
+              <div class="input-title-box">
+                <p class="input-title">인원 수</p>
+                <p class="title-text">* 인원은 최소 6명 최대 13명까지 선택 가능합니다.</p>
+              </div>
+              <div class="count-box">
+                <input type="number" placeholder="0" name="numOfParticipant" th:default="0">
+              </div>
+            </div>
+            <div class="input-district">
+              <p class="input-title">임시 비밀번호</p>
+              <input type="text" placeholder="임시 비밀번호를 입력해 주세요." class="inputBox" name="tempPw">
+            </div>
+          </div>
+        </div>
+        <div class="district">
+          <h3 class="content-title">선결제 정보</h3>
+          <hr>
+          <div class="prepayment-container">
+            <div class="row-box">
+              <h3>결제 금액</h3>
+              <h2>50,000원</h2>
+            </div>
+            <div class="prepayment-content">
+              <div class="space-between">
+                <b>예약 횟수</b>
+                <hr>
+                <b>금액</b>
+                <hr>
+                <b>총 금액</b>
+              </div>
+              <hr>
+              <div class="space-between">
+                <b>1</b>
+                <b>x</b>
+                <b>50,000</b>
+                <b>=</b>
+                <b><input type="number" name="prepaymentTotal" th:value="${reservationBlocks.size()} * 50000" readonly></b>
+              </div>
+            </div>
+            <div>
+              <p class="title-text">* 모임 예약은 결제 후 2시간 이내에 무료로 취소가 가능합니다.</p>
+              <p class="title-text">* 2시간 이후 취소 수수료는 기간에 따라 달라집니다. 최대 수수료 (30%)</p>
+              <p class="title-text">* 얼리버드로 할인을 적용한 예약은 2시간 이내에 무료로 취소가 가능합니다. 이후 취소 수수료는 30%로 적용됩니다.</p>
+            </div>
+            <select name="paymentMethod" id="" class="select-pay">
+              <option value="" disabled>결제수단을 선택해 주세요.</option>
+              <option value="CREDIT">신용카드</option>
+              <option value="CASH">현금</option>
+              <option value="KAKAO">카카오페이</option>
+            </select>
+          </div>
+          <div class="button-box">
+            <button th:onclick="|location.href='@{/}'|" class="reservationButton">예약 취소</button>
+            <button type="submit" class="reservationButton">예약 완료</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</form>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
       const countElement = document.querySelector(".count");

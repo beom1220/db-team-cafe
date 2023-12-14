@@ -94,3 +94,67 @@
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
+
+.prizeRelative {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.recentPrize {
+    width: 200px;
+    height: 150px;
+    border: 1px solid black;
+    transform: translateX(-200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+}
+
+.recentPrize span {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.recentPrize span:nth-child(1) {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.drawResult {
+    width: 400px;
+    height: 520px;
+    border: 1px solid black;
+    transform: translateX(200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+}
+
+.drawResult span {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.drawResult span:nth-child(1) {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.drawResult table thead tr th {
+    width: 133px;
+    height: 30px;
+    border-bottom: 1px solid black;
+}
+
+.drawResult table tbody tr td {
+    width: 133px;
+    height: 30px;
+    border-bottom: 1px solid black;
+}

@@ -18,15 +18,18 @@ public class CouponService {
     private final CouponRepository couponRepository;
     private final OwnCouponRepository ownCouponRepository;
 
-    public List<CouponDto> findAlCoupon() {
+    public List<CouponDto> findAllCoupon() {
         List<CouponDto> dtos = new ArrayList<>();
         List<Coupon> coupons = couponRepository.findAll();
         for (Coupon c : coupons) {
             List<OwnCoupon> ownCoupons = ownCouponRepository.findAllOwnCouponByCouponAndOrdersIsNotNull(c);
+            List<OwnCoupon> issuanceCoupons = ownCouponRepository.findAllOwnCouponByCoupon(c);
             int totalDiscount = 0;
             for (OwnCoupon o : ownCoupons) {
                 totalDiscount += o.getDiscountPrice();
             }
+            c.setIssuance(issuanceCoupons.size());
+            couponRepository.save(c);
             CouponDto dto = new CouponDto(c.getId(), c.getName(), c.getDiscountRatio(),
                     c.getPeriod(), c.getMaxDiscount(), c.getMaxIssuance(),
                     c.getIssuance(), ownCoupons.size(), totalDiscount);

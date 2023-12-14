@@ -70,6 +70,7 @@
             <form th:action method="post">
                 <input type="hidden" name="userId" th:value="${user.userId}">
                 <input type="hidden" name="phone" th:value="${user.phone}">
+                <input type="hidden" name="itemId" th:value="${itemId}">
                 <div class="smallLable">
                     <span>
                         지급 쿠폰 선택
@@ -83,15 +84,9 @@
                     <select name="couponId" id="couponId">
                         <option selected value="false">지급할 쿠폰을 선택해 주세요. </option>
                         <th:block th:each="coupon: ${coupons}">
-                            <option th:value="${coupon.id}" th:text="${coupon.name}"></option>
+                            <option th:value="${coupon.id}" th:text="${coupon.name} + '(' + ${coupon.discountRatio} + '%)'"></option>
                         </th:block>
                     </select>
-                    <div class="sale">
-                        <span>
-                            할인율:
-                        </span>
-                        00%
-                    </div>
                 </div>
                 <div class="smallLable">
                     <span>

@@ -16,9 +16,5 @@ public class ScheduledDto {
 
     private Tag tag;
 
-    private LocalDate date;
-
-    private LocalTime startTime;
-
-    private LocalTime endTime;
+    private int blockId;
 }

@@ -1,0 +1,67 @@
+Index: dbcafe/src/main/java/com/example/dbcafe/controller/MainController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dbcafe.controller;\r\n\r\nimport com.example.dbcafe.domain.order.domain.Menu;\r\nimport com.example.dbcafe.domain.order.service.MenuService;\r\nimport com.example.dbcafe.domain.reservation.domain.ScheduledEvent;\r\nimport com.example.dbcafe.domain.reservation.dto.ScheduledEventListDto;\r\nimport com.example.dbcafe.domain.reservation.service.ScheduledEventService;\r\nimport lombok.RequiredArgsConstructor;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.Model;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.RequestParam;\r\n\r\nimport java.util.List;\r\n\r\n@Controller\r\n@RequiredArgsConstructor\r\npublic class MainController {\r\n    private final MenuService menuService;\r\n    private final ScheduledEventService scheduledEventService;\r\n\r\n    @GetMapping(\"/\")\r\n    public String index() {\r\n        return \"redirect:/search\";\r\n    }\r\n\r\n    @GetMapping(\"/search\")\r\n    public String search(@RequestParam(name = \"keyword\", defaultValue = \"\") String keyword, Model model) {\r\n        List<Menu> menus = menuService.findAllByKeyword(keyword); // 판매 상태가 참인 메뉴 중 검색어 포함된 메뉴 모두 가져옴.\r\n        List<ScheduledEvent> scheduledEvents = scheduledEventService.findAllRecruiting(); // 모집 중인 모든 이벤트 모임 가져옴.\r\n        List<ScheduledEventListDto> dtos = scheduledEventService.convertToListDto(scheduledEvents);\r\n\r\n        model.addAttribute(\"menus\", menus);\r\n        model.addAttribute(\"scheduledEvents\", dtos);\r\n        return \"index\";\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dbcafe/src/main/java/com/example/dbcafe/controller/MainController.java b/dbcafe/src/main/java/com/example/dbcafe/controller/MainController.java
+--- a/dbcafe/src/main/java/com/example/dbcafe/controller/MainController.java	(revision 45d27ac2b6795d3a1f6728da9a4e6bdebcfc1928)
++++ b/dbcafe/src/main/java/com/example/dbcafe/controller/MainController.java	(date 1702290451597)
+@@ -21,6 +21,7 @@
+ 
+     @GetMapping("/")
+     public String index() {
++
+         return "redirect:/search";
+     }
+ 
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$/dbcafe\" />\r\n        <option name=\"gradleJvm\" value=\"#JAVA_HOME\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$/dbcafe\" />\r\n          </set>\r\n        </option>\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 45d27ac2b6795d3a1f6728da9a4e6bdebcfc1928)
++++ b/.idea/gradle.xml	(date 1702290098318)
+@@ -5,7 +5,7 @@
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+         <option name="externalProjectPath" value="$PROJECT_DIR$/dbcafe" />
+-        <option name="gradleJvm" value="#JAVA_HOME" />
++        <option name="gradleJvm" value="17" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$/dbcafe" />
+Index: dbcafe/src/main/java/com/example/dbcafe/controller/DbInitializerService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dbcafe/src/main/java/com/example/dbcafe/controller/DbInitializerService.java b/dbcafe/src/main/java/com/example/dbcafe/controller/DbInitializerService.java
+new file mode 100644
+--- /dev/null	(date 1702290962241)
++++ b/dbcafe/src/main/java/com/example/dbcafe/controller/DbInitializerService.java	(date 1702290962241)
+@@ -0,0 +1,20 @@
++package com.example.dbcafe.controller;
++
++import com.example.dbcafe.domain.order.domain.Menu;
++import com.example.dbcafe.domain.order.domain.MenuCategory;
++import com.example.dbcafe.domain.order.repository.MenuRepository;
++import com.example.dbcafe.domain.reservation.domain.ScheduledEvent;
++import com.example.dbcafe.domain.reservation.repository.ScheduledEventRepository;
++import lombok.RequiredArgsConstructor;
++import org.springframework.stereotype.Service;
++
++@Service
++@RequiredArgsConstructor
++public class DbInitializerService {
++    private final MenuRepository menuRepository;
++    private final ScheduledEventRepository scheduledEventRepository;
++
++    Menu menu1 = new Menu("라떼", 3000, MenuCategory.COFFEE, "우유넣은 라떼", true, null);
++    Menu menu2 = new Menu("아메리카노", 2500, MenuCategory.COFFEE, "진한 에스프레소", true, null);
++
++}

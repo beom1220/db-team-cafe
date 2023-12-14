@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="50e8f9a1-4024-4859-b512-935a092b3db6" name="Changes" comment="억셉" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/dbcafe">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="formerge" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2ZO3wlDotcyWgZ7rg8OYcDKmZUp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/devms/Desktop/DBM",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="DbcafeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="dbcafe.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.dbcafe.DbcafeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="50e8f9a1-4024-4859-b512-935a092b3db6" name="Changes" comment="What the setting files?" />
+      <created>1702279540758</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702279540758</updated>
+      <workItem from="1702279541818" duration="80000" />
+      <workItem from="1702279626886" duration="140000" />
+      <workItem from="1702279770191" duration="11917000" />
+      <workItem from="1702361149982" duration="50481000" />
+    </task>
+    <task id="LOCAL-00001" summary="What the setting files?">
+      <option name="closed" value="true" />
+      <created>1702279697544</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702279697544</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add Yameh DB Initializing button">
+      <option name="closed" value="true" />
+      <created>1702415440840</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702415440840</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Minwoo -&gt; add card, cartitem, order, ordersitem">
+      <option name="closed" value="true" />
+      <created>1702454170628</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1702454170628</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add Review datas">
+      <option name="closed" value="true" />
+      <created>1702458742004</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702458742004</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add simple login and some more user datas">
+      <option name="closed" value="true" />
+      <created>1702469006151</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702469006151</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add Get method's packageReservationForm and additional data's and dto about packageReservation">
+      <option name="closed" value="true" />
+      <created>1702480959289</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702480959289</updated>
+    </task>
+    <task id="LOCAL-00007" summary="review Count Changed">
+      <option name="closed" value="true" />
+      <created>1702482284072</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702482284072</updated>
+    </task>
+    <task id="LOCAL-00008" summary="억셉">
+      <option name="closed" value="true" />
+      <created>1702482731607</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702482731607</updated>
+    </task>
+    <task id="LOCAL-00009" summary="억셉">
+      <option name="closed" value="true" />
+      <created>1702483507153</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702483507153</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="formerge" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="What the setting files?" />
+    <MESSAGE value="Add Yameh DB Initializing button" />
+    <MESSAGE value="Minwoo -&gt; add card, cartitem, order, ordersitem" />
+    <MESSAGE value="add Review datas" />
+    <MESSAGE value="add simple login and some more user datas" />
+    <MESSAGE value="add Get method's packageReservationForm and additional data's and dto about packageReservation" />
+    <MESSAGE value="review Count Changed" />
+    <MESSAGE value="억셉" />
+    <option name="LAST_COMMIT_MESSAGE" value="억셉" />
+  </component>
+</project>

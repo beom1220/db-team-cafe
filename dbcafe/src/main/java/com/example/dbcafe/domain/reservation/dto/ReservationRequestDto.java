@@ -23,5 +23,5 @@ public class ReservationRequestDto {
 
     private PaymentMethod paymentMethod;
 
-    private List<ReservationBlockResponseDto> blocks;
+    private List<Integer> blockIds;
 }

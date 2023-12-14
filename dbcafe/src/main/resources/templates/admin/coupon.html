@@ -90,67 +90,56 @@
                         </tr>
                     </thead>
                     <tbody th:each="coupon: ${coupons}">
-                        <form th:action method="post">
+                        <form th:action="@{'/coupon/edit?couponId=' + ${coupon.id}}" method="post">
                             <tr>
                                 <td>
                                     <input type="hidden" th:value="${coupon.id}">
                                 </td>
                                 <td>
-                                    <input th:value="${coupon.name}" name="">
+                                    <input type="text" name="name" th:value="${coupon.name}">
                                 </td>
                                 <td>
-                                    <input th:value="${coupon.discountRatio}">
+                                    <input type="text" name="discountRatio" th:value="${coupon.discountRatio}">
                                 </td>
                                 <td>
-                                    <input th:value="${coupon.period}">
+                                    <input type="text" name="period" th:value="${coupon.period}">
                                 </td>
                                 <td>
-                                    <input th:value="${coupon.maxDiscount}">
+                                    <input type="text" name="maxDiscount" th:value="${coupon.maxDiscount}">
                                 </td>
                                 <td>
-                                    <input th:value="${coupon.maxIssuance}">
+                                    <input type="text" name="maxIssuance" th:value="${coupon.maxIssuance}">
                                 </td>
                                 <td class="btnGroup">
-                                    <input type="button" value="통계보기" th:id="blockBtn" onclick="toggleBtn1(this)"/>
-                                    <!--                                    <button type="submit" class="btn">-->
-                                    <!--                                        <div class="statBtn">-->
-                                    <!--                                            통계보기-->
-                                    <!--                                        </div>-->
-                                    <!--                                    </button>-->
                                     <button type="submit" class="btn">
                                         <div class="corBtn">
                                             수정
                                         </div>
                                     </button>
-                                    <button type="submit" class="btn">
-                                        <div class="delBtn">
-                                            삭제
-                                        </div>
-                                    </button>
                                 </td>
                             </tr>
-                            <tr th:id="${coupon.id}">
-                                <td th:text="${coupon.useCount}"></td>
-                                <td th:text="${coupon.issuance}"></td>
-                                <td th:text="${coupon.totalDiscount}"></td>
-                            </tr>
                         </form>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td class="backgTd">발급 횟수</td>
+                            <td class="backgTd">사용 횟수</td>
+                            <td class="backgTd">총 할인액</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td th:text="${coupon.useCount}"></td>
+                            <td th:text="${coupon.issuance}"></td>
+                            <td th:text="${coupon.totalDiscount}"></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </body>
-    <script>
-        function toggleBtn1(button) {
-            const td = button.parentNode;
-
-            const btn1 = td.nextElementSibling;
-
-            if(btn1.style.display !== 'none') {
-                btn1.style.display = 'none';
-            } else {
-                btn1.style.display = 'display-row';
-            }
-        }
-    </script>
 </html>
