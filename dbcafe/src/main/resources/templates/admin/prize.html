@@ -104,7 +104,8 @@
                                     <td class="leftTab" th:text="${prize.id}"></td>
                                     <td th:text="${prize.name}"></td>
                                     <td th:text="${prize.value}"></td>
-                                    <td th:text="${prize.isCoin()}"></td>
+                                    <td th:if="${prize.isCoin() == true}" th:text="코인"></td>
+                                    <td th:if="${prize.isCoin() != true}" th:text="포인트"></td>
                                     <td th:text="${prize.probability}"></td>
                                     <td class="btnGroup">
                                         <button type="submit" class="btn">
@@ -125,7 +126,10 @@
                                         <input type="text" th:value="${prize.value}" name="value">
                                     </td>
                                     <td>
-                                        <input type="text" th:value="${prize.isCoin()}" name="isCoin">
+                                        <select name="isCoin">
+                                            <option value="true">코인</option>
+                                            <option value="false">포인트</option>
+                                        </select>
                                     </td>
                                     <td>
                                         <input type="text" th:value="${prize.probability}" name="probability">
