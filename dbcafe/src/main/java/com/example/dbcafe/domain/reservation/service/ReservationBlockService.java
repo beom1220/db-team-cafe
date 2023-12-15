@@ -104,7 +104,7 @@ public class ReservationBlockService {
     }
 
     public int findPlaceByDateAndTime(LocalDate date, LocalTime startTime) {
-        List<ReservationBlock> blocks = reservationBlockRepository.findAllReservationBlockByDateAndStartTimeAndIsBookableFalse(date, startTime);
+        List<ReservationBlock> blocks = reservationBlockRepository.findAllReservationBlockByDateAndStartTimeAndIsBookable(date, startTime, false);
         return blocks.size() + 1;
     }
 

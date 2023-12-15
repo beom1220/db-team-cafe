@@ -91,4 +91,9 @@ public class ScheduledEventController {
     }
 
 
+    @PostMapping("/attend")
+    public String attend() {
+        scheduledEventService.tempAttend();
+        return "redirect:/";
+    }
 }

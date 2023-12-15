@@ -61,7 +61,7 @@ public class ReservationService {
 
     public int calEarlybirdDiscount(LocalDate date) {
         int earlybirdDiscountRatio = 0;
-        if (ChronoUnit.DAYS.between(date, LocalDate.now()) >= settingService.findValueByName("얼리버드기준일수")) {
+        if (ChronoUnit.DAYS.between(LocalDate.now(), date) >= settingService.findValueByName("얼리버드기준일수")) {
             earlybirdDiscountRatio = settingService.findValueByName("얼리버드할인율");
         }
         return earlybirdDiscountRatio;

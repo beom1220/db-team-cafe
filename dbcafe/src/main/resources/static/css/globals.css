@@ -71,11 +71,20 @@ input {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  width: 250px;
 }
 .top-link-box {
   display: flex;
   width: 40%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 450px;
+}
+.top-link-box-admin {
+  display: flex;
+  min-width: 60%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -109,4 +118,18 @@ input {
   font-size: 13px;
   margin-left: 20px;
   color: gray;
+}
+.logOutBtn {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+.nav-link {
+    transition: color 1s ease;
+    transition: font-size 0.5s ease;
+}
+.nav-link:hover {
+    color: gray;
+    font-size: 17px;
 }
