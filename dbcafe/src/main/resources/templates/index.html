@@ -21,7 +21,7 @@
                   데이터 추가 버튼
               </button>
           </form>
-          <form th:action="@{/user/login-low}" method="get">
+          <form th:action="@{/user/login-low}" method="post">
               <button id="lowUser"
                       type="submit"
                       style="text-decoration-color: black;
@@ -29,7 +29,7 @@
                   낮은 사용자 로그인
               </button>
           </form>
-          <form th:action="@{/user/login-high}" method="get">
+          <form th:action="@{/user/login-high}" method="post">
               <button id="highUser"
                       type="submit"
                       style="text-decoration-color: black;
@@ -37,7 +37,7 @@
                   높은 사용자 로그인
               </button>
           </form>
-          <form th:action="@{/user/login-admin}" method="get">
+          <form th:action="@{/user/login-admin}" method="post">
               <button id="admin"
                       type="submit"
                       style="text-decoration-color: black;
@@ -97,6 +97,5 @@
         </div>
       </div>
     </div>
-  </div>
 </body>
 </html>

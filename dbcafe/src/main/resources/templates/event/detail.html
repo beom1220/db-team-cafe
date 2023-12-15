@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>이벤트 모임 참가 신청 페이지</title>
@@ -39,7 +39,9 @@
             <b>이벤트 소개</b>
             <p th:text="${scheduledEvent.content}">없음.</p>
           </div>
-          <button class="eventButton" >모임 참가 신청</button>
+          <form th:action="@{'/entrant/entry/' + ${scheduledEvent.id}}" method="post">
+            <button class="eventButton" >모임 참가 신청</button>
+          </form>
         </div>
       </div>
       <div>
