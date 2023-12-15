@@ -60,8 +60,8 @@ public class UserController {
 
     @GetMapping("/keep")
     public String keepUser(Model model, HttpSession session) {
-        User user = userService.findById((String) session.getAttribute("loggedInUser"));
-        if (user.getId().equals("admin")) {
+        String userId = (String) session.getAttribute("loggedInUser");
+        if (userId.equals("admin")) {
             List<KeepUserDto> dtos = userService.findKeepUserInfo();
             List<CouponSelectDto> coupons = reservationService.getCouponList();
 

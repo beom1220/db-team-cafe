@@ -56,7 +56,11 @@ public class EventService {
                     soldOutCount++;
                 }
             }
-            double rating = (double) event.getRatingTotal() / event.getReviewCount();
+            int reviewCount = 1;
+            if (event.getReviewCount() != 0) {
+                reviewCount = event.getReviewCount();
+            }
+            double rating = (double) event.getRatingTotal() / reviewCount;
             EventStatisticsDto dto = new EventStatisticsDto(event.getId(),
                     event.getTitle(), scheduledEvents.size(), soldOutCount, rating);
 
