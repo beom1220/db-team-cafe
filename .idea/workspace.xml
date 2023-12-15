@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50e8f9a1-4024-4859-b512-935a092b3db6" name="Changes" comment="억셉" />
+    <list default="true" id="50e8f9a1-4024-4859-b512-935a092b3db6" name="Changes" comment="억셉">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2023-12-11__4_28__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_2023-12-11__4_28__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-12-11__7_39__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-12-11__7_39__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/controller/OrdersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/controller/OrdersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/dto/PriceDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/dto/PriceDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/repository/CartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/repository/CartItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/service/CartItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/service/CartItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/service/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/service/OrdersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/resources/templates/user/orderForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/resources/templates/user/orderForm.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +55,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -54,29 +65,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/devms/Desktop/DBM",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;formerge&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/devms/Desktop/DBM&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="DbcafeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="dbcafe.main" />
@@ -98,6 +109,7 @@
       <workItem from="1702279626886" duration="140000" />
       <workItem from="1702279770191" duration="11917000" />
       <workItem from="1702361149982" duration="50481000" />
+      <workItem from="1702612065817" duration="16858000" />
     </task>
     <task id="LOCAL-00001" summary="What the setting files?">
       <option name="closed" value="true" />
