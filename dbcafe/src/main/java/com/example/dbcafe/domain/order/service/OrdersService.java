@@ -71,10 +71,12 @@ public class OrdersService {
 
         if(ownCoupon == null){
             priceDto.setCouponDiscountAmount(0);
+            priceDto.setCouponDiscountRatio(0);
             priceDto.setOwnCouponId(0);
         }
         else{
             priceDto.setCouponDiscountAmount(totalPrice * ownCoupon.getCoupon().getDiscountRatio() / 100);
+            priceDto.setCouponDiscountRatio(ownCoupon.getCoupon().getDiscountRatio());
             priceDto.setOwnCouponId(ownCoupon.getId());
         }
         priceDto.setDiscountAmount(priceDto.getEarlybirdDiscountAmount() + priceDto.getWeekdayDiscountAmount() + priceDto.getCouponDiscountAmount() + priceDto.getLevelDiscountAmount());

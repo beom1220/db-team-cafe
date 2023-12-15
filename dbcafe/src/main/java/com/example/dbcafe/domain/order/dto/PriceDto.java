@@ -19,6 +19,7 @@ public class PriceDto {
     private int levelDiscountRatio;
     private int weekdayDiscountAmount;
     private int couponDiscountAmount;
+    private int couponDiscountRatio;
     private int ownCouponId;
     private int coin;
 }

@@ -83,7 +83,7 @@
               <div class="discount-detail">
                 <div class="row-box">
                   <p class="discount-content">쿠폰 할인</p>
-                  <p class="discount-content" th:text="${priceDto.getOwnCouponId() + '%'}"></p>
+                  <p class="discount-content" th:text="${priceDto.getCouponDiscountRatio() + '%'}"></p>
                   <input type="hidden" th:if="${priceDto.getOwnCouponId() != null}" th:value="${priceDto.getOwnCouponId()}" th:name="usedOwnCouponId">
                 </div>
                 <p class="discount-content" th:text="${priceDto.getCouponDiscountAmount()}">0</p>
