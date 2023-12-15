@@ -8,68 +8,73 @@
     </head>
     <body>
     <div th:insert="fragments/navigation/topBar :: topBar"></div>
-        <div id="basic">
-            <div class="pageLable">
+    <div class="container">
+        <div class="box">
+            <div class="content-box">
+                <div id="basic">
+                    <div class="pageLable">
                 <span>
                     이벤트 모임 개최
                 </span>
+                    </div>
+                    <hr class="detail_hr">
+                    <form th:action method="post">
+                        <div class="choiceForm">
+                            <div class="small_title">
+                                이벤트 모임
+                                <hr class="small_hr">
+                            </div>
+                            <div class="small_detail">
+                                이벤트 모임 목록
+                            </div>
+                            <select class="eventList" name="eventId" id="choiceEvent">
+                                <option selected="selected" value="false"> 모임을 선택해 주세요.</option>
+                                <th:block th:each="event: ${events}">
+                                    <option th:value="${event.id}" th:text="${event.title}"></option>
+                                </th:block>
+                            </select>
+                            <div class="small_detail">
+                                타입사항
+                            </div>
+                            <select class="eventState" name="tag" id="choiceTag">
+                                <option selected="selected" value="false">태그를 선택해 주세요.</option>
+                                <option name="NOTHING" value="NOTHING">NOTHING</option>
+                                <option name="NEW" value="NEW">NEW</option>
+                                <option name="BEST" value="BEST">BEST</option>
+                            </select>
+                        </div>
+
+                        <div class="choiceForm">
+                            <div class="small_title">
+                                개최 날짜 등록
+                                <hr class="small_hr">
+                            </div>
+                            <div class="small_detail">
+                                날짜
+                            </div>
+                            <select class="eventList" name="blockId" id="choiceDate">
+                                <option selected="selected" value="false"> 날짜를 선택 해주세요.</option>
+                                <th:block th:each="reservationBlock: ${reservationBlocks}">
+                                    <option th:text="${reservationBlock.dateTime}" th:value="${reservationBlock.id}" th:name="blockId"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="decBtn">
+                            <button type="submit" class="infoBtn">
+                                <div class="cancelBtn">
+                                    등록 취소
+                                </div>
+                            </button>
+                            <button type="submit" class="infoBtn">
+                                <div class="openBtn">
+                                    모임 개최
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <hr class="detail_hr">
-            <form th:action method="post">
-                <div class="choiceForm">
-                    <div class="small_title">
-                        이벤트 모임
-                        <hr class="small_hr">
-                    </div>
-                    <div class="small_detail">
-                        이벤트 모임 목록
-                    </div>
-                    <select class="eventList" name="eventId" id="choiceEvent">
-                        <option selected="selected" value="false"> 모임을 선택해 주세요.</option>
-                        <th:block th:each="event: ${events}">
-                            <option th:value="${event.id}" th:text="${event.title}"></option>
-                        </th:block>
-                    </select>
-                    <div class="small_detail">
-                        타입사항
-                    </div>
-                    <select class="eventState" name="tag" id="choiceTag">
-                        <option selected="selected" value="false">태그를 선택해 주세요.</option>
-                        <option name="NOTHING" value="NOTHING">NOTHING</option>
-                        <option name="NEW" value="NEW">NEW</option>
-                        <option name="BEST" value="BEST">BEST</option>
-                    </select>
-                </div>
-
-                <div class="choiceForm">
-                    <div class="small_title">
-                        개최 날짜 등록
-                        <hr class="small_hr">
-                    </div>
-                    <div class="small_detail">
-                        날짜
-                    </div>
-                    <select class="eventList" name="blockId" id="choiceDate">
-                        <option selected="selected" value="false"> 날짜를 선택 해주세요.</option>
-                        <th:block th:each="reservationBlock: ${reservationBlocks}">
-                            <option th:text="${reservationBlock.dateTime}" th:value="${reservationBlock.id}" th:name="blockId"></option>
-                        </th:block>
-                    </select>
-                </div>
-                <div class="decBtn">
-                    <button type="submit" class="infoBtn">
-                        <div class="cancelBtn">
-                            등록 취소
-                        </div>
-                    </button>
-                    <button type="submit" class="infoBtn">
-                        <div class="openBtn">
-                            모임 개최
-                        </div>
-                    </button>
-                </div>
-            </form>
         </div>
+    </div>
     </body>
-
 </html>

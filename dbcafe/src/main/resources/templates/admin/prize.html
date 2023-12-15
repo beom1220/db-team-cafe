@@ -4,123 +4,128 @@
         <title>DB Cafe</title>
         <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
         <link rel="stylesheet" th:href="@{/css/adminPrize.css}" type="text/css"/>
-        <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
     </head>
     <body>
     <div th:insert="fragments/navigation/topBar :: topBar"></div>
-        <div id="basic">
-            <div class="pageLable">
+    <div class="container">
+        <div class="box">
+            <div class="content-box">
+                <div id="basic">
+                    <div class="pageLable">
                 <span>
                     뽑기 상품 정보 등록
                 </span>
-            </div>
-            <hr class="detail_hr">
-            <form th:action method="post">
-                <div class="infoBox">
+                    </div>
+                    <hr class="detail_hr">
+                    <form th:action method="post">
+                        <div class="infoBox">
                     <span>
                         상품 타입
                     </span>
-                    <div class="btnBox">
-                        <div class="coinGroup">
-                            <img th:src="@{/image/coinImage.png}" alt="이미지 로딩 실패">
-                            <button type="button" class="btn">
-                                <div class="coinBox">
-                                    <input type="radio" name="isCoin" value=true id="c">
-                                    <label for="c">코인</label>
+                            <div class="btnBox">
+                                <div class="coinGroup">
+                                    <img th:src="@{/image/coinImage.png}" alt="이미지 로딩 실패">
+                                    <button type="button" class="btn">
+                                        <div class="coinBox">
+                                            <input type="radio" name="isCoin" value=true id="c">
+                                            <label for="c">코인</label>
+                                        </div>
+                                    </button>
                                 </div>
-                            </button>
-                        </div>
-                        <div class="pointGroup">
-                            <img th:src="@{/image/pointImage.png}" alt="이미지 로딩 실패">
-                            <button type="button" class="btn">
-                                <div class="pointBox">
-                                    <input type="radio" name="isCoin" value=false id="p">
-                                    <label for="p">포인트</label>
+                                <div class="pointGroup">
+                                    <img th:src="@{/image/pointImage.png}" alt="이미지 로딩 실패">
+                                    <button type="button" class="btn">
+                                        <div class="pointBox">
+                                            <input type="radio" name="isCoin" value=false id="p">
+                                            <label for="p">포인트</label>
+                                        </div>
+                                    </button>
                                 </div>
-                            </button>
-                        </div>
-                    </div>
-                    <span>
+                            </div>
+                            <span>
                         수량
                     </span>
-                    <input type="text" placeholder="수량을 입력하세요." name="value" id="value">
-                    <span>
+                            <input type="text" placeholder="수량을 입력하세요." name="value" id="value">
+                            <span>
                         확률
                     </span>
-                    <input type="text" placeholder="확률을 입력하세요." name="probability" id="probability">
-                    <div class="regGroup">
-                        <button type="submit" class="btn">
-                            <div class="regBox">
-                                상품 등록 하기
+                            <input type="text" placeholder="확률을 입력하세요." name="probability" id="probability">
+                            <div class="regGroup">
+                                <button type="submit" class="btn">
+                                    <div class="regBox">
+                                        상품 등록 하기
+                                    </div>
+                                </button>
                             </div>
-                        </button>
-                    </div>
-                </div>
-            </form>
+                        </div>
+                    </form>
 
-            <div class="pageLable">
+                    <div class="pageLable">
                 <span>
                     등록된 상품
                 </span>
-            </div>
-            <hr class="detail_hr">
-            <div class="tableBox">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="leftTab"></th>
-                            <th>상품명</th>
-                            <th>수량</th>
-                            <th>상품 타입</th>
-                            <th>확률</th>
-                            <th>뽑힌 횟수</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <th:block th:each="prize: ${prizes}">
-                        <form th:action="@{'/prize/edit?prizeId=' + ${prize.id}}" method="post">
-                            <tbody>
-                                <tr>
-                                    <td class="leftTab" th:text="${prize.id}"></td>
-                                    <td th:text="${prize.name}"></td>
-                                    <td th:text="${prize.value}"></td>
-                                    <td th:if="${prize.isCoin() == true}" th:text="코인"></td>
-                                    <td th:if="${prize.isCoin() != true}" th:text="포인트"></td>
-                                    <td th:text="${prize.probability}"></td>
-                                    <td th:text="${prize.prizeCount}"></td>
-                                    <td class="btnGroup">
-                                        <button type="submit" class="btn">
-                                            <div class="corBtn">
-                                                수정
-                                            </div>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="editTr">
-                                    <td>
-                                        <input type="hidden" th:value="${prize.id}" />
-                                    </td>
-                                    <td th:text="${prize.name}"></td>
-                                    <td>
-                                        <input type="text" th:value="${prize.value}" name="value">
-                                    </td>
-                                    <td>
-                                        <select name="isCoin">
-                                            <option value="true">코인</option>
-                                            <option value="false">포인트</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" th:value="${prize.probability}" name="probability">
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </form>
-                    </th:block>
-                </table>
+                    </div>
+                    <hr class="detail_hr">
+                    <div class="tableBox">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="leftTab"></th>
+                                <th>상품명</th>
+                                <th>수량</th>
+                                <th>상품 타입</th>
+                                <th>확률</th>
+                                <th>뽑힌 횟수</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <th:block th:each="prize: ${prizes}">
+                                <form th:action="@{'/prize/edit?prizeId=' + ${prize.id}}" method="post">
+                                    <tbody>
+                                    <tr>
+                                        <td class="leftTab" th:text="${prize.id}"></td>
+                                        <td th:text="${prize.name}"></td>
+                                        <td th:text="${prize.value}"></td>
+                                        <td th:if="${prize.isCoin() == true}" th:text="코인"></td>
+                                        <td th:if="${prize.isCoin() != true}" th:text="포인트"></td>
+                                        <td th:text="${prize.probability}"></td>
+                                        <td th:text="${prize.prizeCount}"></td>
+                                        <td class="btnGroup">
+                                            <button type="submit" class="btn">
+                                                <div class="corBtn">
+                                                    수정
+                                                </div>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="editTr">
+                                        <td>
+                                            <input type="hidden" th:value="${prize.id}" />
+                                        </td>
+                                        <td th:text="${prize.name}"></td>
+                                        <td>
+                                            <input type="text" th:value="${prize.value}" name="value">
+                                        </td>
+                                        <td>
+                                            <select name="isCoin">
+                                                <option value="true">코인</option>
+                                                <option value="false">포인트</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" th:value="${prize.probability}" name="probability">
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </form>
+                            </th:block>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
     </body>
 </html>

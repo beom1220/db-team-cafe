@@ -86,3 +86,125 @@ table {
     font-weight: 700;
     color: #858181;
 }
+
+
+/** 전역 스타일 */
+* {
+  margin: 0px;
+  padding: 0px;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  position: absolute;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  min-width: 1280px;
+  height: auto;
+  margin-top: 100px;
+}
+.content-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/** 상단바 스타일 */
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #494949;
+  position: fixed;
+  background-color: #ffffff;
+  z-index: 2;
+}
+.top-container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  padding: 0px 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+.top-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 250px;
+}
+.top-link-box {
+  display: flex;
+  width: 40%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 450px;
+}
+.top-link-box-admin {
+  display: flex;
+  min-width: 60%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-logo-image {
+  width: 60px;
+  height: 60px;
+}
+
+/** 전역 타이틀 */
+.title-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  gap: 10px;
+  padding: 10px 0px;
+  margin: auto;
+}
+.title{
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+.titleHr{
+  height: 5px;
+  background-color: #66371D;
+  border: none;
+}
+.title-text {
+  font-size: 13px;
+  margin-left: 20px;
+  color: gray;
+}
+.logOutBtn {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+.nav-link {
+    transition: color 1s ease;
+    transition: font-size 0.5s ease;
+}
+.nav-link:hover {
+    color: gray;
+    font-size: 17px;
+}

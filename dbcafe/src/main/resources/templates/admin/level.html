@@ -4,100 +4,105 @@
         <title>DB Cafe</title>
         <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
         <link rel="stylesheet" th:href="@{/css/level.css}" type="text/css"/>
-        <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
     </head>
     <body>
     <div th:insert="fragments/navigation/topBar :: topBar"></div>
-        <div id="basic">
-            <div class="pageLable">
+    <div class="container">
+        <div class="box">
+            <div class="content-box">
+                <div id="basic">
+                    <div class="pageLable">
                 <span>
                     등급 설정 페이지
                 </span>
-            </div>
-            <hr class="detail_hr">
-            <div class="tableBox">
-                <table class="statList">
-                    <thead>
-                        <tr>
-                            <th class="leftTab">등급</th>
-                            <th>회원 수</th>
-                            <th>총 할인액</th>
-                            <th>평균 할인액</th>
-                            <th>할인율</th>
-                            <th>상위 %</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-<!--                        <th:block th:each="level: ${levels}">-->
-                        <th:block th:each="i: ${#numbers.sequence(4, 0)}">
-                            <form th:action method="post">
-                                <tr>
-                                    <td class="leftTab" th:text="${levels[i].name}" th:id="'level' + ${i}">
-                                        <input type="hidden" th:value="${i}" name="levelIndex">
-                                    </td>
-                                    <td th:text="${levels[i].userCount}"></td>
-                                    <td th:text="${levels[i].totalDiscountAmount}"></td>
-                                    <td th:text="${levels[i].averageDiscountAmount}"></td>
-                                    <td th:text="${levels[i].discountRatio}"></td>
-                                    <td th:text="${levels[i].cutLine} + '%'"></td>
-                                    <td>
-                                        <div class="btnGroup">
-                                            <button type="submit"
-                                                    class="btn">
-                                                <div class="corBtn">
-                                                    수정
-                                                </div>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4">
-                                        <input type="hidden" th:value="${i}" name="levelIndex">
-                                    </td>
-                                    <td>
-                                        <input type="text"
-                                               th:value="${levels[i].discountRatio}"
-                                               name="discountRatio">
-                                    </td>
-                                    <td>
-                                        <input type="text"
-                                               th:value="${levels[i].cutLine}"
-                                               name="cutLine">
-                                    </td>
-                                    <td></td>
-                                </tr>
-                            </form>
-                        </th:block>
-                    </tbody>
-                </table>
-            </div>
-            <div class="statBox">
-                <div class="thBox">
-                    <table class="statTh">
-                        <thead>
+                    </div>
+                    <hr class="detail_hr">
+                    <div class="tableBox">
+                        <table class="statList">
+                            <thead>
                             <tr>
-                                <th>전체 회원 수</th>
-                                <th>전체 총 할인액</th>
-                                <th>전체 총 평균 할인액</th>
+                                <th class="leftTab">등급</th>
+                                <th>회원 수</th>
+                                <th>총 할인액</th>
+                                <th>평균 할인액</th>
+                                <th>할인율</th>
+                                <th>상위 %</th>
+                                <th></th>
                             </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="contBox">
-                    <table class="statCont">
-                        <tbody>
-                            <tr>
-                                <td th:text="${total.totalUserCount}"></td>
-                                <td th:text="${total.totalDiscountAmount}"></td>
-                                <td th:text="${total.averageDiscountAmount}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <!--                        <th:block th:each="level: ${levels}">-->
+                            <th:block th:each="i: ${#numbers.sequence(4, 0)}">
+                                <form th:action method="post">
+                                    <tr>
+                                        <td class="leftTab" th:text="${levels[i].name}" th:id="'level' + ${i}">
+                                            <input type="hidden" th:value="${i}" name="levelIndex">
+                                        </td>
+                                        <td th:text="${levels[i].userCount}"></td>
+                                        <td th:text="${levels[i].totalDiscountAmount}"></td>
+                                        <td th:text="${levels[i].averageDiscountAmount}"></td>
+                                        <td th:text="${levels[i].discountRatio}"></td>
+                                        <td th:text="${levels[i].cutLine} + '%'"></td>
+                                        <td>
+                                            <div class="btnGroup">
+                                                <button type="submit"
+                                                        class="btn">
+                                                    <div class="corBtn">
+                                                        수정
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <input type="hidden" th:value="${i}" name="levelIndex">
+                                        </td>
+                                        <td>
+                                            <input type="text"
+                                                   th:value="${levels[i].discountRatio}"
+                                                   name="discountRatio">
+                                        </td>
+                                        <td>
+                                            <input type="text"
+                                                   th:value="${levels[i].cutLine}"
+                                                   name="cutLine">
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </form>
+                            </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="statBox">
+                        <div class="thBox">
+                            <table class="statTh">
+                                <thead>
+                                <tr>
+                                    <th>전체 회원 수</th>
+                                    <th>전체 총 할인액</th>
+                                    <th>전체 총 평균 할인액</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="contBox">
+                            <table class="statCont">
+                                <tbody>
+                                <tr>
+                                    <td th:text="${total.totalUserCount}"></td>
+                                    <td th:text="${total.totalDiscountAmount}"></td>
+                                    <td th:text="${total.averageDiscountAmount}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </body>
 <script>
     function a(id) {

@@ -6,123 +6,128 @@
               href="/css/style.css" type="text/css"/>
         <link rel='stylesheet' th:href='@{/css/coupon.css}'
               href="/css/coupon.css" type="text/css"/>
-        <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
     </head>
     <body>
     <div th:insert="fragments/navigation/topBar :: topBar"></div>
-        <div id="basic">
-            <div class="pageLable">
+    <div class="container">
+        <div class="box">
+            <div class="content-box">
+                <div id="basic">
+                    <div class="pageLable">
                 <span>
                     쿠폰 정보 등록
                 </span>
-            </div>
-            <hr class="detail_hr">
-            <form th:action method="post">
-                <div class="formBox">
+                    </div>
+                    <hr class="detail_hr">
+                    <form th:action method="post">
+                        <div class="formBox">
                     <span>
                         쿠폰 이름
                     </span>
-                    <input type="text" name="name" id="name"
-                           placeholder="쿠폰 이름을 입력하세요." />
-                    <span>
+                            <input type="text" name="name" id="name"
+                                   placeholder="쿠폰 이름을 입력하세요." />
+                            <span>
                         할인율
                     </span>
-                    <input type="text" name="discountRatio" id="discountRatio"
-                           placeholder="할인율을 입력하세요." />
-                    <span>
+                            <input type="text" name="discountRatio" id="discountRatio"
+                                   placeholder="할인율을 입력하세요." />
+                            <span>
                         만료 일자
                     </span>
-                    <input type="text" name="period" id="period"
-                           placeholder="쿠폰 만료 일자를 입력하세요." />
-                    <span>
+                            <input type="text" name="period" id="period"
+                                   placeholder="쿠폰 만료 일자를 입력하세요." />
+                            <span>
                         최대 할인 금액
                     </span>
-                    <input type="text" name="maxDiscount" id="maxDiscount"
-                           placeholder="최대 할인 금액을 입력하세요." />
-                    <span>
+                            <input type="text" name="maxDiscount" id="maxDiscount"
+                                   placeholder="최대 할인 금액을 입력하세요." />
+                            <span>
                         최대 발급 횟수
                     </span>
-                    <input type="text" name="maxIssuance" id="maxIssuance"
-                           placeholder="최대 발급 횟수를 입력하세요." />
-                    <div class="regGroup">
-                        <button type="submit" class="btn">
-                            <div class="regBox">
-                                쿠폰 등록 하기
+                            <input type="text" name="maxIssuance" id="maxIssuance"
+                                   placeholder="최대 발급 횟수를 입력하세요." />
+                            <div class="regGroup">
+                                <button type="submit" class="btn">
+                                    <div class="regBox">
+                                        쿠폰 등록 하기
+                                    </div>
+                                </button>
                             </div>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <div class="pageLable">
+                        </div>
+                    </form>
+                    <div class="pageLable">
                 <span>
                     할인 쿠폰
                 </span>
-            </div>
-            <hr class="detail_hr">
-            <div class="tableBox">
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>쿠폰 이름</th>
-                            <th>할인율</th>
-                            <th>유효 기간</th>
-                            <th>최대 할인 금액</th>
-                            <th>최대 발급 횟수</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody th:each="coupon: ${coupons}">
-                        <form th:action="@{'/coupon/edit?couponId=' + ${coupon.id}}" method="post">
+                    </div>
+                    <hr class="detail_hr">
+                    <div class="tableBox">
+                        <table>
+                            <thead>
                             <tr>
-                                <td>
-                                    <input type="hidden" th:value="${coupon.id}">
-                                </td>
-                                <td>
-                                    <input type="text" name="name" th:value="${coupon.name}">
-                                </td>
-                                <td>
-                                    <input type="text" name="discountRatio" th:value="${coupon.discountRatio}">
-                                </td>
-                                <td>
-                                    <input type="text" name="period" th:value="${coupon.period}">
-                                </td>
-                                <td>
-                                    <input type="text" name="maxDiscount" th:value="${coupon.maxDiscount}">
-                                </td>
-                                <td>
-                                    <input type="text" name="maxIssuance" th:value="${coupon.maxIssuance}">
-                                </td>
-                                <td class="btnGroup">
-                                    <button type="submit" class="btn">
-                                        <div class="corBtn">
-                                            수정
-                                        </div>
-                                    </button>
-                                </td>
+                                <th></th>
+                                <th>쿠폰 이름</th>
+                                <th>할인율</th>
+                                <th>유효 기간</th>
+                                <th>최대 할인 금액</th>
+                                <th>최대 발급 횟수</th>
+                                <th></th>
                             </tr>
-                        </form>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td class="backgTd">발급 횟수</td>
-                            <td class="backgTd">사용 횟수</td>
-                            <td class="backgTd">총 할인액</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td th:text="${coupon.issuance}"></td>
-                            <td th:text="${coupon.useCount}"></td>
-                            <td th:text="${coupon.totalDiscount}"></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody th:each="coupon: ${coupons}">
+                            <form th:action="@{'/coupon/edit?couponId=' + ${coupon.id}}" method="post">
+                                <tr>
+                                    <td>
+                                        <input type="hidden" th:value="${coupon.id}">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="name" th:value="${coupon.name}">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="discountRatio" th:value="${coupon.discountRatio}">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="period" th:value="${coupon.period}">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="maxDiscount" th:value="${coupon.maxDiscount}">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="maxIssuance" th:value="${coupon.maxIssuance}">
+                                    </td>
+                                    <td class="btnGroup">
+                                        <button type="submit" class="btn">
+                                            <div class="corBtn">
+                                                수정
+                                            </div>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </form>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td class="backgTd">발급 횟수</td>
+                                <td class="backgTd">사용 횟수</td>
+                                <td class="backgTd">총 할인액</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td th:text="${coupon.issuance}"></td>
+                                <td th:text="${coupon.useCount}"></td>
+                                <td th:text="${coupon.totalDiscount}"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
     </body>
 </html>
