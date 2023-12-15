@@ -17,4 +17,6 @@ public class PrizeListDto {
     private int value;
 
     private int probability;
+
+    private int prizeCount;
 }

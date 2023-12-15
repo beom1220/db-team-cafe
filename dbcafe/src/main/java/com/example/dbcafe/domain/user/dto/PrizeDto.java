@@ -8,8 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class PrizeDto {
-    private String name;
-
     private boolean isCoin;
 
     private int value;

@@ -6,6 +6,7 @@ import com.example.dbcafe.domain.reservation.domain.ReservationBlock;
 import com.example.dbcafe.domain.reservation.dto.*;
 import com.example.dbcafe.domain.reservation.repository.ReservationBlockRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ReservationBlockService {
@@ -25,63 +27,37 @@ public class ReservationBlockService {
     public List<DayOfReservationBlockDto> showBasicDays() {
         LocalDate today = LocalDate.now();
 
-        List<ReservationBlock> blocks = reservationBlockRepository.findByDateGreaterThanEqual(today);
-
-        Map<LocalDate, List<ReservationBlock>> days = new HashMap<>();
-        for (ReservationBlock block : blocks) {
-            LocalDate date = block.getDate();
-            if (!days.containsKey(date)) {
-                days.put(date, new ArrayList<>());
-            }
-            days.get(date).add(block);
-        }
+        List<ReservationBlock> blocks = reservationBlockRepository.findDistinctByDateGreaterThanEqualOrderByDateAsc(today);
 
         List<DayOfReservationBlockDto> dtos = new ArrayList<>();
-        for (Map.Entry<LocalDate, List<ReservationBlock>> entry : days.entrySet()) {
+        for (ReservationBlock block : blocks) {
             boolean isBookable = false;
-            for (ReservationBlock block : entry.getValue()) {
-                if (block.getIsBookable()) {
-                    isBookable = true;
-                    break;
-                }
+            ReservationBlock checkBlock = reservationBlockRepository.findFirstByDateAndIsBookableOrderByPlaceIdAsc(block.getDate(), true);
+            if (checkBlock != null) {
+                isBookable = true;
             }
-            DayOfReservationBlockDto dto = new DayOfReservationBlockDto(entry.getKey(), isBookable, DayOfWeekInKorean
-                    .valueOf(entry.getKey().getDayOfWeek().name()).getDay());
+            DayOfReservationBlockDto dto = new DayOfReservationBlockDto(block.getDate(), isBookable, DayOfWeekInKorean
+                    .valueOf(block.getDate().getDayOfWeek().name()).getDay());
             dtos.add(dto);
-
         }
         return dtos;
     }
 
     public List<TimeOfReservationBlockDto> showTimeBlocks(LocalDate date) {
-        List<ReservationBlock> blocksOnDate = reservationBlockRepository.findByDate(date); // 해당 날짜 블럭 일단 다 가져옴.
+        List<ReservationBlock> blocksOnDate = reservationBlockRepository.findDistinctByDateOrderByStartTimeAsc(date); // 해당 날짜 블럭 일단 다 가져옴.
 
-        Map<LocalTime, List<ReservationBlock>> groupedBlocks = new HashMap<>(); // 시간대별로 끊었음. <날짜-시간대> 같은 거 묶인 거임.
+        List<TimeOfReservationBlockDto> dtos = new ArrayList<>();
         for (ReservationBlock block : blocksOnDate) {
-            LocalTime startTime = block.getStartTime();
-            if (!groupedBlocks.containsKey(startTime)) {
-                groupedBlocks.put(startTime, new ArrayList<>());
-            }
-            groupedBlocks.get(startTime).add(block);
-        }
-
-        List<TimeOfReservationBlockDto> dtos = new ArrayList<>(); // Dto로 변환과정
-        for (Map.Entry<LocalTime, List<ReservationBlock>> entry : groupedBlocks.entrySet()) {
-            LocalTime startTime = entry.getKey();
-            LocalTime endTime = entry.getValue().get(0).getEndTime();
             boolean isBookable = false;
-            ReservationBlock b = null;
-            int blockId = 0;
-            for (ReservationBlock block : entry.getValue()) {
-                if (block.getIsBookable()) {
-                    isBookable = true;
-                    b = reservationBlockRepository.findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(date, startTime, true);
-                    blockId = b.getId();
-                    break;
-                }
+            ReservationBlock checkBlock = reservationBlockRepository.findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(date, block.getStartTime(), true);
+            int blockId;
+            if (checkBlock != null) {
+                isBookable = true;
+                blockId = checkBlock.getId();
+            } else {
+                blockId = -1;
             }
-
-            TimeOfReservationBlockDto dto = new TimeOfReservationBlockDto(blockId, startTime, endTime, isBookable);
+            TimeOfReservationBlockDto dto = new TimeOfReservationBlockDto(blockId, block.getStartTime(), block.getEndTime(), isBookable);
             dtos.add(dto);
         }
         return dtos;

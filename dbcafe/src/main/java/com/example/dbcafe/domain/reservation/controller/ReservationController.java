@@ -51,9 +51,6 @@ public class ReservationController {
 
     @GetMapping("/admin")
     public String showAllReservation(Model model, HttpSession session) {
-        // 임시 어드민 로그인
-        session.setAttribute("loggedInUser", "admin");
-
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
             List<ReservationItemListDto> dtos = reservationService.findAllReservationItem();
@@ -67,9 +64,6 @@ public class ReservationController {
 
     @GetMapping("/admin-cancel")
     public String cancelForm(@RequestParam("reservationItemId") int reservationItemId, Model model, HttpSession session) {
-        // 임시 어드민 로그인
-        session.setAttribute("loggedInUser", "admin");
-
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
             RejectionFormDto dto = reservationService.convertToRejectionFormDto(reservationItemId);

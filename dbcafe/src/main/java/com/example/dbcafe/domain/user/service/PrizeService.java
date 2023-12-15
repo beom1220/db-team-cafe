@@ -1,11 +1,13 @@
 package com.example.dbcafe.domain.user.service;
 
+import com.example.dbcafe.domain.user.domain.MileageHistory;
 import com.example.dbcafe.domain.user.domain.Prize;
 import com.example.dbcafe.domain.user.domain.PrizeHistory;
 import com.example.dbcafe.domain.user.domain.User;
 import com.example.dbcafe.domain.user.dto.PrizeDto;
 import com.example.dbcafe.domain.user.dto.PrizeListDto;
 import com.example.dbcafe.domain.user.dto.PrizeUserInfoDto;
+import com.example.dbcafe.domain.user.repository.MileageHistoryRepository;
 import com.example.dbcafe.domain.user.repository.PrizeHistoryRepository;
 import com.example.dbcafe.domain.user.repository.PrizeRepository;
 import com.example.dbcafe.domain.user.repository.UserRepository;
@@ -20,6 +22,7 @@ import java.util.List;
 public class PrizeService {
     private final PrizeRepository prizeRepository;
     private final UserRepository userRepository;
+    private final MileageHistoryRepository mileageHistoryRepository;
 
     private final PrizeHistoryRepository prizeHistoryRepository;
     public List<PrizeListDto> findAllPrizes() {
@@ -33,8 +36,9 @@ public class PrizeService {
                 isCoin = true;
                 value = p.getCoin();
             }
+            List<PrizeHistory> histories = prizeHistoryRepository.findAllByPrize(p);
             PrizeListDto dto = new PrizeListDto(p.getId(),
-                    p.getName(), isCoin, value, p.getProbability());
+                    p.getName(), isCoin, value, p.getProbability(), histories.size());
             dtos.add(dto);
         }
         return dtos;
@@ -61,7 +65,9 @@ public class PrizeService {
         user.setCoin(user.getCoin() + prize.getCoin() - 1);
         user.setMileage(user.getMileage() + prize.getMileage());
         prizeHistoryRepository.save(new PrizeHistory(user, prize));
-
+        if (prize.getMileage() > 0) {
+            mileageHistoryRepository.save(new MileageHistory(user, false, prize.getMileage(), "뽑기로 획득"));
+        }
         userRepository.save(user);
     }
 
@@ -72,9 +78,11 @@ public class PrizeService {
     public Prize addPrize(PrizeDto dto) {
         Prize prize;
         if (dto.isCoin()) {
-            prize = new Prize(dto.getName(), 0, dto.getValue(), dto.getProbability());
+            String name = dto.getValue() + "코인";
+            prize = new Prize(name, 0, dto.getValue(), dto.getProbability());
         } else {
-            prize = new Prize(dto.getName(), dto.getValue(), 0, dto.getProbability());
+            String name = dto.getValue() + "포인트";
+            prize = new Prize(name, dto.getValue(), 0, dto.getProbability());
         }
         return prizeRepository.save(prize);
     }
@@ -82,12 +90,14 @@ public class PrizeService {
     public Prize editPrize(int prizeId, PrizeDto dto) {
         Prize prize = prizeRepository.findPrizeById(prizeId);
         if (dto.isCoin()) {
-            prize.setName(dto.getName());
+            String name = dto.getValue() + "코인";
+            prize.setName(name);
             prize.setCoin(dto.getValue());
             prize.setMileage(0);
             prize.setProbability(dto.getProbability());
         } else {
-            prize.setName(dto.getName());
+            String name = dto.getValue() + "포인트";
+            prize.setName(name);
             prize.setCoin(0);
             prize.setMileage(dto.getValue());
             prize.setProbability(dto.getProbability());

@@ -35,7 +35,11 @@ public class ScheduledEventService {
         for (ScheduledEvent item : items) {
             Event event = item.getEvent();
             int volunteer = item.getEntrants().size();
-            double rating = (double) event.getRatingTotal() / event.getReviewCount();
+            int reviewCount = 1;
+            if (event.getReviewCount() != 0) {
+                reviewCount = event.getReviewCount();
+            }
+            double rating = (double) event.getRatingTotal() / reviewCount;
             ScheduledEventListDto dto = new ScheduledEventListDto(item.getId(),
                     event.getTitle(), rating, item.getDate(),
                     item.getStartTime(), item.getEndTime(),
@@ -54,7 +58,11 @@ public class ScheduledEventService {
             totalAttendedUser += entrantService.countAttendedUser(item);
             totalReviewedUser += entrantService.countReviewedUser(item);
         }
-        double rating = (double) event.getRatingTotal() / event.getReviewCount();
+        int reviewCount = 1;
+        if (event.getReviewCount() != 0) {
+            reviewCount = event.getReviewCount();
+        }
+        double rating = (double) event.getRatingTotal() / reviewCount;
         int volunteer = se.getEntrants().size();
 
         ScheduledEventDetailDto dto = new ScheduledEventDetailDto(se.getId(),

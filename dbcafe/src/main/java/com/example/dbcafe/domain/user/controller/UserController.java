@@ -60,8 +60,8 @@ public class UserController {
 
     @GetMapping("/keep")
     public String keepUser(Model model, HttpSession session) {
-        User user = userService.findById((String) session.getAttribute("loggedInUser"));
-        if (user.getId().equals("admin")) {
+        String userId = (String) session.getAttribute("loggedInUser");
+        if (userId.equals("admin")) {
             List<KeepUserDto> dtos = userService.findKeepUserInfo();
             List<CouponSelectDto> coupons = reservationService.getCouponList();
 
@@ -77,5 +77,23 @@ public class UserController {
     public String giftForKeepUser(@ModelAttribute GiftKeepUserDto dto) {
         userService.giftForKeepUser(dto);
         return "redirect:/user/keep";
+    }
+
+    @PostMapping("/login-low")
+    public String loginLowAcc(HttpSession session) {
+        session.setAttribute("loggedInUser", "mrLow");
+        return "redirect:/";
+    }
+
+    @PostMapping("/login-high")
+    public String loginHighAcc(HttpSession session) {
+        session.setAttribute("loggedInUser", "kimDongSeo");
+        return "redirect:/";
+    }
+
+    @PostMapping("/login-admin")
+    public String loginAdmin(HttpSession session) {
+        session.setAttribute("loggedInUser", "admin");
+        return "redirect:/";
     }
 }

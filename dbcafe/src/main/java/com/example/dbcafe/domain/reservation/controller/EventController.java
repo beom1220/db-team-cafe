@@ -25,7 +25,6 @@ public class EventController {
 
     @GetMapping("/review")
     public String showReview(@RequestParam(name = "eventId") int eventId, Model model, HttpSession session) {
-        session.setAttribute("loggedInUser", "003");
         List<EventReviewDto> dtos = eventService.findReviewsByEventId(eventId);
         boolean isReviewable = eventService.checkReviewable(session, eventId);
         Event event = eventService.findEventById(eventId);
@@ -47,9 +46,6 @@ public class EventController {
 
     @GetMapping("/statistics")
     public String eventStatistics(Model model, HttpSession session) {
-        // 임시 어드민 로그인
-        session.setAttribute("loggedInUser", "admin");
-
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
             List<EventStatisticsDto> dtos = eventService.findStatistics();

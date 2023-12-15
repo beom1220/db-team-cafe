@@ -31,7 +31,7 @@ public class PrizeHistoryService {
     }
 
     public List<PrizeHistoryDto> showAllHistory() {
-        List<PrizeHistory> items = prizeHistoryRepository.findAll();
+        List<PrizeHistory> items = prizeHistoryRepository.findAllByOrderByCreatedAtDesc();
         List<PrizeHistoryDto> dtos = new ArrayList<>();
         for (PrizeHistory ph : items) {
             PrizeHistoryDto dto = new PrizeHistoryDto(ph.getUser().getId(),

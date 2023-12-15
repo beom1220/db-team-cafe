@@ -113,3 +113,10 @@
 .menu-box {
     margin: 0px 35px;
 }
+
+/** 로그인 정렬하는 용도 */
+.add-data-box {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
