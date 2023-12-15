@@ -242,3 +242,72 @@ td:not(.today):not(.in2weeks) {
   border-radius: 20px;
   cursor: pointer;
 }
+
+.time-space-between {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 100px;
+  }
+.text-center {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width:280px;
+    height: 100px;
+    padding: 20px;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    text-align: center;
+    align-items: center;
+    justify-text: center;
+    justify-content: center;
+    gap: 2px;
+    transition: background-color 1s ease;
+}
+.text-center:hover {
+    background-color: #cccccc; /* 호버 상태일 때 배경색 변경 */
+}
+
+.text-center-false {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 280px;
+    height: 100px;
+    padding: 20px;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: gray;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 0.25rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+.time-block {
+  width: calc(33.33% - 10px); /* 10px는 여유 공간으로 조절 가능 */
+  margin-bottom: 20px;
+}
+
+.time-block a {
+  text-decoration: none;
+  color: inherit;
+}
+.a-link {
+   display: flex;
+   text-align: center;
+   width: 100%;
+   text-align: center;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+}

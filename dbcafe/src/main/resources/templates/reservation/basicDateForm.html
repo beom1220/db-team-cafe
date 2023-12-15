@@ -24,6 +24,8 @@
             </div>
             <form id="dateForm" action="/reservation-block/select-time" method="get">
                 <div th:each="day : ${days}" class="row-box">
+
+                    <p th:text="${day.isBookable}"></p>
                     <p th:text="${day.date}">데이터</p>
                     <input type="radio" name="date" th:value="${day.date}" />
                 </div>

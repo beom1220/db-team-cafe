@@ -70,12 +70,12 @@ public class DbInitializerService {
         userList.add(new User("dkanrjsk010", userRepository.findUserById("kimDongSeo"), "1111", "신진성", "010-4455-1122", 24, true, 4000, 80000, 8, 5, Level.SILVER));
 
         userList.add(new User("dlwlrma", userRepository.findUserById("kimDongSeo"), "1111", "수한무", "010-1111-1122", 24, true, 2000, 250000, 25, 5, Level.GOLD));
-        userList.add(new User("akak8282", userRepository.findUserById("kimDongSeo"), "1111", "거북이", "010-4632-1122", 24, true, 1000, 270000, 27, 5, Level.GOLD));
+        userList.add(new User("akak8282", userRepository.findUserById("kimDongSeo"), "1111", "거북이", "010-4632-1122", 24, true, 1000, 1270000, 27, 5, Level.GOLD));
         userList.add(new User("dndndn23", userRepository.findUserById("kimDongSeo"), "1111", "두루미", "010-5326-1122", 24, true, 1000, 320000, 32, 5, Level.GOLD));
         userList.add(new User("alliswell", userRepository.findUserById("kimDongSeo"), "1111", "동방삭", "010-2754-1122", 24, true, 1000, 700000, 70, 5, Level.DIAMOND));
-        userList.add(new User("coffeemaster", userRepository.findUserById("kimDongSeo"), "1111", "토끼", "010-5678-1122", 24, true, 1000, 20000, 2, 5, Level.BRONZE));
-        userList.add(new User("vlrhsgkek", userRepository.findUserById("kimDongSeo"), "1111", "자라", "010-4685-1122", 24, true, 1000, 50000, 5, 5, Level.SILVER));
-        userList.add(new User("wlqdprkrhtlvek", userRepository.findUserById("kimDongSeo"), "1111", "도라에몽", "010-4685-1122", 24, true, 1000, 30000, 3, 5, Level.BRONZE));
+        userList.add(new User("coffeemaster", userRepository.findUserById("kimDongSeo"), "1111", "토끼", "010-5678-1122", 24, true, 1000, 560000, 2, 5, Level.BRONZE));
+        userList.add(new User("vlrhsgkek", userRepository.findUserById("kimDongSeo"), "1111", "자라", "010-4685-1122", 24, true, 1000, 500000, 5, 5, Level.SILVER));
+        userList.add(new User("wlqdprkrhtlvek", userRepository.findUserById("kimDongSeo"), "1111", "도라에몽", "010-4685-1122", 24, true, 1000, 350000, 3, 5, Level.BRONZE));
         userList.add(new User("rmaksgkffo", userRepository.findUserById("kimDongSeo"), "1111", "노진구", "010-4685-1122", 24, true, 1000, 800000, 8, 5, Level.DIAMOND));
         userList.add(new User("arirang", userRepository.findUserById("kimDongSeo"), "1111", "짱구", "010-4685-1122", 24, true, 1000, 3000000, 300, 5, Level.VIP));
 
@@ -118,9 +118,8 @@ public class DbInitializerService {
         eventList.add(new Event("신메뉴 테스트", "생각중인 신메뉴를 테스트할 기회!", true, 10, 30000, "사진", 4, 15.3));
         eventList.add(new Event("독서 골든벨", "책을 많이 읽었다면 도전하세요.", true, 20, 3000, "사진", 3, 12.7));
         eventList.add(new Event("천하제일 자랑대회", "당신의 굿즈를 자랑해보세요", false, 10, 1500, "사진", 0, 0));
-        eventList.add(new Event("제빵교실", "디저트를 사랑하는 당신에게", false, 10, 4000, "사진", 0, 0));
-        eventList.add(new Event("알고리즘 풀이 모임", "세상이 0과 1로 보여요", false, 8, 5000, "사진", 0, 0));
-
+        eventList.add(new Event("제빵교실", "디저트를 사랑하는 당신에게", false, 1, 4000, "사진", 0, 0));
+        eventList.add(new Event("알고리즘 풀이 모임", "세상이 0과 1로 보여요", false, 10, 5000, "사진", 0, 0));
 
         eventRepository.saveAll(eventList);
     }
@@ -128,10 +127,10 @@ public class DbInitializerService {
     public void PlaceEntity(){
         List<Place> placeList = new ArrayList<>();
 
-        placeList.add(new Place(30, true, true, 8, false));
-        placeList.add(new Place(20, true, true, 6, true));
-        placeList.add(new Place(15, true, true, 4, false));
-        placeList.add(new Place(25, true, true, 4, true));
+        placeList.add(new Place(10, true, true, 8, false));
+        placeList.add(new Place(10, true, true, 6, true));
+        placeList.add(new Place(10, true, true, 4, false));
+        placeList.add(new Place(10, true, true, 4, true));
         placeList.add(new Place(10, true, true, 2, true));
 
         placeRepository.saveAll(placeList);
@@ -308,6 +307,24 @@ public class DbInitializerService {
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
                 ApplicationStatus.PENDING, false, false, null, null, 0.0, null));
         entrantRepository.saveAll(entrantList);
+
+        nowuser = userRepository.findUserById("dlwlrma");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, null));
+        entrantRepository.saveAll(entrantList);
+
+        nowuser = userRepository.findUserById("dndndn23");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, null));
+        entrantRepository.saveAll(entrantList);
+
+        nowuser = userRepository.findUserById("akak8282");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, null));
+        entrantRepository.saveAll(entrantList);
     }
 
     public void ReservationEntity(){
@@ -328,63 +345,146 @@ public class DbInitializerService {
         reservationList.add(new Reservation(userRepository.findUserById("kimDongSeo"), "커피 탐구회", 10, 100000,
                 PaymentMethod.CREDIT, false, userRepository.findUserById("kimDongSeo").getName(), userRepository.findUserById("kimDongSeo").getPhone(),
                 0, false));
+
+        reservationList.add(new Reservation(userRepository.findUserById("arirang"), "시 낭송회", 10, 100000,
+                PaymentMethod.CREDIT, false, userRepository.findUserById("arirang").getName(), userRepository.findUserById("arirang").getPhone(),
+                0, false));
+        reservationList.add(new Reservation(userRepository.findUserById("akak8282"), "사대부고 동창회", 10, 100000,
+                PaymentMethod.CREDIT, false, userRepository.findUserById("kimDongSeo").getName(), userRepository.findUserById("kimDongSeo").getPhone(),
+                0, false));
+        reservationList.add(new Reservation(userRepository.findUserById("dndndn23"), "그냥 빌림", 10, 100000,
+                PaymentMethod.CREDIT, false, userRepository.findUserById("kimDongSeo").getName(), userRepository.findUserById("kimDongSeo").getPhone(),
+                0, false));
+        reservationList.add(new Reservation(userRepository.findUserById("alliswell"), "귀사모", 10, 100000,
+                PaymentMethod.CREDIT, false, userRepository.findUserById("kimDongSeo").getName(), userRepository.findUserById("kimDongSeo").getPhone(),
+                0, false));
+        reservationList.add(new Reservation(userRepository.findUserById("coffeemaster"), "스터디 그룹", 10, 100000,
+                PaymentMethod.CREDIT, false, userRepository.findUserById("kimDongSeo").getName(), userRepository.findUserById("kimDongSeo").getPhone(),
+                0, false));
+        reservationList.add(new Reservation(userRepository.findUserById("vlrhsgkek"), "일본어 스터디", 10, 100000,
+                PaymentMethod.CREDIT, false, userRepository.findUserById("kimDongSeo").getName(), userRepository.findUserById("kimDongSeo").getPhone(),
+                0, false));
+        reservationList.add(new Reservation(userRepository.findUserById("wlqdprkrhtlvek"), "조기축구 전술교류", 10, 100000,
+                PaymentMethod.CREDIT, false, userRepository.findUserById("kimDongSeo").getName(), userRepository.findUserById("kimDongSeo").getPhone(),
+                0, false));
+        reservationList.add(new Reservation(userRepository.findUserById("rmaksgkffo"), "과제 모임", 10, 100000,
+                PaymentMethod.CREDIT, false, userRepository.findUserById("kimDongSeo").getName(), userRepository.findUserById("kimDongSeo").getPhone(),
+                0, false));
         reservationRepository.saveAll(reservationList);
     }
 
     public void ReservationBlockEntity(){
         List<ReservationBlock> reservationBlockList = new ArrayList<>();
 
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,19),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), false));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,19),
-                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,19),
-                LocalTime.of(14, 00), LocalTime.of(16, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,19),
-                LocalTime.of(16, 00), LocalTime.of(18, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,19),
-                LocalTime.of(18, 00), LocalTime.of(20, 00), false));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,19),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), false));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,19),
+//                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,19),
+//                LocalTime.of(14, 00), LocalTime.of(16, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,19),
+//                LocalTime.of(16, 00), LocalTime.of(18, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,19),
+//                LocalTime.of(18, 00), LocalTime.of(20, 00), false));
+//
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
+//                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
+//                LocalTime.of(14, 00), LocalTime.of(16, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
+//                LocalTime.of(16, 00), LocalTime.of(18, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
+//                LocalTime.of(18, 00), LocalTime.of(20, 00), true));
+//
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,29),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,5),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,12),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,19),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(2), LocalDate.of(2024,1,26),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+//
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,28),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,4),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,11),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,18),
+//                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+//
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,28),
+//                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,4),
+//                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,11),
+//                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
+//        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,18),
+//                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
 
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
-                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
-                LocalTime.of(14, 00), LocalTime.of(16, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
-                LocalTime.of(16, 00), LocalTime.of(18, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,20),
-                LocalTime.of(18, 00), LocalTime.of(20, 00), true));
+        // 시작 날짜와 끝 날짜 설정
+        LocalDate startDate = LocalDate.of(2023, 12, 19);
+        LocalDate endDate = LocalDate.of(2024, 3, 1);
 
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,29),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,5),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,12),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,19),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(2), LocalDate.of(2024,1,26),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+// 시작 시간과 끝 시간 조합
+        LocalTime[][] times = {
+                {LocalTime.of(10, 00), LocalTime.of(12, 00)},
+                {LocalTime.of(12, 00), LocalTime.of(14, 00)},
+                {LocalTime.of(14, 00), LocalTime.of(16, 00)},
+                {LocalTime.of(16, 00), LocalTime.of(18, 00)},
+                {LocalTime.of(18, 00), LocalTime.of(20, 00)},
+                {LocalTime.of(20, 00), LocalTime.of(22, 00)}
+        };
 
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,28),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,4),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,11),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,18),
-                LocalTime.of(10, 00), LocalTime.of(12, 00), true));
+// 시작 날짜부터 끝 날짜까지 반복
+        for (LocalDate date = startDate; !date.isAfter(endDate); date = date.plusDays(1)) {
+            // 각 장소에 대해 반복
+            for (int placeId = 1; placeId <= 3; placeId++) {
+                // 각 시간 조합에 대해 반복
+                for (int i = 0; i < times.length; i++) {
+                    reservationBlockList.add(new ReservationBlock(
+                            placeRepository.findPlaceById(placeId),
+                            date,
+                            times[i][0],
+                            times[i][1],
+                            true
+                    ));
+                }
+            }
+        }
+        reservationBlockRepository.save(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,10,18),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), false));
+        reservationBlockRepository.save(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,10,17),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), false));
+        reservationBlockRepository.save(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,10,16),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), false));
+        reservationBlockRepository.save(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,10,15),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), false));
+        reservationBlockRepository.save(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,10,14),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), false));
+        reservationBlockRepository.save(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,10,13),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), false));
+        reservationBlockRepository.save(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,10,12),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), false));
+        reservationBlockRepository.save(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,10,11),
+                LocalTime.of(12, 00), LocalTime.of(14, 00), false));
 
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2023,12,28),
-                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,4),
-                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,11),
-                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
-        reservationBlockList.add(new ReservationBlock(placeRepository.findPlaceById(1), LocalDate.of(2024,1,18),
-                LocalTime.of(12, 00), LocalTime.of(14, 00), true));
+        reservationBlockRepository.saveAll(reservationBlockList);
+        reservationBlockList = reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2023, 12, 20), true);
+        reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2023, 12, 25), true));
+        reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 1, 1), true));
+        reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 1, 7), true));
+        reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 1, 20), true));
+        reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 1, 22), true));
+        reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 2, 3), true));
+        reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 2, 22), true));
 
+        reservationBlockList.stream().forEach(block -> block.setBookable(false));
         reservationBlockRepository.saveAll(reservationBlockList);
     }
 
@@ -418,6 +518,40 @@ public class DbInitializerService {
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), true));
 
+
+
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(6), reservationBlockRepository.findReservationBlockById(1), "1111",
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
+                settingRepository.findByName("주중할인율").getValue(), true));
+
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(7), reservationBlockRepository.findReservationBlockById(2), "1111",
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
+                settingRepository.findByName("주중할인율").getValue(), true));
+
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(8), reservationBlockRepository.findReservationBlockById(3), "1111",
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
+                settingRepository.findByName("주중할인율").getValue(), true));
+
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(9), reservationBlockRepository.findReservationBlockById(4), "1111",
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
+                settingRepository.findByName("주중할인율").getValue(), true));
+
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(10), reservationBlockRepository.findReservationBlockById(5), "1111",
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
+                settingRepository.findByName("주중할인율").getValue(), true));
+
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(11), reservationBlockRepository.findReservationBlockById(6), "1111",
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
+                settingRepository.findByName("주중할인율").getValue(), true));
+
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(12), reservationBlockRepository.findReservationBlockById(7), "1111",
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
+                settingRepository.findByName("주중할인율").getValue(), true));
+
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(13), reservationBlockRepository.findReservationBlockById(8), "1111",
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
+                settingRepository.findByName("주중할인율").getValue(), true));
+
         reservationItemRepository.saveAll(reservationItemList);
     }
 
@@ -448,6 +582,15 @@ public class DbInitializerService {
     public void LevelHistoryEntity(){
         List<LevelHistory> levelHistoryList = new ArrayList<>();
 
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("arirang"), 110, Level.GOLD, 2023, 9));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("akak8282"), 83, Level.SILVER, 2023, 9));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("dndndn23"), 80, Level.SILVER, 2023, 9));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("alliswell"), 180, Level.VIP, 2023, 9));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("coffeemaster"), 10, Level.BRONZE, 2023, 9));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("vlrhsgkek"), 90, Level.GOLD, 2023, 9));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("wlqdprkrhtlvek"), 150, Level.DIAMOND, 2023, 9));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("rmaksgkffo"), 152, Level.DIAMOND, 2023, 9));
+
         levelHistoryList.add(new LevelHistory(userRepository.findUserById("kimDongSeo"), 10, Level.BRONZE, 2023, 10));
         levelHistoryList.add(new LevelHistory(userRepository.findUserById("mrLow"), 100, Level.DIAMOND, 2023, 10));
         levelHistoryList.add(new LevelHistory(userRepository.findUserById("kimmin1"), 50, Level.GOLD, 2023, 10));
@@ -461,7 +604,7 @@ public class DbInitializerService {
         levelHistoryList.add(new LevelHistory(userRepository.findUserById("beom1220"), 29, Level.SILVER, 2023, 11));
         levelHistoryList.add(new LevelHistory(userRepository.findUserById("tttgood"), 30, Level.SILVER, 2023, 11));
         levelHistoryList.add(new LevelHistory(userRepository.findUserById("dkanrjsk010"), 36, Level.SILVER, 2023, 11));
-        levelHistoryList.add(new LevelHistory(userRepository.findUserById("015"), 500, Level.VIP, 2023, 11));
+        levelHistoryList.add(new LevelHistory(userRepository.findUserById("arirang"), 300, Level.VIP, 2023, 11));
 
         levelHistoryRepository.saveAll(levelHistoryList);
     }
