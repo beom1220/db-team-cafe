@@ -100,13 +100,13 @@ public class DbInitializerService {
 
         scheduledEventList.add(new ScheduledEvent(eventRepository.findEventById(5), placeRepository.findPlaceById(3),
                 LocalDate.of(2024, 2, 8), LocalTime.of(18,0), LocalTime.of(20,0),
-                false, Tag.NOTHING));
+                true, Tag.NOTHING));
         scheduledEventList.add(new ScheduledEvent(eventRepository.findEventById(5), placeRepository.findPlaceById(3),
                 LocalDate.of(2024, 2, 9), LocalTime.of(18,0), LocalTime.of(20,0),
-                false, Tag.NOTHING));
+                true, Tag.NOTHING));
         scheduledEventList.add(new ScheduledEvent(eventRepository.findEventById(5), placeRepository.findPlaceById(3),
                 LocalDate.of(2024, 2, 10), LocalTime.of(18,0), LocalTime.of(20,0),
-                false, Tag.NOTHING));
+                true, Tag.NOTHING));
 
         scheduledEventRepository.saveAll(scheduledEventList);
     }
@@ -313,19 +313,19 @@ public class DbInitializerService {
     public void ReservationEntity(){
         List<Reservation> reservationList = new ArrayList<>();
 
-        reservationList.add(new Reservation(userRepository.findUserById("beom1220"), "디비팀플모임", 4, 30000,
+        reservationList.add(new Reservation(userRepository.findUserById("beom1220"), "디비팀플모임", 4, 50000,
                 PaymentMethod.CREDIT, false, userRepository.findUserById("beom1220").getName(), userRepository.findUserById("beom1220").getPhone(),
                 0, false));
-        reservationList.add(new Reservation(userRepository.findUserById("tttgood"), "꽃배달 모임", 8, 80000,
+        reservationList.add(new Reservation(userRepository.findUserById("tttgood"), "꽃배달 모임", 8, 50000,
                 PaymentMethod.CREDIT, false, userRepository.findUserById("tttgood").getName(), userRepository.findUserById("tttgood").getPhone(),
                 0, false));
-        reservationList.add(new Reservation(userRepository.findUserById("dkanrjsk010"), "아이브 팬카페 정기", 10, 100000,
+        reservationList.add(new Reservation(userRepository.findUserById("dkanrjsk010"), "아이브 팬카페 정기", 10, 50000,
                 PaymentMethod.CREDIT, true, userRepository.findUserById("dkanrjsk010").getName(), userRepository.findUserById("dkanrjsk010").getPhone(),
                 0, false));
-        reservationList.add(new Reservation(userRepository.findUserById("mrLow"), "저녁 노가리", 3, 30000,
+        reservationList.add(new Reservation(userRepository.findUserById("mrLow"), "저녁 노가리", 3, 50000,
                 PaymentMethod.CREDIT, false, userRepository.findUserById("mrLow").getName(), userRepository.findUserById("mrLow").getPhone(),
                 0, false));
-        reservationList.add(new Reservation(userRepository.findUserById("kimDongSeo"), "커피 탐구회", 10, 150000,
+        reservationList.add(new Reservation(userRepository.findUserById("kimDongSeo"), "커피 탐구회", 10, 100000,
                 PaymentMethod.CREDIT, false, userRepository.findUserById("kimDongSeo").getName(), userRepository.findUserById("kimDongSeo").getPhone(),
                 0, false));
         reservationRepository.saveAll(reservationList);
@@ -400,22 +400,22 @@ public class DbInitializerService {
         List<ReservationItem> reservationItemList = new ArrayList<>();
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(1), reservationBlockRepository.findReservationBlockById(1), "1111",
-                reservationRepository.findReservationById(1).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), true));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(2), reservationBlockRepository.findReservationBlockById(2), "1111",
-                reservationRepository.findReservationById(2).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), true));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(3), reservationBlockRepository.findReservationBlockById(3), "1111",
-                reservationRepository.findReservationById(3).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), true));
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(4), "1111",
-                reservationRepository.findReservationById(3).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), false));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(4), "1111",
-                reservationRepository.findReservationById(3).getPrepaymentTotal(), settingRepository.findByName("얼리버드할인율").getValue(),
+                50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), true));
 
         reservationItemRepository.saveAll(reservationItemList);
@@ -424,10 +424,11 @@ public class DbInitializerService {
     public void CouponEntity(){
         List<Coupon> couponList = new ArrayList<>();
 
-        couponList.add(new Coupon("웰컴쿠폰", 10, 3000, 30, 100));
-        couponList.add(new Coupon("오랜만쿠폰", 30, 5000, 30, 100));
-        couponList.add(new Coupon("장기고객쿠폰", 15, 5000, 60, 100));
-        couponList.add(new Coupon("명절축하쿠폰", 20, 4000, 15, 100));
+        couponList.add(new Coupon("웰컴쿠폰", 10, 30000, 30, 100));
+        couponList.add(new Coupon("오랜만쿠폰", 30, 70000, 30, 100));
+        couponList.add(new Coupon("장기고객쿠폰", 15, 50000, 60, 100));
+        couponList.add(new Coupon("명절축하쿠폰", 20, 80000, 15, 100));
+        couponList.add(new Coupon("취소보상쿠폰", 20, 100000, 15, 100));
         couponRepository.saveAll(couponList);
     }
 
