@@ -266,6 +266,8 @@ a {
     color: black;
     font-weight: bold;
     cursor: pointer;
+       border: none;
+        background: none;
 }
 .nav-link {
     transition: color 1s ease;
