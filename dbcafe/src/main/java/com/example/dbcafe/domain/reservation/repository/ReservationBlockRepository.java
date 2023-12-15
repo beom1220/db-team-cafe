@@ -36,7 +36,7 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
             "rb.date >= :today AND " +
             "rb.id IN (" +
             "SELECT MIN(rb2.id) FROM ReservationBlock rb2 " +
-            "WHERE rb2.isBookable = true AND rb2.date >= :today " +
+            "WHERE rb2.date >= :today " +
             "GROUP BY rb2.date " +
             "ORDER BY rb2.date ASC)" +
             "ORDER BY rb.date ASC")  // ORDER BY 구문 추가
@@ -103,4 +103,6 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
             LocalDate today);
 
     ReservationBlock findFirstByDateAndIsBookableOrderByPlaceIdAsc(LocalDate date, boolean b);
+
+    List<ReservationBlock> findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate of, boolean b);
 }
