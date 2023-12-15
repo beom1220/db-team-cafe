@@ -26,7 +26,7 @@
                       type="submit"
                       style="text-decoration-color: black;
                             color: black;">
-                  낮은 사용자 로그인
+                  누적낮은사용자로그인
               </button>
           </form>
           <form th:action="@{/user/login-high}" method="post">
@@ -34,7 +34,15 @@
                       type="submit"
                       style="text-decoration-color: black;
                             color: black;">
-                  높은 사용자 로그인
+                  누적높은사용자로그인
+              </button>
+          </form>
+          <form th:action="@{/user/login-next}" method="post">
+              <button id="nextUser"
+                      type="submit"
+                      style="text-decoration-color: black;
+                            color: black;">
+                  기능써보는사용자로그인
               </button>
           </form>
           <form th:action="@{/user/login-admin}" method="post">
@@ -42,7 +50,23 @@
                       type="submit"
                       style="text-decoration-color: black;
                             color: black;">
-                  어드민 로그인
+                  어드민로그인
+              </button>
+          </form>
+          <form th:action="@{/scheduled-event/attend}" method="post">
+              <button id="attend"
+                      type="submit"
+                      style="text-decoration-color: black;
+                            color: black;">
+                  이벤트모임출석했다치고
+              </button>
+          </form>
+          <form th:action="@{/orders/reservation-form}" method="get">
+              <button id="order-reservation"
+                      type="submit"
+                      style="text-decoration-color: black;
+                            color: black;">
+                  모임방문메뉴주문
               </button>
           </form>
       </div>
@@ -57,7 +81,8 @@
                   <p class="event-capacity" th:text="${'모집인원: ' + scheduledEvent.volunteer + '/' + scheduledEvent.capacity}">모집인원: 00/00</p>
                   <div class="event-content">
                       <div class="event-row">
-                          <a th:href="@{/scheduled-event/detail(id=${scheduledEvent.id})}"><h4 class="event-title" th:text="${scheduledEvent.title}">이벤트 모임명</h4></a>
+                          <a th:if="${session.loggedInUser} != admin" th:href="@{/scheduled-event/detail(id=${scheduledEvent.id})}"><h4 class="event-title" th:text="${scheduledEvent.title}">이벤트 모임명</h4></a>
+                          <a th:if="${session.loggedInUser} == admin" th:href="'/scheduled-event/entrant-list' + '?scheduledEventId=' + ${scheduledEvent.id}"><h4 class="event-title" th:text="${scheduledEvent.title}">이벤트 모임명</h4></a>
                           <b class="event-tag" th:text="${scheduledEvent.tag}" th:if="${scheduledEvent.tag eq null or scheduledEvent.tag eq '해당사항 없음'}" style="display: none;"></b>
                           <b class="event-tag" th:text="${scheduledEvent.tag}" th:unless="${scheduledEvent.tag eq null or scheduledEvent.tag eq '해당사항 없음'}"></b>
                       </div>

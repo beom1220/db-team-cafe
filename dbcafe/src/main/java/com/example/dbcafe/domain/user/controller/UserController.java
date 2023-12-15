@@ -96,4 +96,10 @@ public class UserController {
         session.setAttribute("loggedInUser", "admin");
         return "redirect:/";
     }
+
+    @PostMapping("/login-next")
+    public String loginNext(HttpSession session) {
+        session.setAttribute("loggedInUser", "beom1220");
+        return "redirect:/";
+    }
 }

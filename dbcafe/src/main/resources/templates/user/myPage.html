@@ -75,7 +75,7 @@
         <div class="event-list">
           <div class="event-box"  th:each="scheduledEvent : ${user.scheduledEventList}">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2vXhZBFff6uJkXKcKGeGqrje3TGiRYkE6UQ&usqp=CAU" alt="">
-            <p class="event-title" th:text="${scheduledEvent.event.title}">이벤트 모임명</p>
+            <a th:href="'/event/review' + '?eventId=' + ${scheduledEvent.event.id}"><p class="event-title" th:text="${scheduledEvent.event.title}">이벤트 모임명</p></a>
             <p th:text="${scheduledEvent.date}">0000.00.00</p>
             <p th:text="${scheduledEvent.startTime + '~' + scheduledEvent.endTime}">오전00:00~오후00:00</p>
           </div>

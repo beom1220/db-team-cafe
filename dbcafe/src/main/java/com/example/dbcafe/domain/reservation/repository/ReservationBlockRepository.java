@@ -17,7 +17,7 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
 
     ReservationBlock findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(LocalDate date, LocalTime startTime, boolean b);
 
-    List<ReservationBlock> findAllReservationBlockByDateAndStartTimeAndIsBookableFalse(LocalDate date, LocalTime startTime);
+    List<ReservationBlock> findAllReservationBlockByDateAndStartTimeAndIsBookable(LocalDate date, LocalTime startTime, boolean b);
 
     ReservationBlock findReservationBlockByPlaceAndDateAndStartTime(Place place, LocalDate date, LocalTime startTime);
 

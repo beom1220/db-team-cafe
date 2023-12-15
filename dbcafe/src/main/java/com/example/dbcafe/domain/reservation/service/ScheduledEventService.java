@@ -2,10 +2,7 @@ package com.example.dbcafe.domain.reservation.service;
 
 import com.example.dbcafe.domain.reservation.domain.*;
 import com.example.dbcafe.domain.reservation.dto.*;
-import com.example.dbcafe.domain.reservation.repository.EventRepository;
-import com.example.dbcafe.domain.reservation.repository.PlaceRepository;
-import com.example.dbcafe.domain.reservation.repository.ReservationBlockRepository;
-import com.example.dbcafe.domain.reservation.repository.ScheduledEventRepository;
+import com.example.dbcafe.domain.reservation.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +18,7 @@ public class ScheduledEventService {
     private final ReservationBlockService reservationBlockService;
     private final PlaceRepository placeRepository;
     private final ReservationBlockRepository reservationBlockRepository;
+    private final EntrantRepository entrantRepository;
 
     public List<ScheduledEvent> findAllRecruiting() {
         return scheduledEventRepository.findAllByIsClosedOrderByDateAscStartTimeAsc(false);
@@ -127,5 +125,11 @@ public class ScheduledEventService {
         scheduledEventRepository.save(scheduledEvent);
         block.setBookable(false);
         reservationBlockService.save(block);
+    }
+
+    public void tempAttend() {
+        Entrant entrant = entrantRepository.findEntrantById(87);
+        entrant.setAttended(true);
+        entrantRepository.save(entrant);
     }
 }

@@ -9,7 +9,6 @@ import com.example.dbcafe.domain.reservation.repository.*;
 import com.example.dbcafe.domain.user.domain.*;
 import com.example.dbcafe.domain.user.repository.*;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -525,6 +524,13 @@ public class DbInitializerService {
         reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 1, 20), true));
         reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 1, 22), true));
 
+        reservationBlockList.stream().forEach(block -> block.setBookable(false));
+        reservationBlockRepository.saveAll(reservationBlockList);
+
+        reservationBlockList = reservationBlockRepository.findAllReservationBlockByDateAndStartTimeAndIsBookable(LocalDate.of(2024, 1, 11),
+                LocalTime.of(12, 00), true);
+        reservationBlockList.addAll(reservationBlockRepository.findAllReservationBlockByDateAndStartTimeAndIsBookable(LocalDate.of(2024, 1, 11),
+                LocalTime.of(16, 00), true));
         reservationBlockList.stream().forEach(block -> block.setBookable(false));
         reservationBlockRepository.saveAll(reservationBlockList);
     }
