@@ -78,4 +78,22 @@ public class UserController {
         userService.giftForKeepUser(dto);
         return "redirect:/user/keep";
     }
+
+    @PostMapping("/login-low")
+    public String loginLowAcc(HttpSession session) {
+        session.setAttribute("loggedInUser", "mrLow");
+        return "redirect:/";
+    }
+
+    @PostMapping("/login-high")
+    public String loginHighAcc(HttpSession session) {
+        session.setAttribute("loggedInUser", "kimDongSeo");
+        return "redirect:/";
+    }
+
+    @PostMapping("/login-admin")
+    public String loginAdmin(HttpSession session) {
+        session.setAttribute("loggedInUser", "admin");
+        return "redirect:/";
+    }
 }

@@ -25,9 +25,6 @@ public class SettingController {
 
     @GetMapping("/level")
     public String levelInfo(Model model, HttpSession session) {
-        // 임시 어드민 로그인
-        session.setAttribute("loggedInUser", "admin");
-
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
             List<LevelDto> dtos = settingService.getLevelInfo();

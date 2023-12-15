@@ -51,7 +51,6 @@ public class OrdersController {
 
     @GetMapping("/reservation-form")
     public String reservationForm(Model model, HttpSession session) {
-        session.setAttribute("loggedInUser", "001"); // 001 유저로 임시 로그인
         User user = userService.findById((String) session.getAttribute("loggedInUser"));
         Cart cart = cartService.findByUser(user);
         session.setAttribute("reservationItem", reservationService.findItemByIdAndTempPw(5, "1111"));

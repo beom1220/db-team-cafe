@@ -36,9 +36,6 @@ public class ScheduledEventController {
 
     @GetMapping("/entrant-list") //관리자 페이지
     public String entrantList(@RequestParam(name = "scheduledEventId") int scheduledEventId, Model model, HttpSession session) {
-        // 임시로 어드민 로그인 되게끔 하는 코드
-        session.setAttribute("loggedInUser", "admin");
-
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
             ScheduledEvent scheduledEvent = scheduledEventService.findById(scheduledEventId);
@@ -75,9 +72,6 @@ public class ScheduledEventController {
 
     @GetMapping("/scheduleForm")
     public String scheduleForm(HttpSession session, Model model) {
-        // 임시 어드민 로그인
-        session.setAttribute("loggedInUser", "admin");
-
         String userId = (String) session.getAttribute("loggedInUser");
         if (userId.equals("admin")) {
             List<EventDto> eventDtos = scheduledEventService.findAllEvent();
@@ -95,4 +89,6 @@ public class ScheduledEventController {
         scheduledEventService.addScheduledEvent(dto);
         return "redirect:/";
     }
+
+
 }

@@ -12,7 +12,7 @@ public interface EntrantRepository extends JpaRepository<Entrant, Integer> {
 
     List<Entrant> findAllEntrantByScheduledEventAndReviewIsNotNullAndRatingIsNotNull(ScheduledEvent item);
 
-    List<Entrant> findTop5ByScheduledEventInAndReviewIsNotNullOrderByReviewedDateDesc(List<ScheduledEvent> scheduledEvents);
+    List<Entrant> findTop5ByScheduledEventInAndReviewIsNotNullOrderByRatingDesc(List<ScheduledEvent> scheduledEvents);
 
     List<Entrant> findAllEntrantByScheduledEventInAndIsAttendedAndReviewIsNullOrderByReviewedDateDesc(List<ScheduledEvent> scheduledEvents, boolean b);
 

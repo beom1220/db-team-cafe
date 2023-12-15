@@ -1,5 +1,8 @@
 package com.example.dbcafe.domain.reservation.service;
 
+import com.example.dbcafe.domain.order.domain.Menu;
+import com.example.dbcafe.domain.order.domain.PaymentMethod;
+import com.example.dbcafe.domain.order.repository.MenuRepository;
 import com.example.dbcafe.domain.reservation.domain.ApplicationStatus;
 import com.example.dbcafe.domain.reservation.domain.Entrant;
 import com.example.dbcafe.domain.reservation.domain.Event;
@@ -24,6 +27,7 @@ import java.util.List;
 public class EntrantService {
     private final EntrantRepository entrantRepository;
     private final EventRepository eventRepository;
+    private final MenuRepository menuRepository;
 
     public int countAttendedUser(ScheduledEvent scheduledEvent) {
         return entrantRepository.findAllEntrantByScheduledEventAndIsAttended(scheduledEvent, true).size();
@@ -34,7 +38,7 @@ public class EntrantService {
     }
 
     public List<Entrant> findFiveByEvent(List<ScheduledEvent> scheduledEvents) {
-        return entrantRepository.findTop5ByScheduledEventInAndReviewIsNotNullOrderByReviewedDateDesc(scheduledEvents);
+        return entrantRepository.findTop5ByScheduledEventInAndReviewIsNotNullOrderByRatingDesc(scheduledEvents);
     }
 
     public List<EventReviewDto> convertToReviewDto(List<Entrant> entrants) {
@@ -105,6 +109,14 @@ public class EntrantService {
         Entrant entrant = findById(entrantId);
         entrant.setApplicationStatus(ApplicationStatus.REJECTED);
         entrant.setRejectionReason(rejectionReason);
+        entrantRepository.save(entrant);
+    }
+
+    public void entry(User user, ScheduledEvent scheduledEvent) {
+        Menu menu = menuRepository.findMenuById(0);
+        Entrant entrant = new Entrant(user, scheduledEvent, menu, user.getName(), user.getPhone(), user.getAge(),
+                user.isMale(), PaymentMethod.CREDIT, ApplicationStatus.PENDING, false, false,
+                null, null, 0, null);
         entrantRepository.save(entrant);
     }
 }

@@ -11,9 +11,9 @@ import java.time.LocalTime;
 import java.util.List;
 
 public interface ReservationBlockRepository extends JpaRepository<ReservationBlock, Integer> {
-    List<ReservationBlock> findByDateGreaterThanEqual(LocalDate today); // 예약 페이지에서는 전부 보내서 bookable여부에 따라 다르게 보여야 해서 다 보냄.
+    List<ReservationBlock> findByDateGreaterThanEqualOrderByDateAscStartTimeAsc(LocalDate today); // 예약 페이지에서는 전부 보내서 bookable여부에 따라 다르게 보여야 해서 다 보냄.
 
-    List<ReservationBlock> findByDate(LocalDate date);
+    List<ReservationBlock> findByDateOrderByStartTimeAsc(LocalDate date);
 
     ReservationBlock findFirstByDateAndStartTimeAndIsBookableOrderByPlaceIdAsc(LocalDate date, LocalTime startTime, boolean b);
 
@@ -33,12 +33,31 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
     List<ReservationBlock> findAllByIsBookableAndDayOfWeekAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(boolean b, DayOfWeek dow, LocalDate today);
 
     @Query("SELECT rb FROM ReservationBlock rb WHERE " +
+            "rb.date >= :today AND " +
+            "rb.id IN (" +
+            "SELECT MIN(rb2.id) FROM ReservationBlock rb2 " +
+            "WHERE rb2.isBookable = true AND rb2.date >= :today " +
+            "GROUP BY rb2.date " +
+            "ORDER BY rb2.date ASC)" +
+            "ORDER BY rb.date ASC")  // ORDER BY 구문 추가
+    List<ReservationBlock> findDistinctByDateGreaterThanEqualOrderByDateAsc(LocalDate today);
+
+    @Query("SELECT rb FROM ReservationBlock rb WHERE " +
+            "rb.id IN (" +
+            "SELECT MIN(rb2.id) FROM ReservationBlock rb2 " +
+            "WHERE rb2.date = :date " +
+            "GROUP BY rb2.startTime)" +
+            "ORDER BY rb.date ASC")
+    List<ReservationBlock> findDistinctByDateOrderByStartTimeAsc(LocalDate date);
+
+    @Query("SELECT rb FROM ReservationBlock rb WHERE " +
             "rb.isBookable = true AND " +
             "rb.date >= :today AND " +
             "rb.id IN (" +
             "SELECT MIN(rb2.id) FROM ReservationBlock rb2 " +
             "WHERE rb2.isBookable = true AND rb2.date >= :today " +
-            "GROUP BY rb2.date, rb2.startTime)")
+            "GROUP BY rb2.date, rb2.startTime)" +
+            "ORDER BY rb.date, rb.startTime")
     List<ReservationBlock> findDistinctByIsBookableAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(LocalDate today);
 
     @Query("SELECT rb FROM ReservationBlock rb WHERE " +
@@ -49,7 +68,8 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
             "rb.id IN (" +
             "SELECT MIN(rb2.id) FROM ReservationBlock rb2 " +
             "WHERE rb2.isBookable = true AND rb2.dayOfWeek = :dayOfWeek AND rb2.startTime = :startTime AND rb2.date >= :today " +
-            "GROUP BY rb2.date)")
+            "GROUP BY rb2.date)" +
+            "ORDER BY rb.date")
     List<ReservationBlock> findDistinctByIsBookableAndDayOfWeekAndStartTimeAndDateGreaterThanEqualOrderByDateAsc(
             DayOfWeek dayOfWeek,
             LocalTime startTime,
@@ -62,7 +82,8 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
             "rb.id IN (" +
             "SELECT MIN(rb2.id) FROM ReservationBlock rb2 " +
             "WHERE rb2.isBookable = true AND rb2.startTime = :startTime AND rb2.date >= :today " +
-            "GROUP BY rb2.date)")
+            "GROUP BY rb2.date)" +
+            "ORDER BY rb.date")
     List<ReservationBlock> findDistinctByIsBookableAndStartTimeAndDateGreaterThanEqualOrderByDateAsc(
             LocalTime startTime,
             LocalDate today);
@@ -75,8 +96,11 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
             "rb.id IN (" +
             "SELECT MIN(rb2.id) FROM ReservationBlock rb2 " +
             "WHERE rb2.isBookable = true AND rb2.dayOfWeek = :dayOfWeek AND rb2.date >= :today " +
-            "GROUP BY rb2.date, rb2.startTime)")
+            "GROUP BY rb2.date, rb2.startTime)" +
+            "ORDER BY rb.date, rb.startTime")
     List<ReservationBlock> findDistinctByIsBookableAndDayOfWeekAndDateGreaterThanEqualOrderByDateAscStartTimeAsc(
             DayOfWeek dayOfWeek,
             LocalDate today);
+
+    ReservationBlock findFirstByDateAndIsBookableOrderByPlaceIdAsc(LocalDate date, boolean b);
 }
