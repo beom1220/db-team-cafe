@@ -6,6 +6,9 @@
     <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
     <link th:href="@{/css/reservation.css}" href="../static/css/reservation.css" rel="stylesheet">
 </head>
+<script>
+
+</script>
 <body>
 <div th:insert="fragments/navigation/topBar :: topBar"></div>
 <div class="container">
@@ -18,16 +21,16 @@
                 <p class="content-text">* 2주 이상의 날짜를 예약하면 얼리버드 할인이 적용됩니다.</p>
             </div>
             <div>
+                <input type="hidden" th:value="${userInfo.term}"  th:class="${userInfo.term}" id="day-date"/>
                 <p th:text="'예약가능 일자 범위 '+${userInfo.term}+'일'">0주</p>
                 <p th:text="'다음 등급까지 필요한 금액 '+${userInfo.shortage}+'원'">0원</p>
                 <p th:text="'다음 등급의 예약일자 범위 '+${userInfo.nextTerm}+'주'">0주</p>
             </div>
             <form id="dateForm" action="/reservation-block/select-time" method="get">
                 <div th:each="day : ${days}" class="row-box">
-
                     <p th:text="${day.isBookable}"></p>
                     <p th:text="${day.date}">데이터</p>
-                    <input type="radio" name="date" th:value="${day.date}" />
+                    <input type="radio" name="date" th:value="${day.date}" th:if="${day.isBookable}"/>
                 </div>
                 <button type="button" onclick="submitForm()">시간 선택하러 가기</button>
             </form>
@@ -35,6 +38,15 @@
     </div>
 </div>
 
+<!--<script>-->
+<!--    var today = new Date();-->
+<!--    const endDay = document.getElementById('day-date');-->
+<!--    const num = parseInt(endDay.value);-->
+
+<!--    today.setDate(today.getDate() + num);-->
+<!--    console.log(today);-->
+
+<!--</script>-->
 <script>
     function submitForm() {
         var selectedDate = document.querySelector('input[name="date"]:checked');
@@ -46,6 +58,58 @@
         }
     }
 </script>
+
+<!--<script>-->
+<!--var today = new Date();-->
+
+<!--var year = today.getFullYear();-->
+<!--var month = ('0' + (today.getMonth() + 1)).slice(-2);-->
+<!--var day = ('0' + today.getDate()).slice(-2);-->
+
+
+<!--today.setDate(today.getDate() + 14);-->
+<!--console.log(today);-->
+
+
+<!--var dateString = year + '-' + month  + '-' + day;-->
+
+<!--const endDay = document.getElementById('day-date');-->
+<!--const num = parseInt(endDay.value);-->
+
+<!--console.log(endDay);-->
+<!--14일-->
+<!--console.log(num);-->
+
+
+
+<!--const dateObject = new Date(dateString);-->
+<!--console.log(dateObject);-->
+<!--console.log(dateObject);-->
+
+<!--const obj = new Date(dateObject.setDate(dateObject.getDate() + num));-->
+
+<!--console.log("계산 :" + obf);-->
+
+
+<!--console.log(num);-->
+<!--console.log(dateObject);-->
+
+<!--console.log(typeof(num));-->
+<!--console.log(typeof(dateObject));-->
+
+<!--const endDayDate = currentDate.setDate(dateObject + num);-->
+<!--console.log(endDayDate);-->
+
+<!--    function submitForm() {-->
+<!--        var selectedDate = document.querySelector('input[name="date"]:checked');-->
+<!--        if (selectedDate) {-->
+<!--            document.getElementById('dateForm').action += "?date=" + selectedDate.value;-->
+<!--            document.getElementById('dateForm').submit();-->
+<!--        } else {-->
+<!--            alert("날짜를 선택하세요.");-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 
 </body>
 </html>
