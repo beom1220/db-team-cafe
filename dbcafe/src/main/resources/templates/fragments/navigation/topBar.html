@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{/css/navigation.css}" href="../static/css/navigation.css" rel="stylesheet">
+    <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
 </head>
 <body>
 <div class="top-bar" th:fragment="topBar">
@@ -11,31 +11,32 @@
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuvU8ld4sqPxlJQXbwcV7hAweQ_MRvSCGEXClE6IdgYlN9U0Ne" class="top-logo-image" alt="logo">
             <a th:href="@{/}"><h2>DSU COFFEE</h2></a>
         </div>
-        <div class="top-link-box">
-            <!--  회원 페이지 컴포넌트 -->
-            <a th:href="@{/reservation-block}" th:if="${session.loggedInUser} != 'admin'">모임 예약</a>
-            <a th:href="@{/reservation-block/package}" th:if="${session.loggedInUser} != 'admin'">패키지 모임 예약</a>
-            <a th:href="@{/prize}" th:if="${session.loggedInUser} != 'admin'">뽑기</a>
-            <a th:href="@{/orders/reservation-form}" th:if="${session.loggedInUser} != 'admin'">선결제 주문 페이지</a>
-            <!--  관리자 페이지 컴포넌트 -->
-<!--            //관리자 쪽에서 모임 목록 페이지 없음 그래서 흠 어떻게 가지 .. 고민중-->
-            <a th:href="@{/scheduled-event/entrant-list?scheduledEventId=2}" th:if="${session.loggedInUser} == 'admin'">이벤트 모임 참가 현황</a>
-            <a th:href="@{/user/keep}" th:if="${session.loggedInUser} == 'admin'">이탈 회원 방지</a>
-            <a th:href="@{/scheduled-event/scheduleForm}" th:if="${session.loggedInUser} == 'admin'">이벤트 개최</a>
-            <a th:href="@{/event/statistics}" th:if="${session.loggedInUser} == 'admin'">이벤트 모임 정보 관리</a>
-            <a th:href="@{/prize-history/admin}" th:if="${session.loggedInUser} == 'admin'">뽑기 통계</a>
-            <a th:href="@{/prize/addForm}" th:if="${session.loggedInUser} == 'admin'">뽑기 상품 관리</a>
-            <a th:href="@{/setting/level}" th:if="${session.loggedInUser} == 'admin'">등급 관리</a>
-            <a th:href="@{/coupon/form}" th:if="${session.loggedInUser} == 'admin'">쿠폰 관리</a>
-            <a th:href="@{/reservation/admin}" th:if="${session.loggedInUser} == 'admin'">일반 모임 정보 관리</a>
+        <div class="top-link-box" th:unless="${session.loggedInUser eq 'admin'}">
+            <!-- 회원 페이지 컴포넌트 -->
+            <a class="nav-link" th:href="@{/reservation-block}">모임 예약</a>
+            <a class="nav-link" th:href="@{/reservation-block/package}">패키지 모임 예약</a>
+            <a class="nav-link" th:href="@{/prize}">뽑기</a>
+            <a class="nav-link" th:href="@{/orders/reservation-form}">선결제 주문 페이지</a>
         </div>
+        <div class="top-link-box-admin" th:if="${session.loggedInUser eq 'admin'}">
+            <!-- 관리자 페이지 컴포넌트 -->
+            <a class="nav-link" th:href="@{/reservation/admin}">일반 모임 정보</a>
+            <a class="nav-link" th:href="@{/scheduled-event/scheduleForm}">이벤트 개최</a>
+            <a class="nav-link" th:href="@{/event/statistics}">이벤트 모임 정보</a>
+            <a class="nav-link" th:href="@{/prize-history/admin}">뽑기 통계</a>
+            <a class="nav-link" th:href="@{/prize/addForm}">뽑기 상품</a>
+            <a class="nav-link" th:href="@{/setting/level}">등급</a>
+            <a class="nav-link" th:href="@{/coupon/form}">쿠폰</a>
+            <a class="nav-link" th:href="@{/user/keep}">이탈 회원 방지</a>
+        </div>
+
         <div class="top-box">
             <!--  로그인 정보 있음 -->
             <a th:href="@{/user/login}" th:if="${session.loggedInUser} == null">로그인</a>
             <a href="" th:if="${session.loggedInUser} == null">회원가입</a>
             <!--  로그인 정보 없음 -->
             <a th:href="@{/user/my-page}" th:if="${session.loggedInUser} != null and ${session.loggedInUser} != admin">마이페이지</a>
-            <form th:action="@{/user/logout}" method="post"><button type="submit" th:if="${session.loggedInUser} != null">로그아웃</button></form>
+            <form th:action="@{/user/logout}" method="post"><button type="submit" th:if="${session.loggedInUser} != null" class="logOutBtn">로그아웃</button></form>
         </div>
     </div>
 </div>
