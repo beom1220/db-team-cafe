@@ -85,4 +85,26 @@ public class Orders {
         this.finalPayment = finalPayment;
         this.level = user.getLevel();
     }
+
+    public Orders(User user, PaymentMethod paymentMethod, int totalPrice,
+                  OrderStatus orderStatus, boolean b, int usedPrepaymentAmount,
+                  int weekdayDiscountRatio, int weekdayDiscountAmount, int levelDiscountRatio,
+                  int levelDiscountAmount, int usedVoucherAmount, int finalPayment,
+                  int couponDiscountRatio, int couponDiscountAmount) {
+        this.user = user;
+        this.paymentMethod = paymentMethod;
+        this.totalPrice = totalPrice;
+        this.orderStatus = orderStatus;
+        this.isTakeout = b;
+        this.usedPrepaymentAmount = usedPrepaymentAmount;
+        this.weekdayDiscountRatio = weekdayDiscountRatio;
+        this.weekdayDiscountAmount = weekdayDiscountAmount;
+        this.levelDiscountRatio = levelDiscountRatio;
+        this.levelDiscountAmount = levelDiscountAmount;
+        this.usedVoucherAmount = usedVoucherAmount;
+        this.finalPayment = finalPayment;
+        this.level = user.getLevel();
+        this.couponDiscountRatio = couponDiscountRatio;
+        this.couponDiscountAmount = couponDiscountAmount;
+    }
 }

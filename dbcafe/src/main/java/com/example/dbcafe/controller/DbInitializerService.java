@@ -118,7 +118,7 @@ public class DbInitializerService {
         eventList.add(new Event("신메뉴 테스트", "생각중인 신메뉴를 테스트할 기회!", true, 10, 30000, "사진", 4, 15.3));
         eventList.add(new Event("독서 골든벨", "책을 많이 읽었다면 도전하세요.", true, 20, 3000, "사진", 3, 12.7));
         eventList.add(new Event("천하제일 자랑대회", "당신의 굿즈를 자랑해보세요", false, 10, 1500, "사진", 0, 0));
-        eventList.add(new Event("제빵교실", "디저트를 사랑하는 당신에게", false, 1, 4000, "사진", 0, 0));
+        eventList.add(new Event("제빵교실", "디저트를 사랑하는 당신에게", false, 7, 4000, "사진", 24, 110));
         eventList.add(new Event("알고리즘 풀이 모임", "세상이 0과 1로 보여요", false, 10, 5000, "사진", 0, 0));
 
         eventRepository.saveAll(eventList);
@@ -302,28 +302,71 @@ public class DbInitializerService {
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
                 ApplicationStatus.REJECTED, true, false, "준비물 부족.", null, 0.0, null));
 
+        java.util.Date now = new java.util.Date();
         nowuser = userRepository.findUserById("alliswell");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, false, null, null, 0.0, null));
-        entrantRepository.saveAll(entrantList);
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
 
-        nowuser = userRepository.findUserById("dlwlrma");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, false, null, null, 0.0, null));
-        entrantRepository.saveAll(entrantList);
+        String[] userIds = {"akak8282", "dndndn23", "alliswell", "coffeemaster", "vlrhsgkek", "wlqdprkrhtlvek", "rmaksgkffo", "dlwlrma"};
+        String[] reviews = {"매우 만족합니다!", "최고예요!", "다시 참여하고 싶어요!"};
+        double[] ratings = {4.8, 4.9, 5.0};
 
-        nowuser = userRepository.findUserById("dndndn23");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, false, null, null, 0.0, null));
-        entrantRepository.saveAll(entrantList);
+        for (int i = 5; i <= 7; i++) {
+            for (int j = 0; j < userIds.length; j++) {
+                nowuser = userRepository.findUserById(userIds[j]);
+                for (int k = 0; k < 3; k++) {
+                    entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(i),
+                            menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                            ApplicationStatus.PENDING, false, true, null, reviews[k], ratings[k], now));
+                }
+            }
+        }
 
-        nowuser = userRepository.findUserById("akak8282");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, false, null, null, 0.0, null));
+//        nowuser = userRepository.findUserById("dlwlrma");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "맘에 드네요", 5.0, now));
+//
+//        nowuser = userRepository.findUserById("dndndn23");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "good!!", 4.5, now));
+//
+//        nowuser = userRepository.findUserById("akak8282");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "또 올 거 같네요", 4.8, now));
+//
+//        nowuser = userRepository.findUserById("beom1220");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "맘에 드네요", 5.0, now));
+//
+//        nowuser = userRepository.findUserById("kimmin1");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "good!!", 4.5, now));
+//
+//        nowuser = userRepository.findUserById("dlwlrma");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "또 올 거 같네요", 4.8, now));
+//
+//        nowuser = userRepository.findUserById("kimmin1");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "맘에 드네요", 5.0, now));
+//
+//        nowuser = userRepository.findUserById("dlwlrma");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "good!!", 4.5, now));
+//
+//        nowuser = userRepository.findUserById("beom1220");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "또 올 거 같네요", 4.8, now));
         entrantRepository.saveAll(entrantList);
     }
 
@@ -497,22 +540,22 @@ public class DbInitializerService {
     public void ReservationItemEntity(){
         List<ReservationItem> reservationItemList = new ArrayList<>();
 
-        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(1), reservationBlockRepository.findReservationBlockById(1), "1111",
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(1), reservationBlockRepository.findReservationBlockById(117), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), true));
 
-        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(2), reservationBlockRepository.findReservationBlockById(2), "1111",
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(2), reservationBlockRepository.findReservationBlockById(118), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), true));
 
-        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(3), reservationBlockRepository.findReservationBlockById(3), "1111",
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(3), reservationBlockRepository.findReservationBlockById(119), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), true));
-        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(4), "1111",
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(120), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), false));
 
-        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(4), "1111",
+        reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(121), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
                 settingRepository.findByName("주중할인율").getValue(), true));
 

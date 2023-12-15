@@ -40,6 +40,7 @@ public class OrdersService {
         int levelDiscountAmount = (userService.findLevelDiscountRatio(user.getLevel()) * dto.getTotalPrice()) / 100;
         OwnCoupon ownCoupon = ownCouponService.findById(dto.getUsedOwnCouponId());
         int couponDiscountRatio = ownCoupon.getCoupon().getDiscountRatio();
+        int couponDiscountAmount = dto.getTotalPrice() * couponDiscountRatio / 100;
         ownCoupon.setCouponStatus(CouponStatus.USED);
         Date now = new Date();
         ownCoupon.setUsedAt(now);
@@ -47,9 +48,11 @@ public class OrdersService {
                 OrderStatus.PREPARING, false, dto.getUsedPrepaymentAmount(),
                 dto.getWeekdayDiscountRatio(), weekdayDiscountAmount,
                 userService.findLevelDiscountRatio(user.getLevel()), levelDiscountAmount,
-                dto.getUsedVoucherAmount(), dto.getFinalPayment());
+                dto.getUsedVoucherAmount(), dto.getFinalPayment(), couponDiscountRatio, couponDiscountAmount);
         Orders savedOrders = ordersRepository.save(orders);
         ownCoupon.setOrders(savedOrders);
+        ownCoupon.setDiscountPrice(couponDiscountAmount);
+
         ownCouponRepository.save(ownCoupon);
         List<CartItem> items = user.getCart().getCartItems();
         for (CartItem item : items) {

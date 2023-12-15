@@ -124,9 +124,11 @@ public class ReservationService {
     }
 
     public List<ReservationItemListDto> findAllReservationItem() {
+        log.info("hello---------------------------");
         List<ReservationItem> items = reservationItemRepository.findAllReservationItemByReservationBlockDateGreaterThanEqualOrderByReservationBlockDateAscReservationBlockStartTimeAsc(LocalDate.now());
         List<ReservationItemListDto> dtos = new ArrayList<>();
         for (ReservationItem item : items) {
+            log.info("뭐야 대체 : " + item.getReservation().getClassName());
             Reservation r = item.getReservation();
             ReservationBlock b = item.getReservationBlock();
             ReservationItemListDto dto = new ReservationItemListDto(item.getId(),
