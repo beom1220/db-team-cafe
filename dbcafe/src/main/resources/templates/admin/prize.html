@@ -4,6 +4,7 @@
         <title>DB Cafe</title>
         <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
         <link rel="stylesheet" th:href="@{/css/adminPrize.css}" type="text/css"/>
+        <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
     </head>
     <body>
     <div th:insert="fragments/navigation/topBar :: topBar"></div>
@@ -24,7 +25,7 @@
                     </span>
                             <div class="btnBox">
                                 <div class="coinGroup">
-                                    <img th:src="@{/image/coinImage.png}" alt="이미지 로딩 실패">
+                                    <img th:src="@{/image/coinImage.png}" alt="이미지 로딩 실패" class="img">
                                     <button type="button" class="btn">
                                         <div class="coinBox">
                                             <input type="radio" name="isCoin" value=true id="c">
