@@ -14,39 +14,50 @@
 <div class="container">
     <div class="box">
         <div class="content-box">
+            <div class="parent-div">
+                <div class="child-div">
+                    <div>
+                        <p>현재 예약 가능 범위(일자)</p>
+                        <input type="hidden" th:value="${userInfo.term}" th:class="${userInfo.term}" id="day-date"/>
+                        <hr/>
+                        <p th:text="${userInfo.term}+'일'">0주</p>
+                    </div>
+                    <div>
+                        <p>누적 금액 달성 시 열리는 범위(주)</p>
+                        <hr/>
+                        <p th:text="${userInfo.nextTerm}+'주'">0주</p>
+                    </div>
+                    <div>
+                        <p>달성 까지 남은 금액</p>
+                        <hr/>
+                        <p th:text="${userInfo.shortage}+'원'">0원</p>
+                    </div>
+                </div>
+            </div>
             <div class="text-box">
                 <p class="content-text">* 모임 예약은 최소 6명에서 10명 이내의 인원만 수용이 가능합니다.</p>
-                <p class="content-text">* 누적 금액에 따라 예약 기간의 차이가 있습니다.(0~30만원(2주), 30~100만원(4주), 100~200만원(6주), 200~(8주))</p>
+                <p class="content-text">* 누적 금액에 따라 예약 기간의 차이가 있습니다.(0~30만원(2주), 30~100만원(4주), 100~200만원(6주),
+                    200~(8주))</p>
                 <p class="content-text">* 월~목요일은 주중 할인율 5%가 적용됩니다.</p>
                 <p class="content-text">* 2주 이상의 날짜를 예약하면 얼리버드 할인이 적용됩니다.</p>
             </div>
-            <div>
-                <input type="hidden" th:value="${userInfo.term}"  th:class="${userInfo.term}" id="day-date"/>
-                <p th:text="'예약가능 일자 범위 '+${userInfo.term}+'일'">0주</p>
-                <p th:text="'다음 등급까지 필요한 금액 '+${userInfo.shortage}+'원'">0원</p>
-                <p th:text="'다음 등급의 예약일자 범위 '+${userInfo.nextTerm}+'주'">0주</p>
-            </div>
-            <form id="dateForm" action="/reservation-block/select-time" method="get">
-                <div th:each="day : ${days}" class="row-box">
-                    <p th:text="${day.isBookable}"></p>
-                    <p th:text="${day.date}">데이터</p>
-                    <input type="radio" name="date" th:value="${day.date}" th:if="${day.isBookable}"/>
+            <div class="date-select-box ">
+                <h2>날짜 선택</h2>
+                <hr>
+                <div>
+                    <form id="dateForm" action="/reservation-block/select-time" method="get" class="form-box">
+                        <div th:each="day : ${days}"
+                             th:class="${day.isBookable} ? 'row-box-date' : 'row-box-date-false'">
+                            <a th:href="@{|/reservation-block/select-time?date=${day.date}|}" class="a-link">
+                                <p th:text="${day.date} + ' (' + ${day.dayOfWeek} + ')'">0000-00-00 0요일</p>
+                            </a>
+                        </div>
+                    </form>
                 </div>
-                <button type="button" onclick="submitForm()">시간 선택하러 가기</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-
-<!--<script>-->
-<!--    var today = new Date();-->
-<!--    const endDay = document.getElementById('day-date');-->
-<!--    const num = parseInt(endDay.value);-->
-
-<!--    today.setDate(today.getDate() + num);-->
-<!--    console.log(today);-->
-
-<!--</script>-->
 <script>
     function submitForm() {
         var selectedDate = document.querySelector('input[name="date"]:checked');
@@ -57,59 +68,22 @@
             alert("날짜를 선택하세요.");
         }
     }
+document.addEventListener("DOMContentLoaded", function () {
+    var dateElements = document.querySelectorAll('.row-box-date-false');
+
+    dateElements.forEach(function (dateElement) {
+        // 클래스에 'row-box-date-false'가 존재하는 경우
+        if (dateElement.classList.contains('row-box-date-false')) {
+            dateElement.addEventListener('click', function (event) {
+                event.preventDefault();
+                // 클릭 이벤트를 막아 링크가 작동하지 않도록 함
+                alert('해당 날짜는 모두 마감되어 예약이 불가능합니다.');
+            });
+        }
+    });
+});
+
+
 </script>
-
-<!--<script>-->
-<!--var today = new Date();-->
-
-<!--var year = today.getFullYear();-->
-<!--var month = ('0' + (today.getMonth() + 1)).slice(-2);-->
-<!--var day = ('0' + today.getDate()).slice(-2);-->
-
-
-<!--today.setDate(today.getDate() + 14);-->
-<!--console.log(today);-->
-
-
-<!--var dateString = year + '-' + month  + '-' + day;-->
-
-<!--const endDay = document.getElementById('day-date');-->
-<!--const num = parseInt(endDay.value);-->
-
-<!--console.log(endDay);-->
-<!--14일-->
-<!--console.log(num);-->
-
-
-
-<!--const dateObject = new Date(dateString);-->
-<!--console.log(dateObject);-->
-<!--console.log(dateObject);-->
-
-<!--const obj = new Date(dateObject.setDate(dateObject.getDate() + num));-->
-
-<!--console.log("계산 :" + obf);-->
-
-
-<!--console.log(num);-->
-<!--console.log(dateObject);-->
-
-<!--console.log(typeof(num));-->
-<!--console.log(typeof(dateObject));-->
-
-<!--const endDayDate = currentDate.setDate(dateObject + num);-->
-<!--console.log(endDayDate);-->
-
-<!--    function submitForm() {-->
-<!--        var selectedDate = document.querySelector('input[name="date"]:checked');-->
-<!--        if (selectedDate) {-->
-<!--            document.getElementById('dateForm').action += "?date=" + selectedDate.value;-->
-<!--            document.getElementById('dateForm').submit();-->
-<!--        } else {-->
-<!--            alert("날짜를 선택하세요.");-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
-
 </body>
 </html>
