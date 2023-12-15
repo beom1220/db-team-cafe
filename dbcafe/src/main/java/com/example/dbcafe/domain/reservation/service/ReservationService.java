@@ -93,7 +93,7 @@ public class ReservationService {
 
             ReservationItem item = new ReservationItem(savedReservation, block,
                     dto.getTempPw(), settingService.findValueByName("블록당선결제금액"),
-                    calEarlybirdDiscount(date), calWeekdayDiscount(date), true);
+                    calEarlybirdDiscount(date), calWeekdayDiscount(date), true, block.getDate(), block.getStartTime(), block.getEndTime());
             ReservationItem lastItem = reservationItemRepository.findByReservationUserAndLast(user, true);
             lastItem.setLast(false);
             reservationItemRepository.save(lastItem);

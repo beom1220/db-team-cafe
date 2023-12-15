@@ -138,26 +138,26 @@ public class DbInitializerService {
     public void SettingEntity(){ // 값 잘 몰라서 확인 요망
         List<Setting> settingList = new ArrayList<>();
 
-        settingList.add(new Setting(1, "브론즈할인율", "내용", 3));
-        settingList.add(new Setting(2, "실버할인율", "내용", 5));
-        settingList.add(new Setting(3, "골드할인율", "내용", 10));
-        settingList.add(new Setting(4, "다이아할인율", "내용", 20));
-        settingList.add(new Setting(5, "VIP할인율", "내용", 30));
-        settingList.add(new Setting(6, "주중할인율", "내용", 5));
-        settingList.add(new Setting(7, "얼리버드할인율", "내용", 5));
-        settingList.add(new Setting(8, "블록당선결제금액", "내용", 50000)); // 5만원
-        settingList.add(new Setting(9, "얼리버드기준일수", "내용", 14)); // 2주일
-        settingList.add(new Setting(10, "누적금액1단계기준", "내용", 2000000));
-        settingList.add(new Setting(11, "누적금액2단계기준", "내용", 1000000));
-        settingList.add(new Setting(12, "누적금액3단계기준", "내용", 300000));
-        settingList.add(new Setting(13, "누적금액1단계기간", "내용", 8));
-        settingList.add(new Setting(14, "누적금액2단계기간", "내용", 6));
-        settingList.add(new Setting(15, "누적금액3단계기간", "내용", 4));
-        settingList.add(new Setting(16, "브론즈기준", "", 100));
-        settingList.add(new Setting(17, "실버기준", "", 80));
-        settingList.add(new Setting(18, "골드기준", "", 60));
-        settingList.add(new Setting(19, "다이아기준", "", 30));
-        settingList.add(new Setting(20, "VIP기준", "", 0));
+        settingList.add(new Setting(1, "브론즈할인율", 3));
+        settingList.add(new Setting(2, "실버할인율", 5));
+        settingList.add(new Setting(3, "골드할인율", 10));
+        settingList.add(new Setting(4, "다이아할인율", 20));
+        settingList.add(new Setting(5, "VIP할인율", 30));
+        settingList.add(new Setting(6, "주중할인율", 5));
+        settingList.add(new Setting(7, "얼리버드할인율", 5));
+        settingList.add(new Setting(8, "블록당선결제금액", 50000)); // 5만원
+        settingList.add(new Setting(9, "얼리버드기준일수", 14)); // 2주일
+        settingList.add(new Setting(10, "누적금액1단계기준", 2000000));
+        settingList.add(new Setting(11, "누적금액2단계기준", 1000000));
+        settingList.add(new Setting(12, "누적금액3단계기준", 300000));
+        settingList.add(new Setting(13, "누적금액1단계기간", 8));
+        settingList.add(new Setting(14, "누적금액2단계기간", 6));
+        settingList.add(new Setting(15, "누적금액3단계기간", 4));
+        settingList.add(new Setting(16, "브론즈기준", 100));
+        settingList.add(new Setting(17, "실버기준", 80));
+        settingList.add(new Setting(18, "골드기준", 60));
+        settingList.add(new Setting(19, "다이아기준", 30));
+        settingList.add(new Setting(20, "VIP기준", 0));
 
         settingRepository.saveAll(settingList);
     }
@@ -243,7 +243,7 @@ public class DbInitializerService {
         nowuser = userRepository.findUserById("kimmin1");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CASH,
-                ApplicationStatus.PENDING, false, true, "현금 사용 불가 이벤트네요...", null, 4.2, null));
+                ApplicationStatus.PENDING, false, false, "현금 사용 불가 이벤트네요...", null, 4.2, null));
 
         nowuser = userRepository.findUserById("beom1220");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(3),
@@ -265,13 +265,13 @@ public class DbInitializerService {
         nowuser = userRepository.findUserById("tttgood");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "테스트 공간이 생기니까 너무 편해요.",
-                4.9, Date.valueOf(LocalDate.of(2023, 12, 10))));
+                ApplicationStatus.PENDING, false, false, null, null,
+                4.9, null));
 
         nowuser = userRepository.findUserById("dkanrjsk010");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "공간이 조금 번잡하네요.",
+                ApplicationStatus.PENDING, false, false, null, null,
                 4.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
 
         nowuser = userRepository.findUserById("tttgood");
@@ -294,7 +294,7 @@ public class DbInitializerService {
         nowuser = userRepository.findUserById("akak8282");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "최악이에요.", 2.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
+                ApplicationStatus.PENDING, false, false, null, null, 2.2, null));
 
         nowuser = userRepository.findUserById("dndndn23");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
@@ -305,6 +305,27 @@ public class DbInitializerService {
         nowuser = userRepository.findUserById("alliswell");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
+
+        nowuser = userRepository.findUserById("arirang");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
+        nowuser = userRepository.findUserById("coffeemaster");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
+        nowuser = userRepository.findUserById("mrLow");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
+        nowuser = userRepository.findUserById("alliswell");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
+        nowuser = userRepository.findUserById("dlwlrma");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
                 ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
 
         String[] userIds = {"akak8282", "dndndn23", "alliswell", "coffeemaster", "vlrhsgkek", "wlqdprkrhtlvek", "rmaksgkffo", "dlwlrma"};
@@ -548,56 +569,56 @@ public class DbInitializerService {
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(1), reservationBlockRepository.findReservationBlockById(117), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,12,25), LocalTime.of(10, 0), LocalTime.of(12, 0)));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(2), reservationBlockRepository.findReservationBlockById(118), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,12,25), LocalTime.of(12, 0), LocalTime.of(14, 0)));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(3), reservationBlockRepository.findReservationBlockById(119), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,12,25), LocalTime.of(14, 0), LocalTime.of(16, 0)));
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(120), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), false));
+                settingRepository.findByName("주중할인율").getValue(), false, LocalDate.of(2023,12,25), LocalTime.of(16, 0), LocalTime.of(18, 0)));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(5), reservationBlockRepository.findReservationBlockById(121), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,12,25), LocalTime.of(18, 0), LocalTime.of(20, 0)));
 
 
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(6), reservationBlockRepository.findReservationBlockById(1), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,10,18), LocalTime.of(12, 0), LocalTime.of(14, 0)));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(7), reservationBlockRepository.findReservationBlockById(2), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,10,17), LocalTime.of(12, 0), LocalTime.of(14, 0)));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(8), reservationBlockRepository.findReservationBlockById(3), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,10,16), LocalTime.of(12, 0), LocalTime.of(14, 0)));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(9), reservationBlockRepository.findReservationBlockById(4), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,10,15), LocalTime.of(12, 0), LocalTime.of(14, 0)));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(10), reservationBlockRepository.findReservationBlockById(5), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,10,14), LocalTime.of(12, 0), LocalTime.of(14, 0)));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(11), reservationBlockRepository.findReservationBlockById(6), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,10,13), LocalTime.of(12, 0), LocalTime.of(14, 0)));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(12), reservationBlockRepository.findReservationBlockById(7), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,10,12), LocalTime.of(12, 0), LocalTime.of(14, 0)));
 
         reservationItemList.add(new ReservationItem(reservationRepository.findReservationById(13), reservationBlockRepository.findReservationBlockById(8), "1111",
                 50000, settingRepository.findByName("얼리버드할인율").getValue(),
-                settingRepository.findByName("주중할인율").getValue(), true));
+                settingRepository.findByName("주중할인율").getValue(), true, LocalDate.of(2023,10,11), LocalTime.of(12, 0), LocalTime.of(14, 0)));
 
         reservationItemRepository.saveAll(reservationItemList);
     }

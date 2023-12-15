@@ -19,4 +19,5 @@ public class reservationSubmitOrderDto {
     private int usedOwnCouponId;
     private int finalPayment;
     private int usedVoucherAmount;
+    private int reservationItemId;
 }

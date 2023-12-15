@@ -8,6 +8,7 @@ import com.example.dbcafe.domain.order.dto.reservationSubmitOrderDto;
 import com.example.dbcafe.domain.order.repository.OrdersItemRepository;
 import com.example.dbcafe.domain.order.repository.OrdersRepository;
 import com.example.dbcafe.domain.reservation.domain.ReservationItem;
+import com.example.dbcafe.domain.reservation.repository.ReservationItemRepository;
 import com.example.dbcafe.domain.user.domain.Coupon;
 import com.example.dbcafe.domain.user.domain.CouponStatus;
 import com.example.dbcafe.domain.user.domain.OwnCoupon;
@@ -33,6 +34,7 @@ public class OrdersService {
     private final CouponService couponService;
     private final CartItemService cartItemService;
     private final OwnCouponRepository ownCouponRepository;
+    private final ReservationItemRepository reservationItemRepository;
 
     public Orders submitReservationOrder(reservationSubmitOrderDto dto, User user) {
         int weekdayDiscountAmount = (dto.getWeekdayDiscountRatio() * dto.getTotalPrice()) / 100;
@@ -50,6 +52,7 @@ public class OrdersService {
                 userService.findLevelDiscountRatio(user.getLevel()), levelDiscountAmount,
                 dto.getUsedVoucherAmount(), dto.getFinalPayment(), couponDiscountRatio, couponDiscountAmount);
         Orders savedOrders = ordersRepository.save(orders);
+        reservationItemRepository.findReservationItemById(dto.getReservationItemId()).setOrders(orders);
         ownCoupon.setOrders(savedOrders);
         ownCoupon.setDiscountPrice(couponDiscountAmount);
 

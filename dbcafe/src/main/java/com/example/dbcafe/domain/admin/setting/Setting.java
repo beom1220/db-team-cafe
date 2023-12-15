@@ -20,7 +20,5 @@ public class Setting {
 
     private String name;
 
-    private String content;
-
     private int value;
 }

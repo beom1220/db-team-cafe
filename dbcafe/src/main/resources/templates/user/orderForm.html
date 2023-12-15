@@ -13,6 +13,7 @@
 </div>
 <form th:action="@{/orders/reservation-form}" method="post">
   <input type="hidden" th:value="${0}" th:name="usedVoucherAmount">
+  <input type="hidden" th:value="${reservationItem.id}" th:name="reservationItemId">
   <div class="container">
     <div class="box">
       <div class="content-box">
