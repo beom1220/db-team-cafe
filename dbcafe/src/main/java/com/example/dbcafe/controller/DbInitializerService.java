@@ -429,7 +429,7 @@ public class DbInitializerService {
 
         // 시작 날짜와 끝 날짜 설정
         LocalDate startDate = LocalDate.of(2023, 12, 19);
-        LocalDate endDate = LocalDate.of(2024, 3, 1);
+        LocalDate endDate = LocalDate.of(2024, 2, 1);
 
 // 시작 시간과 끝 시간 조합
         LocalTime[][] times = {
@@ -481,8 +481,6 @@ public class DbInitializerService {
         reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 1, 7), true));
         reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 1, 20), true));
         reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 1, 22), true));
-        reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 2, 3), true));
-        reservationBlockList.addAll(reservationBlockRepository.findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate.of(2024, 2, 22), true));
 
         reservationBlockList.stream().forEach(block -> block.setBookable(false));
         reservationBlockRepository.saveAll(reservationBlockList);

@@ -23,7 +23,7 @@ public class ScheduledEventService {
     private final ReservationBlockRepository reservationBlockRepository;
 
     public List<ScheduledEvent> findAllRecruiting() {
-        return scheduledEventRepository.findAllByIsClosed(false);
+        return scheduledEventRepository.findAllByIsClosedOrderByDateAscStartTimeAsc(false);
     }
 
     public ScheduledEvent findById(int id) {

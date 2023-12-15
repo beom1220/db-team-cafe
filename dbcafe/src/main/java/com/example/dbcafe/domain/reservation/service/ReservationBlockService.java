@@ -1,10 +1,12 @@
 package com.example.dbcafe.domain.reservation.service;
 
+import com.example.dbcafe.domain.admin.setting.SettingRepository;
 import com.example.dbcafe.domain.reservation.domain.DayOfWeekInKorean;
 import com.example.dbcafe.domain.reservation.domain.Place;
 import com.example.dbcafe.domain.reservation.domain.ReservationBlock;
 import com.example.dbcafe.domain.reservation.dto.*;
 import com.example.dbcafe.domain.reservation.repository.ReservationBlockRepository;
+import com.example.dbcafe.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,20 +16,32 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class ReservationBlockService {
     private final ReservationBlockRepository reservationBlockRepository;
+    private final SettingRepository settingRepository;
 
-    public List<DayOfReservationBlockDto> showBasicDays() {
+    public List<DayOfReservationBlockDto> showBasicDays(User user) {
         LocalDate today = LocalDate.now();
+        int term;
+        int acc = user.getAccumulation();
+        if (acc >= settingRepository.findByName("누적금액1단계기준").getValue()) {
+            term = settingRepository.findByName("누적금액1단계기간").getValue();
+        } else if (acc >= settingRepository.findByName("누적금액2단계기준").getValue()) {
+            term = settingRepository.findByName("누적금액2단계기간").getValue();
+        } else if (acc >= settingRepository.findByName("누적금액3단계기준").getValue()) {
+            term = settingRepository.findByName("누적금액3단계기간").getValue();
+        } else {
+            term = 2;
+        }
+        term *= 7;
+        LocalDate basedDate = LocalDate.now().plusDays(term);
 
-        List<ReservationBlock> blocks = reservationBlockRepository.findDistinctByDateGreaterThanEqualOrderByDateAsc(today);
+        List<ReservationBlock> blocks = reservationBlockRepository.findDistinctByDateBetweenOrderByDateAsc(today, basedDate);
 
         List<DayOfReservationBlockDto> dtos = new ArrayList<>();
         for (ReservationBlock block : blocks) {

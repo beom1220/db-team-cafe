@@ -34,13 +34,14 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
 
     @Query("SELECT rb FROM ReservationBlock rb WHERE " +
             "rb.date >= :today AND " +
+            "rb.date <= :based AND " +
             "rb.id IN (" +
             "SELECT MIN(rb2.id) FROM ReservationBlock rb2 " +
             "WHERE rb2.date >= :today " +
             "GROUP BY rb2.date " +
             "ORDER BY rb2.date ASC)" +
             "ORDER BY rb.date ASC")  // ORDER BY 구문 추가
-    List<ReservationBlock> findDistinctByDateGreaterThanEqualOrderByDateAsc(LocalDate today);
+    List<ReservationBlock> findDistinctByDateBetweenOrderByDateAsc(LocalDate today, LocalDate based);
 
     @Query("SELECT rb FROM ReservationBlock rb WHERE " +
             "rb.id IN (" +

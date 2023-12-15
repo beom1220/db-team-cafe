@@ -29,12 +29,11 @@ public class ReservationBlockController {
 
     @GetMapping
     public String showBasicDays(Model model, HttpSession session) {
-        List<DayOfReservationBlockDto> days = reservationBlockService.showBasicDays();
+        User user = userService.findById((String) session.getAttribute("loggedInUser"));
+        List<DayOfReservationBlockDto> days = reservationBlockService.showBasicDays(user);
         for (DayOfReservationBlockDto d : days) {
             log.info("날짜 : " + d.getDate());
         }
-
-        User user = userService.findById((String) session.getAttribute("loggedInUser"));
         UserSelectDayDto dto = userService.convertToSelectDayDto(user);
 
         model.addAttribute("userInfo", dto);
