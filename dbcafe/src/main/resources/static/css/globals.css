@@ -19,7 +19,6 @@ button {
 }
 input {
   border: none;
-  autocomplete="off";
 }
 .container {
   display: flex;

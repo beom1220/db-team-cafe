@@ -8,53 +8,59 @@
     </head>
     <body>
     <div th:insert="fragments/navigation/topBar :: topBar"></div>
-        <div id="basic">
-            <div class="detBtn_1">
-                <button type="submit" class="detBtn_1">
-                    <div class="detailBtn_1">
-                        이벤트 모임 등록
+    <div class="container">
+        <div class="box">
+            <div class="content-box">
+                <div id="basic">
+                    <div class="detBtn_1">
+                        <button type="submit" class="detBtn_1">
+                            <div class="detailBtn_1">
+                                이벤트 모임 등록
+                            </div>
+                        </button>
                     </div>
-                </button>
-            </div>
-            <div class="pageLable">
-                <span>
-                    이벤트 모임 목록
-                </span>
-            </div>
-            <hr class="detail_hr" />
-            <hr />
-            <table>
-                <thead>
-                    <tr>
-                        <th class="leftTab">모임 번호</th>
-                        <th>모임명</th>
-                        <th>개최된 횟수</th>
-                        <th>매진된 횟수</th>
-                        <th>평점</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <form th:action method="post">
-                        <th:block th:each="event: ${events}">
+                    <div class="pageLable">
+                        <span>
+                            이벤트 모임 목록
+                        </span>
+                    </div>
+                    <hr class="detail_hr" />
+                    <hr />
+                    <table>
+                        <thead>
                             <tr>
-                                <td class="leftTab" th:text="${event.id}"></td>
-                                <td th:text="${event.title}"></td>
-                                <td th:text="${event.schedulingCount}"></td>
-                                <td th:text="${event.soldOutCount}"></td>
-                                <td th:text="${event.rating}"></td>
-                                <td>
-                                    <button type="submit" class="detBtn_2">
-                                        <div class="detailBtn_2">
-                                            상세보기
-                                        </div>
-                                    </button>
-                                </td>
+                                <th class="leftTab">모임 번호</th>
+                                <th>모임명</th>
+                                <th>개최된 횟수</th>
+                                <th>매진된 횟수</th>
+                                <th>평점</th>
+                                <th></th>
                             </tr>
-                        </th:block>
-                    </form>
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            <form th:action method="post">
+                                <th:block th:each="event: ${events}">
+                                    <tr>
+                                        <td class="leftTab" th:text="${event.id}"></td>
+                                        <td th:text="${event.title}"></td>
+                                        <td th:text="${event.schedulingCount}"></td>
+                                        <td th:text="${event.soldOutCount}"></td>
+                                        <td th:text="${#numbers.formatDecimal(event.rating,1,1)}">0.0</td>
+                                        <td>
+                                            <button type="submit" class="detBtn_2">
+                                                <div class="detailBtn_2">
+                                                    상세보기
+                                                </div>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+    </div>
     </body>
 </html>

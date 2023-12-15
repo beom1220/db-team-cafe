@@ -110,6 +110,13 @@ table th {
     border-bottom: 1px solid black;
 }
 
+.editTr td {
+    width: 215px;
+    height: 45px;
+    border-bottom: 1px solid black;
+    font-size: 13px;
+}
+
 table td {
     width: 215px;
     height: 45px;
@@ -145,20 +152,6 @@ table td {
     font-weight: 700;
     color: white;
 }
-.delBtn {
-    width: 75px;
-    height: 30px;
-    background-color: #9E9E9E;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
-}
-
 .tableBox input {
     text-align: center;
     height: 20px;
