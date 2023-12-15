@@ -97,7 +97,7 @@ public class ScheduledEventController {
     }
 
     @PostMapping("/close")
-    public String close(int scheduledEventId) {
+    public String close(@RequestParam(name = "scheduledEventId") int scheduledEventId) {
         scheduledEventService.close(scheduledEventId);
         return "redirect:/";
     }
