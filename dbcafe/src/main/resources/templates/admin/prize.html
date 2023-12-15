@@ -91,7 +91,7 @@
                                     <td th:if="${prize.isCoin() == true}" th:text="코인"></td>
                                     <td th:if="${prize.isCoin() != true}" th:text="포인트"></td>
                                     <td th:text="${prize.probability}"></td>
-                                    <td>뽑힌 횟수가 될 겨</td>
+                                    <td th:text="${prize.prizeCount}"></td>
                                     <td class="btnGroup">
                                         <button type="submit" class="btn">
                                             <div class="corBtn">

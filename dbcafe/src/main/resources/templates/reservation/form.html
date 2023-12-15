@@ -85,11 +85,12 @@
               </div>
               <hr>
               <div class="space-between">
-                <b>1</b>
+                <b th:text="${reservationBlocks.size() * 1}"></b>
                 <b>x</b>
                 <b>50,000</b>
                 <b>=</b>
-                <b><input type="number" name="prepaymentTotal" th:value="${reservationBlocks.size()} * 50000" readonly></b>
+                <b th:text="${reservationBlocks.size()} * 50000"></b>
+                <input type="hidden" name="prepaymentTotal" th:value="${reservationBlocks.size()} * 50000">
               </div>
             </div>
             <div>

@@ -21,29 +21,29 @@
                   데이터 추가 버튼
               </button>
           </form>
-<!--          <form th:action="/user/login-low" method="get">-->
-<!--              <button id="lowUser"-->
-<!--                      type="submit"-->
-<!--                      style="text-decoration-color: black;-->
-<!--                            color: black;">-->
-<!--                  낮은 사용자 로그인-->
-<!--              </button>-->
-<!--          </form>-->
-<!--          <form th:action="/user/login-high" method="get">-->
-<!--              <button id="highUser"-->
-<!--                      type="submit"-->
-<!--                      style="text-decoration-color: black;-->
-<!--                            color: black;">-->
-<!--                  높은 사용자 로그인-->
-<!--              </button>-->
-<!--          </form>-->
-<!--          <form th:action="/user/login-admin" method="get">-->
-<!--              <button id="admin"-->
-<!--                      type="submit"-->
-<!--                      style="text-decoration-color: black;-->
-<!--                            color: black;">-->
-<!--                  어드민 로그인-->
-<!--              </button>-->
+          <form th:action="@{/user/login-low}" method="get">
+              <button id="lowUser"
+                      type="submit"
+                      style="text-decoration-color: black;
+                            color: black;">
+                  낮은 사용자 로그인
+              </button>
+          </form>
+          <form th:action="@{/user/login-high}" method="get">
+              <button id="highUser"
+                      type="submit"
+                      style="text-decoration-color: black;
+                            color: black;">
+                  높은 사용자 로그인
+              </button>
+          </form>
+          <form th:action="@{/user/login-admin}" method="get">
+              <button id="admin"
+                      type="submit"
+                      style="text-decoration-color: black;
+                            color: black;">
+                  어드민 로그인
+              </button>
           </form>
       </div>
         <div class="list">
