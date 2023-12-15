@@ -11,11 +11,13 @@ import com.example.dbcafe.domain.user.domain.User;
 import com.example.dbcafe.domain.user.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class EventService {
@@ -51,7 +53,12 @@ public class EventService {
         for (Event event : events) {
             int soldOutCount = 0;
             List<ScheduledEvent> scheduledEvents = event.getScheduledEvents();
+            log.info("---------------------------");
+            log.info("이벤트 이름 : " + event.getTitle());
+            log.info("개최이벤트 수 : " + scheduledEvents.size());
+            log.info("수용인원 수 : " + event.getCapacity());
             for (ScheduledEvent se : scheduledEvents) {
+                log.info("참가자 수 : " + se.getEntrants().size());
                 if (event.getCapacity() <= se.getEntrants().size()) {
                     soldOutCount++;
                 }
