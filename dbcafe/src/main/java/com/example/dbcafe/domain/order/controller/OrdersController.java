@@ -3,33 +3,36 @@ package com.example.dbcafe.domain.order.controller;
 import com.example.dbcafe.domain.order.domain.Cart;
 import com.example.dbcafe.domain.order.domain.CartItem;
 import com.example.dbcafe.domain.order.domain.Orders;
+import com.example.dbcafe.domain.order.dto.PriceDto;
 import com.example.dbcafe.domain.order.dto.UserNextLevelDto;
 import com.example.dbcafe.domain.order.dto.reservationSubmitOrderDto;
 import com.example.dbcafe.domain.order.service.CartService;
 import com.example.dbcafe.domain.order.service.OrdersService;
 import com.example.dbcafe.domain.reservation.domain.ReservationItem;
 import com.example.dbcafe.domain.reservation.service.ReservationService;
+import com.example.dbcafe.domain.user.domain.OwnCoupon;
 import com.example.dbcafe.domain.user.domain.User;
 import com.example.dbcafe.domain.reservation.dto.reservationOrdersDto;
+import com.example.dbcafe.domain.user.repository.OwnCouponRepository;
 import com.example.dbcafe.domain.user.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 @RequestMapping("/orders")
 public class OrdersController {
     private final OrdersService ordersService;
     private final CartService cartService;
     private final UserService userService;
     private final ReservationService reservationService;
+    private final OwnCouponRepository ownCouponRepository;
 
     @GetMapping("/find-reservationItem")
     public String findReservationItemForm() {
@@ -55,25 +58,29 @@ public class OrdersController {
         Cart cart = cartService.findByUser(user);
         session.setAttribute("reservationItem", reservationService.findItemByIdAndTempPw(5, "1111"));
         ReservationItem item = (ReservationItem) session.getAttribute("reservationItem");
-        UserNextLevelDto dto = userService.convertToNextLevelDto(user);
-        int totalPrice = 0;
-        for (CartItem cartitem : cart.getCartItems()) {
-            totalPrice += cartitem.getQuantity()*cartitem.getPrice();
+        OwnCoupon ownCoupon = null;
+        if(model.containsAttribute("couponId")){
+            ownCoupon = ownCouponRepository.findOwnCouponById((int) model.asMap().get("couponId"));
         }
-        // 버튼 눌리면 Dto에 값 들어가서 화면에 표시되는 방식으로 할 예정???
+        UserNextLevelDto dto = userService.convertToNextLevelDto(user);
 
+        PriceDto priceDto = ordersService.calcOrderForm(cart.getCartItems(), user.getOwnCoupons(), item, ownCoupon, user);
         model.addAttribute("cartItems", cart.getCartItems());
         model.addAttribute("ownCoupons", user.getOwnCoupons());
         model.addAttribute("reservationItem", item);
         model.addAttribute("levelInfo", dto);
-        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("priceDto", priceDto);
 
         return "user/orderForm";
     }
-//    @GetMapping("/reservation-button")
-//    public void orderModeChange(){
-//        return "redirct:/"
-//    }
+
+    @GetMapping("/reservation-button/{couponId}")
+    public String reservationButton(@PathVariable int couponId, HttpSession session, RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("couponId", couponId);
+        log.info(String.valueOf(couponId));
+        log.info(String.valueOf(ownCouponRepository.findOwnCouponById(couponId)));
+        return "redirect:/orders/reservation-form";
+    }
 
     @PostMapping("/reservation-form")
     public String createOrderByReservation(@ModelAttribute reservationSubmitOrderDto dto, HttpSession session, RedirectAttributes redirectAttributes) {

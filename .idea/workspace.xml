@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50e8f9a1-4024-4859-b512-935a092b3db6" name="Changes" comment="억셉" />
+    <list default="true" id="50e8f9a1-4024-4859-b512-935a092b3db6" name="Changes" comment="억셉">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/dto/PriceDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/dto/PriceDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/service/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/service/OrdersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/resources/templates/user/orderForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/resources/templates/user/orderForm.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +51,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -66,7 +73,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "qop__frontEnd__K",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/devms/Desktop/DBM",
     "node.js.detected.package.eslint": "true",
@@ -98,6 +105,7 @@
       <workItem from="1702279626886" duration="140000" />
       <workItem from="1702279770191" duration="11917000" />
       <workItem from="1702361149982" duration="50481000" />
+      <workItem from="1702612065817" duration="16858000" />
     </task>
     <task id="LOCAL-00001" summary="What the setting files?">
       <option name="closed" value="true" />
@@ -188,7 +196,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="formerge" />
+                        <option value="qop_frontEnd_K" />
                       </list>
                     </value>
                   </entry>

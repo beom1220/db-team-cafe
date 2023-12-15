@@ -113,7 +113,7 @@ public class EntrantService {
     }
 
     public void entry(User user, ScheduledEvent scheduledEvent) {
-        Menu menu = menuRepository.findMenuById(0);
+        Menu menu = menuRepository.findMenuById(1);
         Entrant entrant = new Entrant(user, scheduledEvent, menu, user.getName(), user.getPhone(), user.getAge(),
                 user.isMale(), PaymentMethod.CREDIT, ApplicationStatus.PENDING, false, false,
                 null, null, 0, null);
