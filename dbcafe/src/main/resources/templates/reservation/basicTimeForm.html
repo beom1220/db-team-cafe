@@ -21,7 +21,6 @@
       <div class="time-container">
         <hr>
         <h3>시간대 선택</h3>
-
         <div class="row row-cols-1 row-cols-md-4 g-4">
           <div class="col" th:each="time: ${times}">
             <a th:href="@{|/reservation/${time.blockId}|}" style="text-decoration: none; color: inherit;">

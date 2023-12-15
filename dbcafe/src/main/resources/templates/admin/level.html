@@ -4,27 +4,10 @@
         <title>DB Cafe</title>
         <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
         <link rel="stylesheet" th:href="@{/css/level.css}" type="text/css"/>
+        <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
     </head>
     <body>
-        <div id="navbar">
-            <div class="wrap">
-                <div class="item">
-                    <img th:src="@{/image/cafeLogo.png}" alt="이미지 로딩 실패"/>
-                </div>
-                <div class="item"> <strong> 메뉴 </strong> </div>
-                <div class="item"> <strong> 예약 </strong> </div>
-                <div class="item"> <strong> 랭킹 </strong> </div>
-                <div class="item"> <strong> 뽑기 </strong> </div>
-                <div class="item"> <strong> 이벤트 </strong> </div>
-                <div class="item"> <strong> 교환권 </strong> </div>
-                <div class="search">
-                    <img th:src="@{/image/userPage.png}" alt="이미지 로딩 실패"/>
-                </div>
-                <div class="cart">
-                    <img th:src="@{/image/logOut.png}" alt="이미지 로딩 실패"/>
-                </div>
-            </div>
-        </div>
+    <div th:insert="fragments/navigation/topBar :: topBar"></div>
         <div id="basic">
             <div class="pageLable">
                 <span>
