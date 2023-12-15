@@ -7,10 +7,18 @@
         <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
     </head>
     <body>
+
     <div th:insert="fragments/navigation/topBar :: topBar"></div>
     <div class="container">
         <div class="box">
             <div class="content-box">
+<!--                "@{'/scheduled-event/close?scheduledEventId='+${scheduledEvent.id}}"-->
+<!--                "@{'/event/review?eventId='+${event.id}}-->
+<!--                <form th:action="@{'/scheduled-event/close'}" method="post">-->
+                <form th:action="@{'/scheduled-event/close?scheduledEventId='+${scheduledEvent.id}}" method="post">
+                    <input type="hidden" value="${scheduledEvent.id}" name="scheduledEventId">
+                    <button type="submit" class="event-endButton">이벤트 모집 마감</button>
+                </form>
                 <div id="basic">
                     <div class="pageLable">
                         이벤트 정보

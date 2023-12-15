@@ -131,5 +131,14 @@ public class ScheduledEventService {
         Entrant entrant = entrantRepository.findEntrantById(87);
         entrant.setAttended(true);
         entrantRepository.save(entrant);
+        ScheduledEvent event = scheduledEventRepository.findScheduledEventById(1);
+        event.setClosed(true);
+        scheduledEventRepository.save(event);
+    }
+
+    public void close(int scheduledEventId) {
+        ScheduledEvent se = scheduledEventRepository.findScheduledEventById(scheduledEventId);
+        se.setClosed(true);
+        scheduledEventRepository.save(se);
     }
 }

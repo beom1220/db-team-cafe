@@ -90,10 +90,15 @@ public class ScheduledEventController {
         return "redirect:/";
     }
 
-
     @PostMapping("/attend")
     public String attend() {
         scheduledEventService.tempAttend();
+        return "redirect:/";
+    }
+
+    @PostMapping("/close")
+    public String close(@RequestParam(name = "scheduledEventId") int scheduledEventId) {
+        scheduledEventService.close(scheduledEventId);
         return "redirect:/";
     }
 }
