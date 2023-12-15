@@ -106,6 +106,9 @@ public class DbInitializerService {
         scheduledEventList.add(new ScheduledEvent(eventRepository.findEventById(5), placeRepository.findPlaceById(3),
                 LocalDate.of(2024, 2, 10), LocalTime.of(18,0), LocalTime.of(20,0),
                 true, Tag.NOTHING));
+        scheduledEventList.add(new ScheduledEvent(eventRepository.findEventById(2), placeRepository.findPlaceById(3),
+                LocalDate.of(2023, 11, 11), LocalTime.of(18,0), LocalTime.of(20,0),
+                true, Tag.NEW));
 
         scheduledEventRepository.saveAll(scheduledEventList);
     }
@@ -268,6 +271,12 @@ public class DbInitializerService {
                 ApplicationStatus.PENDING, false, false, null, null,
                 4.9, null));
 
+        nowuser = userRepository.findUserById("tttgood");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.ACCEPTED, false, true, null, "여러가지로 시도해볼 수 있어서 좋았어요.",
+                3.8, Date.valueOf(LocalDate.of(2023, 11, 11))));
+
         nowuser = userRepository.findUserById("dkanrjsk010");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
@@ -286,6 +295,12 @@ public class DbInitializerService {
                 ApplicationStatus.ACCEPTED, false, true, null, "아싸 상금!!!",
                 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
 
+        nowuser = userRepository.findUserById("dkanrjsk010");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.ACCEPTED, false, true, null, "신메뉴 이번엔 잘 팔리겠죠...?.",
+                3.9, Date.valueOf(LocalDate.of(2023, 11, 11))));
+
         nowuser = userRepository.findUserById("dlwlrma");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
@@ -295,6 +310,12 @@ public class DbInitializerService {
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
                 ApplicationStatus.PENDING, false, false, null, null, 2.2, null));
+
+        nowuser = userRepository.findUserById("akak8282");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.ACCEPTED, false, true, null, "이번에는 맛있게 될거에요.",
+                3.6, Date.valueOf(LocalDate.of(2023, 11, 11))));
 
         nowuser = userRepository.findUserById("dndndn23");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
