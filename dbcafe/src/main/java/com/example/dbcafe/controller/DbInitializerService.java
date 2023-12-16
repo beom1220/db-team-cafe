@@ -43,6 +43,7 @@ public class DbInitializerService {
     private final PrizeRepository prizeRepository;
     private final SuggestionRepository suggestionRepository;
     private final VoucherRepository voucherRepository;
+    private final ReservationCheckerRepository reservationCheckerRepository;
 
     public void MenuEntity(){
         List<Menu> menuList = new ArrayList<>();
@@ -138,29 +139,54 @@ public class DbInitializerService {
         placeRepository.saveAll(placeList);
     }
 
+    public void ReservationCheckerEntity() {
+        List<ReservationBlock> blocks = reservationBlockRepository.findDistinctByDateBetweenOrderByDateAsc(LocalDate.now(), LocalDate.of(2024, 3, 1));
+
+
+        for (ReservationBlock block : blocks) {
+            createReservationChecker(block.getDate());
+        }
+
+    }
+
+    public void createReservationChecker(LocalDate date) {
+        List<ReservationBlock> blocks = reservationBlockRepository.findReservationBlockByDateAndIsBookableTrue(date);
+
+        ReservationChecker checker = new ReservationChecker();
+        checker.setDate(date);
+        checker.setNumA((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(10, 0))).count());
+        checker.setNumB((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(12, 0))).count());
+        checker.setNumC((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(14, 0))).count());
+        checker.setNumD((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(16, 0))).count());
+        checker.setNumE((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(18, 0))).count());
+        checker.setNumF((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(20, 0))).count());
+
+        reservationCheckerRepository.save(checker);
+    }
+
     public void SettingEntity(){ // 값 잘 몰라서 확인 요망
         List<Setting> settingList = new ArrayList<>();
 
-        settingList.add(new Setting(1, "브론즈할인율", "내용", 3));
-        settingList.add(new Setting(2, "실버할인율", "내용", 5));
-        settingList.add(new Setting(3, "골드할인율", "내용", 10));
-        settingList.add(new Setting(4, "다이아할인율", "내용", 20));
-        settingList.add(new Setting(5, "VIP할인율", "내용", 30));
-        settingList.add(new Setting(6, "주중할인율", "내용", 5));
-        settingList.add(new Setting(7, "얼리버드할인율", "내용", 5));
-        settingList.add(new Setting(8, "블록당선결제금액", "내용", 50000)); // 5만원
-        settingList.add(new Setting(9, "얼리버드기준일수", "내용", 14)); // 2주일
-        settingList.add(new Setting(10, "누적금액1단계기준", "내용", 2000000));
-        settingList.add(new Setting(11, "누적금액2단계기준", "내용", 1000000));
-        settingList.add(new Setting(12, "누적금액3단계기준", "내용", 300000));
-        settingList.add(new Setting(13, "누적금액1단계기간", "내용", 8));
-        settingList.add(new Setting(14, "누적금액2단계기간", "내용", 6));
-        settingList.add(new Setting(15, "누적금액3단계기간", "내용", 4));
-        settingList.add(new Setting(16, "브론즈기준", "", 100));
-        settingList.add(new Setting(17, "실버기준", "", 80));
-        settingList.add(new Setting(18, "골드기준", "", 60));
-        settingList.add(new Setting(19, "다이아기준", "", 30));
-        settingList.add(new Setting(20, "VIP기준", "", 0));
+        settingList.add(new Setting(1, "브론즈할인율", 3));
+        settingList.add(new Setting(2, "실버할인율", 5));
+        settingList.add(new Setting(3, "골드할인율", 10));
+        settingList.add(new Setting(4, "다이아할인율", 20));
+        settingList.add(new Setting(5, "VIP할인율", 30));
+        settingList.add(new Setting(6, "주중할인율", 5));
+        settingList.add(new Setting(7, "얼리버드할인율",  5));
+        settingList.add(new Setting(8, "블록당선결제금액", 50000)); // 5만원
+        settingList.add(new Setting(9, "얼리버드기준일수", 14)); // 2주일
+        settingList.add(new Setting(10, "누적금액1단계기준", 2000000));
+        settingList.add(new Setting(11, "누적금액2단계기준", 1000000));
+        settingList.add(new Setting(12, "누적금액3단계기준", 300000));
+        settingList.add(new Setting(13, "누적금액1단계기간", 8));
+        settingList.add(new Setting(14, "누적금액2단계기간", 6));
+        settingList.add(new Setting(15, "누적금액3단계기간", 4));
+        settingList.add(new Setting(16, "브론즈기준", 100));
+        settingList.add(new Setting(17, "실버기준", 80));
+        settingList.add(new Setting(18, "골드기준", 60));
+        settingList.add(new Setting(19, "다이아기준", 30));
+        settingList.add(new Setting(20, "VIP기준", 0));
 
         settingRepository.saveAll(settingList);
     }
