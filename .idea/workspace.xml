@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50e8f9a1-4024-4859-b512-935a092b3db6" name="Changes" comment="add orderId to reservationItem for prepaymentAmount / Add reservation Date's to ReservationItem">
+    <list default="true" id="50e8f9a1-4024-4859-b512-935a092b3db6" name="Changes" comment="억셉">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/controller/DbInitializerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/controller/DbInitializerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/dto/PriceDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/dto/PriceDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/service/OrdersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/java/com/example/dbcafe/domain/order/service/OrdersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dbcafe/src/main/resources/templates/user/orderForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/dbcafe/src/main/resources/templates/user/orderForm.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,23 +179,7 @@
       <option name="project" value="LOCAL" />
       <updated>1702483507153</updated>
     </task>
-    <task id="LOCAL-00010" summary="coupone discountRatio fix!">
-      <option name="closed" value="true" />
-      <created>1702639256065</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1702639256065</updated>
-    </task>
-    <task id="LOCAL-00011" summary="add orderId to reservationItem for prepaymentAmount / Add reservation Date's to ReservationItem">
-      <option name="closed" value="true" />
-      <created>1702673340637</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1702673340637</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,8 +217,6 @@
     <MESSAGE value="add Get method's packageReservationForm and additional data's and dto about packageReservation" />
     <MESSAGE value="review Count Changed" />
     <MESSAGE value="억셉" />
-    <MESSAGE value="coupone discountRatio fix!" />
-    <MESSAGE value="add orderId to reservationItem for prepaymentAmount / Add reservation Date's to ReservationItem" />
-    <option name="LAST_COMMIT_MESSAGE" value="add orderId to reservationItem for prepaymentAmount / Add reservation Date's to ReservationItem" />
+    <option name="LAST_COMMIT_MESSAGE" value="억셉" />
   </component>
 </project>
