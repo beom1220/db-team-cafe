@@ -106,4 +106,8 @@ public interface ReservationBlockRepository extends JpaRepository<ReservationBlo
     ReservationBlock findFirstByDateAndIsBookableOrderByPlaceIdAsc(LocalDate date, boolean b);
 
     List<ReservationBlock> findAllByDateAndIsBookableOrderByPlaceIdAsc(LocalDate of, boolean b);
+
+//    List<LocalDate> findDistinctDate(); // 데모 데이터 생성용이라 몰라도 됨.
+
+    List<ReservationBlock> findReservationBlockByDateAndIsBookableTrue(LocalDate date); // 데모 데이터 생성용
 }

@@ -1,10 +1,7 @@
 package com.example.dbcafe.domain.reservation.service;
 
 import com.example.dbcafe.domain.admin.setting.SettingService;
-import com.example.dbcafe.domain.reservation.domain.DayOfWeekInKorean;
-import com.example.dbcafe.domain.reservation.domain.Reservation;
-import com.example.dbcafe.domain.reservation.domain.ReservationBlock;
-import com.example.dbcafe.domain.reservation.domain.ReservationItem;
+import com.example.dbcafe.domain.reservation.domain.*;
 import com.example.dbcafe.domain.reservation.dto.*;
 import com.example.dbcafe.domain.reservation.repository.ReservationBlockRepository;
 import com.example.dbcafe.domain.reservation.repository.ReservationItemRepository;
@@ -40,6 +37,7 @@ public class ReservationService {
     private final ReservationBlockRepository reservationBlockRepository;
     private final CouponRepository couponRepository;
     private final OwnCouponRepository ownCouponRepository;
+    private final ReservationCheckerService reservationCheckerService;
 
     public List<ReservationBlockResponseDto> calDayOfWeekAndDiscountRatio(ReservationBlockRequestDto dto) {
         String dayOfWeek = DayOfWeekInKorean.valueOf(dto.getDate().getDayOfWeek().name()).getDay();
@@ -99,6 +97,7 @@ public class ReservationService {
             reservationItemRepository.save(lastItem);
             block.setBookable(false);
             reservationBlockRepository.save(block);
+            reservationCheckerService.updateChecker(block);
             reservationItemRepository.save(item);
         }
 //        for (ReservationBlockResponseDto block : blocks) {
@@ -124,11 +123,9 @@ public class ReservationService {
     }
 
     public List<ReservationItemListDto> findAllReservationItem() {
-        log.info("hello---------------------------");
         List<ReservationItem> items = reservationItemRepository.findAllReservationItemByReservationBlockDateGreaterThanEqualOrderByReservationBlockDateAscReservationBlockStartTimeAsc(LocalDate.now());
         List<ReservationItemListDto> dtos = new ArrayList<>();
         for (ReservationItem item : items) {
-            log.info("뭐야 대체 : " + item.getReservation().getClassName());
             Reservation r = item.getReservation();
             ReservationBlock b = item.getReservationBlock();
             ReservationItemListDto dto = new ReservationItemListDto(item.getId(),
@@ -209,6 +206,7 @@ public class ReservationService {
             reservationItemRepository.save(lastItem);
             packageBlock.setBookable(false);
             reservationBlockRepository.save(packageBlock);
+            reservationCheckerService.updateChecker(packageBlock);
             reservationItemRepository.save(item);
         }
     }

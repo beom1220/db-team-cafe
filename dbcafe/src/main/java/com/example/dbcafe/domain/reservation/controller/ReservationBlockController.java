@@ -31,6 +31,7 @@ public class ReservationBlockController {
     public String showBasicDays(Model model, HttpSession session) {
         User user = userService.findById((String) session.getAttribute("loggedInUser"));
         List<DayOfReservationBlockDto> days = reservationBlockService.showBasicDays(user);
+//        List<DayOfReservationBlockDto> days = reservationBlockService.showBasicDaysImp(user);
         for (DayOfReservationBlockDto d : days) {
             log.info("날짜 : " + d.getDate());
         }

@@ -9,6 +9,7 @@ import com.example.dbcafe.domain.reservation.repository.*;
 import com.example.dbcafe.domain.user.domain.*;
 import com.example.dbcafe.domain.user.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -43,6 +44,7 @@ public class DbInitializerService {
     private final PrizeRepository prizeRepository;
     private final SuggestionRepository suggestionRepository;
     private final VoucherRepository voucherRepository;
+    private final ReservationCheckerRepository reservationCheckerRepository;
 
     public void MenuEntity(){
         List<Menu> menuList = new ArrayList<>();
@@ -575,6 +577,31 @@ public class DbInitializerService {
                 LocalTime.of(16, 00), true));
         reservationBlockList.stream().forEach(block -> block.setBookable(false));
         reservationBlockRepository.saveAll(reservationBlockList);
+    }
+
+    public void ReservationCheckerEntity() {
+        List<ReservationBlock> blocks = reservationBlockRepository.findDistinctByDateBetweenOrderByDateAsc(LocalDate.now(), LocalDate.of(2024, 3, 1));
+
+
+        for (ReservationBlock block : blocks) {
+            createReservationChecker(block.getDate());
+        }
+
+    }
+
+    public void createReservationChecker(LocalDate date) {
+        List<ReservationBlock> blocks = reservationBlockRepository.findReservationBlockByDateAndIsBookableTrue(date);
+
+        ReservationChecker checker = new ReservationChecker();
+        checker.setDate(date);
+        checker.setNumA((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(10, 0))).count());
+        checker.setNumB((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(12, 0))).count());
+        checker.setNumC((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(14, 0))).count());
+        checker.setNumD((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(16, 0))).count());
+        checker.setNumE((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(18, 0))).count());
+        checker.setNumF((int) blocks.stream().filter(block -> block.getStartTime().equals(LocalTime.of(20, 0))).count());
+
+        reservationCheckerRepository.save(checker);
     }
 
     public void ReservationChangeRequestEntity(){

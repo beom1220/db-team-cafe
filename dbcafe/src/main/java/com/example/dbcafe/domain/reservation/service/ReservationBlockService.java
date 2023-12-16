@@ -4,9 +4,12 @@ import com.example.dbcafe.domain.admin.setting.SettingRepository;
 import com.example.dbcafe.domain.reservation.domain.DayOfWeekInKorean;
 import com.example.dbcafe.domain.reservation.domain.Place;
 import com.example.dbcafe.domain.reservation.domain.ReservationBlock;
+import com.example.dbcafe.domain.reservation.domain.ReservationChecker;
 import com.example.dbcafe.domain.reservation.dto.*;
 import com.example.dbcafe.domain.reservation.repository.ReservationBlockRepository;
+import com.example.dbcafe.domain.reservation.repository.ReservationCheckerRepository;
 import com.example.dbcafe.domain.user.domain.User;
+import com.example.dbcafe.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,8 +25,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ReservationBlockService {
+    private final ReservationCheckerRepository reservationCheckerRepository;
     private final ReservationBlockRepository reservationBlockRepository;
     private final SettingRepository settingRepository;
+    private final UserService userService;
 
     public List<DayOfReservationBlockDto> showBasicDays(User user) {
         LocalDate today = LocalDate.now();
@@ -191,4 +196,6 @@ public class ReservationBlockService {
                 return null;
         }
     }
+
+
 }
