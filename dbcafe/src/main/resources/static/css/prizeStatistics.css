@@ -5,7 +5,11 @@
     align-items: center;
     margin-bottom: 20px;
 }
-
+.content-text {
+    font-size: 13px;
+    color: #8d8d8d;
+    margin: 15px 0px;
+}
 .Box_1{
     width: 1122px;
     height: 50px;
@@ -42,12 +46,6 @@
     font-weight: 700;
 }
 
-.prizeBox {
-    width: 1280px;
-    height: 605px;
-    border: 1px solid black;
-    border-radius: 5px;
-}
 .prizeList table th {
     width: 1280px;
     height: 40px;

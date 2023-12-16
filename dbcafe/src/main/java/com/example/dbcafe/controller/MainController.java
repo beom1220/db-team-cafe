@@ -68,6 +68,8 @@ public class MainController {
 
         dbInitializerService.CartEntity(); // user
         dbInitializerService.CartItemEntity(); // user, menu
+
+        dbInitializerService.ReservationCheckerEntity(); // ReservationBlock 있어야 함.
         return "redirect:/";
     }
 }

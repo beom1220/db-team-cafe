@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="calendar">
-            <div>
+            <div class="form-box">
                 <select id="dayOfWeek">
                     <option value="">전체요일</option>
                     <option value="월요일">월요일</option>
@@ -36,8 +36,8 @@
                     <option value="16:00">16:00~18:00</option>
                     <option value="18:00">18:00~20:00</option>
                 </select>
-                <button onclick="search()">조회</button>
-                <div th:each="package : ${packages}">
+                <button onclick="search()" class="searchBtn">조회</button>
+                <div th:each="package : ${packages}" class="row-box-date">
                   <a th:href="@{|/reservation/package/${package.blockId}|}">
                     <p><b th:text="${package.startDate} + '(' + ${package.dayOfWeek} + ')'"></b> 부터 4주간 <b
                             th:text="${package.startTime} + '~' + ${package.endTime}"></b>패키지</p>

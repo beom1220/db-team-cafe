@@ -7,96 +7,101 @@
         <link th:href="@{/css/globals.css}" href="../static/css/globals.css" rel="stylesheet">
     </head>
     <body>
-    <div th:insert="fragments/navigation/topBar :: topBar"></div>
-        <div id="basic">
-            <div class="pageLable">
+    <div th:insert="fragments/navigation/topBar :: topBar"></div>    <div class="container">
+        <div class="box">
+            <div class="content-box">
+                <div id="basic">
+                    <div class="pageLable">
                 <span>
                     예약 취소 알림 및 보상
                 </span>
-            </div>
-            <hr class="detail_hr">
+                    </div>
+                    <hr class="detail_hr">
 
-            <div class="smallLable">
+                    <div class="smallLable">
                 <span>
                     지급 대상 정보
                 </span>
-                <hr>
-            </div>
-            <div class="infoBox">
-                <table>
-                    <tr>
-                        <td class="leftTab">회원 아이디</td>
-                        <td>
-                            : <th:block th:text="${user.userId}"></th:block>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="leftTab">회원 이름</td>
-                        <td>
-                            : <th:block th:text="${user.name}"></th:block>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="leftTab">회원 연락처</td>
-                        <td>
-                            : <th:block th:text="${user.phone}"></th:block>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="leftTab">회원 등급</td>
-                        <td>
-                            : <th:block th:text="${user.level}"></th:block>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <form th:action method="post">
-                <input type="hidden" name="userId" th:value="${user.userId}">
-                <input type="hidden" name="phone" th:value="${user.phone}">
-                <input type="hidden" name="itemId" th:value="${itemId}">
-                <div class="smallLable">
+                        <hr>
+                    </div>
+                    <div class="infoBox">
+                        <table>
+                            <tr>
+                                <td class="leftTab">회원 아이디</td>
+                                <td>
+                                    : <th:block th:text="${user.userId}"></th:block>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="leftTab">회원 이름</td>
+                                <td>
+                                    : <th:block th:text="${user.name}"></th:block>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="leftTab">회원 연락처</td>
+                                <td>
+                                    : <th:block th:text="${user.phone}"></th:block>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="leftTab">회원 등급</td>
+                                <td>
+                                    : <th:block th:text="${user.level}"></th:block>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <form th:action method="post">
+                        <input type="hidden" name="userId" th:value="${user.userId}">
+                        <input type="hidden" name="phone" th:value="${user.phone}">
+                        <input type="hidden" name="itemId" th:value="${itemId}">
+                        <div class="smallLable">
                     <span>
                         지급 쿠폰 선택
                     </span>
-                    <hr>
-                </div>
-                <div class="infoCoupon">
+                            <hr>
+                        </div>
+                        <div class="infoCoupon">
                     <span>
                         쿠폰명
                     </span>
-                    <select name="couponId" id="couponId">
-                        <option selected value="false">지급할 쿠폰을 선택해 주세요. </option>
-                        <th:block th:each="coupon: ${coupons}">
-                            <option th:value="${coupon.id}" th:text="${coupon.name} + '(' + ${coupon.discountRatio} + '%)'"></option>
-                        </th:block>
-                    </select>
-                </div>
-                <div class="smallLable">
+                            <select name="couponId" id="couponId">
+                                <option selected value="false">지급할 쿠폰을 선택해 주세요. </option>
+                                <th:block th:each="coupon: ${coupons}">
+                                    <option th:value="${coupon.id}" th:text="${coupon.name} + '(' + ${coupon.discountRatio} + '%)'"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="smallLable">
                     <span>
                         지급 코인 선택
                     </span>
-                    <hr>
-                </div>
-                <div class="coin">
-                    <input type="number" min="0" name="coin" style="width: 100px">
-                </div>
-                <div class="smallLable">
+                            <hr>
+                        </div>
+                        <div class="coin">
+                            <input type="number" min="0" name="coin" style="width: 100px" autocomplete='off'>
+                        </div>
+                        <div class="smallLable">
                     <span>
                         사유
                     </span>
-                    <hr>
-                </div>
-                <div class="textBox">
-                    <textarea name="content" cols="85" rows="5" placeholder="취소 사유를 입력해주세요."></textarea>
-                </div>
-                <div class="cent">
-                    <button type="submit" class="btn">
-                        <div class="checBtn">
-                            확인
+                            <hr>
                         </div>
-                    </button>
+                        <div class="textBox">
+                            <textarea name="content" cols="85" rows="5" placeholder="취소 사유를 입력해주세요."></textarea>
+                        </div>
+                        <div class="cent">
+                            <button type="submit" class="btn">
+                                <div class="checBtn">
+                                    확인
+                                </div>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
+    </div>
     </body>
 </html>

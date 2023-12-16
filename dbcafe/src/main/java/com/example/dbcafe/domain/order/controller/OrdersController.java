@@ -70,7 +70,6 @@ public class OrdersController {
         model.addAttribute("reservationItem", item);
         model.addAttribute("levelInfo", dto);
         model.addAttribute("priceDto", priceDto);
-
         return "user/orderForm";
     }
 

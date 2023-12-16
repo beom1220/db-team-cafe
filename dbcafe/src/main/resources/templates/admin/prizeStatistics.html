@@ -8,50 +8,56 @@
     </head>
     <body>
     <div th:insert="fragments/navigation/topBar :: topBar"></div>
-        <div id="basic">
-            <div class="pageLable">
+    <div class="container">
+        <div class="box">
+            <div class="content-box">
+                <div id="basic">
+                    <div class="pageLable">
                 <span>
                     뽑기 내역
                 </span>
-            </div>
-            <hr class="detail_hr">
-            <div class="infoPrizeBox">
-                <div class="Box_1">
-                    <table>
-                        <th>진행한 게임 횟수</th>
-                        <th>회원 총 획득 포인트</th>
-                        <th>평균 획득 포인트</th>
-                    </table>
-                </div>
-                <div class="Box_2">
-                    <table>
-                        <th th:text="${statistic.totalDrawCount}"></th>
-                        <th th:text="${statistic.totalMileage}"></th>
-                        <th th:text="${statistic.averageMileage}"></th>
-                    </table>
-                </div>
-            </div>
-            <h3>1코인 당 500 포인트로 환산되어 계산됩니다.</h3>
-            <div class="prizeBox">
-                <div class="prizeList">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>회원아이디</th>
-                                <th>수량</th>
-                                <th>획득일자</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="historie : ${histories}">
-                                <td th:text="${historie.userId}"></td>
-                                <td th:text="${historie.prizeName}"></td>
-                                <td th:text="${historie.drawedDate}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    </div>
+                    <hr class="detail_hr">
+                    <h3 class="content-text">*1코인 당 500 포인트로 환산되어 계산됩니다.</h3>
+                    <div class="infoPrizeBox">
+                        <div class="Box_1">
+                            <table>
+                                <th>진행한 게임 횟수</th>
+                                <th>회원 총 획득 포인트</th>
+                                <th>평균 획득 포인트</th>
+                            </table>
+                        </div>
+                        <div class="Box_2">
+                            <table>
+                                <th th:text="${statistic.totalDrawCount}"></th>
+                                <th th:text="${statistic.totalMileage}"></th>
+                                <th th:text="${statistic.averageMileage}"></th>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="prizeBox">
+                        <div class="prizeList">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>회원아이디</th>
+                                    <th>수량</th>
+                                    <th>획득일자</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="historie : ${histories}">
+                                    <td th:text="${historie.userId}"></td>
+                                    <td th:text="${historie.prizeName}"></td>
+                                    <td th:text="${historie.drawedDate}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </body>
 </html>
