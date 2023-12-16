@@ -65,6 +65,7 @@ public class Orders {
 
     private Date finishedTime;
 
+    @Enumerated(EnumType.STRING)
     private Level level;
 
     public Orders(User user, PaymentMethod paymentMethod, int totalPrice,
