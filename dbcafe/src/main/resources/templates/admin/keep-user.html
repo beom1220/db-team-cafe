@@ -29,7 +29,7 @@
                     </div>
                     <hr/>
                     <div th:each="userInfo, userIndex : ${userInfos}" class="space-bottom">
-                        <input th:value="${userInfo.userId}" th:id="'userIdSelect_'+${userIndex.index}" class="id"/>
+                        <input th:value="${userInfo.userId}" th:id="'userIdSelect_'+${userIndex.index}" class="id" autocomplete='off'/>
                         <p th:text="${userInfo.bestLevel}">0000</p>
                         <p th:text="${userInfo.acc}">0000</p>
                         <p th:text="${userInfo.lastReservation}">0000</p>

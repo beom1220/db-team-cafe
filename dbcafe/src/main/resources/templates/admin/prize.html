@@ -45,11 +45,11 @@
                             <span>
                         수량
                     </span>
-                            <input type="text" placeholder="수량을 입력하세요." name="value" id="value">
+                            <input type="text" placeholder="수량을 입력하세요." name="value" id="value" autocomplete='off'>
                             <span>
                         확률
                     </span>
-                            <input type="text" placeholder="확률을 입력하세요." name="probability" id="probability">
+                            <input type="text" placeholder="확률을 입력하세요." name="probability" id="probability" autocomplete='off'>
                             <div class="regGroup">
                                 <button type="submit" class="btn">
                                     <div class="regBox">
@@ -104,7 +104,7 @@
                                         </td>
                                         <td th:text="${prize.name}"></td>
                                         <td>
-                                            <input type="text" th:value="${prize.value}" name="value">
+                                            <input type="text" th:value="${prize.value}" name="value" autocomplete='off'>
                                         </td>
                                         <td>
                                             <select name="isCoin">
@@ -113,7 +113,7 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" th:value="${prize.probability}" name="probability">
+                                            <input type="text" th:value="${prize.probability}" name="probability" autocomplete='off'>
                                         </td>
                                         <td></td>
                                         <td></td>

@@ -25,27 +25,27 @@
                         쿠폰 이름
                     </span>
                             <input type="text" name="name" id="name"
-                                   placeholder="쿠폰 이름을 입력하세요." />
+                                   placeholder="쿠폰 이름을 입력하세요." autocomplete='off'/>
                             <span>
                         할인율
                     </span>
                             <input type="text" name="discountRatio" id="discountRatio"
-                                   placeholder="할인율을 입력하세요." />
+                                   placeholder="할인율을 입력하세요." autocomplete='off'/>
                             <span>
                         만료 일자
                     </span>
                             <input type="text" name="period" id="period"
-                                   placeholder="쿠폰 만료 일자를 입력하세요." />
+                                   placeholder="쿠폰 만료 일자를 입력하세요." autocomplete='off'/>
                             <span>
                         최대 할인 금액
                     </span>
                             <input type="text" name="maxDiscount" id="maxDiscount"
-                                   placeholder="최대 할인 금액을 입력하세요." />
+                                   placeholder="최대 할인 금액을 입력하세요." autocomplete='off'/>
                             <span>
                         최대 발급 횟수
                     </span>
                             <input type="text" name="maxIssuance" id="maxIssuance"
-                                   placeholder="최대 발급 횟수를 입력하세요." />
+                                   placeholder="최대 발급 횟수를 입력하세요." autocomplete='off'/>
                             <div class="regGroup">
                                 <button type="submit" class="btn">
                                     <div class="regBox">
@@ -81,19 +81,19 @@
                                         <input type="hidden" th:value="${coupon.id}">
                                     </td>
                                     <td>
-                                        <input type="text" name="name" th:value="${coupon.name}">
+                                        <input type="text" name="name" th:value="${coupon.name}" autocomplete='off'>
                                     </td>
                                     <td>
-                                        <input type="text" name="discountRatio" th:value="${coupon.discountRatio}">
+                                        <input type="text" name="discountRatio" th:value="${coupon.discountRatio}" autocomplete='off'>
                                     </td>
                                     <td>
-                                        <input type="text" name="period" th:value="${coupon.period}">
+                                        <input type="text" name="period" th:value="${coupon.period}" autocomplete='off'>
                                     </td>
                                     <td>
-                                        <input type="text" name="maxDiscount" th:value="${coupon.maxDiscount}">
+                                        <input type="text" name="maxDiscount" th:value="${coupon.maxDiscount}" autocomplete='off'>
                                     </td>
                                     <td>
-                                        <input type="text" name="maxIssuance" th:value="${coupon.maxIssuance}">
+                                        <input type="text" name="maxIssuance" th:value="${coupon.maxIssuance}" autocomplete='off'>
                                     </td>
                                     <td class="btnGroup">
                                         <button type="submit" class="btn">

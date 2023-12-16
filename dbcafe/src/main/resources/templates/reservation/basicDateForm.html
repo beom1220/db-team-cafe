@@ -18,7 +18,7 @@
                 <div class="child-div">
                     <div>
                         <p>현재 예약 가능 범위(일자)</p>
-                        <input type="hidden" th:value="${userInfo.term}" th:class="${userInfo.term}" id="day-date"/>
+                        <input type="hidden" th:value="${userInfo.term}" th:class="${userInfo.term}" id="day-date" autocomplete='off'/>
                         <hr/>
                         <p th:text="${userInfo.term}+'일'">0주</p>
                     </div>
