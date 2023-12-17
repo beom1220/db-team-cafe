@@ -128,7 +128,7 @@ public class ScheduledEventService {
     }
 
     public void tempAttend() {
-        Entrant entrant = entrantRepository.findEntrantById(87);
+        Entrant entrant = entrantRepository.findEntrantByScheduledEventIdAndUserId(1, "beom1220");
         entrant.setAttended(true);
         entrantRepository.save(entrant);
         ScheduledEvent event = scheduledEventRepository.findScheduledEventById(1);

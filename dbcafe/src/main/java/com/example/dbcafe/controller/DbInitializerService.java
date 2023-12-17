@@ -120,9 +120,6 @@ public class DbInitializerService {
         eventList.add(new Event("천하제일 자랑대회", "당신의 굿즈를 자랑해보세요", false, 10, 1500, "사진", 0, 0));
         eventList.add(new Event("제빵교실", "디저트를 사랑하는 당신에게", false, 7, 4000, "사진", 24, 110));
         eventList.add(new Event("알고리즘 풀이 모임", "세상이 0과 1로 보여요", false, 10, 5000, "사진", 0, 0));
-        eventList.add(new Event("제빵교실", "디저트를 사랑하는 당신에게", false, 7, 4000, "사진", 24, 110));
-        eventList.add(new Event("제빵교실", "디저트를 사랑하는 당신에게", false, 7, 4000, "사진", 24, 110));
-
 
         eventRepository.saveAll(eventList);
     }
