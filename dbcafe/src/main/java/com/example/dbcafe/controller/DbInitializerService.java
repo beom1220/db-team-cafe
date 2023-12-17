@@ -254,6 +254,261 @@ public class DbInitializerService {
         cartItemRepository.saveAll(cartItemList);
     }
 
+//    public void EntrantEntity(){
+//        List<Entrant> entrantList = new ArrayList<>();
+//        User nowuser = userRepository.findUserById("kimDongSeo");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "재밌어요.", 4.5, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("mrLow");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
+//                ApplicationStatus.PENDING, false, true, null, "할만하네요.", 4.1, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("kimmin1");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CASH,
+//                ApplicationStatus.PENDING, false, true, "현금 사용 불가 이벤트네요...", null, 4.2, null));
+//
+//        nowuser = userRepository.findUserById("beom1220");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(3),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, null, 4.4, null));
+//
+//        nowuser = userRepository.findUserById("tttgood");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "생각보다 어려워요.",
+//                4.0, Date.valueOf(LocalDate.of(2023, 12, 10))));
+//
+//        nowuser = userRepository.findUserById("dkanrjsk010");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "스타벅스 알바 해보고 싶었는데 재밌었어요.",
+//                4.8, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("tttgood");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "테스트 공간이 생기니까 너무 편해요.",
+//                4.9, Date.valueOf(LocalDate.of(2023, 12, 10))));
+//
+//        nowuser = userRepository.findUserById("dkanrjsk010");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "공간이 조금 번잡하네요.",
+//                4.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("tttgood");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(3),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "문제가 너무 어려워요 ㅠㅠ.",
+//                3.3, Date.valueOf(LocalDate.of(2023, 12, 11))));
+//
+//        nowuser = userRepository.findUserById("dkanrjsk010");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(3),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.ACCEPTED, false, true, null, "아싸 상금!!!",
+//                5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("dlwlrma");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.ACCEPTED, false, true, null, "신기한 경험이었어요.", 4.1, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("akak8282");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "최악이에요.", 2.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("tttgood");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.REJECTED, true, false, "준비물 부족.", null, 0.0, null));
+//        // 여기서 부터야 민우야
+//        nowuser = userRepository.findUserById("akak8282");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "할만 하네요.", 4.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("dkanrjsk010");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "5점이요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("alliswell");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "행복한 하루가 됐습니다.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("arirang");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "접시 어디 거에요?.", 4.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("coffeemaster");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "노래가 좋아요.", 3.8, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("dlwlrma");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "점주님 잘생겼어요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("dndndn23");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "다시 또 올게요.", 4.5, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("wlqdprkrhtlvek");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "맛있었습니다.", 4.7, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("akak8282");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "할만 하네요.", 4.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("dkanrjsk010");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "5점이요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("alliswell");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "행복한 하루가 됐습니다.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("arirang");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "접시 어디 거에요?.", 4.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("coffeemaster");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "노래가 좋아요.", 3.8, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("dlwlrma");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "점주님 잘생겼어요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("dndndn23");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "다시 또 올게요.", 4.5, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("wlqdprkrhtlvek");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "맛있었습니다.", 4.7, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("akak8282");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "할만 하네요.", 4.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("dkanrjsk010");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "5점이요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("alliswell");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "행복한 하루가 됐습니다.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("arirang");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "접시 어디 거에요?.", 4.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("coffeemaster");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "노래가 좋아요.", 3.8, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("dlwlrma");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "점주님 잘생겼어요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("dndndn23");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "다시 또 올게요.", 4.5, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        nowuser = userRepository.findUserById("wlqdprkrhtlvek");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, true, null, "맛있었습니다.", 4.7, Date.valueOf(LocalDate.of(2023, 12, 12))));
+//
+//        java.util.Date now = new java.util.Date();
+//        nowuser = userRepository.findUserById("kimmin1");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
+//
+//        nowuser = userRepository.findUserById("rmaksgkffo");
+//        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+//                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+//                ApplicationStatus.REJECTED, true, false, "준비물 부족.", null, 0.0, null));
+//
+//        String[] userIds = {"akak8282", "dndndn23", "alliswell", "coffeemaster", "vlrhsgkek", "wlqdprkrhtlvek", "rmaksgkffo", "dlwlrma"};
+//        String[] reviews = {"매우 만족합니다!", "최고예요!", "다시 참여하고 싶어요!"};
+//        double[] ratings = {4.8, 4.9, 5.0};
+//
+////        nowuser = userRepository.findUserById("dlwlrma");
+////        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+////                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+////                ApplicationStatus.PENDING, false, true, null, "맘에 드네요", 5.0, now));
+////
+////        nowuser = userRepository.findUserById("dndndn23");
+////        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+////                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+////                ApplicationStatus.PENDING, false, true, null, "good!!", 4.5, now));
+////
+////        nowuser = userRepository.findUserById("akak8282");
+////        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+////                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+////                ApplicationStatus.PENDING, false, true, null, "또 올 거 같네요", 4.8, now));
+////
+////        nowuser = userRepository.findUserById("beom1220");
+////        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+////                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+////                ApplicationStatus.PENDING, false, true, null, "맘에 드네요", 5.0, now));
+////
+////        nowuser = userRepository.findUserById("kimmin1");
+////        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+////                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+////                ApplicationStatus.PENDING, false, true, null, "good!!", 4.5, now));
+////
+////        nowuser = userRepository.findUserById("dlwlrma");
+////        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+////                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+////                ApplicationStatus.PENDING, false, true, null, "또 올 거 같네요", 4.8, now));
+////
+////        nowuser = userRepository.findUserById("kimmin1");
+////        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+////                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+////                ApplicationStatus.PENDING, false, true, null, "맘에 드네요", 5.0, now));
+////
+////        nowuser = userRepository.findUserById("dlwlrma");
+////        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
+////                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+////                ApplicationStatus.PENDING, false, true, null, "good!!", 4.5, now));
+////
+////        nowuser = userRepository.findUserById("beom1220");
+////        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
+////                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+////                ApplicationStatus.PENDING, false, true, null, "또 올 거 같네요", 4.8, now));
+//        entrantRepository.saveAll(entrantList);
+//    }
+
     public void EntrantEntity(){
         List<Entrant> entrantList = new ArrayList<>();
         User nowuser = userRepository.findUserById("kimDongSeo");
@@ -269,7 +524,7 @@ public class DbInitializerService {
         nowuser = userRepository.findUserById("kimmin1");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CASH,
-                ApplicationStatus.PENDING, false, true, "현금 사용 불가 이벤트네요...", null, 4.2, null));
+                ApplicationStatus.PENDING, false, false, "현금 사용 불가 이벤트네요...", null, 4.2, null));
 
         nowuser = userRepository.findUserById("beom1220");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(3),
@@ -291,13 +546,19 @@ public class DbInitializerService {
         nowuser = userRepository.findUserById("tttgood");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "테스트 공간이 생기니까 너무 편해요.",
-                4.9, Date.valueOf(LocalDate.of(2023, 12, 10))));
+                ApplicationStatus.PENDING, false, false, null, null,
+                4.9, null));
+
+        nowuser = userRepository.findUserById("tttgood");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.ACCEPTED, false, true, null, "여러가지로 시도해볼 수 있어서 좋았어요.",
+                3.8, Date.valueOf(LocalDate.of(2023, 11, 11))));
 
         nowuser = userRepository.findUserById("dkanrjsk010");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "공간이 조금 번잡하네요.",
+                ApplicationStatus.PENDING, false, false, null, null,
                 4.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
 
         nowuser = userRepository.findUserById("tttgood");
@@ -312,6 +573,12 @@ public class DbInitializerService {
                 ApplicationStatus.ACCEPTED, false, true, null, "아싸 상금!!!",
                 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
 
+        nowuser = userRepository.findUserById("dkanrjsk010");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.ACCEPTED, false, true, null, "신메뉴 이번엔 잘 팔리겠죠...?.",
+                3.9, Date.valueOf(LocalDate.of(2023, 11, 11))));
+
         nowuser = userRepository.findUserById("dlwlrma");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(1),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
@@ -320,147 +587,60 @@ public class DbInitializerService {
         nowuser = userRepository.findUserById("akak8282");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "최악이에요.", 2.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
+                ApplicationStatus.PENDING, false, false, null, null, 2.2, null));
 
-        nowuser = userRepository.findUserById("tttgood");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
+        nowuser = userRepository.findUserById("akak8282");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                ApplicationStatus.ACCEPTED, false, true, null, "이번에는 맛있게 될거에요.",
+                3.6, Date.valueOf(LocalDate.of(2023, 11, 11))));
+
+        nowuser = userRepository.findUserById("dndndn23");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
                 ApplicationStatus.REJECTED, true, false, "준비물 부족.", null, 0.0, null));
-        // 여기서 부터야 민우야
-        nowuser = userRepository.findUserById("akak8282");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "할만 하네요.", 4.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("dkanrjsk010");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "5점이요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("alliswell");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "행복한 하루가 됐습니다.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("arirang");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "접시 어디 거에요?.", 4.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("coffeemaster");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "노래가 좋아요.", 3.8, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("dlwlrma");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "점주님 잘생겼어요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("dndndn23");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "다시 또 올게요.", 4.5, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("wlqdprkrhtlvek");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "맛있었습니다.", 4.7, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("akak8282");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "할만 하네요.", 4.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("dkanrjsk010");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "5점이요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("alliswell");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "행복한 하루가 됐습니다.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("arirang");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "접시 어디 거에요?.", 4.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("coffeemaster");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "노래가 좋아요.", 3.8, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("dlwlrma");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "점주님 잘생겼어요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("dndndn23");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "다시 또 올게요.", 4.5, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("wlqdprkrhtlvek");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(7),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "맛있었습니다.", 4.7, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("akak8282");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "할만 하네요.", 4.2, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("dkanrjsk010");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "5점이요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("alliswell");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "행복한 하루가 됐습니다.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("arirang");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "접시 어디 거에요?.", 4.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("coffeemaster");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "노래가 좋아요.", 3.8, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("dlwlrma");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "점주님 잘생겼어요.", 5.0, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("dndndn23");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "다시 또 올게요.", 4.5, Date.valueOf(LocalDate.of(2023, 12, 12))));
-
-        nowuser = userRepository.findUserById("wlqdprkrhtlvek");
-        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(6),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.PENDING, false, true, null, "맛있었습니다.", 4.7, Date.valueOf(LocalDate.of(2023, 12, 12))));
 
         java.util.Date now = new java.util.Date();
-        nowuser = userRepository.findUserById("kimmin1");
+        nowuser = userRepository.findUserById("alliswell");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
                 menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
                 ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
 
-        nowuser = userRepository.findUserById("rmaksgkffo");
+        nowuser = userRepository.findUserById("arirang");
         entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
-                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
-                ApplicationStatus.REJECTED, true, false, "준비물 부족.", null, 0.0, null));
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
+        nowuser = userRepository.findUserById("coffeemaster");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
+        nowuser = userRepository.findUserById("mrLow");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
+        nowuser = userRepository.findUserById("alliswell");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
+        nowuser = userRepository.findUserById("dlwlrma");
+        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(2),
+                menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.CREDIT,
+                ApplicationStatus.PENDING, false, false, null, null, 0.0, now));
 
         String[] userIds = {"akak8282", "dndndn23", "alliswell", "coffeemaster", "vlrhsgkek", "wlqdprkrhtlvek", "rmaksgkffo", "dlwlrma"};
         String[] reviews = {"매우 만족합니다!", "최고예요!", "다시 참여하고 싶어요!"};
         double[] ratings = {4.8, 4.9, 5.0};
+
+        for (int i = 5; i <= 7; i++) {
+            for (int j = 0; j < userIds.length; j++) {
+                nowuser = userRepository.findUserById(userIds[j]);
+                for (int k = 0; k < 3; k++) {
+                    entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(i),
+                            menuRepository.findMenuById(1), nowuser.getName(), nowuser.getPhone(), nowuser.getAge(), nowuser.isMale(), PaymentMethod.KAKAO,
+                            ApplicationStatus.PENDING, false, true, null, reviews[k], ratings[k], now));
+                }
+            }
+        }
 
 //        nowuser = userRepository.findUserById("dlwlrma");
 //        entrantList.add(new Entrant(nowuser, scheduledEventRepository.findScheduledEventById(5),
@@ -746,10 +926,11 @@ public class DbInitializerService {
         List<Coupon> couponList = new ArrayList<>();
 
         couponList.add(new Coupon("웰컴쿠폰", 10, 30000, 30, 100));
-        couponList.add(new Coupon("오랜만쿠폰", 30, 70000, 30, 100));
+        couponList.add(new Coupon("오랜만쿠폰", 30, 100000, 30, 100));
         couponList.add(new Coupon("장기고객쿠폰", 15, 50000, 60, 100));
         couponList.add(new Coupon("명절축하쿠폰", 20, 80000, 15, 100));
         couponList.add(new Coupon("취소보상쿠폰", 20, 100000, 15, 100));
+        couponList.add(new Coupon("돌아와요쿠폰", 25, 120000, 15, 100));
         couponRepository.saveAll(couponList);
     }
 
@@ -825,6 +1006,7 @@ public class DbInitializerService {
         prizeList.add(new Prize("50포인트", 50, 0, 50));
         prizeList.add(new Prize("2코인", 0, 2, 5));
         prizeList.add(new Prize("5코인", 0, 5, 1));
+        prizeList.add(new Prize("500포인트", 500, 0, 100));
 
         prizeRepository.saveAll(prizeList);
     }
