@@ -45,9 +45,13 @@ li {
   color: gray;
 }
 .order-button-box {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #fff; /* 배경색이 필요한 경우 지정하세요. */
 }
 .cancleButton{
   width: 50%;
@@ -55,6 +59,7 @@ li {
   color: #ffffff;
   padding: 20px;
   cursor: pointer;
+  margin-left: auto; /* 버튼을 오른쪽으로 정렬합니다. */
 }
 .okButton {
   width: 50%;

@@ -31,7 +31,7 @@
             <span class="star" onclick="rateStar(5)" data-rating="5">★</span>
             <input type="hidden" name="rating" id="rating" value="1">
           </div>
-          <input type="hidden" name="review" id="loggedReview" value="">
+          <input type="hidden" id="loggedReview" value="">
           <input type="hidden" name="rating" id="loggedRating" value="">
           <button class="add-review" type="submit">등록하기</button>
         </div>
@@ -64,14 +64,11 @@
         var reviewValue = document.getElementById('review').value;
         var ratingValue = document.getElementById('rating').value;
 
-        // Update hidden input values with user-entered values
         document.getElementById('rating').value = ratingValue;
 
-        console.log('Review: ' + reviewValue + ', Rating: ' + ratingValue);
     }
 
     function rateStar(rating) {
-        // 별점 설정 로직
         document.getElementById('rating').value = rating;
         updateStars(rating);
     }
@@ -79,7 +76,6 @@
     function updateStars(rating) {
         selectedRating = rating;
 
-        // Remove active class from all stars
         document.querySelectorAll('.star').forEach(star => {
             star.classList.remove('active');
         });
@@ -89,14 +85,11 @@
             document.querySelector(`.star:nth-child(${i})`).classList.add('active');
         }
 
-        // You can use 'selectedRating' variable to store the selected rating value
-        console.log('Selected Rating:', selectedRating);
     }
 
-    // Toggle the review form visibility
+
     const inputBox = document.querySelector('.input-box');
     const addReviewToggle = document.querySelector('.add-review-toggle');
-
     addReviewToggle.addEventListener('click', function () {
         inputBox.classList.toggle('hidden');
     });

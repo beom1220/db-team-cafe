@@ -221,6 +221,10 @@ td:not(.today):not(.in2weeks) {
 .select-pay{
   width: 300px;
 }
+.select-pay > input{
+  width: 300px;
+  border-bottom: 1px solid black;
+}
 .row-box{
   display: flex;
   flex-direction: row;
